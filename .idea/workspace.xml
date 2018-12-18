@@ -2,25 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d12d518-0448-4196-a6b6-18c2e63d2610" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/farm/FarmManagementAppApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/farm/config/SwaggerConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/farm/dao/AnimalDeliveryEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/farm/dao/AnimalEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/farm/dao/AnimalTypeEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/farm/dao/AnimalVaccineEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/farm/dao/AnimalWeightEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/farm/repository/AnimalRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/farm/repository/DeliveryRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/farm/repository/TypeRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/farm/repository/VaccineRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/farm/repository/WeightRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/FarmManagementAppApplicationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -80,14 +62,24 @@
         <counts>
           <entry key="IDEA_MODULE" value="2" />
           <entry key="JAVA" value="15" />
-          <entry key="Properties" value="1" />
+          <entry key="Properties" value="2" />
           <entry key="Scratch" value="1" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -107,13 +99,13 @@
         <option value="$PROJECT_DIR$/src/main/java/FarmManagementAppApplication.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/farm/config/SwaggerConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/farm/FarmManagementAppApplication.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/test/java/FarmManagementAppApplicationTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/farm/repository/WeightRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/farm/repository/VaccineRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/farm/repository/DeliveryRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/farm/repository/AnimalRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/farm/repository/TypeRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
       </list>
     </option>
   </component>
@@ -196,7 +188,7 @@
     <property name="JPA.DatabaseSchemaImportDialog" value="2fc742dc-2b40-4ef9-bc1f-40f1cd96998e" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545171006152" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545171602821" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -232,15 +224,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1545168281271</updated>
-      <workItem from="1545168292131" duration="2511000" />
+      <workItem from="1545168292131" duration="2706000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2511000" />
+    <option name="totallyTimeSpent" value="2706000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1206" height="721" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Persistence" sideWeight="0.5007949" side_tool="true" weight="0.26546392" />
       <window_info id="Designer" />
@@ -304,13 +297,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -413,6 +399,13 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
