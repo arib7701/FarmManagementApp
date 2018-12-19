@@ -14,7 +14,7 @@ public class AnimalWeightEntity {
     private AnimalEntity animalByAnimalId;
 
     @Id
-    @Column(name = "weight_id", nullable = false)
+    @Column(name = "weight_id")
     public int getWeightId() {
         return weightId;
     }
@@ -24,7 +24,7 @@ public class AnimalWeightEntity {
     }
 
     @Basic
-    @Column(name = "weight_date", nullable = false)
+    @Column(name = "weight_date")
     public Date getWeightDate() {
         return weightDate;
     }
@@ -34,7 +34,7 @@ public class AnimalWeightEntity {
     }
 
     @Basic
-    @Column(name = "weight_number", nullable = false, precision = 0)
+    @Column(name = "weight_number")
     public double getWeightNumber() {
         return weightNumber;
     }
@@ -44,7 +44,7 @@ public class AnimalWeightEntity {
     }
 
     @Basic
-    @Column(name = "animal_id", nullable = false)
+    @Column(name = "animal_id")
     public int getAnimalId() {
         return animalId;
     }

@@ -16,7 +16,7 @@ public class AnimalDeliveryEntity {
     private AnimalEntity animalByMotherId;
 
     @Id
-    @Column(name = "delivery_id", nullable = false)
+    @Column(name = "delivery_id")
     public int getDeliveryId() {
         return deliveryId;
     }
@@ -26,7 +26,7 @@ public class AnimalDeliveryEntity {
     }
 
     @Basic
-    @Column(name = "delivery_date", nullable = false)
+    @Column(name = "delivery_date")
     public Date getDeliveryDate() {
         return deliveryDate;
     }
@@ -36,7 +36,7 @@ public class AnimalDeliveryEntity {
     }
 
     @Basic
-    @Column(name = "delivery_number", nullable = false)
+    @Column(name = "delivery_number")
     public int getDeliveryNumber() {
         return deliveryNumber;
     }
@@ -46,7 +46,7 @@ public class AnimalDeliveryEntity {
     }
 
     @Basic
-    @Column(name = "father_id", nullable = true)
+    @Column(name = "father_id")
     public Integer getFatherId() {
         return fatherId;
     }
@@ -56,7 +56,7 @@ public class AnimalDeliveryEntity {
     }
 
     @Basic
-    @Column(name = "mother_id", nullable = false)
+    @Column(name = "mother_id")
     public int getMotherId() {
         return motherId;
     }

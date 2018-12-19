@@ -15,7 +15,7 @@ public class AnimalVaccineEntity {
     private AnimalEntity animalByAnimalId;
 
     @Id
-    @Column(name = "vaccine_id", nullable = false)
+    @Column(name = "vaccine_id")
     public int getVaccineId() {
         return vaccineId;
     }
@@ -25,7 +25,7 @@ public class AnimalVaccineEntity {
     }
 
     @Basic
-    @Column(name = "vaccine_date", nullable = false)
+    @Column(name = "vaccine_date")
     public Date getVaccineDate() {
         return vaccineDate;
     }
@@ -35,7 +35,7 @@ public class AnimalVaccineEntity {
     }
 
     @Basic
-    @Column(name = "vaccine_type", nullable = false, length = 55)
+    @Column(name = "vaccine_type")
     public String getVaccineType() {
         return vaccineType;
     }
@@ -45,7 +45,7 @@ public class AnimalVaccineEntity {
     }
 
     @Basic
-    @Column(name = "vaccine_quantity", nullable = false, precision = 0)
+    @Column(name = "vaccine_quantity")
     public double getVaccineQuantity() {
         return vaccineQuantity;
     }
@@ -55,7 +55,7 @@ public class AnimalVaccineEntity {
     }
 
     @Basic
-    @Column(name = "animal_id", nullable = false)
+    @Column(name = "animal_id")
     public int getAnimalId() {
         return animalId;
     }

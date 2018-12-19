@@ -21,16 +21,16 @@ public class AnimalEntity {
     private Byte isResearch;
     private AnimalTypeEntity animalTypeByAnimalType;
     private AnimalEntity animalByFatherId;
-    private AnimalEntity animalsByAnimalId;
+    private AnimalEntity animalsByAnimalFatherId;
     private AnimalEntity animalByMotherId;
-    private AnimalEntity animalsByAnimalId_0;
-    private Collection<AnimalDeliveryEntity> animalDeliveriesByAnimalId;
-    private Collection<AnimalDeliveryEntity> animalDeliveriesByAnimalId_0;
+    private AnimalEntity animalsByAnimalMotherId;
+    private Collection<AnimalDeliveryEntity> animalDeliveriesByAnimalFatherId;
+    private Collection<AnimalDeliveryEntity> animalDeliveriesByAnimalMotherId;
     private Collection<AnimalVaccineEntity> animalVaccinesByAnimalId;
     private Collection<AnimalWeightEntity> animalWeightsByAnimalId;
 
     @Id
-    @Column(name = "animal_id", nullable = false)
+    @Column(name = "animal_id")
     public int getAnimalId() {
         return animalId;
     }
@@ -40,7 +40,7 @@ public class AnimalEntity {
     }
 
     @Basic
-    @Column(name = "animal_name", nullable = false, length = 25)
+    @Column(name = "animal_name")
     public String getAnimalName() {
         return animalName;
     }
@@ -50,7 +50,7 @@ public class AnimalEntity {
     }
 
     @Basic
-    @Column(name = "animal_sex", nullable = true, length = 1)
+    @Column(name = "animal_sex")
     public String getAnimalSex() {
         return animalSex;
     }
@@ -60,7 +60,7 @@ public class AnimalEntity {
     }
 
     @Basic
-    @Column(name = "date_birth", nullable = true)
+    @Column(name = "date_birth")
     public Date getDateBirth() {
         return dateBirth;
     }
@@ -70,7 +70,7 @@ public class AnimalEntity {
     }
 
     @Basic
-    @Column(name = "date_death", nullable = true)
+    @Column(name = "date_death")
     public Date getDateDeath() {
         return dateDeath;
     }
@@ -80,7 +80,7 @@ public class AnimalEntity {
     }
 
     @Basic
-    @Column(name = "date_arrival", nullable = true)
+    @Column(name = "date_arrival")
     public Date getDateArrival() {
         return dateArrival;
     }
@@ -90,7 +90,7 @@ public class AnimalEntity {
     }
 
     @Basic
-    @Column(name = "date_departure", nullable = true)
+    @Column(name = "date_departure")
     public Date getDateDeparture() {
         return dateDeparture;
     }
@@ -100,7 +100,7 @@ public class AnimalEntity {
     }
 
     @Basic
-    @Column(name = "animal_type", nullable = false)
+    @Column(name = "animal_type")
     public int getAnimalType() {
         return animalType;
     }
@@ -110,7 +110,7 @@ public class AnimalEntity {
     }
 
     @Basic
-    @Column(name = "father_id", nullable = true)
+    @Column(name = "father_id")
     public Integer getFatherId() {
         return fatherId;
     }
@@ -120,7 +120,7 @@ public class AnimalEntity {
     }
 
     @Basic
-    @Column(name = "mother_id", nullable = true)
+    @Column(name = "mother_id")
     public Integer getMotherId() {
         return motherId;
     }
@@ -130,7 +130,7 @@ public class AnimalEntity {
     }
 
     @Basic
-    @Column(name = "is_research", nullable = true)
+    @Column(name = "is_research")
     public Byte getIsResearch() {
         return isResearch;
     }
@@ -183,12 +183,12 @@ public class AnimalEntity {
     }
 
     @OneToOne(mappedBy = "animalByFatherId")
-    public AnimalEntity getAnimalsByAnimalId() {
-        return animalsByAnimalId;
+    public AnimalEntity getAnimalsByAnimalFatherId() {
+        return animalsByAnimalFatherId;
     }
 
-    public void setAnimalsByAnimalId(AnimalEntity animalsByAnimalId) {
-        this.animalsByAnimalId = animalsByAnimalId;
+    public void setAnimalsByAnimalFatherId(AnimalEntity animalsByAnimalFatherId) {
+        this.animalsByAnimalFatherId = animalsByAnimalFatherId;
     }
 
     @OneToOne
@@ -202,30 +202,30 @@ public class AnimalEntity {
     }
 
     @OneToOne(mappedBy = "animalByMotherId")
-    public AnimalEntity getAnimalsByAnimalId_0() {
-        return animalsByAnimalId_0;
+    public AnimalEntity getAnimalsByAnimalMotherId() {
+        return animalsByAnimalMotherId;
     }
 
-    public void setAnimalsByAnimalId_0(AnimalEntity animalsByAnimalId_0) {
-        this.animalsByAnimalId_0 = animalsByAnimalId_0;
+    public void setAnimalsByAnimalMotherId(AnimalEntity animalsByAnimalMotherId) {
+        this.animalsByAnimalMotherId = animalsByAnimalMotherId;
     }
 
     @OneToMany(mappedBy = "animalByFatherId")
-    public Collection<AnimalDeliveryEntity> getAnimalDeliveriesByAnimalId() {
-        return animalDeliveriesByAnimalId;
+    public Collection<AnimalDeliveryEntity> getAnimalDeliveriesByAnimalFatherId() {
+        return animalDeliveriesByAnimalFatherId;
     }
 
-    public void setAnimalDeliveriesByAnimalId(Collection<AnimalDeliveryEntity> animalDeliveriesByAnimalId) {
-        this.animalDeliveriesByAnimalId = animalDeliveriesByAnimalId;
+    public void setAnimalDeliveriesByAnimalFatherId(Collection<AnimalDeliveryEntity> animalDeliveriesByAnimalFatherId) {
+        this.animalDeliveriesByAnimalFatherId = animalDeliveriesByAnimalFatherId;
     }
 
     @OneToMany(mappedBy = "animalByMotherId")
-    public Collection<AnimalDeliveryEntity> getAnimalDeliveriesByAnimalId_0() {
-        return animalDeliveriesByAnimalId_0;
+    public Collection<AnimalDeliveryEntity> getAnimalDeliveriesByAnimalMotherId() {
+        return animalDeliveriesByAnimalMotherId;
     }
 
-    public void setAnimalDeliveriesByAnimalId_0(Collection<AnimalDeliveryEntity> animalDeliveriesByAnimalId_0) {
-        this.animalDeliveriesByAnimalId_0 = animalDeliveriesByAnimalId_0;
+    public void setAnimalDeliveriesByAnimalMotherId(Collection<AnimalDeliveryEntity> animalDeliveriesByAnimalMotherId) {
+        this.animalDeliveriesByAnimalMotherId = animalDeliveriesByAnimalMotherId;
     }
 
     @OneToMany(mappedBy = "animalByAnimalId")

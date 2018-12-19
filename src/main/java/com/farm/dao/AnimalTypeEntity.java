@@ -12,7 +12,7 @@ public class AnimalTypeEntity {
     private Collection<AnimalEntity> animalsByTypeId;
 
     @Id
-    @Column(name = "type_id", nullable = false)
+    @Column(name = "type_id")
     public int getTypeId() {
         return typeId;
     }
@@ -22,7 +22,7 @@ public class AnimalTypeEntity {
     }
 
     @Basic
-    @Column(name = "type_name", nullable = false, length = 25)
+    @Column(name = "type_name")
     public String getTypeName() {
         return typeName;
     }
