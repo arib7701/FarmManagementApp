@@ -1,7 +1,9 @@
 package com.farm.mappers;
 
+import com.farm.dao.AnimalDeliveryEntity;
 import com.farm.dao.AnimalEntity;
 import com.farm.model.Animal;
+import com.farm.model.Delivery;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,12 +46,6 @@ public class EntityModelMappers {
             animal.setType(animalEntity.getAnimalTypeByAnimalType().getTypeName());
             animal.setMotherId(animalEntity.getMotherId());
             animal.setFatherId(animalEntity.getFatherId());
-            animal.setResearch(animalEntity.getIsResearch());
-            animal.setWeights(animalEntity.getAnimalWeightsByAnimalId());
-            animal.setVaccines(animalEntity.getAnimalVaccinesByAnimalId());
-            this.weights = null;
-            this.vaccines = null;
-            this.deliveries = null;
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -67,6 +63,13 @@ public class EntityModelMappers {
             animalEntity = new AnimalEntity();
             animalEntity.setAnimalId(animal.getId());
             animalEntity.setAnimalName(animal.getName());
+            animalEntity.setAnimalSex(animal.getSex());
+            animalEntity.setDateBirth(java.sql.Date.valueOf(animal.getBirth()));
+            animalEntity.setDateDeath(java.sql.Date.valueOf(animal.getDeath()));
+            animalEntity.setDateArrival(java.sql.Date.valueOf(animal.getArrival()));
+            animalEntity.setDateDeparture(java.sql.Date.valueOf(animal.getDeparture()));
+            animalEntity.setMotherId(animal.getMotherId());
+            animalEntity.setFatherId(animal.getFatherId());
 
 
         } catch (Exception e) {
@@ -74,5 +77,51 @@ public class EntityModelMappers {
         }
 
         return animalEntity;
+    }
+
+    public static List<Delivery> parseDeliveryList(List<AnimalDeliveryEntity> animalDeliveryEntityList) {
+
+        List<Delivery> deliveryList = null;
+
+        if(animalDeliveryEntityList != null) {
+            deliveryList = new ArrayList<>();
+
+            for(AnimalDeliveryEntity deliveryEntity : animalDeliveryEntityList) {
+                Delivery delivery = parseDeliveryEntity(deliveryEntity);
+                deliveryList.add(delivery);
+            }
+        }
+
+        return deliveryList;
+    }
+
+    public static Delivery parseDeliveryEntity(AnimalDeliveryEntity deliveryEntity) {
+
+        Delivery delivery = null;
+
+        try {
+
+            delivery = new Delivery();
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return delivery;
+    }
+
+    public static AnimalDeliveryEntity parseDelivery(Delivery delivery) {
+
+        AnimalDeliveryEntity animalDeliveryEntity = null;
+
+        try {
+
+            animalDeliveryEntity = new AnimalDeliveryEntity();
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return animalDeliveryEntity;
     }
 }
