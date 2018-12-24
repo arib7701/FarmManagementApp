@@ -6,4 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 public interface AnimalTypeRepository extends CrudRepository<AnimalTypeEntity, Integer> {
 
     AnimalTypeEntity findByTypeId(int id);
+    AnimalTypeEntity findByTypeName(String name);
 }

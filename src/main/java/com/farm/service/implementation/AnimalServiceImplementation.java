@@ -11,9 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static com.farm.mappers.EntityModelMappers.parseAnimal;
+import static com.farm.mappers.EntityModelMappers.parseAnimalEntity;
+import static com.farm.mappers.EntityModelMappers.parseAnimalList;
 
 @Service
 public class AnimalServiceImplementation implements IAnimalService {
@@ -131,55 +134,5 @@ public class AnimalServiceImplementation implements IAnimalService {
     public void deleteByName(String name) {
         animalRepository.deleteByAnimalName(name);
     }
-
-    private List<Animal> parseAnimalList(List<AnimalEntity> animalEntityList) {
-
-        List<Animal> animalList = null;
-
-        if(animalEntityList != null) {
-            animalList = new ArrayList<>();
-
-            for(AnimalEntity animalEntity : animalEntityList) {
-                Animal animal = parseAnimalEntity(animalEntity);
-                animalList.add(animal);
-            }
-        }
-
-        return animalList;
-    }
-
-    private Animal parseAnimalEntity(AnimalEntity animalEntity) {
-
-        Animal animal = null;
-
-        try {
-
-            animal = new Animal();
-            animal.setId(animalEntity.getAnimalId());
-            animal.setName(animalEntity.getAnimalName());
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return animal;
-    }
-
-    private AnimalEntity parseAnimal(Animal animal) {
-
-        AnimalEntity animalEntity = null;
-
-        try {
-
-            animalEntity = new AnimalEntity();
-            animalEntity.setAnimalId(animal.getId());
-            animalEntity.setAnimalName(animal.getName());
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return animalEntity;
-    }
+    
 }
