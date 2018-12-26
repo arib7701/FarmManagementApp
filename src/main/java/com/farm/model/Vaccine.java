@@ -1,4 +1,88 @@
 package com.farm.model;
 
+import java.time.LocalDate;
+
 public class Vaccine {
+
+    private int vaccineId;
+    private LocalDate date;
+    private String type;
+    private double quantity;
+    private int animalId;
+    private Animal animal;
+
+    public Vaccine() {
+    }
+
+    public Vaccine(int vaccineId, LocalDate date, String type, double quantity, int animalId, Animal animal) {
+        this.vaccineId = vaccineId;
+        this.date = date;
+        this.type = type;
+        this.quantity = quantity;
+        this.animalId = animalId;
+        this.animal = animal;
+    }
+
+    public Vaccine(LocalDate date, String type, double quantity, int animalId, Animal animal) {
+        this.date = date;
+        this.type = type;
+        this.quantity = quantity;
+        this.animalId = animalId;
+        this.animal = animal;
+    }
+
+    public Vaccine(LocalDate date, String type, double quantity, int animalId) {
+        this.date = date;
+        this.type = type;
+        this.quantity = quantity;
+        this.animalId = animalId;
+    }
+
+    public int getVaccineId() {
+        return vaccineId;
+    }
+
+    public void setVaccineId(int vaccineId) {
+        this.vaccineId = vaccineId;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public double getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(double quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getAnimalId() {
+        return animalId;
+    }
+
+    public void setAnimalId(int animalId) {
+        this.animalId = animalId;
+    }
+
+    public Animal getAnimal() {
+        return animal;
+    }
+
+    public void setAnimal(Animal animal) {
+        this.animal = animal;
+    }
 }

@@ -1,2 +1,7 @@
 
-Xsquid:S2094"BRemove this empty class, write its code or make it an "interface".(²Ê‚
+Fsquid:S1148z"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8§„Æ„þ,
+Ssquid:S1172b"5Remove this unused method parameter "deliveryEntity".(Ë¹›ÿ8®Ê–„þ,
+Fsquid:S1148L"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8ò¢Ö‚þ,
+Rsquid:S1172q"/Remove this unused method parameter "delivery".(ž¼‘¸øÿÿÿÿ8Ä²Ç„þ,
+Fsquid:S11483"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8ò¢Ö‚þ,
+Fsquid:S1148k"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8å…š„þ,

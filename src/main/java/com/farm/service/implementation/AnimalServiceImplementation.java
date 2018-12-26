@@ -92,29 +92,13 @@ public class AnimalServiceImplementation implements IAnimalService {
     @Override
     public Animal findById(int id) {
         AnimalEntity animalEntity = animalRepository.findByAnimalId(id);
-        Animal animal = null;
-
-        try {
-            animal = parseAnimalEntity(animalEntity);
-        } catch ( Exception e) {
-            e.printStackTrace();
-        }
-
-        return animal;
+        return parseAnimalEntity(animalEntity);
     }
 
     @Override
     public Animal findByName(String name) {
         AnimalEntity animalEntity = animalRepository.findByAnimalName(name);
-        Animal animal = null;
-
-        try {
-            animal = parseAnimalEntity(animalEntity);
-        } catch ( Exception e) {
-            e.printStackTrace();
-        }
-
-        return animal;
+        return parseAnimalEntity(animalEntity);
     }
 
     @Override
@@ -134,5 +118,5 @@ public class AnimalServiceImplementation implements IAnimalService {
     public void deleteByName(String name) {
         animalRepository.deleteByAnimalName(name);
     }
-    
+
 }

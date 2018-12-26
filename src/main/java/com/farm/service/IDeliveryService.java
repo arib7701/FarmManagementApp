@@ -10,7 +10,6 @@ public interface IDeliveryService {
     List<Delivery> findAll();
     List<Delivery> findAllByMotherId(int id);
     List<Delivery> findAllByFatherId(int id);
-    List<Delivery> findAllByAnimalName(String name);
     List<Delivery> findAllByDate(LocalDate date);
 
     Delivery findById(int id);

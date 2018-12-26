@@ -1,7 +1,6 @@
 package com.farm.service.implementation;
 
 import com.farm.dao.AnimalDeliveryEntity;
-import com.farm.dao.AnimalEntity;
 import com.farm.model.Delivery;
 import com.farm.repository.DeliveryRepository;
 import com.farm.service.IDeliveryService;
@@ -36,11 +35,6 @@ public class DeliveryServiceImplementation implements IDeliveryService {
     public List<Delivery> findAllByFatherId(int id) {
         List<AnimalDeliveryEntity> animalDeliveryEntityList = deliveryRepository.findByFatherId(id);
         return parseDeliveryList(animalDeliveryEntityList);
-    }
-
-    @Override
-    public List<Delivery> findAllByAnimalName(String name) {
-        return null;
     }
 
     @Override
