@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Vaccine {
 
-    private int vaccineId;
+    private int id;
     private LocalDate date;
     private String type;
     private double quantity;
@@ -15,7 +15,7 @@ public class Vaccine {
     }
 
     public Vaccine(int vaccineId, LocalDate date, String type, double quantity, int animalId, Animal animal) {
-        this.vaccineId = vaccineId;
+        this.id = vaccineId;
         this.date = date;
         this.type = type;
         this.quantity = quantity;
@@ -38,12 +38,12 @@ public class Vaccine {
         this.animalId = animalId;
     }
 
-    public int getVaccineId() {
-        return vaccineId;
+    public int getId() {
+        return id;
     }
 
-    public void setVaccineId(int vaccineId) {
-        this.vaccineId = vaccineId;
+    public void setId(int vaccineId) {
+        this.id = vaccineId;
     }
 
     public LocalDate getDate() {

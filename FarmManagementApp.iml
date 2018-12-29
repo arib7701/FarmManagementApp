@@ -9,6 +9,7 @@
           <factory-entry name="entityManagerFactory" />
           <factory-entry name="noname-a.xml@0" value="2fc742dc-2b40-4ef9-bc1f-40f1cd96998e" />
         </datasource-mapping>
+        <naming-strategy-map />
       </configuration>
     </facet>
   </component>

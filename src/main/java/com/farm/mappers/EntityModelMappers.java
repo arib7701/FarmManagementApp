@@ -2,8 +2,10 @@ package com.farm.mappers;
 
 import com.farm.dao.AnimalDeliveryEntity;
 import com.farm.dao.AnimalEntity;
+import com.farm.dao.AnimalVaccineEntity;
 import com.farm.model.Animal;
 import com.farm.model.Delivery;
+import com.farm.model.Vaccine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -133,5 +135,61 @@ public class EntityModelMappers {
         }
 
         return animalDeliveryEntity;
+    }
+
+    public static List<Vaccine> parseVaccineList(List<AnimalVaccineEntity> animalVaccineEntityList) {
+
+        List<Vaccine> vaccineList = null;
+
+        if(animalVaccineEntityList != null) {
+            vaccineList = new ArrayList<>();
+
+            for(AnimalVaccineEntity vaccineEntity : animalVaccineEntityList) {
+                Vaccine vaccine = parseVaccineEntity(vaccineEntity);
+                vaccineList.add(vaccine);
+            }
+        }
+
+        return vaccineList;
+    }
+
+    public static Vaccine parseVaccineEntity(AnimalVaccineEntity vaccineEntity) {
+
+        Vaccine vaccine = null;
+
+        try {
+
+            vaccine = new Vaccine();
+            vaccine.setId(vaccineEntity.getVaccineId());
+            vaccine.setDate(vaccineEntity.getVaccineDate().toLocalDate());
+            vaccine.setQuantity(vaccineEntity.getVaccineQuantity());
+            vaccine.setAnimalId(vaccineEntity.getAnimalId());
+            vaccine.setType(vaccineEntity.getVaccineType());
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return vaccine;
+    }
+
+    public static AnimalVaccineEntity parseVaccine(Vaccine vaccine) {
+
+        AnimalVaccineEntity animalVaccineEntity = null;
+
+        try {
+
+            animalVaccineEntity = new AnimalVaccineEntity();
+            animalVaccineEntity.setVaccineId(vaccine.getId());
+            animalVaccineEntity.setVaccineDate(java.sql.Date.valueOf(vaccine.getDate()));
+            animalVaccineEntity.setVaccineQuantity(vaccine.getQuantity());
+            animalVaccineEntity.setAnimalId(vaccine.getAnimalId());
+            animalVaccineEntity.setVaccineType(vaccine.getType());
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return animalVaccineEntity;
     }
 }
