@@ -32,7 +32,7 @@ export class AnimalService {
     return this.http.post<Animal>(`${BASE_URL}`, animal);
   }
 
-  updatAanimal(id: number, animal: Animal): Observable<Animal> {
+  updateAnimal(id: number, animal: Animal): Observable<Animal> {
     return this.http.post<Animal>(`${BASE_URL}/${id}`, animal);
   }
 

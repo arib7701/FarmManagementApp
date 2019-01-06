@@ -8,7 +8,7 @@ export const appRoutes: Routes = [
   },
 
   {
-    path: 'admin',
-    loadChildren: './admin/admin.module#AdminModule'
+    path: 'animal',
+    loadChildren: './animal/animal.module#AnimalModule'
   }
 ];
