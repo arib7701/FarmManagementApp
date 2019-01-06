@@ -39,6 +39,11 @@
           <i class="fas fa-sign-in-alt"></i> <span> Login</span>
         </a>
       </li>
+      <li class="active treeview" *ngIf="!loggedIn">
+        <a  routerLink="/home">
+          <i class="fas fa-home"></i><span> Home</span>
+        </a>
+      </li>
       <li class="treeview" *ngIf="!loggedIn">
         <a (click)="logout()">
           <i class="fas fa-sign-out-alt"></i><span> Logout</span>

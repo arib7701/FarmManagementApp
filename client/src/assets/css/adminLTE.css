@@ -258,10 +258,9 @@ a:focus {
   background-color: transparent;
   background-image: none;
   padding: 15px 15px;
-  font-family: fontAwesome;
 }
 .main-header .sidebar-toggle:before {
-  content: "\f0c9";
+  font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f039";
 }
 .main-header .sidebar-toggle:hover {
   color: #fff;
@@ -2460,7 +2459,7 @@ table.text-center th {
  * ---------------------
  */
 .users-list > li {
-  width: 25%;
+  width: 33%;
   float: left;
   padding: 10px;
   text-align: center;

@@ -32,6 +32,7 @@
 }
 .skin-green .main-header .navbar .sidebar-toggle:hover {
   background-color: #008d4c;
+  height: 50px;
 }
 @media (max-width: 767px) {
   .skin-green .main-header .navbar .dropdown-menu li.divider {
