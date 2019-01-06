@@ -32,4 +32,10 @@ public class AnimalController {
         return new ResponseEntity(animalsByType, HttpStatus.OK);
     }
 
+    @RequestMapping(value= "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Animal> getAnimalById(@PathVariable ("id") int id) {
+        Animal animalById = animalService.findById(id);
+        return new ResponseEntity(animalById, HttpStatus.OK);
+    }
+
 }
