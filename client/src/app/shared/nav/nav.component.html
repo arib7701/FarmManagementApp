@@ -1,3 +1,63 @@
-<p>
-  nav works!
-</p>
+<header class="main-header">
+  <!-- Logo -->
+  <a routerLink="/admin" class="logo"><b>Farm</b>Management</a>
+  <nav class="navbar navbar-static-top" role="navigation">
+    <!-- Sidebar toggle button-->
+    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+      <span class="sr-only">Toggle navigation</span>
+    </a>
+    <!-- Navbar Right Menu -->
+    <div class="navbar-custom-menu">
+      <ul class="nav navbar-nav">
+        <li class="user user-menu" *ngIf="loggedIn">
+          <a>
+            <img src="../../../../assets/image/user2-160x160.jpg" class="user-image" alt="User Image" />
+            <span class="hidden-xs">Agent Admin</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+  <section class="sidebar">
+    <!-- Sidebar user panel -->
+    <div class="user-panel" *ngIf="!loggedIn">
+      <div class="pull-left image">
+        <img src="../../../../assets/image/user2-160x160.jpg" class="img-circle" alt="User Image" />
+      </div>
+      <div class="pull-left info">
+        <p>Agent Admin</p>
+        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+      </div>
+    </div>
+
+    <ul class="sidebar-menu">
+      <li class="active treeview" *ngIf="!loggedIn">
+        <a routerLink="/">
+          <i class="fas fa-sign-in-alt"></i> <span> Login</span>
+        </a>
+      </li>
+      <li class="treeview" *ngIf="!loggedIn">
+        <a (click)="logout()">
+          <i class="fas fa-sign-out-alt"></i><span> Logout</span>
+        </a>
+      </li>
+      <li class="header" *ngIf="!loggedIn">MAIN NAVIGATION</li>
+      <li class="active treeview" *ngIf="!loggedIn" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+        <a routerLink="/animal">
+          <i class="fas fa-paw"></i><span> Animals</span>
+        </a>
+      </li>
+      <li class="treeview " *ngIf="!loggedIn"  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+        <a routerLink="/bills"><i class="fas fa-file-invoice-dollar"></i><span> Bills</span> </a>
+      </li>
+      <li class="treeview " *ngIf="!loggedIn"  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+        <a routerLink="/customers"><i class="fas fa-users"></i><span> Customers</span> </a>
+      </li>
+    </ul>
+  </section>
+  <!-- /.sidebar -->
+</aside>
+

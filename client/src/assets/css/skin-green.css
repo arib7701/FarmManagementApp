@@ -83,7 +83,10 @@
   margin: 0 1px;
   background: #2c3b41;
 }
-.skin-green .wrapper,
+.skin-green .wrapper {
+  background: #d2d6de;
+}
+
 .skin-green .main-sidebar,
 .skin-green .left-side {
   background: #222d32;

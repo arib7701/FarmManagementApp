@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(adminRoutes), SharedModule],
+  imports: [CommonModule, SharedModule, RouterModule.forChild(adminRoutes)],
   declarations: [AdminComponent, LoginComponent, HomeComponent]
 })
 export class AdminModule {}
