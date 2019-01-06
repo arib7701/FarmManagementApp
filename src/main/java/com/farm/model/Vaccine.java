@@ -9,26 +9,16 @@ public class Vaccine {
     private String type;
     private double quantity;
     private int animalId;
-    private Animal animal;
 
     public Vaccine() {
     }
 
-    public Vaccine(int vaccineId, LocalDate date, String type, double quantity, int animalId, Animal animal) {
+    public Vaccine(int vaccineId, LocalDate date, String type, double quantity, int animalId) {
         this.id = vaccineId;
         this.date = date;
         this.type = type;
         this.quantity = quantity;
         this.animalId = animalId;
-        this.animal = animal;
-    }
-
-    public Vaccine(LocalDate date, String type, double quantity, int animalId, Animal animal) {
-        this.date = date;
-        this.type = type;
-        this.quantity = quantity;
-        this.animalId = animalId;
-        this.animal = animal;
     }
 
     public Vaccine(LocalDate date, String type, double quantity, int animalId) {
@@ -76,13 +66,5 @@ public class Vaccine {
 
     public void setAnimalId(int animalId) {
         this.animalId = animalId;
-    }
-
-    public Animal getAnimal() {
-        return animal;
-    }
-
-    public void setAnimal(Animal animal) {
-        this.animal = animal;
     }
 }

@@ -9,29 +9,16 @@ public class Delivery {
     private int number;
     private int fatherId;
     private int motherId;
-    private Animal father;
-    private Animal mother;
 
     public Delivery() {
     }
 
-    public Delivery(int id, LocalDate date, int number, int fatherId, int motherId, Animal father, Animal mother) {
+    public Delivery(int id, LocalDate date, int number, int fatherId, int motherId) {
         this.id = id;
         this.date = date;
         this.number = number;
         this.fatherId = fatherId;
         this.motherId = motherId;
-        this.father = father;
-        this.mother = mother;
-    }
-
-    public Delivery(LocalDate date, int number, int fatherId, int motherId, Animal father, Animal mother) {
-        this.date = date;
-        this.number = number;
-        this.fatherId = fatherId;
-        this.motherId = motherId;
-        this.father = father;
-        this.mother = mother;
     }
 
     public Delivery(LocalDate date, int number, int fatherId, int motherId) {
@@ -39,6 +26,11 @@ public class Delivery {
         this.number = number;
         this.fatherId = fatherId;
         this.motherId = motherId;
+    }
+
+    public Delivery(LocalDate date, int number) {
+        this.date = date;
+        this.number = number;
     }
 
     public int getId() {
@@ -81,19 +73,4 @@ public class Delivery {
         this.motherId = motherId;
     }
 
-    public Animal getFather() {
-        return father;
-    }
-
-    public void setFather(Animal father) {
-        this.father = father;
-    }
-
-    public Animal getMother() {
-        return mother;
-    }
-
-    public void setMother(Animal mother) {
-        this.mother = mother;
-    }
 }
