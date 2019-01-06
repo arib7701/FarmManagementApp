@@ -54,16 +54,6 @@ public class AnimalVaccineEntity {
         this.vaccineQuantity = vaccineQuantity;
     }
 
-    @Basic
-    @Column(name = "animal_id")
-    public int getAnimalId() {
-        return animalId;
-    }
-
-    public void setAnimalId(int animalId) {
-        this.animalId = animalId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

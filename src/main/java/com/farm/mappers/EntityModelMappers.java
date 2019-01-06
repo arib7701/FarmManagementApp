@@ -2,8 +2,10 @@ package com.farm.mappers;
 
 import com.farm.dao.AnimalDeliveryEntity;
 import com.farm.dao.AnimalEntity;
+import com.farm.dao.AnimalTypeEntity;
 import com.farm.dao.AnimalVaccineEntity;
 import com.farm.model.Animal;
+import com.farm.model.AnimalType;
 import com.farm.model.Delivery;
 import com.farm.model.Vaccine;
 
@@ -13,6 +15,57 @@ import java.util.List;
 public class EntityModelMappers {
 
     private EntityModelMappers() {
+    }
+
+    public static List<AnimalType> parseAnimalTypeList(List<AnimalTypeEntity> animalTypeEntityList) {
+
+        List<AnimalType> animalTypeList = null;
+
+        if(animalTypeEntityList != null) {
+            animalTypeList = new ArrayList<>();
+
+            for(AnimalTypeEntity animalTypeEntity : animalTypeEntityList) {
+                AnimalType animal = parseAnimalTypeEntity(animalTypeEntity);
+                animalTypeList.add(animal);
+            }
+        }
+
+        return animalTypeList;
+    }
+
+    public static AnimalType parseAnimalTypeEntity(AnimalTypeEntity animalTypeEntity) {
+
+        AnimalType animalType = null;
+
+        try {
+
+            animalType = new AnimalType();
+            animalType.setId(animalTypeEntity.getTypeId());
+            animalType.setName(animalTypeEntity.getTypeName());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return animalType;
+    }
+
+    public static AnimalTypeEntity parseAnimalType(AnimalType animalType) {
+
+        AnimalTypeEntity animalTypeEntity = null;
+
+        try {
+
+            animalTypeEntity = new AnimalTypeEntity();
+            animalTypeEntity.setTypeId(animalType.getId());
+            animalTypeEntity.setTypeName(animalType.getName());
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return animalTypeEntity;
     }
 
     public static List<Animal> parseAnimalList(List<AnimalEntity> animalEntityList) {
@@ -46,8 +99,6 @@ public class EntityModelMappers {
             animal.setArrival(animalEntity.getDateArrival().toLocalDate());
             animal.setDeparture(animalEntity.getDateDeparture().toLocalDate());
             animal.setType(animalEntity.getAnimalTypeByAnimalType().getTypeName());
-            animal.setMotherId(animalEntity.getMotherId());
-            animal.setFatherId(animalEntity.getFatherId());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -70,8 +121,6 @@ public class EntityModelMappers {
             animalEntity.setDateDeath(java.sql.Date.valueOf(animal.getDeath()));
             animalEntity.setDateArrival(java.sql.Date.valueOf(animal.getArrival()));
             animalEntity.setDateDeparture(java.sql.Date.valueOf(animal.getDeparture()));
-            animalEntity.setMotherId(animal.getMotherId());
-            animalEntity.setFatherId(animal.getFatherId());
 
 
         } catch (Exception e) {
@@ -107,8 +156,6 @@ public class EntityModelMappers {
             delivery.setId(deliveryEntity.getDeliveryId());
             delivery.setDate(deliveryEntity.getDeliveryDate().toLocalDate());
             delivery.setNumber(deliveryEntity.getDeliveryNumber());
-            delivery.setFatherId(deliveryEntity.getFatherId());
-            delivery.setMotherId(deliveryEntity.getMotherId());
 
         } catch (Exception e){
             e.printStackTrace();
@@ -127,8 +174,6 @@ public class EntityModelMappers {
             animalDeliveryEntity.setDeliveryId(delivery.getId());
             animalDeliveryEntity.setDeliveryDate(java.sql.Date.valueOf(delivery.getDate()));
             animalDeliveryEntity.setDeliveryNumber(delivery.getNumber());
-            animalDeliveryEntity.setFatherId(delivery.getFatherId());
-            animalDeliveryEntity.setMotherId(delivery.getMotherId());
 
         } catch (Exception e){
             e.printStackTrace();
@@ -163,7 +208,6 @@ public class EntityModelMappers {
             vaccine.setId(vaccineEntity.getVaccineId());
             vaccine.setDate(vaccineEntity.getVaccineDate().toLocalDate());
             vaccine.setQuantity(vaccineEntity.getVaccineQuantity());
-            vaccine.setAnimalId(vaccineEntity.getAnimalId());
             vaccine.setType(vaccineEntity.getVaccineType());
 
         } catch (Exception e){
@@ -183,7 +227,6 @@ public class EntityModelMappers {
             animalVaccineEntity.setVaccineId(vaccine.getId());
             animalVaccineEntity.setVaccineDate(java.sql.Date.valueOf(vaccine.getDate()));
             animalVaccineEntity.setVaccineQuantity(vaccine.getQuantity());
-            animalVaccineEntity.setAnimalId(vaccine.getAnimalId());
             animalVaccineEntity.setVaccineType(vaccine.getType());
 
         } catch (Exception e){

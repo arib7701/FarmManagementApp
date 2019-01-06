@@ -1,5 +1,7 @@
 package com.farm.dao;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Collection;
@@ -99,18 +101,17 @@ public class AnimalEntity {
         this.dateDeparture = dateDeparture;
     }
 
-    @Basic
-    @Column(name = "animal_type")
+    @Ignore
     public int getAnimalType() {
         return animalType;
     }
 
+    @Ignore
     public void setAnimalType(int animalType) {
         this.animalType = animalType;
     }
 
-    @Basic
-    @Column(name = "father_id")
+    @Ignore
     public Integer getFatherId() {
         return fatherId;
     }
@@ -119,8 +120,6 @@ public class AnimalEntity {
         this.fatherId = fatherId;
     }
 
-    @Basic
-    @Column(name = "mother_id")
     public Integer getMotherId() {
         return motherId;
     }

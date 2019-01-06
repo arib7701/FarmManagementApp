@@ -67,7 +67,7 @@ public class AnimalServiceImplementation implements IAnimalService {
 
     @Override
     public List<Animal> findByArrivalDate(Date date) {
-        List<AnimalEntity> animalEntityList = animalRepository.finByDateArrival(date);
+        List<AnimalEntity> animalEntityList = animalRepository.findByDateArrival(date);
         return parseAnimalList(animalEntityList);
     }
 

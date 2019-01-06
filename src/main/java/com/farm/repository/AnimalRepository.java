@@ -18,7 +18,7 @@ public interface AnimalRepository extends CrudRepository<AnimalEntity, Integer> 
     List<AnimalEntity> findByAnimalSex(String sex);
     List<AnimalEntity> findByDateBirthContaining(int year);
 
-    List<AnimalEntity> finByDateArrival(Date arrival);
+    List<AnimalEntity> findByDateArrival(Date arrival);
     List<AnimalEntity> findByDateDeparture(Date departure);
 
     AnimalEntity findByAnimalId(int id);

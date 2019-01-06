@@ -20,16 +20,16 @@ export class TypeService {
     return this.http.get<Type>(`${BASE_URL}/${id}`);
   }
 
-  getTypeByName(name: String): Observable<Type> {
+  getTypeByName(name: string): Observable<Type> {
     return this.http.get<Type>(`${BASE_URL}/${name}`);
   }
 
-  addType(Type: Type): Observable<Type> {
-    return this.http.post<Type>(`${BASE_URL}`, Type);
+  addType(type: Type): Observable<Type> {
+    return this.http.post<Type>(`${BASE_URL}`, type);
   }
 
-  updateType(id: number, Type: Type): Observable<Type> {
-    return this.http.post<Type>(`${BASE_URL}/${id}`, Type);
+  updateType(id: number, type: Type): Observable<Type> {
+    return this.http.post<Type>(`${BASE_URL}/${id}`, type);
   }
 
   removeTypeById(id: number): Observable<string> {

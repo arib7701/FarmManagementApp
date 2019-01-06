@@ -7,4 +7,5 @@ public interface AnimalTypeRepository extends CrudRepository<AnimalTypeEntity, I
 
     AnimalTypeEntity findByTypeId(int id);
     AnimalTypeEntity findByTypeName(String name);
+    void deleteByTypeName(String name);
 }

@@ -45,26 +45,6 @@ public class AnimalDeliveryEntity {
         this.deliveryNumber = deliveryNumber;
     }
 
-    @Basic
-    @Column(name = "father_id")
-    public Integer getFatherId() {
-        return fatherId;
-    }
-
-    public void setFatherId(Integer fatherId) {
-        this.fatherId = fatherId;
-    }
-
-    @Basic
-    @Column(name = "mother_id")
-    public int getMotherId() {
-        return motherId;
-    }
-
-    public void setMotherId(int motherId) {
-        this.motherId = motherId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
