@@ -11,7 +11,7 @@ public interface IAnimalService {
 
     List<Animal> findAll();
     List<Animal> findByTypeId(int type);
-    List<Animal> findByType(String animalType);
+    List<Animal> findByType(int animalTypeId);
 
     List<Animal> findByAge(int age);
     List<Animal> findBySex(String sex);

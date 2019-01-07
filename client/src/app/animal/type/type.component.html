@@ -13,7 +13,7 @@
       <div class="box-body no-padding">
         <ul class="users-list clearfix">
           <li *ngFor="let type of types">
-            <a class="users-list-name" routerLink="{{ type.id }}">
+            <a class="users-list-name" routerLink="types/{{ type.id }}">
               <img
                 style="width:200px; height:120px;"
                 src="{{ type.imageUrl }}"

@@ -41,11 +41,9 @@ public class AnimalServiceImplementation implements IAnimalService {
     }
 
     @Override
-    public List<Animal> findByType(String animalType) {
+    public List<Animal> findByType(int animalTypeId) {
 
-        AnimalTypeEntity animalTypeEntity = animalTypeRepository.findByTypeName(animalType);
-
-        List<AnimalEntity> animalEntityList = animalRepository.findByAnimalType(animalTypeEntity.getTypeId());
+        List<AnimalEntity> animalEntityList = animalRepository.findByAnimalType(animalTypeId);
         return parseAnimalList(animalEntityList);
     }
 

@@ -1,2 +1,8 @@
 
-fsquid:S4488"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(¤úÙ8˜ÆÀü,
+fsquid:S4488"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(¤úÙ8˜ÆÀü,
+ksquid:S4488"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(«Á·•ÿÿÿÿÿ8¹ñÇ›‚-
+fsquid:S4488#"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(ğÄâÿ8íáœ‚-
+osquid:UselessImportCheck"?Remove this unused import 'io.swagger.annotations.ApiResponse'.(ƒëöÕûÿÿÿÿ8óÂÈ›‚-
+ksquid:UselessImportCheck"@Remove this unused import 'io.swagger.annotations.ApiResponses'.(õ€£8óÂÈ›‚-
+lsquid:UselessImportCheck"<Remove this unused import 'io.swagger.annotations.ApiParam'.(…÷Åúÿÿÿÿ8•ÎÊ›‚-
+ksquid:UselessImportCheck"@Remove this unused import 'io.swagger.annotations.ApiOperation'.(¡šÜ8óÂÈ›‚-

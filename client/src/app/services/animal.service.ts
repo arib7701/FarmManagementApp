@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 // const BASE_URL = 'http://localhost:8181/api/v1/animals/';
-const BASE_URL = '/api/v1/animals/';
+const BASE_URL = 'http://localhost:8181/api/v1/animals';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +16,8 @@ export class AnimalService {
     return this.http.get<Animal[]>(`${BASE_URL}`);
   }
 
-  getAllAnimalByType(type: String): Observable<Animal[]> {
-    return this.http.get<Animal[]>(`${BASE_URL}/${type}`);
+  getAllAnimalByType(type: number): Observable<Animal[]> {
+    return this.http.get<Animal[]>(`${BASE_URL}/type/${type}`);
   }
 
   getAnimalById(id: number): Observable<Animal> {

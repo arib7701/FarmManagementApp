@@ -56,3 +56,5 @@ h
 8src/main/java/com/farm/repository/VaccineRepository.java,e/0/e0caab06200ee6a36096180e55a020a19cd8f612
 c
 3src/main/java/com/farm/service/IVaccineService.java,d/7/d72993f244c5ce3b560db336ee822103713f3b41
+e
+5src/main/java/com/farm/controller/TypeController.java,8/a/8a84bce6a2cbbf9109e468bccea9aea9862f3f81

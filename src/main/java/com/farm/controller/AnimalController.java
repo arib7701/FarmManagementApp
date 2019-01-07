@@ -26,8 +26,8 @@ public class AnimalController {
         return animalService.findAll();
     }
 
-    @RequestMapping(value= "/{type}", method = RequestMethod.GET)
-    public ResponseEntity<List<Animal>> getAnimalsByType(@PathVariable ("type") String type) {
+    @RequestMapping(value= "/type/{type}", method = RequestMethod.GET)
+    public ResponseEntity<List<Animal>> getAnimalsByType(@PathVariable ("type") int type) {
         List<Animal> animalsByType = animalService.findByType(type);
         return new ResponseEntity(animalsByType, HttpStatus.OK);
     }

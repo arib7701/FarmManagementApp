@@ -20,10 +20,6 @@ export class TypeService {
     return this.http.get<Type>(`${BASE_URL}/${id}`);
   }
 
-  getTypeByName(name: string): Observable<Type> {
-    return this.http.get<Type>(`${BASE_URL}/${name}`);
-  }
-
   addType(type: Type): Observable<Type> {
     return this.http.post<Type>(`${BASE_URL}`, type);
   }

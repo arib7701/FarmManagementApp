@@ -14,7 +14,7 @@ export const animalRoutes: Routes = [
         component: TypeComponent
       },
       {
-        path: 'type/:type',
+        path: 'types/:type',
         component: DetailTypeComponent
       },
       {
