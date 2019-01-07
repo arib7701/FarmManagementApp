@@ -42,6 +42,7 @@ public class EntityModelMappers {
             animalType = new AnimalType();
             animalType.setId(animalTypeEntity.getTypeId());
             animalType.setName(animalTypeEntity.getTypeName());
+            animalType.setImageUrl(animalTypeEntity.getTypeImg());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -59,6 +60,7 @@ public class EntityModelMappers {
             animalTypeEntity = new AnimalTypeEntity();
             animalTypeEntity.setTypeId(animalType.getId());
             animalTypeEntity.setTypeName(animalType.getName());
+            animalTypeEntity.setTypeName(animalType.getImageUrl());
 
 
         } catch (Exception e) {
@@ -98,7 +100,6 @@ public class EntityModelMappers {
             animal.setDeath(animalEntity.getDateDeath().toLocalDate());
             animal.setArrival(animalEntity.getDateArrival().toLocalDate());
             animal.setDeparture(animalEntity.getDateDeparture().toLocalDate());
-            animal.setType(animalEntity.getAnimalTypeByAnimalType().getTypeName());
 
         } catch (Exception e) {
             e.printStackTrace();

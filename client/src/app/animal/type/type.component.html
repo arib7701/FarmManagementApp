@@ -1,22 +1,33 @@
-<div class="row" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height: 1000px; ">
-    <div class='col-md-8'>
-      <!-- USERS LIST -->
-      <div class="box box-success">
-        <div class="box-header with-border">
-          <h3 class="box-title">Categories</h3>
-          <div class="box-tools pull-right">
-          </div>
-        </div><!-- /.box-header -->
-        <div class="box-body no-padding">
-          <ul class="users-list clearfix">
-            <li *ngFor="let type of types">
-              <a class="users-list-name" routerLink="/{{type.id}}">
-                <img src="" alt="">
-              </a>
-              <span class="users-list-name">{{type.name}}</span>
-            </li>
-          </ul><!-- /.users-list -->
-        </div><!-- /.box-body -->
-      </div><!--/.box -->
-    </div><!-- /.col -->
+<div
+  class="row"
+  style="display:flex; flex-direction:column; align-items:center; justify-content:center; height: 1000px; "
+>
+  <div class="col-md-8">
+    <!-- USERS LIST -->
+    <div class="box box-success">
+      <div class="box-header with-border">
+        <h3 class="box-title">Categories</h3>
+        <div class="box-tools pull-right"></div>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body no-padding">
+        <ul class="users-list clearfix">
+          <li *ngFor="let type of types">
+            <a class="users-list-name" routerLink="{{ type.id }}">
+              <img
+                style="width:200px; height:120px;"
+                src="{{ type.imageUrl }}"
+                alt="image_animal"
+              />
+            </a>
+            <span class="users-list-name">{{ type.name }}</span>
+          </li>
+        </ul>
+        <!-- /.users-list -->
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!--/.box -->
   </div>
+  <!-- /.col -->
+</div>

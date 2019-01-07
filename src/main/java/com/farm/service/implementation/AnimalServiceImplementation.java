@@ -45,7 +45,7 @@ public class AnimalServiceImplementation implements IAnimalService {
 
         AnimalTypeEntity animalTypeEntity = animalTypeRepository.findByTypeName(animalType);
 
-        List<AnimalEntity> animalEntityList = animalRepository.findByAnimalTypeByAnimalType(animalTypeEntity);
+        List<AnimalEntity> animalEntityList = animalRepository.findByAnimalType(animalTypeEntity.getTypeId());
         return parseAnimalList(animalEntityList);
     }
 
@@ -79,13 +79,13 @@ public class AnimalServiceImplementation implements IAnimalService {
 
     @Override
     public List<Animal> findByMotherId(int id) {
-        List<AnimalEntity> animalEntityList =  animalRepository.findByAnimalByMotherId(id);
+        List<AnimalEntity> animalEntityList =  animalRepository.findByMotherId(id);
         return parseAnimalList(animalEntityList);
     }
 
     @Override
     public List<Animal> findByFatherId(int id) {
-        List<AnimalEntity> animalEntityList =  animalRepository.findByAnimalByFatherId(id);
+        List<AnimalEntity> animalEntityList =  animalRepository.findByFatherId(id);
         return parseAnimalList(animalEntityList);
     }
 

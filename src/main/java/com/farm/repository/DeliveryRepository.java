@@ -11,5 +11,4 @@ public interface DeliveryRepository extends CrudRepository<AnimalDeliveryEntity,
     List<AnimalDeliveryEntity> findByFatherId(int id);
     List<AnimalDeliveryEntity> findByMotherId(int id);
     List<AnimalDeliveryEntity> findByDeliveryDate(Date date);
-    void deleteByAnimalName(String name);
 }

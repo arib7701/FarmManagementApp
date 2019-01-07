@@ -11,10 +11,9 @@ public class AnimalWeightEntity {
     private Date weightDate;
     private double weightNumber;
     private int animalId;
-    private AnimalEntity animalByAnimalId;
 
     @Id
-    @Column(name = "weight_id")
+    @Column(name = "weight_id", nullable = false)
     public int getWeightId() {
         return weightId;
     }
@@ -24,7 +23,7 @@ public class AnimalWeightEntity {
     }
 
     @Basic
-    @Column(name = "weight_date")
+    @Column(name = "weight_date", nullable = false)
     public Date getWeightDate() {
         return weightDate;
     }
@@ -34,13 +33,23 @@ public class AnimalWeightEntity {
     }
 
     @Basic
-    @Column(name = "weight_number")
+    @Column(name = "weight_number", nullable = false, precision = 0)
     public double getWeightNumber() {
         return weightNumber;
     }
 
     public void setWeightNumber(double weightNumber) {
         this.weightNumber = weightNumber;
+    }
+
+    @Basic
+    @Column(name = "animal_id", nullable = false)
+    public int getAnimalId() {
+        return animalId;
+    }
+
+    public void setAnimalId(int animalId) {
+        this.animalId = animalId;
     }
 
     @Override
@@ -57,15 +66,5 @@ public class AnimalWeightEntity {
     @Override
     public int hashCode() {
         return Objects.hash(weightId, weightDate, weightNumber, animalId);
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "animal_id", referencedColumnName = "animal_id", nullable = false)
-    public AnimalEntity getAnimalByAnimalId() {
-        return animalByAnimalId;
-    }
-
-    public void setAnimalByAnimalId(AnimalEntity animalByAnimalId) {
-        this.animalByAnimalId = animalByAnimalId;
     }
 }

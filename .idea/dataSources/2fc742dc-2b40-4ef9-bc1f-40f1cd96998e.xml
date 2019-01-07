@@ -1298,119 +1298,124 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="319" parent="282" name="type_id">
+    <column id="319" parent="282" name="type_img">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="320" parent="282" name="type_id">
       <ColNames>type_id</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="320" parent="282" name="PRIMARY">
+    <key id="321" parent="282" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>type_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="321" parent="282" name="type_id">
+    <key id="322" parent="282" name="type_id">
       <ColNames>type_id</ColNames>
       <UnderlyingIndexName>type_id</UnderlyingIndexName>
     </key>
-    <column id="322" parent="283" name="vaccine_id">
+    <column id="323" parent="283" name="vaccine_id">
       <Position>1</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="323" parent="283" name="vaccine_date">
+    <column id="324" parent="283" name="vaccine_date">
       <Position>2</Position>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="324" parent="283" name="vaccine_type">
+    <column id="325" parent="283" name="vaccine_type">
       <Position>3</Position>
       <DataType>varchar(55)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="325" parent="283" name="vaccine_quantity">
+    <column id="326" parent="283" name="vaccine_quantity">
       <Position>4</Position>
       <DataType>float|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="326" parent="283" name="animal_id">
+    <column id="327" parent="283" name="animal_id">
       <Position>5</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="327" parent="283" name="vaccine_id">
+    <index id="328" parent="283" name="vaccine_id">
       <ColNames>vaccine_id</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="328" parent="283" name="fk_vaccine_animal">
+    <index id="329" parent="283" name="fk_vaccine_animal">
       <ColNames>animal_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="329" parent="283" name="PRIMARY">
+    <key id="330" parent="283" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>vaccine_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="330" parent="283" name="vaccine_id">
+    <key id="331" parent="283" name="vaccine_id">
       <ColNames>vaccine_id</ColNames>
       <UnderlyingIndexName>vaccine_id</UnderlyingIndexName>
     </key>
-    <foreign-key id="331" parent="283" name="fk_vaccine_animal">
+    <foreign-key id="332" parent="283" name="fk_vaccine_animal">
       <ColNames>animal_id</ColNames>
       <RefSchemaName>farm</RefSchemaName>
       <RefTableName>animal</RefTableName>
       <RefColNames>animal_id</RefColNames>
     </foreign-key>
-    <column id="332" parent="284" name="weight_id">
+    <column id="333" parent="284" name="weight_id">
       <Position>1</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="333" parent="284" name="weight_date">
+    <column id="334" parent="284" name="weight_date">
       <Position>2</Position>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="334" parent="284" name="weight_number">
+    <column id="335" parent="284" name="weight_number">
       <Position>3</Position>
       <DataType>float|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="335" parent="284" name="animal_id">
+    <column id="336" parent="284" name="animal_id">
       <Position>4</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="336" parent="284" name="weight_id">
+    <index id="337" parent="284" name="weight_id">
       <ColNames>weight_id</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="337" parent="284" name="fk_weight_animal">
+    <index id="338" parent="284" name="fk_weight_animal">
       <ColNames>animal_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="338" parent="284" name="PRIMARY">
+    <key id="339" parent="284" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>weight_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="339" parent="284" name="weight_id">
+    <key id="340" parent="284" name="weight_id">
       <ColNames>weight_id</ColNames>
       <UnderlyingIndexName>weight_id</UnderlyingIndexName>
     </key>
-    <foreign-key id="340" parent="284" name="fk_weight_animal">
+    <foreign-key id="341" parent="284" name="fk_weight_animal">
       <ColNames>animal_id</ColNames>
       <RefSchemaName>farm</RefSchemaName>
       <RefTableName>animal</RefTableName>

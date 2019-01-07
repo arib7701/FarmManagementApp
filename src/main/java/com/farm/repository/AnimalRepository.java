@@ -10,10 +10,9 @@ import java.util.List;
 public interface AnimalRepository extends CrudRepository<AnimalEntity, Integer> {
 
     List<AnimalEntity> findByAnimalType(int typeId);
-    List<AnimalEntity> findByAnimalTypeByAnimalType(AnimalTypeEntity typeEntity);
 
-    List<AnimalEntity> findByAnimalByFatherId(int fatherId);
-    List<AnimalEntity> findByAnimalByMotherId(int motherId);
+    List<AnimalEntity> findByFatherId(int fatherId);
+    List<AnimalEntity> findByMotherId(int motherId);
 
     List<AnimalEntity> findByAnimalSex(String sex);
     List<AnimalEntity> findByDateBirthContaining(int year);

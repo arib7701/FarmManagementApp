@@ -1,7 +1,6 @@
 package com.farm.dao;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -9,10 +8,10 @@ import java.util.Objects;
 public class AnimalTypeEntity {
     private int typeId;
     private String typeName;
-    private Collection<AnimalEntity> animalsByTypeId;
+    private String typeImg;
 
     @Id
-    @Column(name = "type_id")
+    @Column(name = "type_id", nullable = false)
     public int getTypeId() {
         return typeId;
     }
@@ -22,7 +21,7 @@ public class AnimalTypeEntity {
     }
 
     @Basic
-    @Column(name = "type_name")
+    @Column(name = "type_name", nullable = false, length = 25)
     public String getTypeName() {
         return typeName;
     }
@@ -31,26 +30,28 @@ public class AnimalTypeEntity {
         this.typeName = typeName;
     }
 
+    @Basic
+    @Column(name = "type_img", nullable = true, length = 255)
+    public String getTypeImg() {
+        return typeImg;
+    }
+
+    public void setTypeImg(String typeImg) {
+        this.typeImg = typeImg;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AnimalTypeEntity that = (AnimalTypeEntity) o;
         return typeId == that.typeId &&
-                Objects.equals(typeName, that.typeName);
+                Objects.equals(typeName, that.typeName) &&
+                Objects.equals(typeImg, that.typeImg);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(typeId, typeName);
-    }
-
-    @OneToMany(mappedBy = "animalTypeByAnimalType")
-    public Collection<AnimalEntity> getAnimalsByTypeId() {
-        return animalsByTypeId;
-    }
-
-    public void setAnimalsByTypeId(Collection<AnimalEntity> animalsByTypeId) {
-        this.animalsByTypeId = animalsByTypeId;
+        return Objects.hash(typeId, typeName, typeImg);
     }
 }

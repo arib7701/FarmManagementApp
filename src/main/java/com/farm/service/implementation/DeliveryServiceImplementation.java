@@ -63,6 +63,6 @@ public class DeliveryServiceImplementation implements IDeliveryService {
 
     @Override
     public void deleteByName(String name) {
-        deliveryRepository.deleteByAnimalName(name);
+
     }
 }
