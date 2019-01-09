@@ -3,6 +3,11 @@
     <div class="box">
       <div class="box-header">
         <h3 class="box-title">ALL {{ type?.name | uppercase }}S</h3>
+        <p style="margin-left: 20px;" class="box-title">
+          <a routerLink="/animal/add"
+            ><i class="fas fa-plus-circle fa-2x"></i
+          ></a>
+        </p>
       </div>
       <!-- /.box-header -->
       <div class="box-body">
@@ -16,23 +21,54 @@
               <th>BARN NUMBER</th>
               <th>LAST DATE WEIGHT</th>
               <th>LAST WEIGHT</th>
-              <th></th>
-              <th></th>
               <th>STATUS</th>
+              <th></th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let animal of animals">
               <td>{{ animal?.id }}</td>
               <td>{{ animal?.name }}</td>
-              <td>{{ animal?.sex }}</td>
+              <td>
+                <span *ngIf="animal.sex == 'M'" class="badge bg-aqua">
+                  {{ animal?.sex }}</span
+                >
+                <span *ngIf="animal.sex == 'F'" class="badge bg-purple">
+                  {{ animal?.sex }}</span
+                >
+              </td>
               <td>{{ animal?.age }}</td>
               <td>{{ animal?.barn }}</td>
               <td></td>
               <td></td>
-              <td></td>
-              <td></td>
-              <td>{{ animal?.status }}</td>
+              <td>
+                <span *ngIf="animal.status == 'DEAD'" class="badge bg-red">
+                  {{ animal?.status }}</span
+                >
+                <span *ngIf="animal.status == 'ALIVE'" class="badge bg-green">
+                  {{ animal?.status }}</span
+                >
+                <span *ngIf="animal.status == 'SOLD'" class="badge bg-yellow">
+                  {{ animal?.status }}</span
+                >
+              </td>
+              <td>
+                <a [routerLink]="['/animal', animal.id]"
+                  ><i class="fa fa-info"></i
+                ></a>
+              </td>
+              <td>
+                <a [routerLink]="['/animal/edit', animal.id]"
+                  ><i class="fa fa-edit"></i
+                ></a>
+              </td>
+              <td>
+                <a (click)="deleteAnimal(animal.id)"
+                  ><i class="fa fa-trash"></i
+                ></a>
+              </td>
             </tr>
           </tbody>
           <tfoot>
@@ -44,9 +80,10 @@
               <th>BARN NUMBER</th>
               <th>LAST DATE WEIGHT</th>
               <th>LAST WEIGHT</th>
-              <th></th>
-              <th></th>
               <th>STATUS</th>
+              <th></th>
+              <th></th>
+              <th></th>
             </tr>
           </tfoot>
         </table>

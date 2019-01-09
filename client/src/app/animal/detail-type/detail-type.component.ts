@@ -51,6 +51,10 @@ export class DetailTypeComponent implements OnInit, OnDestroy {
       );
   }
 
+  deleteAnimal(id) {
+    alert('Delete Animal ' + id);
+  }
+
   getStatus() {
     this.animals.forEach(animal => {
       if (animal.death !== null) {
