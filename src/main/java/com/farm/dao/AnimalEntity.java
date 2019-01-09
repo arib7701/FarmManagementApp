@@ -18,6 +18,7 @@ public class AnimalEntity {
     private Integer fatherId;
     private Integer motherId;
     private Byte isResearch;
+    private String barn;
 
     @Id
     @Column(name = "animal_id", nullable = false)
@@ -150,5 +151,15 @@ public class AnimalEntity {
     @Override
     public int hashCode() {
         return Objects.hash(animalId, animalName, animalSex, dateBirth, dateDeath, dateArrival, dateDeparture, animalType, fatherId, motherId, isResearch);
+    }
+
+    @Basic
+    @Column(name = "barn", nullable = true, length = 45)
+    public String getBarn() {
+        return barn;
+    }
+
+    public void setBarn(String barn) {
+        this.barn = barn;
     }
 }

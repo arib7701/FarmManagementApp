@@ -17,12 +17,12 @@ public class TypeController {
     @Autowired
     private IAnimalTypeService animalTypeService;
 
-    @RequestMapping(value="", method = RequestMethod.GET)
+    @GetMapping(value="")
     public List<AnimalType> listAllAnimalTypes() {
         return animalTypeService.findAll();
     }
 
-    @RequestMapping(value= "/{id}", method = RequestMethod.GET)
+    @GetMapping(value= "/{id}")
     public ResponseEntity<AnimalType> getAnimalTypeById(@PathVariable ("id") int id) {
         AnimalType animalTypeById = animalTypeService.findById(id);
         return new ResponseEntity(animalTypeById, HttpStatus.OK);

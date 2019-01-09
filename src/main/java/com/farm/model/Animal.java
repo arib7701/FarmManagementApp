@@ -8,6 +8,7 @@ public class Animal {
     private int id;
     private String name;
     private String sex;
+    private String barn;
     private LocalDate birth;
     private LocalDate death;
     private LocalDate arrival;
@@ -23,10 +24,11 @@ public class Animal {
     public Animal() {
     }
 
-    public Animal(int id, String name, String sex, LocalDate birth, String type, Integer fatherId, Integer motherId) {
+    public Animal(int id, String name, String sex, String barn, LocalDate birth, String type, Integer fatherId, Integer motherId) {
         this.id = id;
         this.name = name;
         this.sex = sex;
+        this.barn = barn;
         this.birth = birth;
         this.death = null;
         this.arrival = null;
@@ -40,9 +42,10 @@ public class Animal {
         this.deliveries = null;
     }
 
-    public Animal(String name, String sex, LocalDate birth, String type, Integer fatherId, Integer motherId) {
+    public Animal(String name, String sex, String barn, LocalDate birth, String type, Integer fatherId, Integer motherId) {
         this.name = name;
         this.sex = sex;
+        this.barn = barn;
         this.birth = birth;
         this.death = null;
         this.arrival = null;
@@ -78,6 +81,14 @@ public class Animal {
 
     public void setSex(String sex) {
         this.sex = sex;
+    }
+
+    public String getBarn() {
+        return barn;
+    }
+
+    public void setBarn(String barn) {
+        this.barn = barn;
     }
 
     public LocalDate getBirth() {

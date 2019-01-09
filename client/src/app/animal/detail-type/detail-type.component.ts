@@ -5,6 +5,7 @@ import { Animal } from 'src/app/models/animal';
 import { ActivatedRoute } from '@angular/router';
 import { Type } from 'src/app/models/type';
 import { TypeService } from 'src/app/services/type.service';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-detail-type',
@@ -41,11 +42,34 @@ export class DetailTypeComponent implements OnInit, OnDestroy {
       .subscribe(
         animals => {
           this.animals = animals;
+          this.getStatus();
+          this.getAge();
         },
         error => {
           console.log('Error getting animals by type');
         }
       );
+  }
+
+  getStatus() {
+    this.animals.forEach(animal => {
+      if (animal.death !== null) {
+        animal.status = 'DEAD';
+      } else if (animal.departure !== null) {
+        animal.status = 'SOLD';
+      } else {
+        animal.status = 'ALIVE';
+      }
+    });
+  }
+
+  getAge() {
+    this.animals.forEach(animal => {
+      if (animal.birth !== null) {
+        animal.age =
+          new Date().getFullYear() - new Date(animal.birth).getFullYear();
+      }
+    });
   }
 
   ngOnDestroy() {

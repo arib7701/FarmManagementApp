@@ -1,11 +1,8 @@
 package com.farm.service.implementation;
 
 import com.farm.dao.AnimalEntity;
-import com.farm.dao.AnimalTypeEntity;
 import com.farm.model.Animal;
-import com.farm.model.AnimalType;
 import com.farm.repository.AnimalRepository;
-import com.farm.repository.AnimalTypeRepository;
 import com.farm.service.IAnimalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,9 +20,6 @@ public class AnimalServiceImplementation implements IAnimalService {
 
     @Autowired
     private AnimalRepository animalRepository;
-
-    @Autowired
-    private AnimalTypeRepository animalTypeRepository;
 
     @Override
     public List<Animal> findAll() {

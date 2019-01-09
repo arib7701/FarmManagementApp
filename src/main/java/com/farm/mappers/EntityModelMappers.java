@@ -9,6 +9,8 @@ import com.farm.model.AnimalType;
 import com.farm.model.Delivery;
 import com.farm.model.Vaccine;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,11 +97,12 @@ public class EntityModelMappers {
             animal = new Animal();
             animal.setId(animalEntity.getAnimalId());
             animal.setName(animalEntity.getAnimalName());
+            animal.setBarn(animalEntity.getBarn());
             animal.setSex(animalEntity.getAnimalSex());
-            animal.setBirth(animalEntity.getDateBirth().toLocalDate());
-            animal.setDeath(animalEntity.getDateDeath().toLocalDate());
-            animal.setArrival(animalEntity.getDateArrival().toLocalDate());
-            animal.setDeparture(animalEntity.getDateDeparture().toLocalDate());
+            animal.setBirth(checkNull(animalEntity.getDateBirth()));
+            animal.setDeath(checkNull(animalEntity.getDateDeath()));
+            animal.setArrival(checkNull(animalEntity.getDateArrival()));
+            animal.setDeparture(checkNull(animalEntity.getDateDeparture()));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -117,6 +120,7 @@ public class EntityModelMappers {
             animalEntity = new AnimalEntity();
             animalEntity.setAnimalId(animal.getId());
             animalEntity.setAnimalName(animal.getName());
+            animalEntity.setBarn(animal.getBarn());
             animalEntity.setAnimalSex(animal.getSex());
             animalEntity.setDateBirth(java.sql.Date.valueOf(animal.getBirth()));
             animalEntity.setDateDeath(java.sql.Date.valueOf(animal.getDeath()));
@@ -235,5 +239,16 @@ public class EntityModelMappers {
         }
 
         return animalVaccineEntity;
+    }
+
+    private static LocalDate checkNull(Date dateSQL) {
+
+        LocalDate localDate = null;
+
+        if(dateSQL != null){
+            localDate = dateSQL.toLocalDate();
+        }
+
+        return localDate;
     }
 }
