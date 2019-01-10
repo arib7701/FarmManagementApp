@@ -4,7 +4,7 @@
       <div class="box-header">
         <h3 class="box-title">ALL {{ type?.name | uppercase }}S</h3>
         <p style="margin-left: 20px;" class="box-title">
-          <a routerLink="/animal/add"
+          <a  [routerLink]="['/animal/add', idType]"
             ><i class="fas fa-plus-circle fa-2x"></i
           ></a>
         </p>

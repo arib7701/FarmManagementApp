@@ -28,7 +28,7 @@ export const animalRoutes: Routes = [
         component: DetailAnimalEditComponent
       },
       {
-        path: 'add',
+        path: 'add/:type',
         component: DetailAnimalCreateComponent
       }
     ]

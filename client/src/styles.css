@@ -1,2 +1,12 @@
 @import './assets/css/adminLTE.css';
 @import './assets/css/skin-green.css';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+}
+
+.example-full-width {
+    width: 100%;
+}
