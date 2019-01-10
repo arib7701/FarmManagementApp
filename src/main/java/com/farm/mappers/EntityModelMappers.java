@@ -1,13 +1,7 @@
 package com.farm.mappers;
 
-import com.farm.dao.AnimalDeliveryEntity;
-import com.farm.dao.AnimalEntity;
-import com.farm.dao.AnimalTypeEntity;
-import com.farm.dao.AnimalVaccineEntity;
-import com.farm.model.Animal;
-import com.farm.model.AnimalType;
-import com.farm.model.Delivery;
-import com.farm.model.Vaccine;
+import com.farm.dao.*;
+import com.farm.model.*;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -99,10 +93,10 @@ public class EntityModelMappers {
             animal.setName(animalEntity.getAnimalName());
             animal.setBarn(animalEntity.getBarn());
             animal.setSex(animalEntity.getAnimalSex());
-            animal.setBirth(checkNull(animalEntity.getDateBirth()));
-            animal.setDeath(checkNull(animalEntity.getDateDeath()));
-            animal.setArrival(checkNull(animalEntity.getDateArrival()));
-            animal.setDeparture(checkNull(animalEntity.getDateDeparture()));
+            animal.setBirth(checkNullSQLDate(animalEntity.getDateBirth()));
+            animal.setDeath(checkNullSQLDate(animalEntity.getDateDeath()));
+            animal.setArrival(checkNullSQLDate(animalEntity.getDateArrival()));
+            animal.setDeparture(checkNullSQLDate(animalEntity.getDateDeparture()));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -121,11 +115,12 @@ public class EntityModelMappers {
             animalEntity.setAnimalId(animal.getId());
             animalEntity.setAnimalName(animal.getName());
             animalEntity.setBarn(animal.getBarn());
+            animalEntity.setAnimalType(animal.getType());
             animalEntity.setAnimalSex(animal.getSex());
-            animalEntity.setDateBirth(java.sql.Date.valueOf(animal.getBirth()));
-            animalEntity.setDateDeath(java.sql.Date.valueOf(animal.getDeath()));
-            animalEntity.setDateArrival(java.sql.Date.valueOf(animal.getArrival()));
-            animalEntity.setDateDeparture(java.sql.Date.valueOf(animal.getDeparture()));
+            animalEntity.setDateBirth(checkNullLocalDate(animal.getBirth()));
+            animalEntity.setDateDeath(checkNullLocalDate(animal.getDeath()));
+            animalEntity.setDateArrival(checkNullLocalDate(animal.getArrival()));
+            animalEntity.setDateDeparture(checkNullLocalDate(animal.getDeparture()));
 
 
         } catch (Exception e) {
@@ -241,7 +236,62 @@ public class EntityModelMappers {
         return animalVaccineEntity;
     }
 
-    private static LocalDate checkNull(Date dateSQL) {
+    public static List<Weight> parseWeightList(List<AnimalWeightEntity> animalWeightEntityList) {
+
+        List<Weight> weightList = null;
+
+        if(animalWeightEntityList != null) {
+            weightList = new ArrayList<>();
+
+            for(AnimalWeightEntity weightEntity : animalWeightEntityList) {
+                Weight weight = parseWeightEntity(weightEntity);
+                weightList.add(weight);
+            }
+        }
+
+        return weightList;
+    }
+
+    public static Weight parseWeightEntity(AnimalWeightEntity weightEntity) {
+
+        Weight weight = null;
+
+        try {
+
+            weight = new Weight();
+            weight.setId(weightEntity.getWeightId());
+            weight.setDate(weightEntity.getWeightDate().toLocalDate());
+            weight.setMeasure(weightEntity.getWeightNumber());
+            weight.setAnimalId(weightEntity.getAnimalId());
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return weight;
+    }
+
+    public static AnimalWeightEntity parseWeight(Weight weight) {
+
+        AnimalWeightEntity animalWeightEntity = null;
+
+        try {
+
+            animalWeightEntity = new AnimalWeightEntity();
+            animalWeightEntity.setWeightId(weight.getId());
+            animalWeightEntity.setWeightDate(java.sql.Date.valueOf(weight.getDate()));
+            animalWeightEntity.setWeightNumber(weight.getMeasure());
+            animalWeightEntity.setAnimalId(weight.getAnimalId());
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return animalWeightEntity;
+    }
+
+
+    private static LocalDate checkNullSQLDate(Date dateSQL) {
 
         LocalDate localDate = null;
 
@@ -250,5 +300,16 @@ public class EntityModelMappers {
         }
 
         return localDate;
+    }
+
+    private static Date checkNullLocalDate(LocalDate localDate) {
+
+        Date dateSql = null;
+
+        if(localDate != null){
+            dateSql = java.sql.Date.valueOf(localDate);
+        }
+
+        return dateSql;
     }
 }

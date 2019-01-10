@@ -13,7 +13,7 @@ public class Animal {
     private LocalDate death;
     private LocalDate arrival;
     private LocalDate departure;
-    private String type;
+    private int type;
     private Integer fatherId;
     private Integer motherId;
     private Boolean isResearch;
@@ -24,7 +24,7 @@ public class Animal {
     public Animal() {
     }
 
-    public Animal(int id, String name, String sex, String barn, LocalDate birth, String type, Integer fatherId, Integer motherId) {
+    public Animal(int id, String name, String sex, String barn, LocalDate birth, int type, Integer fatherId, Integer motherId) {
         this.id = id;
         this.name = name;
         this.sex = sex;
@@ -42,7 +42,7 @@ public class Animal {
         this.deliveries = null;
     }
 
-    public Animal(String name, String sex, String barn, LocalDate birth, String type, Integer fatherId, Integer motherId) {
+    public Animal(String name, String sex, String barn, LocalDate birth, int type, Integer fatherId, Integer motherId) {
         this.name = name;
         this.sex = sex;
         this.barn = barn;
@@ -123,11 +123,11 @@ public class Animal {
         this.departure = departure;
     }
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(int type) {
         this.type = type;
     }
 

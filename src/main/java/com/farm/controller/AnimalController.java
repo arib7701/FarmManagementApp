@@ -2,10 +2,6 @@ package com.farm.controller;
 
 import com.farm.model.Animal;
 import com.farm.service.IAnimalService;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,21 +17,27 @@ public class AnimalController {
     @Autowired
     private IAnimalService animalService;
 
-    @RequestMapping(value="", method = RequestMethod.GET)
+    @GetMapping( value="")
     public List<Animal> listAllAnimals() {
         return animalService.findAll();
     }
 
-    @RequestMapping(value= "/type/{type}", method = RequestMethod.GET)
+    @GetMapping(value= "/type/{type}")
     public ResponseEntity<List<Animal>> getAnimalsByType(@PathVariable ("type") int type) {
         List<Animal> animalsByType = animalService.findByType(type);
         return new ResponseEntity(animalsByType, HttpStatus.OK);
     }
 
-    @RequestMapping(value= "/{id}", method = RequestMethod.GET)
+    @GetMapping(value= "/{id}")
     public ResponseEntity<Animal> getAnimalById(@PathVariable ("id") int id) {
         Animal animalById = animalService.findById(id);
         return new ResponseEntity(animalById, HttpStatus.OK);
+    }
+
+    @PostMapping(value="")
+    public ResponseEntity<Animal> saveNewAnimal( @RequestBody Animal animalBody){
+        Animal animalSaved = animalService.save(animalBody);
+        return new ResponseEntity(animalSaved, HttpStatus.OK);
     }
 
 }

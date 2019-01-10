@@ -18,26 +18,33 @@ public class WeightController {
     @Autowired
     private IWeightService weightService;
 
-    @RequestMapping(value="", method = RequestMethod.GET)
+    @GetMapping(value="")
     public List<Weight> listAllWeights() {
         return weightService.findAll();
     }
 
-    @RequestMapping(value= "/animal/{id}", method = RequestMethod.GET)
+    @GetMapping(value= "/animal/{id}")
     public ResponseEntity<List<Weight>> getWeightsByAnimalId(@PathVariable ("id") int id) {
         List<Weight> weightsByType = weightService.findByAnimalId(id);
         return new ResponseEntity(weightsByType, HttpStatus.OK);
     }
 
-    @RequestMapping(value= "/date/{date}", method = RequestMethod.GET)
+    @GetMapping(value= "/date/{date}")
     public ResponseEntity<List<Weight>> getWeightsByDate(@PathVariable ("date") Date date) {
         List<Weight> weightsByType = weightService.findByDate(date);
         return new ResponseEntity(weightsByType, HttpStatus.OK);
     }
 
-    @RequestMapping(value= "/{id}", method = RequestMethod.GET)
+    @GetMapping(value= "/{id}")
     public ResponseEntity<Weight> getAnimalById(@PathVariable("id") int id) {
         Weight weightById = weightService.findById(id);
         return new ResponseEntity(weightById, HttpStatus.OK);
     }
+
+    @PostMapping(value="")
+    public ResponseEntity<Weight> saveNewAnimal( @RequestBody Weight weightBody){
+        Weight weightSaved = weightService.save(weightBody);
+        return new ResponseEntity(weightSaved, HttpStatus.OK);
+    }
+
 }

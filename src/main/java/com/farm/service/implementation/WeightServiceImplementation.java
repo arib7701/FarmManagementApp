@@ -1,14 +1,24 @@
 package com.farm.service.implementation;
 
+import com.farm.dao.AnimalWeightEntity;
 import com.farm.model.Weight;
+import com.farm.repository.WeightRepository;
 import com.farm.service.IWeightService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
 
+import static com.farm.mappers.EntityModelMappers.parseWeight;
+import static com.farm.mappers.EntityModelMappers.parseWeightEntity;
+
 @Service
 public class WeightServiceImplementation implements IWeightService {
+
+    @Autowired
+    private WeightRepository weightRepository;
+
     @Override
     public List<Weight> findAll() {
         return null;
@@ -30,8 +40,10 @@ public class WeightServiceImplementation implements IWeightService {
     }
 
     @Override
-    public Weight save(Weight animal) {
-        return null;
+    public Weight save(Weight weight) {
+        AnimalWeightEntity weightEntity = parseWeight(weight);
+        AnimalWeightEntity weightEntitySaved = weightRepository.save(weightEntity);
+        return parseWeightEntity(weightEntitySaved);
     }
 
     @Override
