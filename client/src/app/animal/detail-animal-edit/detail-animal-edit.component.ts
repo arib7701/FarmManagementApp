@@ -7,7 +7,6 @@ import { AnimalService } from 'src/app/services/animal.service';
 import { WeightService } from 'src/app/services/weight.service';
 import { TypeService } from 'src/app/services/type.service';
 import { ActivatedRoute } from '@angular/router';
-import { getTypeNameForDebugging } from '@angular/common/src/directives/ng_for_of';
 
 @Component({
   selector: 'app-detail-animal-edit',
@@ -18,46 +17,52 @@ export class DetailAnimalEditComponent implements OnInit {
   idAnimal: number;
   typeAnimal: string;
   subscriptionAnimal: Subscription;
-  subscriptionWeight: Subscription;
   subscriptionAnimalId: Subscription;
   subscriptionType: Subscription;
   type: Type;
   animal: Animal;
+
   editAnimalForm: FormGroup;
   animalsIdsMale = new Array<number>();
   animalsIdsFemale = new Array<number>();
 
-  constructor( private animalService: AnimalService,
-    private weightService: WeightService,
+  constructor(
+    private animalService: AnimalService,
     private typeService: TypeService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
-
     this.idAnimal = +this.route.snapshot.paramMap.get('id');
 
-    this.subscriptionAnimalId = this.animalService.getAnimalById(this.idAnimal).subscribe(animal => {
-      this.animal = animal;
-      this.getType();
-      this.loadItems();
-    }, error => {
-      console.log('Error getting all animal by type');
-    });
+    this.subscriptionAnimalId = this.animalService
+      .getAnimalById(this.idAnimal)
+      .subscribe(
+        animal => {
+          this.animal = animal;
+          this.getType();
+          this.loadItems();
+        },
+        error => {
+          console.log('Error getting all animal by type');
+        }
+      );
 
     this.createForm();
   }
 
-  createForm () {
+  createForm() {
     this.editAnimalForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
       sex: new FormControl('', [Validators.required]),
       barn: new FormControl(''),
-      currentWeight: new FormControl(''),
       research: new FormControl(''),
       motherId: new FormControl(''),
       fatherId: new FormControl(''),
       birthDate: new FormControl(''),
-      arrivalDate: new FormControl('')
+      arrivalDate: new FormControl(''),
+      deathDate: new FormControl(''),
+      departureDate: new FormControl('')
     });
   }
 
@@ -66,27 +71,52 @@ export class DetailAnimalEditComponent implements OnInit {
       name: new FormControl(this.animal.name, [Validators.required]),
       sex: new FormControl(this.animal.sex, [Validators.required]),
       barn: new FormControl(this.animal.barn),
-      currentWeight: new FormControl(this.animal.lastWeight),
       research: new FormControl(this.animal.isResearch),
       motherId: new FormControl(this.animal.motherId),
       fatherId: new FormControl(this.animal.fatherId),
       birthDate: new FormControl(this.animal.birth),
-      arrivalDate: new FormControl(this.animal.arrival)
+      arrivalDate: new FormControl(this.animal.arrival),
+      deathDate: new FormControl(this.animal.death),
+      departureDate: new FormControl(this.animal.departure)
     });
   }
 
   getType() {
-    this.subscriptionType = this.typeService.getTypeById(this.animal.type).subscribe( type => {
-      this.typeAnimal = type.name;
-      console.log('Success getting type');
-    }, error => {
-      console.log('Error getting type');
-    });
+    this.subscriptionType = this.typeService
+      .getTypeById(this.animal.type)
+      .subscribe(
+        type => {
+          this.typeAnimal = type.name;
+          console.log('Success getting type');
+          this.getAnimalIds();
+        },
+        error => {
+          console.log('Error getting type');
+        }
+      );
   }
 
-  submitEditAnimal () {
+  getAnimalIds() {
+    this.subscriptionAnimalId = this.animalService
+      .getAllAnimalByType(this.animal.type)
+      .subscribe(
+        animals => {
+          const allAnimals = animals;
+          allAnimals.forEach(animal => {
+            if (animal.sex === 'M') {
+              this.animalsIdsMale.push(animal.id);
+            } else {
+              this.animalsIdsFemale.push(animal.id);
+            }
+          });
+        },
+        error => {
+          console.log('Error getting all animal by type');
+        }
+      );
+  }
 
-    this.animal = new Animal;
+  submitEditAnimal() {
     this.animal.name = this.editAnimalForm.controls['name'].value;
     this.animal.sex = this.editAnimalForm.controls['sex'].value;
     this.animal.barn = this.editAnimalForm.controls['barn'].value;
@@ -94,17 +124,23 @@ export class DetailAnimalEditComponent implements OnInit {
     this.animal.motherId = this.editAnimalForm.controls['motherId'].value;
     this.animal.fatherId = this.editAnimalForm.controls['fatherId'].value;
     this.animal.birth = this.editAnimalForm.controls['birthDate'].value;
-    this.animal.death = null;
+    this.animal.death = this.editAnimalForm.controls['deathDate'].value;
     this.animal.arrival = this.editAnimalForm.controls['arrivalDate'].value;
-    this.animal.departure = null;
+    this.animal.departure = this.editAnimalForm.controls['departureDate'].value;
     this.animal.weights = null;
 
-   this.subscriptionAnimal = this.animalService.addAnimal(this.animal).subscribe(animalSaved => {
-    const animalId = animalSaved.id;
-    console.log('Saving animal OK ');
-  }, error => {
-    console.log('Error saving new animal');
-   });
+    console.log('animal ', this.animal);
+
+    this.subscriptionAnimal = this.animalService
+      .updateAnimal(this.idAnimal, this.animal)
+      .subscribe(
+        animalUpdated => {
+          console.log('Updating animal OK ');
+        },
+        error => {
+          console.log('Error updating new animal');
+        }
+      );
   }
 
   get name() {
@@ -115,9 +151,6 @@ export class DetailAnimalEditComponent implements OnInit {
   }
   get barn() {
     return this.editAnimalForm.get('barn');
-  }
-  get currentWeight() {
-    return this.editAnimalForm.get('currentWeight');
   }
   get research() {
     return this.editAnimalForm.get('research');
@@ -134,5 +167,10 @@ export class DetailAnimalEditComponent implements OnInit {
   get arrivalDate() {
     return this.editAnimalForm.get('arrivalDate');
   }
-
+  get deathDate() {
+    return this.editAnimalForm.get('deathDate');
+  }
+  get departureDate() {
+    return this.editAnimalForm.get('departureDate');
+  }
 }
