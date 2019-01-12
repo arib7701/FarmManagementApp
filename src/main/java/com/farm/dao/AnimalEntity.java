@@ -17,11 +17,12 @@ public class AnimalEntity {
     private int animalType;
     private Integer fatherId;
     private Integer motherId;
-    private Byte isResearch;
+    private boolean isResearch;
     private String barn;
 
     @Id
     @Column(name = "animal_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getAnimalId() {
         return animalId;
     }
@@ -122,11 +123,11 @@ public class AnimalEntity {
 
     @Basic
     @Column(name = "is_research", nullable = true)
-    public Byte getIsResearch() {
+    public boolean getIsResearch() {
         return isResearch;
     }
 
-    public void setIsResearch(Byte isResearch) {
+    public void setIsResearch(boolean isResearch) {
         this.isResearch = isResearch;
     }
 

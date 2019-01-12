@@ -26,6 +26,7 @@ public interface IAnimalService {
     Animal findByName(String name);
 
     Animal save(Animal animal);
+    Animal update(int id, Animal animal);
 
     void deleteById(int id);
     void deleteByName(String name);

@@ -92,11 +92,15 @@ public class EntityModelMappers {
             animal.setId(animalEntity.getAnimalId());
             animal.setName(animalEntity.getAnimalName());
             animal.setBarn(animalEntity.getBarn());
+            animal.setType(animalEntity.getAnimalType());
             animal.setSex(animalEntity.getAnimalSex());
             animal.setBirth(checkNullSQLDate(animalEntity.getDateBirth()));
             animal.setDeath(checkNullSQLDate(animalEntity.getDateDeath()));
             animal.setArrival(checkNullSQLDate(animalEntity.getDateArrival()));
             animal.setDeparture(checkNullSQLDate(animalEntity.getDateDeparture()));
+            animal.setMotherId(animalEntity.getMotherId());
+            animal.setFatherId(animalEntity.getFatherId());
+            animal.setIsResearch(animalEntity.getIsResearch());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -121,6 +125,9 @@ public class EntityModelMappers {
             animalEntity.setDateDeath(checkNullLocalDate(animal.getDeath()));
             animalEntity.setDateArrival(checkNullLocalDate(animal.getArrival()));
             animalEntity.setDateDeparture(checkNullLocalDate(animal.getDeparture()));
+            animalEntity.setMotherId(animal.getMotherId());
+            animalEntity.setFatherId(animal.getFatherId());
+            animalEntity.setIsResearch(animal.getIsResearch());
 
 
         } catch (Exception e) {

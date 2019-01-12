@@ -40,4 +40,16 @@ public class AnimalController {
         return new ResponseEntity(animalSaved, HttpStatus.OK);
     }
 
+    @PostMapping(value="/{id}")
+    public ResponseEntity<Animal> updateAnimal(@PathVariable ("id") int id, @RequestBody Animal animalBody){
+        Animal animalUpdated = animalService.update(id, animalBody);
+        return new ResponseEntity(animalUpdated, HttpStatus.OK);
+    }
+
+
+    @DeleteMapping(value="/{id}")
+    public ResponseEntity<String> deleteAnimal(@PathVariable ("id") int id) {
+        animalService.deleteById(id);
+        return new ResponseEntity("Animal deleted successfully", HttpStatus.OK);
+    }
 }

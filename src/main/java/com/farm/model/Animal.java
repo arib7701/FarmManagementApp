@@ -1,6 +1,7 @@
 package com.farm.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Animal {
@@ -16,7 +17,7 @@ public class Animal {
     private int type;
     private Integer fatherId;
     private Integer motherId;
-    private Boolean isResearch;
+    private boolean isResearch;
     private List<Weight> weights;
     private List<Vaccine> vaccines;
     private List<Delivery> deliveries;
@@ -36,10 +37,10 @@ public class Animal {
         this.type = type;
         this.fatherId = fatherId;
         this.motherId = motherId;
-        this.isResearch = null;
-        this.weights = null;
-        this.vaccines = null;
-        this.deliveries = null;
+        this.isResearch = false;
+        this.weights = new ArrayList<Weight>();
+        this.vaccines = new ArrayList<Vaccine>();
+        this.deliveries = new ArrayList<Delivery>();
     }
 
     public Animal(String name, String sex, String barn, LocalDate birth, int type, Integer fatherId, Integer motherId) {
@@ -53,10 +54,10 @@ public class Animal {
         this.type = type;
         this.fatherId = fatherId;
         this.motherId = motherId;
-        this.isResearch = null;
-        this.weights = null;
-        this.vaccines = null;
-        this.deliveries = null;
+        this.isResearch = false;
+        this.weights = new ArrayList<Weight>();
+        this.vaccines = new ArrayList<Vaccine>();
+        this.deliveries = new ArrayList<Delivery>();
     }
 
     public int getId() {
@@ -147,11 +148,11 @@ public class Animal {
         this.motherId = motherId;
     }
 
-    public Boolean getResearch() {
+    public boolean getIsResearch() {
         return isResearch;
     }
 
-    public void setResearch(Boolean research) {
+    public void setIsResearch(boolean research) {
         isResearch = research;
     }
 

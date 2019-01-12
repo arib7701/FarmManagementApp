@@ -1,25 +1,30 @@
 package com.farm.service.implementation;
 
 import com.farm.dao.AnimalEntity;
+import com.farm.dao.AnimalWeightEntity;
 import com.farm.model.Animal;
+import com.farm.model.Weight;
 import com.farm.repository.AnimalRepository;
+import com.farm.repository.WeightRepository;
 import com.farm.service.IAnimalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static com.farm.mappers.EntityModelMappers.parseAnimal;
-import static com.farm.mappers.EntityModelMappers.parseAnimalEntity;
-import static com.farm.mappers.EntityModelMappers.parseAnimalList;
+import static com.farm.mappers.EntityModelMappers.*;
 
 @Service
 public class AnimalServiceImplementation implements IAnimalService {
 
     @Autowired
     private AnimalRepository animalRepository;
+
+    @Autowired
+    private WeightRepository weightRepository;
 
     @Override
     public List<Animal> findAll() {
@@ -38,7 +43,25 @@ public class AnimalServiceImplementation implements IAnimalService {
     public List<Animal> findByType(int animalTypeId) {
 
         List<AnimalEntity> animalEntityList = animalRepository.findByAnimalType(animalTypeId);
-        return parseAnimalList(animalEntityList);
+        List<Animal> animalList = parseAnimalList(animalEntityList);
+
+        for(Animal animal : animalList) {
+
+            List<AnimalWeightEntity> animalWeightEntities = weightRepository.findByAnimalId(animal.getId());
+
+            if(animalWeightEntities != null) {
+
+                List<Weight> weights = new ArrayList<>();
+
+                for (AnimalWeightEntity animalWeightEntity : animalWeightEntities) {
+                    weights.add(parseWeightEntity(animalWeightEntity));
+                }
+
+                animal.setWeights(weights);
+            }
+        }
+
+        return animalList;
     }
 
     @Override
@@ -95,14 +118,39 @@ public class AnimalServiceImplementation implements IAnimalService {
 
     @Override
     public Animal save(Animal animal) {
-
         AnimalEntity animalEntity = parseAnimal(animal);
         AnimalEntity animalEntitySaved = animalRepository.save(animalEntity);
         return parseAnimalEntity(animalEntitySaved);
     }
 
     @Override
+    public Animal update(int id, Animal animal) {
+
+        AnimalEntity animalEntity = animalRepository.findByAnimalId(id);
+        Animal animalUpdated = null;
+
+        if(animalEntity != null) {
+            animalEntity = parseAnimal(animal);
+            AnimalEntity animalEntityUpdate = animalRepository.save(animalEntity);
+            animalUpdated =parseAnimalEntity(animalEntityUpdate);
+        }
+
+        return animalUpdated;
+
+    }
+
+    @Override
     public void deleteById(int id) {
+
+        List<AnimalWeightEntity> weightEntities = weightRepository.findByAnimalId(id);
+
+        if(weightEntities != null) {
+
+            for(AnimalWeightEntity weightEntity : weightEntities) {
+                weightRepository.deleteById(weightEntity.getWeightId());
+            }
+        }
+
         animalRepository.deleteById(id);
     }
 
