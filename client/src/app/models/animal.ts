@@ -12,8 +12,10 @@ export class Animal {
   sex?: string;
   motherId?: number;
   fatherId: number;
-  isresearch?: boolean;
+  isResearch?: boolean;
   weights?: Weight[];
+  lastDateWeight?: Date;
+  lastWeight?: number;
   age?: number;
   status?: string;
 }

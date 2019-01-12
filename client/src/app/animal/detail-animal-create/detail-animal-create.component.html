@@ -1,4 +1,4 @@
-<div class="col-md-10">
+<div class="col-md-10" style="padding:50px">
   <!-- general form elements disabled -->
   <div class="box box-success">
     <div class="box-header"><h3 class="box-title">Create a new {{type?.name | uppercase}}</h3></div>
@@ -6,78 +6,101 @@
     <div class="box-body">
       <form [formGroup]="newAnimalForm" (ngSubmit)="submitCreateAnimal()">
 
-        <!-- text input -->
-        <div class="form-group">
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Enter the name of the animal" value="" formControlName="name" >
-          </mat-form-field>
-        </div>
-        
-        <!-- radio -->
-        <div class="form-group">
-          <mat-radio-group formControlName="sex" >
-            <mat-radio-button name="sex" value="F"> FEMALE </mat-radio-button>
-            <mat-radio-button name="sex" value="M"> MALE </mat-radio-button>
-          </mat-radio-group>
-        </div>
-        
-        <!-- text input -->
-        <div class="form-group">
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Enter the barn location" value="" formControlName="barn" >
-          </mat-form-field>
+        <div class="row" display="flex">
+          <div class="col-md-6">
+            <!-- text input -->
+            <div class="form-group">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Enter the name of the animal" value="" formControlName="name" >
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <!-- radio -->
+            <div class="form-group">
+              <mat-radio-group formControlName="sex" >
+                <mat-radio-button name="sex" value="F"> FEMALE </mat-radio-button>
+                <mat-radio-button name="sex" value="M"> MALE </mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+              <!-- select -->
+              <div class="form-group">
+                <h6>Select Mother Id</h6>
+                <mat-form-field>
+                  <mat-select matNativeControl formControlName="motherId">
+                    <mat-option *ngFor="let idAnimal of animalsIdsFemale" [value]="idAnimal" >{{ idAnimal }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
         </div>
 
-        <!-- text input -->
-        <div class="form-group">
-          <mat-form-field class="example-full-width">
-            <input type="number" matInput placeholder="Enter the current weight" value="" formControlName="currentWeight" >
-          </mat-form-field>
+        <div class="row" display="flex">
+          <div class="col-md-6">
+            <!-- text input -->
+            <div class="form-group">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Enter the barn location" value="" formControlName="barn" >
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <!-- checkbox -->
+            <div class="form-group">
+                <mat-checkbox formControlName="research">Part of Research</mat-checkbox>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <!-- select -->
+            <div class="form-group">
+              <h6>Select Father Id</h6>
+              <mat-form-field>
+                <mat-select matNativeControl formControlName="fatherId">
+                  <mat-option *ngFor="let idAnimal of animalsIdsMale" [value]="idAnimal" >{{ idAnimal }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+      </div>
+
+      <div class="row" display="flex">
+        <div class="col-md-3">
+          <!-- datepicker -->
+          <div class="form-group">
+            <mat-form-field>
+              <input matInput [matDatepicker]="pickerBirth"
+              formControlName="birthDate" placeholder="Choose a Birth Date">
+              <mat-datepicker-toggle matSuffix [for]="pickerBirth"></mat-datepicker-toggle>
+              <mat-datepicker #pickerBirth></mat-datepicker>
+            </mat-form-field>
+          </div>
         </div>
 
-        <!-- checkbox -->
-        <div class="form-group">
-            <mat-checkbox formControlName="research">Part of Research</mat-checkbox>
+        <div class="col-md-3">
+          <!-- datepicker -->
+          <div class="form-group">
+            <mat-form-field>
+              <input matInput [matDatepicker]="pickerArrival"
+              formControlName="arrivalDate" placeholder="Choose a Arrival Date">
+              <mat-datepicker-toggle matSuffix [for]="pickerArrival"></mat-datepicker-toggle>
+              <mat-datepicker #pickerArrival></mat-datepicker>
+            </mat-form-field> 
+          </div>
         </div>
+      </div>
 
-         <!-- datepicker -->
-        <div class="form-group">
-          <mat-form-field>
-            <input matInput [matDatepicker]="pickerBirth"
-            formControlName="birthDate" placeholder="Choose a Birth Date">
-            <mat-datepicker-toggle matSuffix [for]="pickerBirth"></mat-datepicker-toggle>
-            <mat-datepicker #pickerBirth></mat-datepicker>
-          </mat-form-field>
-        </div>
-
-        <!-- datepicker -->
-        <div class="form-group">
-          <mat-form-field>
-            <input matInput [matDatepicker]="pickerArrival"
-            formControlName="arrivalDate" placeholder="Choose a Arrival Date">
-            <mat-datepicker-toggle matSuffix [for]="pickerArrival"></mat-datepicker-toggle>
-            <mat-datepicker #pickerArrival></mat-datepicker>
-          </mat-form-field> 
-        </div>
-
-        <!-- select -->
-        <div class="form-group">
-          <h6>Select Mother Id</h6>
-          <mat-form-field>
-            <mat-select matNativeControl formControlName="motherId">
-              <mat-option *ngFor="let idAnimal of animalsIdsFemale" [value]="idAnimal" >{{ idAnimal }}</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <!-- select -->
-        <div class="form-group">
-          <h6>Select Father Id</h6>
-          <mat-form-field>
-            <mat-select matNativeControl formControlName="fatherId">
-              <mat-option *ngFor="let idAnimal of animalsIdsMale" [value]="idAnimal" >{{ idAnimal }}</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
+      <!-- text input -->
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <input type="number" matInput placeholder="Enter the current weight" value="" formControlName="currentWeight" >
+        </mat-form-field>
+      </div>
 
         <div class="box-footer">
           <button type="submit" mat-raised-button color="primary" [disabled]="!newAnimalForm.valid">Submit</button>

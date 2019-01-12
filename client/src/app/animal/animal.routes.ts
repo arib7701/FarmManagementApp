@@ -20,7 +20,7 @@ export const animalRoutes: Routes = [
         component: DetailTypeComponent
       },
       {
-        path: '/:id',
+        path: 'detail/:id',
         component: DetailAnimalComponent
       },
       {

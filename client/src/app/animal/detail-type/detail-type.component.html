@@ -41,8 +41,8 @@
               </td>
               <td>{{ animal?.age }}</td>
               <td>{{ animal?.barn }}</td>
-              <td></td>
-              <td></td>
+              <td>{{ animal?.lastDateWeight }}</td>
+              <td>{{ animal?.lastWeight }}</td>
               <td>
                 <span *ngIf="animal.status == 'DEAD'" class="badge bg-red">
                   {{ animal?.status }}</span
@@ -55,7 +55,7 @@
                 >
               </td>
               <td>
-                <a [routerLink]="['/animal', animal.id]"
+                <a [routerLink]="['/animal/detail/', animal.id]"
                   ><i class="fa fa-info"></i
                 ></a>
               </td>

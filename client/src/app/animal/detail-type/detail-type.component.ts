@@ -16,6 +16,7 @@ export class DetailTypeComponent implements OnInit, OnDestroy {
   idType: number;
   subscriptionAnimal: Subscription;
   subscriptionType: Subscription;
+  subscriptionAnimalDelete: Subscription;
   type: Type;
   animals: Animal[];
 
@@ -31,28 +32,37 @@ export class DetailTypeComponent implements OnInit, OnDestroy {
     this.subscriptionType = this.typeService.getTypeById(this.idType).subscribe(
       type => {
         this.type = type;
+        this.getAllAnimalByType();
       },
       error => {
         console.log('Error getting type');
       }
     );
+  }
 
+  getAllAnimalByType() {
     this.subscriptionAnimal = this.animalService
-      .getAllAnimalByType(this.idType)
-      .subscribe(
-        animals => {
-          this.animals = animals;
-          this.getStatus();
-          this.getAge();
-        },
-        error => {
-          console.log('Error getting animals by type');
-        }
-      );
+    .getAllAnimalByType(this.idType)
+    .subscribe(
+      animals => {
+        this.animals = animals;
+        this.getStatus();
+        this.getAge();
+        this.getLastWeight();
+      },
+      error => {
+        console.log('Error getting animals by type');
+      }
+    );
   }
 
   deleteAnimal(id) {
-    alert('Delete Animal ' + id);
+    this.subscriptionAnimalDelete = this.animalService.removeAnimalById(id).subscribe(result => {
+      console.log('Delete Animal successfull, ', result);
+      this.getAllAnimalByType();
+    }, error => {
+      console.log('Error deleting animal');
+    });
   }
 
   getStatus() {
@@ -76,12 +86,22 @@ export class DetailTypeComponent implements OnInit, OnDestroy {
     });
   }
 
+  getLastWeight() {
+    this.animals.forEach(animal => {
+      animal.lastDateWeight = animal.weights[animal.weights.length - 1].date;
+      animal.lastWeight = animal.weights[animal.weights.length - 1].measure;
+    });
+  }
+
   ngOnDestroy() {
     if (this.subscriptionAnimal !== undefined) {
       this.subscriptionAnimal.unsubscribe();
     }
     if (this.subscriptionType !== undefined) {
       this.subscriptionType.unsubscribe();
+    }
+    if (this.subscriptionAnimalDelete !== undefined) {
+      this.subscriptionAnimalDelete.unsubscribe();
     }
   }
 }

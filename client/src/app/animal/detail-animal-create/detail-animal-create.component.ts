@@ -7,7 +7,6 @@ import { TypeService } from 'src/app/services/type.service';
 import { ActivatedRoute } from '@angular/router';
 import { WeightService } from 'src/app/services/weight.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { forEach } from '@angular/router/src/utils/collection';
 import { Weight } from 'src/app/models/weight';
 
 @Component({
@@ -68,7 +67,7 @@ export class DetailAnimalCreateComponent implements OnInit {
       sex: new FormControl('', [Validators.required]),
       barn: new FormControl(''),
       currentWeight: new FormControl(''),
-      research: new FormControl('', [Validators.required]),
+      research: new FormControl(''),
       motherId: new FormControl(''),
       fatherId: new FormControl(''),
       birthDate: new FormControl(''),
@@ -83,7 +82,7 @@ export class DetailAnimalCreateComponent implements OnInit {
     this.animal.sex = this.newAnimalForm.controls['sex'].value;
     this.animal.type = this.type.id;
     this.animal.barn = this.newAnimalForm.controls['barn'].value;
-    this.animal.isresearch = this.newAnimalForm.controls['research'].value;
+    this.animal.isResearch = this.newAnimalForm.controls['research'].value;
     this.animal.motherId = this.newAnimalForm.controls['motherId'].value;
     this.animal.fatherId = this.newAnimalForm.controls['fatherId'].value;
     this.animal.birth = this.newAnimalForm.controls['birthDate'].value;
@@ -94,7 +93,7 @@ export class DetailAnimalCreateComponent implements OnInit {
 
    this.subscriptionAnimal = this.animalService.addAnimal(this.animal).subscribe(animalSaved => {
     const animalId = animalSaved.id;
-    console.log('Saving animal OK with id ', animalId);
+    console.log('Saving animal OK ');
     this.saveWeight(animalId);
    }, error => {
     console.log('Error saving new animal');
@@ -109,27 +108,13 @@ export class DetailAnimalCreateComponent implements OnInit {
       currentWeight.measure = this.newAnimalForm.controls['currentWeight'].value;
       currentWeight.animalId = animalId;
 
-      console.log(currentWeight);
-
       this.subscriptionWeight = this.weightService.addWeight(currentWeight).subscribe(weightSaved => {
-        this.animal.weights = new Array<Weight>();
-        this.animal.weights.push(weightSaved);
         console.log('Saving weight OK');
-        this.editAnimal();
        }, error => {
         console.log('Error saving new weight');
        });
     }
   }
-
-  editAnimal() {
-    this.subscriptionAnimal = this.animalService.updateAnimal(this.animal.id, this.animal).subscribe(animalSaved => {
-      console.log('Edit animal OK');
-     }, error => {
-      console.log('Error updating new animal');
-     });
-  }
-
 
   get name() {
     return this.newAnimalForm.get('name');
