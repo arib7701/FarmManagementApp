@@ -107,7 +107,23 @@ public class AnimalServiceImplementation implements IAnimalService {
     @Override
     public Animal findById(int id) {
         AnimalEntity animalEntity = animalRepository.findByAnimalId(id);
-        return parseAnimalEntity(animalEntity);
+
+        Animal animal = parseAnimalEntity(animalEntity);
+
+        List<AnimalWeightEntity> animalWeightEntities = weightRepository.findByAnimalId(animal.getId());
+
+        if(animalWeightEntities != null) {
+
+            List<Weight> weights = new ArrayList<>();
+
+            for (AnimalWeightEntity animalWeightEntity : animalWeightEntities) {
+                weights.add(parseWeightEntity(animalWeightEntity));
+            }
+
+            animal.setWeights(weights);
+        }
+
+        return animal;
     }
 
     @Override

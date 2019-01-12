@@ -7,6 +7,7 @@ import com.farm.service.IWeightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,7 +27,20 @@ public class WeightServiceImplementation implements IWeightService {
 
     @Override
     public List<Weight> findByAnimalId(int animalId) {
-        return null;
+
+        List<AnimalWeightEntity> animalWeightEntities = weightRepository.findByAnimalId(animalId);
+        List<Weight> weights = null;
+
+        if(animalWeightEntities != null) {
+
+            weights = new ArrayList<>();
+
+            for (AnimalWeightEntity animalWeightEntity : animalWeightEntities) {
+                weights.add(parseWeightEntity(animalWeightEntity));
+            }
+        }
+
+        return weights;
     }
 
     @Override

@@ -21,6 +21,7 @@ export class DetailAnimalEditComponent implements OnInit {
   subscriptionType: Subscription;
   type: Type;
   animal: Animal;
+  numberWeight: number;
 
   editAnimalForm: FormGroup;
   animalsIdsMale = new Array<number>();
@@ -40,6 +41,7 @@ export class DetailAnimalEditComponent implements OnInit {
       .subscribe(
         animal => {
           this.animal = animal;
+          this.numberWeight = this.animal.weights.length;
           this.getType();
           this.loadItems();
         },

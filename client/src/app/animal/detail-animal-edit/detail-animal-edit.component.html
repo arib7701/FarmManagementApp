@@ -3,8 +3,7 @@
   <div class="box box-success">
     <div class="box-header">
       <h3 class="box-title">
-        Edit Animal Info n°{{ idAnimal }} --
-        {{ typeAnimal | uppercase }}
+        Edit Animal Info n°{{ idAnimal }} -- {{ typeAnimal | uppercase }}
       </h3>
     </div>
     <!-- /.box-header -->
@@ -189,6 +188,8 @@
     <!-- /.box-body -->
   </div>
   <!-- /.box -->
-  <app-detail-animal-weight-edit [idAnimal]="idAnimal"></app-detail-animal-weight-edit>
+  <app-detail-animal-weight-edit
+    [idAnimal]="idAnimal"
+  ></app-detail-animal-weight-edit>
 </div>
 <!--/.col (right) -->
