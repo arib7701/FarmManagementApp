@@ -61,13 +61,36 @@ public class WeightServiceImplementation implements IWeightService {
     }
 
     @Override
-    public void deleteById(int id) {
+    public Weight update(int id, Weight weight) {
+
+        AnimalWeightEntity weightEntity = weightRepository.findById(id).orElse(null);
+        Weight weightUpdated = null;
+
+        if(weightEntity != null) {
+            weightEntity = parseWeight(weight);
+            AnimalWeightEntity weightEntityUpdate = weightRepository.save(weightEntity);
+            weightUpdated =parseWeightEntity(weightEntityUpdate);
+        }
+
+        return weightUpdated;
 
     }
 
     @Override
-    public void deleteByAnimalId(int animalId) {
+    public void deleteById(int id) {
+        weightRepository.deleteById(id);
+    }
 
+    @Override
+    public void deleteByAnimalId(int animalId) {
+        List<AnimalWeightEntity> weightEntities = weightRepository.findByAnimalId(animalId);
+
+        if(weightEntities != null) {
+
+            for(AnimalWeightEntity weightEntity : weightEntities) {
+                weightRepository.deleteById(weightEntity.getWeightId());
+            }
+        }
     }
 
     @Override

@@ -15,7 +15,7 @@
             "
             [formGroupName]="i"
           >
-            <div class="col-md-5">
+            <div class="col-md-4">
               <!-- datepicker -->
               <div class="form-group">
                 <mat-form-field>
@@ -33,7 +33,7 @@
                 </mat-form-field>
               </div>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-4">
               <!-- text input -->
               <div class="form-group">
                 <mat-form-field class="example-full-width">
@@ -48,9 +48,7 @@
             </div>
             <div class="col-md-2">
               <div class="form-group">
-                <a (click)="deleteWeight(weight.id)"
-                  ><i class="fa fa-trash"></i
-                ></a>
+                <a (click)="deleteWeight(i)"><i class="fa fa-trash"></i></a>
               </div>
             </div>
           </div>
@@ -65,7 +63,7 @@
           >
             Submit
           </button>
-          <a (click)="addNewWeight()" style="padding-left:25px;"
+          <a (click)="addNewWeightControl()" style="padding-left:25px;"
             ><i class="fas fa-plus-circle fa-2x"></i
           ></a>
         </div>

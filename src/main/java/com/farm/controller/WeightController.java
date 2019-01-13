@@ -47,4 +47,16 @@ public class WeightController {
         return new ResponseEntity(weightSaved, HttpStatus.OK);
     }
 
+    @PostMapping(value="/{id}")
+    public ResponseEntity<Weight> updateWeight(@PathVariable("id") int id, @RequestBody Weight weightBody){
+        Weight weightSaved = weightService.update(id, weightBody);
+        return new ResponseEntity(weightSaved, HttpStatus.OK);
+    }
+
+    @DeleteMapping(value="/{id}")
+    public ResponseEntity<String> deleteWeightById(@PathVariable("id") int id) {
+        weightService.deleteById(id);
+        return new ResponseEntity("Weight deleted successfully", HttpStatus.OK);
+    }
+
 }

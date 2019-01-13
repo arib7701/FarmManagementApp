@@ -14,6 +14,7 @@ public interface IWeightService {
     Weight findById(int id);
 
     Weight save(Weight animal);
+    Weight update(int id, Weight weight);
 
     void deleteById(int id);
     void deleteByAnimalId(int animalId);
