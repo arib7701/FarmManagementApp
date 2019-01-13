@@ -49,9 +49,14 @@
             <div class="col-md-1">
               <div class="form-group icon">
                 <i
+                  *ngIf="diffs[i] === 'start'"
+                  class="fas fa-asterisk"
+                  style="color:blue;"
+                ></i>
+                <i
                   *ngIf="diffs[i] === 'up'"
                   class="fas fa-arrow-up"
-                  style="color:green"
+                  style="color:green; transform: rotate(45deg);"
                 ></i>
                 <i
                   *ngIf="diffs[i] === 'equal'"
@@ -61,7 +66,7 @@
                 <i
                   *ngIf="diffs[i] === 'down'"
                   class="fas fa-arrow-down"
-                  style="color:red"
+                  style="color:red; transform: rotate(-45deg);"
                 ></i>
               </div>
             </div>

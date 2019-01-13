@@ -19,6 +19,7 @@ export class DetailAnimalWeightEditComponent implements OnInit, OnDestroy {
   subscriptionWeightUpdate: Subscription;
   subscriptionWeightNew: Subscription;
   weights: Weight[];
+  counterEdit = 0;
   diffs = new Array<String>();
 
   constructor(private weightService: WeightService) {}
@@ -35,6 +36,7 @@ export class DetailAnimalWeightEditComponent implements OnInit, OnDestroy {
   }
 
   getWeightsInfo() {
+    this.counterEdit = 0;
     this.subscriptionWeights = this.weightService
       .getAllWeightByAnimalId(this.idAnimal)
       .subscribe(
@@ -124,11 +126,10 @@ export class DetailAnimalWeightEditComponent implements OnInit, OnDestroy {
 
     formValues.forEach((value, index: number) => {
       const id = value.id.value;
-      console.log('id is ', id, ' and index is ', index);
       if (id !== '') {
-        this.updateWeight(value, index, length);
+        this.updateWeight(value, length);
       } else {
-        this.addNewWeight(value, index, length);
+        this.addNewWeight(value, length);
       }
     });
 
@@ -137,7 +138,7 @@ export class DetailAnimalWeightEditComponent implements OnInit, OnDestroy {
     }
   }
 
-  updateWeight(weightInfo, index, length) {
+  updateWeight(weightInfo, length) {
     const weight = new Weight();
     weight.id = weightInfo.id.value;
     weight.measure = weightInfo.measure;
@@ -149,9 +150,8 @@ export class DetailAnimalWeightEditComponent implements OnInit, OnDestroy {
       .subscribe(
         weightUpdate => {
           console.log('Successfully updated weight');
-          if (index === length - 1) {
-            this.getWeightsInfo();
-          }
+          this.counterEdit++;
+          this.checkCounter(length);
         },
         error => {
           console.log('Error updating weight');
@@ -159,7 +159,7 @@ export class DetailAnimalWeightEditComponent implements OnInit, OnDestroy {
       );
   }
 
-  addNewWeight(weightInfo, index, length) {
+  addNewWeight(weightInfo, length) {
     const weight = new Weight();
     weight.measure = weightInfo.measure;
     weight.date = weightInfo.weightDate;
@@ -170,15 +170,19 @@ export class DetailAnimalWeightEditComponent implements OnInit, OnDestroy {
       .subscribe(
         weightAdded => {
           console.log('Successfully added weight');
-
-          if (index === length - 1) {
-            this.getWeightsInfo();
-          }
+          this.counterEdit++;
+          this.checkCounter(length);
         },
         error => {
           console.log('Error updating weight');
         }
       );
+  }
+
+  checkCounter(length) {
+    if (this.counterEdit === length) {
+      this.getWeightsInfo();
+    }
   }
 
   ngOnDestroy() {
