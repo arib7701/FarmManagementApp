@@ -1,115 +1,87 @@
-<div class="col-md-10" style="padding:50px">
+<div class="row" style="display:flex;">
+  <div class="col-md-6" style="padding:50px">
     <!-- general form elements disabled -->
     <div class="box box-success">
-      <div class="box-header"><h3 class="box-title">Create a new {{type?.name | uppercase}}</h3></div>
+      <div class="box-header">
+        <h2 class="box-title">
+          Animal Info n°{{ animal?.id }} -- {{ typeAnimal | uppercase }}
+        </h2>
+      </div>
       <!-- /.box-header -->
       <div class="box-body">
-        <form [formGroup]="newAnimalForm" (ngSubmit)="submitCreateAnimal()">
-  
-          <div class="row" display="flex">
-            <div class="col-md-6">
-              <!-- text input -->
-              <div class="form-group">
-                <mat-form-field class="example-full-width">
-                  <input matInput placeholder="Enter the name of the animal" value="" formControlName="name" >
-                </mat-form-field>
-              </div>
-            </div>
-  
-            <div class="col-md-3">
-              <!-- radio -->
-              <div class="form-group">
-                <mat-radio-group formControlName="sex" >
-                  <mat-radio-button name="sex" value="F"> FEMALE </mat-radio-button>
-                  <mat-radio-button name="sex" value="M"> MALE </mat-radio-button>
-                </mat-radio-group>
-              </div>
-            </div>
-  
-            <div class="col-md-3">
-                <!-- select -->
-                <div class="form-group">
-                  <h6>Select Mother Id</h6>
-                  <mat-form-field>
-                    <mat-select matNativeControl formControlName="motherId">
-                      <mat-option *ngFor="let idAnimal of animalsIdsFemale" [value]="idAnimal" >{{ idAnimal }}</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-              </div>
-          </div>
-  
-          <div class="row" display="flex">
-            <div class="col-md-6">
-              <!-- text input -->
-              <div class="form-group">
-                <mat-form-field class="example-full-width">
-                  <input matInput placeholder="Enter the barn location" value="" formControlName="barn" >
-                </mat-form-field>
-              </div>
-            </div>
-  
-            <div class="col-md-3">
-              <!-- checkbox -->
-              <div class="form-group">
-                  <mat-checkbox formControlName="research">Part of Research</mat-checkbox>
-              </div>
-            </div>
-  
-            <div class="col-md-3">
-              <!-- select -->
-              <div class="form-group">
-                <h6>Select Father Id</h6>
-                <mat-form-field>
-                  <mat-select matNativeControl formControlName="fatherId">
-                    <mat-option *ngFor="let idAnimal of animalsIdsMale" [value]="idAnimal" >{{ idAnimal }}</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-            </div>
-        </div>
-  
         <div class="row" display="flex">
-          <div class="col-md-3">
-            <!-- datepicker -->
-            <div class="form-group">
-              <mat-form-field>
-                <input matInput [matDatepicker]="pickerBirth"
-                formControlName="birthDate" placeholder="Choose a Birth Date">
-                <mat-datepicker-toggle matSuffix [for]="pickerBirth"></mat-datepicker-toggle>
-                <mat-datepicker #pickerBirth></mat-datepicker>
-              </mat-form-field>
-            </div>
+          <div class="col-md-4">
+            <p><strong>Name: </strong>{{ animal?.name }}</p>
           </div>
-  
-          <div class="col-md-3">
-            <!-- datepicker -->
-            <div class="form-group">
-              <mat-form-field>
-                <input matInput [matDatepicker]="pickerArrival"
-                formControlName="arrivalDate" placeholder="Choose a Arrival Date">
-                <mat-datepicker-toggle matSuffix [for]="pickerArrival"></mat-datepicker-toggle>
-                <mat-datepicker #pickerArrival></mat-datepicker>
-              </mat-form-field> 
-            </div>
+
+          <div class="col-md-4">
+            <mat-radio-group [ngModel]="animal?.sex" disabled>
+              <mat-radio-button value="F"> FEMALE </mat-radio-button>
+              <mat-radio-button value="M"> MALE </mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <div class="col-md-4">
+            <mat-checkbox [ngModel]="animal?.isResearch" disabled
+              >Part of Research</mat-checkbox
+            >
           </div>
         </div>
-  
-        <!-- text input -->
-        <div class="form-group">
-          <mat-form-field class="example-full-width">
-            <input type="number" matInput placeholder="Enter the current weight" value="" formControlName="currentWeight" >
-          </mat-form-field>
-        </div>
-  
-          <div class="box-footer">
-            <button type="submit" mat-raised-button color="primary" [disabled]="!newAnimalForm.valid">Submit</button>
-          </div>
-        </form>
       </div>
       <!-- /.box-body -->
+      <div class="box-footer">
+        <div class="row" display="flex">
+          <div class="col-md-4">
+            <p><strong>Barn Location: </strong>{{ animal?.barn }}</p>
+          </div>
+          <div class="col-md-4">
+            <p><strong>Mother Id: </strong>{{ animal?.motherId }}</p>
+          </div>
+          <div class="col-md-4">
+            <p><strong>Father Id: </strong>{{ animal?.fatherId }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="box-footer">
+        <code
+          ><div class="row" display="flex" style="margin-top: 20px;">
+            <div class="col-md-6">
+              <p *ngIf="animal?.birth">
+                <i class="fas fa-baby"></i> <strong> Birth Date:</strong>
+                {{ animal?.birth }}
+              </p>
+            </div>
+
+            <div class="col-md-6">
+              <p *ngIf="animal?.death">
+                <i class="fas fa-skull-crossbones"></i>
+                <strong> Death Date:</strong> {{ animal?.death }}
+              </p>
+            </div>
+          </div>
+
+          <div class="row" display="flex">
+            <div class="col-md-6">
+              <p *ngIf="animal?.arrival">
+                <i class="fas fa-plane-arrival"></i>
+                <strong> Arrival Date:</strong> {{ animal?.arrival }}
+              </p>
+            </div>
+
+            <div class="col-md-6">
+              <p *ngIf="animal?.departure">
+                <i class="fas fa-plane-departure"></i>
+                <strong> Departure Date:</strong> {{ animal?.departure }}
+              </p>
+            </div>
+          </div></code
+        >
+      </div>
+      <!-- /.box-footer-->
     </div>
     <!-- /.box -->
   </div>
-  <!--/.col (right) -->
-  
+  <div class="col-md-6" style="padding:50px">
+    <app-detail-animal-weight [idAnimal]="idAnimal"></app-detail-animal-weight>
+  </div>
+</div>

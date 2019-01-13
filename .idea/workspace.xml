@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5d12d518-0448-4196-a6b6-18c2e63d2610" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/client/src/app/animal/detail-animal-weight-edit/detail-animal-weight-edit.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/animal/detail-animal-weight-edit/detail-animal-weight-edit.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/animal/detail-animal-weight-edit/detail-animal-weight-edit.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/animal/detail-animal-weight-edit/detail-animal-weight-edit.component.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
