@@ -46,8 +46,27 @@
                 </mat-form-field>
               </div>
             </div>
-            <div class="col-md-2">
-              <div class="form-group">
+            <div class="col-md-1">
+              <div class="form-group icon">
+                <i
+                  *ngIf="diffs[i] === 'up'"
+                  class="fas fa-arrow-up"
+                  style="color:green"
+                ></i>
+                <i
+                  *ngIf="diffs[i] === 'equal'"
+                  class="fas fa-equals"
+                  style="color:orange"
+                ></i>
+                <i
+                  *ngIf="diffs[i] === 'down'"
+                  class="fas fa-arrow-down"
+                  style="color:red"
+                ></i>
+              </div>
+            </div>
+            <div class="col-md-1">
+              <div class="form-group icon">
                 <a (click)="deleteWeight(i)"><i class="fa fa-trash"></i></a>
               </div>
             </div>

@@ -19,6 +19,7 @@ export class DetailAnimalWeightEditComponent implements OnInit, OnDestroy {
   subscriptionWeightUpdate: Subscription;
   subscriptionWeightNew: Subscription;
   weights: Weight[];
+  diffs = new Array<String>();
 
   constructor(private weightService: WeightService) {}
 
@@ -62,6 +63,23 @@ export class DetailAnimalWeightEditComponent implements OnInit, OnDestroy {
         ])
       })
     );
+    this.getArrow(index);
+  }
+
+  getArrow(index: number) {
+    if (index === 0) {
+      this.diffs[index] = 'start';
+    } else {
+      if (this.weights[index].measure > this.weights[index - 1].measure) {
+        this.diffs[index] = 'up';
+      } else if (
+        this.weights[index].measure === this.weights[index - 1].measure
+      ) {
+        this.diffs[index] = 'equal';
+      } else {
+        this.diffs[index] = 'down';
+      }
+    }
   }
 
   addNewWeightControl() {
@@ -106,6 +124,7 @@ export class DetailAnimalWeightEditComponent implements OnInit, OnDestroy {
 
     formValues.forEach((value, index: number) => {
       const id = value.id.value;
+      console.log('id is ', id, ' and index is ', index);
       if (id !== '') {
         this.updateWeight(value, index, length);
       } else {
