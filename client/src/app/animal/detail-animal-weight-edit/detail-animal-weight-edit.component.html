@@ -1,0 +1,78 @@
+<div class="col-md-10" style="padding:50px">
+  <!-- general form elements disabled -->
+  <div class="box box-success">
+    <div class="box-header"><h3 class="box-title">Edit Weight Info</h3></div>
+    <!-- /.box-header -->
+    <div class="box-body">
+      <form [formGroup]="editWeightForm" (ngSubmit)="submitEditWeight()">
+        <div formArrayName="weightItems">
+          <div
+            class="row"
+            display="flex"
+            *ngFor="
+              let weight of editWeightForm.get('weightItems').controls;
+              let i = index
+            "
+            [formGroupName]="i"
+          >
+            <div class="col-md-5">
+              <!-- datepicker -->
+              <div class="form-group">
+                <mat-form-field>
+                  <input
+                    matInput
+                    [matDatepicker]="picker"
+                    formControlName="weightDate"
+                    placeholder="Choose a Weight Date"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="picker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-md-5">
+              <!-- text input -->
+              <div class="form-group">
+                <mat-form-field class="example-full-width">
+                  <input
+                    type="number"
+                    matInput
+                    placeholder="Enter the measured weight"
+                    formControlName="measure"
+                  />
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <a (click)="deleteWeight(weight.id)"
+                  ><i class="fa fa-trash"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="box-footer">
+          <button
+            type="submit"
+            mat-raised-button
+            color="primary"
+            [disabled]="!editWeightForm.valid"
+          >
+            Submit
+          </button>
+          <a (click)="addNewWeight()" style="padding-left:25px;"
+            ><i class="fas fa-plus-circle fa-2x"></i
+          ></a>
+        </div>
+      </form>
+    </div>
+    <!-- /.box-body -->
+  </div>
+  <!-- /.box -->
+</div>
+<!--/.col (right) -->

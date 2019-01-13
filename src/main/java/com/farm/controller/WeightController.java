@@ -36,13 +36,13 @@ public class WeightController {
     }
 
     @GetMapping(value= "/{id}")
-    public ResponseEntity<Weight> getAnimalById(@PathVariable("id") int id) {
+    public ResponseEntity<Weight> getWeightById(@PathVariable("id") int id) {
         Weight weightById = weightService.findById(id);
         return new ResponseEntity(weightById, HttpStatus.OK);
     }
 
     @PostMapping(value="")
-    public ResponseEntity<Weight> saveNewAnimal( @RequestBody Weight weightBody){
+    public ResponseEntity<Weight> saveNewWeight( @RequestBody Weight weightBody){
         Weight weightSaved = weightService.save(weightBody);
         return new ResponseEntity(weightSaved, HttpStatus.OK);
     }

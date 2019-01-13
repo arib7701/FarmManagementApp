@@ -1,0 +1,6 @@
+
+Isquid:S11680"+Return an empty collection instead of null.(¥¹ï8ëê–¥ƒ-
+¤squid:S1186@"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(”ÿğÊüÿÿÿÿ8ëê–¥ƒ-
+Isquid:S1168"+Return an empty collection instead of null.(¥¹ï8ëê–¥ƒ-
+Ÿsquid:S1186E"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ğ£˜’8ëê–¥ƒ-
+¤squid:S1186J"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¬Ã©úÿÿÿÿ8ëê–¥ƒ-

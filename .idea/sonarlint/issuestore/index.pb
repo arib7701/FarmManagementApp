@@ -62,3 +62,11 @@ g
 7src/main/java/com/farm/controller/WeightController.java,d/b/db02169d2b31356904d04d9e91508361973555ca
 ~
 Nsrc/main/java/com/farm/service/implementation/WeightServiceImplementation.java,7/5/757c17a9bcdf3e5224afdf1e13798218fababeae
+V
+&client/src/app/animal/animal.module.ts,9/b/9b31e8afbf8a4e4a48ecaa59b7f7754fbcf600bd
+z
+Jclient/src/app/animal/detail-animal-edit/detail-animal-edit.component.html,b/e/beb1ccf5f661c6ffabd0aaa8ab502e845856115f
+x
+Hclient/src/app/animal/detail-animal-edit/detail-animal-edit.component.ts,3/b/3b2d962ba456ec3c83c3512c83f3c7a22901e896
+9
+	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d

@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Animal } from 'src/app/models/animal';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Type } from 'src/app/models/type';
 import { AnimalService } from 'src/app/services/animal.service';
-import { WeightService } from 'src/app/services/weight.service';
 import { TypeService } from 'src/app/services/type.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -13,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './detail-animal-edit.component.html',
   styleUrls: ['./detail-animal-edit.component.css']
 })
-export class DetailAnimalEditComponent implements OnInit {
+export class DetailAnimalEditComponent implements OnInit, OnDestroy {
   idAnimal: number;
   typeAnimal: string;
   subscriptionAnimal: Subscription;
@@ -21,7 +20,6 @@ export class DetailAnimalEditComponent implements OnInit {
   subscriptionType: Subscription;
   type: Type;
   animal: Animal;
-  numberWeight: number;
 
   editAnimalForm: FormGroup;
   animalsIdsMale = new Array<number>();
@@ -41,7 +39,6 @@ export class DetailAnimalEditComponent implements OnInit {
       .subscribe(
         animal => {
           this.animal = animal;
-          this.numberWeight = this.animal.weights.length;
           this.getType();
           this.loadItems();
         },
@@ -174,5 +171,17 @@ export class DetailAnimalEditComponent implements OnInit {
   }
   get departureDate() {
     return this.editAnimalForm.get('departureDate');
+  }
+
+  ngOnDestroy() {
+    if (this.subscriptionAnimal !== undefined) {
+      this.subscriptionAnimal.unsubscribe();
+    }
+    if (this.subscriptionAnimalId !== undefined) {
+      this.subscriptionAnimalId.unsubscribe();
+    }
+    if (this.subscriptionType !== undefined) {
+      this.subscriptionType.unsubscribe();
+    }
   }
 }
