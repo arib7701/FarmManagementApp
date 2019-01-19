@@ -4,13 +4,18 @@
 <div class="row">
   <div class="col">
     <div class="box">
-      <div class="box-header">
+      <div class="box-header row" style="display:flex;">
+        <div class="col-md-3">
         <h3 class="box-title">ALL {{ type?.name | uppercase }}S</h3>
         <p style="margin-left: 20px;" class="box-title">
           <a  [routerLink]="['/animal/add', idType]"
             ><i class="fas fa-plus-circle fa-2x"></i
-          ></a>
+          ></a> 
         </p>
+        </div>
+        <div class="col-md-6">
+            <flash-messages></flash-messages>
+        </div>
       </div>
       <!-- /.box-header -->
       <div class="box-body">
@@ -31,7 +36,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let animal of animals">
+            <tr *ngFor="let animal of animals | paginate: {itemsPerPage:5, currentPage: pagination}">
               <td>{{ animal?.id }}</td>
               <td>{{ animal?.name }}</td>
               <td>
@@ -90,6 +95,9 @@
             </tr>
           </tfoot>
         </table>
+        <div class="row" style="display:flex; justify-content:center;">
+          <pagination-controls class="my-pagination" (pageChange)="pagination = $event"></pagination-controls>
+        </div>
       </div>
       <!-- /.box-body -->
     </div>

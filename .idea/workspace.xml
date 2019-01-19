@@ -2,30 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d12d518-0448-4196-a6b6-18c2e63d2610" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/farm/exceptions/ApplicationErrorHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/farm/exceptions/ApplicationException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/farm/exceptions/ErrorInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/farm/controller/controllerTest/AnimalControllerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/farm/serviceTest/AnimalServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/animal/detail-animal-create/detail-animal-create.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/animal/detail-animal-create/detail-animal-create.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/app/animal/detail-animal-edit/detail-animal-edit.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/animal/detail-animal-edit/detail-animal-edit.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/farm/controller/AngularController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/farm/controller/AngularController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/farm/controller/AnimalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/farm/controller/AnimalController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/farm/controller/DeliveryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/farm/controller/DeliveryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/farm/controller/TypeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/farm/controller/TypeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/farm/controller/VaccineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/farm/controller/VaccineController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/farm/controller/WeightController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/farm/controller/WeightController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/farm/service/IAnimalService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/farm/service/IAnimalService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/farm/service/implementation/AnimalServiceImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/farm/service/implementation/AnimalServiceImplementation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/farm/controller/AngularController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/farm/controller/AnimalController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/farm/controller/DeliveryController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/farm/controller/TypeController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/farm/controller/VaccineController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/farm/controller/WeightController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/farm/service/IAnimalService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/farm/service/IAnimalService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/farm/service/implementation/AnimalServiceImplementation.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/farm/service/implementation/AnimalServiceImplementation.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/animal/detail-type/detail-type.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/animal/detail-type/detail-type.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/animal/detail-type/detail-type.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/animal/detail-type/detail-type.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/animal/detail-type/detail-type.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/animal/detail-type/detail-type.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/shared/shared.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/shared/shared.module.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -89,11 +73,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/service/implementation/AnimalServiceImplementation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="156" column="72" lean-forward="true" selection-start-line="156" selection-start-column="72" selection-end-line="156" selection-end-column="72" />
+            <state relative-caret-position="630">
+              <caret line="190" column="8" selection-start-line="190" selection-start-column="8" selection-end-line="190" selection-end-column="40" />
               <folding>
                 <element signature="e#6055#6056#0" expanded="true" />
               </folding>
@@ -101,11 +85,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/farm/serviceTest/AnimalServiceTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-70">
-              <caret line="174" column="5" lean-forward="true" selection-start-line="174" selection-start-column="5" selection-end-line="174" selection-end-column="5" />
+            <state relative-caret-position="331">
+              <caret line="174" column="5" selection-start-line="174" selection-start-column="5" selection-end-line="174" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -191,7 +175,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/farm/exceptions/ApplicationException.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/farm/exceptions/ApplicationErrorHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/farm/controller/AnimalController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/farm/service/implementation/AnimalServiceImplementation.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/farm/AnimalControllerTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/farm/controller/AnimalControllerTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/farm/controllertest/AnimalControllerTest.java" />
@@ -199,6 +182,7 @@
         <option value="$PROJECT_DIR$/src/test/java/com/farm/controllertest/serviceTest/AnimalServiceTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/farm/controller/serviceTest/AnimalServiceTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/farm/serviceTest/AnimalServiceTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/farm/service/implementation/AnimalServiceImplementation.java" />
       </list>
     </option>
   </component>
@@ -210,10 +194,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1920" />
-    <option name="y" value="-2" />
-    <option name="width" value="1920" />
-    <option name="height" value="1082" />
+    <option name="x" value="49" />
+    <option name="y" value="25" />
+    <option name="width" value="1871" />
+    <option name="height" value="1055" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -296,7 +280,7 @@
     <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547908245099" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547910267767" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -449,7 +433,7 @@
       <workItem from="1547148778717" duration="4674000" />
       <workItem from="1547371759315" duration="1920000" />
       <workItem from="1547374506389" duration="3414000" />
-      <workItem from="1547886612157" duration="8989000" />
+      <workItem from="1547886612157" duration="9798000" />
     </task>
     <servers />
   </component>
@@ -486,7 +470,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59433000" />
+    <option name="totallyTimeSpent" value="60242000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -498,9 +482,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1920" y="-2" width="1920" height="1082" extended-state="6" />
+    <frame x="49" y="25" width="1871" height="1055" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49352053" visible="true" weight="0.20330843" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49352053" visible="true" weight="0.20876712" />
       <window_info id="Structure" order="1" sideWeight="0.5023847" side_tool="true" weight="0.24394184" />
       <window_info id="Persistence" order="2" sideWeight="0.5064795" side_tool="true" weight="0.20876712" />
       <window_info id="Designer" order="3" />
@@ -512,7 +497,7 @@
       <window_info id="Web" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.4679958" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.4679958" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -942,7 +927,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/farm/controller/controllerTest/AnimalControllerTest.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/farm/controllerTest/AnimalControllerTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
@@ -956,22 +941,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/service/implementation/AnimalServiceImplementation.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/farm/serviceTest/AnimalServiceTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="156" column="72" lean-forward="true" selection-start-line="156" selection-start-column="72" selection-end-line="156" selection-end-column="72" />
+        <state relative-caret-position="331">
+          <caret line="174" column="5" selection-start-line="174" selection-start-column="5" selection-end-line="174" selection-end-column="5" />
           <folding>
-            <element signature="e#6055#6056#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/farm/serviceTest/AnimalServiceTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/service/implementation/AnimalServiceImplementation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-70">
-          <caret line="174" column="5" lean-forward="true" selection-start-line="174" selection-start-column="5" selection-end-line="174" selection-end-column="5" />
+        <state relative-caret-position="630">
+          <caret line="190" column="8" selection-start-line="190" selection-start-column="8" selection-end-line="190" selection-end-column="40" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#6055#6056#0" expanded="true" />
           </folding>
         </state>
       </provider>

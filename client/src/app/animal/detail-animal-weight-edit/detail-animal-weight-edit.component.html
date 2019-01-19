@@ -4,6 +4,10 @@
     <div class="box-header"><h3 class="box-title">Edit Weight Info</h3></div>
     <!-- /.box-header -->
     <div class="box-body">
+      <div class="callout callout-warning"  *ngIf="noWeights" >
+        <h4>No weight have been registered yet for this animal</h4>
+        <p>Start some measurement or data entry today!</p>
+      </div>
       <form [formGroup]="editWeightForm" (ngSubmit)="submitEditWeight()">
         <div formArrayName="weightItems">
           <div

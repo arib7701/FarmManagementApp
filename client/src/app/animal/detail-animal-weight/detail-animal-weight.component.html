@@ -1,21 +1,21 @@
 <div class="col-md-10" style="padding:50px">
   <!-- general form elements disabled -->
-  <div class="box box-success">
-      <div class="box-header">
-        <h3 class="box-title">Weight Evolution</h3>
-      </div>
-      <!-- /.box-header -->
-      <div class="box-body">
-          <canvas id="canvasLine">{{ lineChart }}</canvas>
-      </div>
+  <div class="box box-success" *ngIf="!noWeights">
+    <div class="box-header">
+      <h3 class="box-title">Weight Evolution</h3>
     </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <canvas id="canvasLine">{{ lineChart }}</canvas>
+    </div>
+  </div>
 
-  <div class="box box-success">
+  <div class="box box-success" *ngIf="!noWeights">
     <div class="box-header">
       <h3 class="box-title">Weight Info</h3>
     </div>
     <!-- /.box-header -->
-    <div class="box-body">
+    <div class="box-body"  >
       <div class="row" display="flex"
         *ngFor=" let weight of weights; let i = index">
         <div class="col-md-4">
@@ -54,5 +54,9 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="callout callout-warning"  *ngIf="noWeights" >
+    <h4>No weight have been registered yet for this animal</h4>
+    <p>Start some measurement or data entry today!</p>
   </div>
 </div>

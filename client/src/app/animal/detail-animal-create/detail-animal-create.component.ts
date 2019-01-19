@@ -134,11 +134,11 @@ export class DetailAnimalCreateComponent implements OnInit {
       this.subscriptionWeight = this.weightService.addWeight(currentWeight).subscribe(weightSaved => {
         console.log('Saving weight OK');
         this.flashMessagesService.show('Animal Information successfully created.',
-           { cssClass: 'alert-success', timeout: 1000 });
+           { cssClass: 'alert-success', timeout: 5000 });
        }, error => {
         console.log('Error saving new weight');
         this.flashMessagesService.show('Error creating the Animal Information, please try again.',
-           { cssClass: 'alert-error', timeout: 1000 });
+           { cssClass: 'alert-error', timeout: 5000 });
        });
     }
   }

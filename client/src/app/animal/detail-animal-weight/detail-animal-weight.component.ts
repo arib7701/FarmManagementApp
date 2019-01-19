@@ -16,6 +16,7 @@ export class DetailAnimalWeightComponent implements OnInit, OnDestroy {
   weights: Weight[];
   diffs = new Array<String>();
   lineChart = [];
+  noWeights = false;
 
   constructor(private weightService: WeightService) {}
 
@@ -25,10 +26,14 @@ export class DetailAnimalWeightComponent implements OnInit, OnDestroy {
       .subscribe(
         weights => {
           this.weights = weights;
-          for (let i = 0; i < this.weights.length; i++) {
-            this.getArrow(i);
+          if (this.weights.length > 0) {
+            for (let i = 0; i < this.weights.length; i++) {
+              this.getArrow(i);
+            }
+            this.buildChart();
+          } else {
+            this.noWeights = true;
           }
-          this.buildChart();
         },
         error => {
           console.log('Error getting weights');

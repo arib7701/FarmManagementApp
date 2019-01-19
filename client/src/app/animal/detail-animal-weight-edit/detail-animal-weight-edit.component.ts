@@ -22,6 +22,7 @@ export class DetailAnimalWeightEditComponent implements OnInit, OnDestroy {
   weights: Weight[];
   counterEdit = 0;
   diffs = new Array<String>();
+  noWeights = false;
 
   constructor(
     private weightService: WeightService,
@@ -45,8 +46,13 @@ export class DetailAnimalWeightEditComponent implements OnInit, OnDestroy {
       .subscribe(
         weights => {
           this.weights = weights;
-          for (let i = 0; i < this.weights.length; i++) {
-            this.addControls(i);
+          if (this.weights.length > 0) {
+            this.noWeights = false;
+            for (let i = 0; i < this.weights.length; i++) {
+              this.addControls(i);
+            }
+          } else {
+            this.noWeights = true;
           }
         },
         error => {
@@ -99,22 +105,28 @@ export class DetailAnimalWeightEditComponent implements OnInit, OnDestroy {
   }
 
   deleteWeight(index: number) {
-    const control = <FormArray>this.editWeightForm.controls['weightItems'];
+    if (confirm('Are you sure to want to delete this weight permanently (this operation cannot be reversed)?')) {
+      const control = <FormArray>this.editWeightForm.controls['weightItems'];
 
-    if (this.weights[index] === undefined) {
-      control.removeAt(index);
-    } else {
-      this.subscriptionWeightDelete = this.weightService
-        .removeWeightById(this.weights[index].id)
-        .subscribe(
-          weightDeleted => {
-            console.log('Successfully deleted weight');
-            control.removeAt(index);
-          },
-          error => {
-            console.log('Error deleting weight');
-          }
-        );
+      if (this.weights[index] === undefined) {
+        control.removeAt(index);
+      } else {
+        this.subscriptionWeightDelete = this.weightService
+          .removeWeightById(this.weights[index].id)
+          .subscribe(
+            weightDeleted => {
+              console.log('Successfully deleted weight');
+              control.removeAt(index);
+              this.flashMessagesService.show('Weight successfully deleted.',
+              { cssClass: 'alert-success', timeout: 5000 });
+            },
+            error => {
+              console.log('Error deleting weight');
+              this.flashMessagesService.show('Error deleting the weight.' + error.error,
+              { cssClass: 'alert-error', timeout: 5000 });
+            }
+          );
+      }
     }
   }
 
@@ -185,9 +197,10 @@ export class DetailAnimalWeightEditComponent implements OnInit, OnDestroy {
   checkCounter(length) {
     if (this.counterEdit === length) {
       this.getWeightsInfo();
+
+      this.flashMessagesService.show('Weight Information successfully updated.',
+      { cssClass: 'alert-success', timeout: 5000 });
     }
-    this.flashMessagesService.show('Weight Information successfully updated.',
-      { cssClass: 'alert-success', timeout: 1000 });
   }
 
   ngOnDestroy() {

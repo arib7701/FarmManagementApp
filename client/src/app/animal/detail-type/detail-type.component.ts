@@ -5,7 +5,7 @@ import { Animal } from 'src/app/models/animal';
 import { ActivatedRoute } from '@angular/router';
 import { Type } from 'src/app/models/type';
 import { TypeService } from 'src/app/services/type.service';
-import { forEach } from '@angular/router/src/utils/collection';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-detail-type',
@@ -19,11 +19,13 @@ export class DetailTypeComponent implements OnInit, OnDestroy {
   subscriptionAnimalDelete: Subscription;
   type: Type;
   animals: Animal[];
+  pagination = 1;
 
   constructor(
     private animalService: AnimalService,
     private typeService: TypeService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private flashMessagesService: FlashMessagesService
   ) {}
 
   ngOnInit() {
@@ -57,12 +59,18 @@ export class DetailTypeComponent implements OnInit, OnDestroy {
   }
 
   deleteAnimal(id) {
-    this.subscriptionAnimalDelete = this.animalService.removeAnimalById(id).subscribe(result => {
-      console.log('Delete Animal successfull, ', result);
-      this.getAllAnimalByType();
-    }, error => {
-      console.log('Error deleting animal');
-    });
+    if (confirm('Are you sure to want to delete this animal permanently (this operation cannot be reversed)?')) {
+      this.subscriptionAnimalDelete = this.animalService.removeAnimalById(id).subscribe(result => {
+        console.log('Delete Animal successfull, ', result);
+        this.flashMessagesService.show('Animal successfully deleted.',
+           { cssClass: 'alert-success', timeout: 5000 });
+        this.getAllAnimalByType();
+      }, error => {
+        console.log('Error deleting animal', error.error);
+        this.flashMessagesService.show('Error deleting the animal.' + error.error,
+           { cssClass: 'alert-error', timeout: 5000 });
+      });
+    }
   }
 
   getStatus() {
@@ -88,8 +96,10 @@ export class DetailTypeComponent implements OnInit, OnDestroy {
 
   getLastWeight() {
     this.animals.forEach(animal => {
-      animal.lastDateWeight = animal.weights[animal.weights.length - 1].date;
-      animal.lastWeight = animal.weights[animal.weights.length - 1].measure;
+      if (animal.weights.length !== 0) {
+        animal.lastDateWeight = animal.weights[animal.weights.length - 1].date;
+        animal.lastWeight = animal.weights[animal.weights.length - 1].measure;
+      }
     });
   }
 

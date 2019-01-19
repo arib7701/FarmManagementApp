@@ -1,0 +1,3 @@
+.my-pagination /deep/ .ngx-pagination .current {
+    margin-top:50px;
+}

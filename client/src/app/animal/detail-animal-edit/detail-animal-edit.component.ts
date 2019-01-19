@@ -83,12 +83,12 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
       departureDate: new FormControl(this.animal.departure),
       deathCause: new FormControl({value: this.animal.deathCause, disabled: true})
     });
-    /*this.editAnimalForm.setValidators(
+    this.editAnimalForm.setValidators(
       [this.isDateSmallerTo('arrivalDate', 'birthDate'),
       this.isDateSmallerTo('deathDate', 'birthDate'),
       this.isDateSmallerTo('departureDate', 'arrivalDate'),
       this.isFutureDate('birthDate'),
-      this.isFutureDate('deathDate')]);*/
+      this.isFutureDate('deathDate')]);
 
 
      /* this.editAnimalForm.get('deathDate').valueChanges.subscribe(val => {

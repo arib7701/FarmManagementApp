@@ -13,6 +13,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material';
 
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
     FormsModule,
     ReactiveFormsModule,
     FlashMessagesModule.forRoot(),
+    NgxPaginationModule,
     MatButtonModule,
     MatInputModule,
     MatSelectModule,
@@ -37,6 +39,7 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
     NavComponent,
     HeaderComponent,
     FlashMessagesModule,
+    NgxPaginationModule,
     MatButtonModule,
     MatInputModule,
     MatSelectModule,
