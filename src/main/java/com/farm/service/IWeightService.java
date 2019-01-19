@@ -1,5 +1,6 @@
 package com.farm.service;
 
+import com.farm.exceptions.ApplicationException;
 import com.farm.model.Weight;
 
 import java.util.Date;
@@ -13,10 +14,10 @@ public interface IWeightService {
 
     Weight findById(int id);
 
-    Weight save(Weight animal);
-    Weight update(int id, Weight weight);
+    Weight save(Weight animal) throws ApplicationException;
+    Weight update(int id, Weight weight) throws ApplicationException;
 
     void deleteById(int id);
-    void deleteByAnimalId(int animalId);
+    boolean deleteByAnimalId(int animalId) throws ApplicationException;
     void deleteByDate(Date date);
 }

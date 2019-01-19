@@ -23,6 +23,7 @@ export class DetailAnimalWeightEditComponent implements OnInit, OnDestroy {
   counterEdit = 0;
   diffs = new Array<String>();
   noWeights = false;
+  today = new Date();
 
   constructor(
     private weightService: WeightService,
@@ -67,7 +68,7 @@ export class DetailAnimalWeightEditComponent implements OnInit, OnDestroy {
       new FormGroup({
         id: new FormControl({ value: this.weights[index].id, hidden: true }),
         measure: new FormControl(this.weights[index].measure, [
-          Validators.required
+          Validators.required, Validators.min(0), Validators.max(100)
         ]),
         weightDate: new FormControl(this.weights[index].date, [
           Validators.required
@@ -98,7 +99,7 @@ export class DetailAnimalWeightEditComponent implements OnInit, OnDestroy {
     control.push(
       new FormGroup({
         id: new FormControl({ value: '', hidden: true }),
-        measure: new FormControl('', [Validators.required]),
+        measure: new FormControl('', [Validators.required, Validators.min(0), Validators.max(100)]),
         weightDate: new FormControl('', [Validators.required])
       })
     );

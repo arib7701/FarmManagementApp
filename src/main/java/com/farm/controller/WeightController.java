@@ -1,5 +1,6 @@
 package com.farm.controller;
 
+import com.farm.exceptions.ApplicationException;
 import com.farm.model.Weight;
 import com.farm.service.IWeightService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,13 +43,13 @@ public class WeightController {
     }
 
     @PostMapping(value="")
-    public ResponseEntity<Weight> saveNewWeight( @RequestBody Weight weightBody){
+    public ResponseEntity<Weight> saveNewWeight( @RequestBody Weight weightBody) throws ApplicationException {
         Weight weightSaved = weightService.save(weightBody);
         return new ResponseEntity(weightSaved, HttpStatus.OK);
     }
 
     @PostMapping(value="/{id}")
-    public ResponseEntity<Weight> updateWeight(@PathVariable("id") int id, @RequestBody Weight weightBody){
+    public ResponseEntity<Weight> updateWeight(@PathVariable("id") int id, @RequestBody Weight weightBody) throws ApplicationException{
         Weight weightSaved = weightService.update(id, weightBody);
         return new ResponseEntity(weightSaved, HttpStatus.OK);
     }

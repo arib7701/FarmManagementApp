@@ -1,6 +1,7 @@
 package com.farm.service.implementation;
 
 import com.farm.dao.AnimalWeightEntity;
+import com.farm.exceptions.ApplicationException;
 import com.farm.model.Weight;
 import com.farm.repository.WeightRepository;
 import com.farm.service.IWeightService;
@@ -54,22 +55,43 @@ public class WeightServiceImplementation implements IWeightService {
     }
 
     @Override
-    public Weight save(Weight weight) {
-        AnimalWeightEntity weightEntity = parseWeight(weight);
-        AnimalWeightEntity weightEntitySaved = weightRepository.save(weightEntity);
-        return parseWeightEntity(weightEntitySaved);
+    public Weight save(Weight weight) throws ApplicationException{
+
+        Weight weightSaved;
+
+        if(checkWeightValid(weight.getMeasure())) {
+
+            AnimalWeightEntity weightEntity = parseWeight(weight);
+            AnimalWeightEntity weightEntitySaved = weightRepository.save(weightEntity);
+            weightSaved = parseWeightEntity(weightEntitySaved);
+        }
+        else {
+            throw new ApplicationException("Error: the weight measurement is invalid.");
+        }
+
+        return weightSaved;
     }
 
     @Override
-    public Weight update(int id, Weight weight) {
+    public Weight update(int id, Weight weight) throws ApplicationException {
 
         AnimalWeightEntity weightEntity = weightRepository.findById(id).orElse(null);
-        Weight weightUpdated = null;
+        Weight weightUpdated;
 
         if(weightEntity != null) {
-            weightEntity = parseWeight(weight);
-            AnimalWeightEntity weightEntityUpdate = weightRepository.save(weightEntity);
-            weightUpdated =parseWeightEntity(weightEntityUpdate);
+
+            if(checkWeightValid(weight.getMeasure())) {
+
+                weightEntity = parseWeight(weight);
+                AnimalWeightEntity weightEntityUpdate = weightRepository.save(weightEntity);
+                weightUpdated = parseWeightEntity(weightEntityUpdate);
+            }
+            else {
+                throw new ApplicationException("Error: the weight measurement is invalid.");
+            }
+        }
+        else {
+            throw new ApplicationException("Error: the weight does not exist.");
         }
 
         return weightUpdated;
@@ -82,19 +104,33 @@ public class WeightServiceImplementation implements IWeightService {
     }
 
     @Override
-    public void deleteByAnimalId(int animalId) {
+    public boolean deleteByAnimalId(int animalId) throws ApplicationException {
+
         List<AnimalWeightEntity> weightEntities = weightRepository.findByAnimalId(animalId);
+        boolean deleted = false;
 
         if(weightEntities != null) {
 
             for(AnimalWeightEntity weightEntity : weightEntities) {
                 weightRepository.deleteById(weightEntity.getWeightId());
             }
+
+            deleted = true;
         }
+        else {
+            throw new ApplicationException("Error: the weights do not exist.");
+        }
+
+        return deleted;
     }
 
     @Override
     public void deleteByDate(Date date) {
 
+    }
+
+    private boolean checkWeightValid(double weightMeasure) {
+
+        return (weightMeasure >= 0 && weightMeasure <= 100);
     }
 }

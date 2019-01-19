@@ -25,7 +25,7 @@ public class AnimalServiceImplementation implements IAnimalService {
     private AnimalRepository animalRepository;
 
     @Autowired
-    private WeightRepository weightRepository;
+    private WeightServiceImplementation weightServiceImplementation;
 
     @Override
     public List<Animal> findAll() {
@@ -48,18 +48,8 @@ public class AnimalServiceImplementation implements IAnimalService {
 
         for(Animal animal : animalList) {
 
-            List<AnimalWeightEntity> animalWeightEntities = weightRepository.findByAnimalId(animal.getId());
-
-            if(animalWeightEntities != null) {
-
-                List<Weight> weights = new ArrayList<>();
-
-                for (AnimalWeightEntity animalWeightEntity : animalWeightEntities) {
-                    weights.add(parseWeightEntity(animalWeightEntity));
-                }
-
-                animal.setWeights(weights);
-            }
+            List<Weight> weights = weightServiceImplementation.findByAnimalId(animal.getId());
+            animal.setWeights(weights);
         }
 
         return animalList;
@@ -110,20 +100,8 @@ public class AnimalServiceImplementation implements IAnimalService {
         AnimalEntity animalEntity = animalRepository.findByAnimalId(id);
 
         Animal animal = parseAnimalEntity(animalEntity);
-
-        List<AnimalWeightEntity> animalWeightEntities = weightRepository.findByAnimalId(animal.getId());
-
-        if(animalWeightEntities != null) {
-
-            List<Weight> weights = new ArrayList<>();
-
-            for (AnimalWeightEntity animalWeightEntity : animalWeightEntities) {
-                weights.add(parseWeightEntity(animalWeightEntity));
-            }
-
-            animal.setWeights(weights);
-        }
-
+        List<Weight> weights = weightServiceImplementation.findByAnimalId(id);
+        animal.setWeights(weights);
         return animal;
     }
 
@@ -177,17 +155,9 @@ public class AnimalServiceImplementation implements IAnimalService {
     }
 
     @Override
-    public void deleteById(int id) {
+    public void deleteById(int id) throws ApplicationException {
 
-        List<AnimalWeightEntity> weightEntities = weightRepository.findByAnimalId(id);
-
-        if(weightEntities != null) {
-
-            for(AnimalWeightEntity weightEntity : weightEntities) {
-                weightRepository.deleteById(weightEntity.getWeightId());
-            }
-        }
-
+        weightServiceImplementation.deleteByAnimalId(id);
         animalRepository.deleteById(id);
     }
 

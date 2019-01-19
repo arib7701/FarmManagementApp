@@ -49,7 +49,7 @@ public class AnimalController {
 
 
     @DeleteMapping(value="/{id}")
-    public ResponseEntity<String> deleteAnimal(@PathVariable ("id") int id) {
+    public ResponseEntity<String> deleteAnimal(@PathVariable ("id") int id) throws ApplicationException{
         animalService.deleteById(id);
         return new ResponseEntity("Animal deleted successfully", HttpStatus.OK);
     }

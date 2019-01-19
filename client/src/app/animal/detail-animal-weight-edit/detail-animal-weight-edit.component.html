@@ -25,6 +25,7 @@
                 <mat-form-field>
                   <input
                     matInput
+                    [max]="today"
                     [matDatepicker]="picker"
                     formControlName="weightDate"
                     placeholder="Choose a Weight Date"
@@ -47,6 +48,9 @@
                     placeholder="Enter the measured weight"
                     formControlName="measure"
                   />
+                  <mat-error>
+                      Measurement must be between <strong>0 and 100 lbs</strong>
+                  </mat-error>
                 </mat-form-field>
               </div>
             </div>

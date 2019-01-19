@@ -27,13 +27,9 @@ public class AnimalServiceTest {
     @Mock
     AnimalRepository animalRepository;
 
-    @Mock
-    WeightRepository weightRepository;
-
-
 
     @Test
-    public void save_WhenDeathCauseInvalid_ExpectedNull() throws ApplicationException {
+    public void save_WhenDeathCauseInvalid_ExpectedNull() {
 
         // GIVEN
         Animal animal = new Animal();
@@ -43,7 +39,7 @@ public class AnimalServiceTest {
 
         // WHEN
         try {
-            Animal animalSaved = animalServiceImplementation.save(animal);
+            animalServiceImplementation.save(animal);
         }
         // THEN
         catch (ApplicationException e) {
@@ -52,7 +48,7 @@ public class AnimalServiceTest {
     }
 
     @Test
-    public void save_WhenDatesAreInvalid_ExpectedNull() throws ApplicationException {
+    public void save_WhenDatesAreInvalid_ExpectedNull() {
 
         // GIVEN
         Animal animal = new Animal();
@@ -63,7 +59,7 @@ public class AnimalServiceTest {
 
         // WHEN
         try {
-            Animal animalSaved = animalServiceImplementation.save(animal);
+            animalServiceImplementation.save(animal);
         }
         // THEN
         catch (ApplicationException e) {
@@ -102,7 +98,7 @@ public class AnimalServiceTest {
     }
 
     @Test
-    public void update_WhenAnimalNotExists_ExpectedNull() throws ApplicationException {
+    public void update_WhenAnimalNotExists_ExpectedNull() {
 
         // GIVEN
         Animal animal = new Animal();
@@ -114,7 +110,7 @@ public class AnimalServiceTest {
 
         // WHEN
         try {
-            Animal animalUpdated = animalServiceImplementation.update(1, animal);
+            animalServiceImplementation.update(1, animal);
         }
         // THEN
         catch (ApplicationException e) {
@@ -123,7 +119,7 @@ public class AnimalServiceTest {
     }
 
     @Test
-    public void update_WhenDeathCauseInvalid_ExpectedNull() throws ApplicationException {
+    public void update_WhenDeathCauseInvalid_ExpectedNull() {
 
         // GIVEN
         Animal animal = new Animal();
@@ -139,7 +135,7 @@ public class AnimalServiceTest {
 
         // WHEN
         try {
-            Animal animalUpdated = animalServiceImplementation.update(1, animal);
+            animalServiceImplementation.update(1, animal);
         }
         // THEN
         catch (ApplicationException e) {
@@ -148,7 +144,7 @@ public class AnimalServiceTest {
     }
 
     @Test
-    public void update_WhenDatesAreInvalid_ExpectedNull() throws ApplicationException {
+    public void update_WhenDatesAreInvalid_ExpectedNull() {
 
         // GIVEN
         Animal animal = new Animal();
@@ -166,7 +162,7 @@ public class AnimalServiceTest {
 
         // WHEN
         try {
-            Animal animalUpdated = animalServiceImplementation.update(1, animal);
+            animalServiceImplementation.update(1, animal);
         }
         // THEN
         catch (ApplicationException e) {

@@ -29,7 +29,7 @@ public interface IAnimalService {
     Animal save(Animal animal) throws ApplicationException;
     Animal update(int id, Animal animal) throws ApplicationException;
 
-    void deleteById(int id);
+    void deleteById(int id) throws ApplicationException;
     void deleteByName(String name);
 
 }
