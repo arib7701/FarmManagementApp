@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d12d518-0448-4196-a6b6-18c2e63d2610" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/animal/detail-animal-weight/detail-animal-weight.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/animal/detail-animal-weight/detail-animal-weight.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/animal/detail-animal-weight/detail-animal-weight.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/animal/detail-animal-weight/detail-animal-weight.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/farm/repository/WeightRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/farm/repository/WeightRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/farm/service/implementation/WeightServiceImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/farm/service/implementation/WeightServiceImplementation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/animal/detail-animal/detail-animal.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/animal/detail-animal/detail-animal.component.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -53,11 +47,27 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/service/implementation/WeightServiceImplementation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="840">
+            <state relative-caret-position="424">
               <caret line="74" column="29" lean-forward="true" selection-start-line="74" selection-start-column="29" selection-end-line="74" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/service/implementation/AnimalTypeServiceImplementation.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="704">
+              <caret line="48" column="5" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1548#1549#0" expanded="true" />
+                <element signature="e#1599#1600#0" expanded="true" />
+                <element signature="e#1658#1659#0" expanded="true" />
+                <element signature="e#1717#1718#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -374,12 +384,12 @@
       <workItem from="1547148778717" duration="4674000" />
       <workItem from="1547371759315" duration="1920000" />
       <workItem from="1547374506389" duration="3414000" />
-      <workItem from="1547886612157" duration="937000" />
+      <workItem from="1547886612157" duration="1549000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51381000" />
+    <option name="totallyTimeSpent" value="51993000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -565,20 +575,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/service/implementation/AnimalTypeServiceImplementation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="679">
-          <caret line="48" column="5" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1548#1549#0" expanded="true" />
-            <element signature="e#1595#1596#0" expanded="true" />
-            <element signature="e#1658#1659#0" expanded="true" />
-            <element signature="e#1715#1716#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -852,8 +848,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/service/implementation/WeightServiceImplementation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
+        <state relative-caret-position="424">
           <caret line="74" column="29" lean-forward="true" selection-start-line="74" selection-start-column="29" selection-end-line="74" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/service/implementation/AnimalTypeServiceImplementation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="704">
+          <caret line="48" column="5" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1548#1549#0" expanded="true" />
+            <element signature="e#1599#1600#0" expanded="true" />
+            <element signature="e#1658#1659#0" expanded="true" />
+            <element signature="e#1717#1718#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -1,3 +1,7 @@
+<div class="row" style="display:flex; padding-top:20px;">
+    <button  style="margin-left:40px;" [routerLink]="['/animal/edit', animal.id]" class="btn bg-olive">Edit</button>
+    <button  style="margin-left:20px;" [routerLink]="['/animal/types', animal.type]" class="btn bg-olive">Back</button>
+</div>
 <div class="row" style="display:flex;">
   <div class="col-md-6" style="padding:50px">
     <!-- general form elements disabled -->
@@ -81,7 +85,7 @@
     </div>
     <!-- /.box -->
   </div>
-  <div class="col-md-6" style="padding:50px">
+  <div class="col-md-6">
     <app-detail-animal-weight [idAnimal]="idAnimal"></app-detail-animal-weight>
   </div>
 </div>
