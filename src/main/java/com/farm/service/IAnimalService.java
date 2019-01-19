@@ -1,5 +1,6 @@
 package com.farm.service;
 
+import com.farm.exceptions.ApplicationException;
 import com.farm.model.Animal;
 import com.farm.model.AnimalType;
 import com.farm.repository.AnimalRepository;
@@ -25,8 +26,8 @@ public interface IAnimalService {
     Animal findById(int id);
     Animal findByName(String name);
 
-    Animal save(Animal animal);
-    Animal update(int id, Animal animal);
+    Animal save(Animal animal) throws ApplicationException;
+    Animal update(int id, Animal animal) throws ApplicationException;
 
     void deleteById(int id);
     void deleteByName(String name);

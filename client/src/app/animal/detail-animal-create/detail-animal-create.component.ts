@@ -90,10 +90,10 @@ export class DetailAnimalCreateComponent implements OnInit {
 
   isFutureDate(date) {
     return (group: FormGroup): any => {
-      const birthDate = group.controls[date];
+      const dateControl = group.controls[date];
       const todayDate = Date.now();
-      if (todayDate < birthDate.value) {
-        birthDate.setErrors({'dateInFuture': true});
+      if (todayDate < dateControl.value) {
+        dateControl.setErrors({'dateInFuture': true});
       }
     };
   }

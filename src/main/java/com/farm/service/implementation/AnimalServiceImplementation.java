@@ -2,6 +2,7 @@ package com.farm.service.implementation;
 
 import com.farm.dao.AnimalEntity;
 import com.farm.dao.AnimalWeightEntity;
+import com.farm.exceptions.ApplicationException;
 import com.farm.model.Animal;
 import com.farm.model.Weight;
 import com.farm.repository.AnimalRepository;
@@ -133,22 +134,42 @@ public class AnimalServiceImplementation implements IAnimalService {
     }
 
     @Override
-    public Animal save(Animal animal) {
-        AnimalEntity animalEntity = parseAnimal(animal);
-        AnimalEntity animalEntitySaved = animalRepository.save(animalEntity);
-        return parseAnimalEntity(animalEntitySaved);
+    public Animal save(Animal animal) throws ApplicationException {
+
+        Animal animalSaved;
+
+        if(checkDatesAnimalOK(animal) && checkDeathCause(animal)) {
+
+            AnimalEntity animalEntity = parseAnimal(animal);
+            AnimalEntity animalEntitySaved = animalRepository.save(animalEntity);
+            animalSaved = parseAnimalEntity(animalEntitySaved);
+        }
+        else {
+            throw new ApplicationException("Error: Some of the dates are invalid");
+        }
+
+        return animalSaved;
     }
 
     @Override
-    public Animal update(int id, Animal animal) {
+    public Animal update(int id, Animal animal) throws ApplicationException  {
 
         AnimalEntity animalEntity = animalRepository.findByAnimalId(id);
-        Animal animalUpdated = null;
+        Animal animalUpdated;
 
         if(animalEntity != null) {
-            animalEntity = parseAnimal(animal);
-            AnimalEntity animalEntityUpdate = animalRepository.save(animalEntity);
-            animalUpdated =parseAnimalEntity(animalEntityUpdate);
+
+            if(checkDatesAnimalOK(animal) && checkDeathCause(animal)) {
+                animalEntity = parseAnimal(animal);
+                AnimalEntity animalEntityUpdate = animalRepository.save(animalEntity);
+                animalUpdated = parseAnimalEntity(animalEntityUpdate);
+            }
+            else {
+                throw new ApplicationException("Error: Some of the dates are invalid");
+            }
+        }
+        else {
+            throw new ApplicationException("Error: Animal does not exist");
         }
 
         return animalUpdated;
@@ -173,6 +194,28 @@ public class AnimalServiceImplementation implements IAnimalService {
     @Override
     public void deleteByName(String name) {
         animalRepository.deleteByAnimalName(name);
+    }
+
+    private boolean checkDatesAnimalOK(Animal animal) {
+
+        LocalDate today = LocalDate.now();
+        LocalDate birthDate = animal.getBirth() == null ? today : animal.getBirth();
+        LocalDate deathDate = animal.getDeath() == null ? today : animal.getDeath();
+        LocalDate arrivalDate = animal.getArrival() == null ? today : animal.getArrival();
+        LocalDate departureDate = animal.getDeparture() == null ? today : animal.getDeparture();
+
+        return (deathDate.isAfter(birthDate)
+                && departureDate.isAfter(arrivalDate)
+                && (arrivalDate.isAfter(birthDate) || arrivalDate.isEqual(birthDate))
+                && (deathDate.isBefore(today) || deathDate.isEqual(today))
+                && (birthDate.isBefore(today) || birthDate.isEqual(today))
+        );
+
+    }
+
+    private boolean checkDeathCause(Animal animal) {
+
+        return (animal.getDeathCause() == null || (animal.getDeathCause() != null && animal.getDeath() != null));
     }
 
 }

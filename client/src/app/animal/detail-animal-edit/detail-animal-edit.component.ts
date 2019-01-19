@@ -81,14 +81,24 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
       arrivalDate: new FormControl(this.animal.arrival),
       deathDate: new FormControl(this.animal.death),
       departureDate: new FormControl(this.animal.departure),
-      deathCause: new FormControl(this.animal.deathCause)
+      deathCause: new FormControl({value: this.animal.deathCause, disabled: true})
     });
-    this.editAnimalForm.setValidators(
+    /*this.editAnimalForm.setValidators(
       [this.isDateSmallerTo('arrivalDate', 'birthDate'),
       this.isDateSmallerTo('deathDate', 'birthDate'),
       this.isDateSmallerTo('departureDate', 'arrivalDate'),
       this.isFutureDate('birthDate'),
-      this.isFutureDate('deathDate')]);
+      this.isFutureDate('deathDate')]);*/
+
+
+     /* this.editAnimalForm.get('deathDate').valueChanges.subscribe(val => {
+        const deathDate = this.editAnimalForm.controls['deathDate'];
+        const deathCause = this.editAnimalForm.controls['deathCause'];
+        console.log('deathDate is ', deathDate.status);
+        if (deathDate.status === 'VALID') {
+          deathCause.enable();
+        }
+      }); */
   }
 
   isDateSmallerTo(fromDaTeControl, toDateControl) {
@@ -97,6 +107,8 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
       const toDate = new Date(this.editAnimalForm.controls[toDateControl].value);
       if (fromDate.value < toDate) {
         fromDate.setErrors({'dateTooSmall': true});
+      } else {
+        return null;
       }
     };
   }
@@ -107,9 +119,12 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
       const todayDate = Date.now();
       if (todayDate < formDate.value) {
         formDate.setErrors({'dateInFuture': true});
+      } else {
+        return null;
       }
     };
   }
+
 
   getType() {
     this.subscriptionType = this.typeService
@@ -121,7 +136,7 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
           this.getAnimalIds();
         },
         error => {
-          console.log('Error getting type');
+          console.log('Error getting type', error.error);
         }
       );
   }
@@ -171,7 +186,7 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
            { cssClass: 'alert-success', timeout: 1000 });
         },
         error => {
-          console.log('Error updating new animal');
+          console.log('Error updating new animal', error.error);
           this.flashMessagesService.show('Error updating the Animal Information, please try again.',
            { cssClass: 'alert-error', timeout: 1000 });
         }

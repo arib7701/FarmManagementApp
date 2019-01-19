@@ -1,5 +1,6 @@
 package com.farm.controller;
 
+import com.farm.exceptions.ApplicationException;
 import com.farm.model.Animal;
 import com.farm.service.IAnimalService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,13 +36,13 @@ public class AnimalController {
     }
 
     @PostMapping(value="")
-    public ResponseEntity<Animal> saveNewAnimal( @RequestBody Animal animalBody){
+    public ResponseEntity<Animal> saveNewAnimal( @RequestBody Animal animalBody) throws ApplicationException {
         Animal animalSaved = animalService.save(animalBody);
         return new ResponseEntity(animalSaved, HttpStatus.OK);
     }
 
     @PostMapping(value="/{id}")
-    public ResponseEntity<Animal> updateAnimal(@PathVariable ("id") int id, @RequestBody Animal animalBody){
+    public ResponseEntity<Animal> updateAnimal(@PathVariable ("id") int id, @RequestBody Animal animalBody) throws ApplicationException{
         Animal animalUpdated = animalService.update(id, animalBody);
         return new ResponseEntity(animalUpdated, HttpStatus.OK);
     }
