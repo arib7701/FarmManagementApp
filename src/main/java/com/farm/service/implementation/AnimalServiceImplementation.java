@@ -53,6 +53,22 @@ public class AnimalServiceImplementation implements IAnimalService {
     }
 
     @Override
+    public List<Animal> findByTypeDeadLessThanSixMonths(int animalTypeId) {
+
+        LocalDate sixMonthsAgo = LocalDate.now().minusMonths(6);
+        List<AnimalEntity> animalEntityList = animalRepository.findByAnimalTypeAndDateDeathIsAfter(animalTypeId, sixMonthsAgo);
+        List<Animal> animalList = parseAnimalList(animalEntityList);
+
+        for(Animal animal : animalList) {
+
+            List<Weight> weights = weightServiceImplementation.findByAnimalId(animal.getId());
+            animal.setWeights(weights);
+        }
+
+        return animalList;
+    }
+
+    @Override
     public List<Animal> findByAge(int age) {
 
         int currentYear = LocalDate.now().getYear();
@@ -160,18 +176,18 @@ public class AnimalServiceImplementation implements IAnimalService {
 
         if(animalEntity != null) {
 
-            if(weightServiceImplementation.deleteByAnimalId(id)) {
+            if(!checkIfHasChildren(animalEntity)) {
 
-               if(!checkIfHasChildren(animalEntity)) {
+                if(weightServiceImplementation.deleteByAnimalId(id)) {
                    animalRepository.deleteById(id);
                    deleted = true;
                }
                else {
-                    throw new ApplicationException("Error: This animal has descendants and cannot be deleted");
+                    throw new ApplicationException("Error: Could not delete associated weights");
                }
 
             } else {
-                throw new ApplicationException("Error: Could not delete associated weights");
+                throw new ApplicationException("Error: This animal has descendants and cannot be deleted");
             }
 
         } else {

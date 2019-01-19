@@ -4,12 +4,14 @@ import com.farm.dao.AnimalEntity;
 import com.farm.dao.AnimalTypeEntity;
 import org.springframework.data.repository.CrudRepository;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 public interface AnimalRepository extends CrudRepository<AnimalEntity, Integer> {
 
     List<AnimalEntity> findByAnimalType(int typeId);
+    List<AnimalEntity> findByAnimalTypeAndDateDeathIsAfter(int typeId, LocalDate date);
 
     List<AnimalEntity> findByFatherId(int fatherId);
     List<AnimalEntity> findByMotherId(int motherId);
