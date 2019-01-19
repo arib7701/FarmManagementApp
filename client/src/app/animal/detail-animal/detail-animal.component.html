@@ -49,17 +49,23 @@
       <div class="box-footer">
         <code
           ><div class="row" display="flex" style="margin-top: 20px;">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <p *ngIf="animal?.birth">
                 <i class="fas fa-baby"></i> <strong> Birth Date:</strong>
                 {{ animal?.birth }}
               </p>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-4">
               <p *ngIf="animal?.death">
                 <i class="fas fa-skull-crossbones"></i>
                 <strong> Death Date:</strong> {{ animal?.death }}
+              </p>
+            </div>
+            <div class="col-md-4">
+              <p *ngIf="animal?.death"> 
+                  <i class="fas fa-book-dead"></i>
+                <strong> Death Cause:</strong> {{ animal?.deathCause }}
               </p>
             </div>
           </div>

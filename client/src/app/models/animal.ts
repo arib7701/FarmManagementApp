@@ -6,6 +6,7 @@ export class Animal {
   type?: number;
   birth?: Date;
   death?: Date;
+  deathCause?: string;
   arrival?: Date;
   departure?: Date;
   barn?: string;

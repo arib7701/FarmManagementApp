@@ -98,6 +98,7 @@ public class EntityModelMappers {
             animal.setDeath(checkNullSQLDate(animalEntity.getDateDeath()));
             animal.setArrival(checkNullSQLDate(animalEntity.getDateArrival()));
             animal.setDeparture(checkNullSQLDate(animalEntity.getDateDeparture()));
+            animal.setDeathCause(animalEntity.getDeathCause());
             animal.setMotherId(animalEntity.getMotherId());
             animal.setFatherId(animalEntity.getFatherId());
             animal.setIsResearch(animalEntity.getIsResearch());
@@ -125,6 +126,7 @@ public class EntityModelMappers {
             animalEntity.setDateDeath(checkNullLocalDate(animal.getDeath()));
             animalEntity.setDateArrival(checkNullLocalDate(animal.getArrival()));
             animalEntity.setDateDeparture(checkNullLocalDate(animal.getDeparture()));
+            animalEntity.setDeathCause(animal.getDeathCause());
             animalEntity.setMotherId(animal.getMotherId());
             animalEntity.setFatherId(animal.getFatherId());
             animalEntity.setIsResearch(animal.getIsResearch());

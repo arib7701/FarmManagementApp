@@ -12,12 +12,15 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material';
 
+import { FlashMessagesModule } from 'angular2-flash-messages';
+
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    FlashMessagesModule.forRoot(),
     MatButtonModule,
     MatInputModule,
     MatSelectModule,
@@ -33,6 +36,7 @@ import { MatNativeDateModule } from '@angular/material';
     FooterComponent,
     NavComponent,
     HeaderComponent,
+    FlashMessagesModule,
     MatButtonModule,
     MatInputModule,
     MatSelectModule,

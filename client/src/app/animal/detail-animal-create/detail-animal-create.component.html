@@ -15,6 +15,9 @@
             <div class="form-group">
               <mat-form-field class="example-full-width">
                 <input matInput placeholder="Enter the name of the animal" value="" formControlName="name" >
+                <mat-error>
+                    Field <strong>required</strong>
+                 </mat-error>
               </mat-form-field>
             </div>
           </div>
@@ -81,6 +84,9 @@
               formControlName="birthDate" placeholder="Choose a Birth Date">
               <mat-datepicker-toggle matSuffix [for]="pickerBirth"></mat-datepicker-toggle>
               <mat-datepicker #pickerBirth></mat-datepicker>
+              <mat-error>
+                  Birth Date can not be in the <strong>future</strong>
+              </mat-error>
             </mat-form-field>
           </div>
         </div>
@@ -93,6 +99,9 @@
               formControlName="arrivalDate" placeholder="Choose a Arrival Date">
               <mat-datepicker-toggle matSuffix [for]="pickerArrival"></mat-datepicker-toggle>
               <mat-datepicker #pickerArrival></mat-datepicker>
+              <mat-error>
+                  Arrival Date should be <strong>greater or equal</strong> than Birth Date
+              </mat-error>
             </mat-form-field> 
           </div>
         </div>
@@ -102,6 +111,9 @@
       <div class="form-group">
         <mat-form-field class="example-full-width">
           <input type="number" matInput placeholder="Enter the current weight" value="" formControlName="currentWeight" >
+          <mat-error>
+              Value must be <strong>positive</strong>
+          </mat-error>
         </mat-form-field>
       </div>
 
@@ -109,6 +121,7 @@
           <button type="submit" mat-raised-button color="primary" [disabled]="!newAnimalForm.valid">Submit</button>
         </div>
       </form>
+      <flash-messages></flash-messages>
     </div>
     <!-- /.box-body -->
   </div>

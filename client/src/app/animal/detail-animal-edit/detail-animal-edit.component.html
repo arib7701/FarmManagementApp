@@ -1,6 +1,6 @@
 <div class="row" style="display:flex; padding-top:20px;">
-    <button  style="margin-left:40px;" [routerLink]="['/animal/detail', animal.id]" class="btn bg-olive">View Details</button>
-    <button  style="margin-left:20px;" [routerLink]="['/animal/types', animal.type]" class="btn bg-olive">Back</button>
+    <button  style="margin-left:40px;" [routerLink]="['/animal/detail', animal?.id]" class="btn bg-olive">View Details</button>
+    <button  style="margin-left:20px;" [routerLink]="['/animal/types', animal?.type]" class="btn bg-olive">Back</button>
 </div>
 <div class="col-md-10" style="padding:50px">
   <!-- general form elements disabled -->
@@ -23,6 +23,9 @@
                   placeholder="Enter the name of the animal"
                   formControlName="name"
                 />
+                <mat-error>
+                    Field <strong>required</strong>
+                 </mat-error>
               </mat-form-field>
             </div>
           </div>
@@ -64,7 +67,6 @@
                 <input
                   matInput
                   placeholder="Enter the barn location"
-                  value=""
                   formControlName="barn"
                 />
               </mat-form-field>
@@ -113,31 +115,13 @@
                   [for]="pickerBirth"
                 ></mat-datepicker-toggle>
                 <mat-datepicker #pickerBirth></mat-datepicker>
+                <mat-error>
+                    Birth Date can not be in the <strong>future</strong>
+                </mat-error>
               </mat-form-field>
             </div>
           </div>
 
-          <div class="col-md-3">
-            <!-- datepicker -->
-            <div class="form-group">
-              <mat-form-field>
-                <input
-                  matInput
-                  [matDatepicker]="pickerArrival"
-                  formControlName="arrivalDate"
-                  placeholder="Choose a Arrival Date"
-                />
-                <mat-datepicker-toggle
-                  matSuffix
-                  [for]="pickerArrival"
-                ></mat-datepicker-toggle>
-                <mat-datepicker #pickerArrival></mat-datepicker>
-              </mat-form-field>
-            </div>
-          </div>
-        </div>
-
-        <div class="row" display="flex">
           <div class="col-md-3">
             <!-- datepicker -->
             <div class="form-group">
@@ -153,6 +137,52 @@
                   [for]="pickerDeath"
                 ></mat-datepicker-toggle>
                 <mat-datepicker #pickerDeath></mat-datepicker>
+                <mat-error *ngIf="deathDate.errors?.dateInFuture">
+                    Death Date can not be in the <strong>future</strong>
+                </mat-error>
+                <mat-error *ngIf="deathDate.errors?.dateTooSmall">
+                    Death Date should be <strong>greater or equal</strong> than Birth Date
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <!-- datepicker -->
+            <div class="form-group">
+              <mat-form-field>
+                <input
+                  matInput
+                  placeholder="Enter the cause of death"
+                  formControlName="deathCause"
+                />
+                <mat-error>
+                    Death Date can not be in the <strong>future</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" display="flex">
+          <div class="col-md-3">
+            <!-- datepicker -->
+            <div class="form-group">
+              <mat-form-field>
+                <input
+                  matInput
+                  [matDatepicker]="pickerArrival"
+                  formControlName="arrivalDate"
+                  placeholder="Choose a Arrival Date"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="pickerArrival"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #pickerArrival></mat-datepicker>
+                <mat-error>
+                    Arrival Date should be <strong>greater or equal</strong> than Birth Date
+                </mat-error>
               </mat-form-field>
             </div>
           </div>
@@ -172,6 +202,9 @@
                   [for]="pickerDeparture"
                 ></mat-datepicker-toggle>
                 <mat-datepicker #pickerDeparture></mat-datepicker>
+                <mat-error>
+                    Departure Date should be <strong>greater</strong> than Arrival Date
+                </mat-error>
               </mat-form-field>
             </div>
           </div>
@@ -188,6 +221,7 @@
           </button>
         </div>
       </form>
+      <flash-messages></flash-messages>
     </div>
     <!-- /.box-body -->
   </div>

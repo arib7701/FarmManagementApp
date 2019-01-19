@@ -3,6 +3,7 @@ import { WeightService } from 'src/app/services/weight.service';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Weight } from 'src/app/models/weight';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-detail-animal-weight-edit',
@@ -22,7 +23,9 @@ export class DetailAnimalWeightEditComponent implements OnInit, OnDestroy {
   counterEdit = 0;
   diffs = new Array<String>();
 
-  constructor(private weightService: WeightService) {}
+  constructor(
+    private weightService: WeightService,
+    private flashMessagesService: FlashMessagesService) {}
 
   ngOnInit() {
     this.getWeightsInfo();
@@ -183,6 +186,8 @@ export class DetailAnimalWeightEditComponent implements OnInit, OnDestroy {
     if (this.counterEdit === length) {
       this.getWeightsInfo();
     }
+    this.flashMessagesService.show('Weight Information successfully updated.',
+      { cssClass: 'alert-success', timeout: 1000 });
   }
 
   ngOnDestroy() {

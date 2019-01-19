@@ -6,6 +6,8 @@ import { Type } from 'src/app/models/type';
 import { AnimalService } from 'src/app/services/animal.service';
 import { TypeService } from 'src/app/services/type.service';
 import { ActivatedRoute } from '@angular/router';
+import { FlashMessagesService } from 'angular2-flash-messages';
+import { controlNameBinding } from '@angular/forms/src/directives/reactive_directives/form_control_name';
 
 @Component({
   selector: 'app-detail-animal-edit',
@@ -28,7 +30,8 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
   constructor(
     private animalService: AnimalService,
     private typeService: TypeService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private flashMessagesService: FlashMessagesService
   ) {}
 
   ngOnInit() {
@@ -61,7 +64,8 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
       birthDate: new FormControl(''),
       arrivalDate: new FormControl(''),
       deathDate: new FormControl(''),
-      departureDate: new FormControl('')
+      departureDate: new FormControl(''),
+      deathCause: new FormControl('')
     });
   }
 
@@ -76,8 +80,35 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
       birthDate: new FormControl(this.animal.birth),
       arrivalDate: new FormControl(this.animal.arrival),
       deathDate: new FormControl(this.animal.death),
-      departureDate: new FormControl(this.animal.departure)
+      departureDate: new FormControl(this.animal.departure),
+      deathCause: new FormControl(this.animal.deathCause)
     });
+    this.editAnimalForm.setValidators(
+      [this.isDateSmallerTo('arrivalDate', 'birthDate'),
+      this.isDateSmallerTo('deathDate', 'birthDate'),
+      this.isDateSmallerTo('departureDate', 'arrivalDate'),
+      this.isFutureDate('birthDate'),
+      this.isFutureDate('deathDate')]);
+  }
+
+  isDateSmallerTo(fromDaTeControl, toDateControl) {
+    return (group: FormGroup): any => {
+      const fromDate = group.controls[fromDaTeControl];
+      const toDate = new Date(this.editAnimalForm.controls[toDateControl].value);
+      if (fromDate.value < toDate) {
+        fromDate.setErrors({'dateTooSmall': true});
+      }
+    };
+  }
+
+  isFutureDate(date) {
+    return (group: FormGroup): any => {
+      const formDate = group.controls[date];
+      const todayDate = Date.now();
+      if (todayDate < formDate.value) {
+        formDate.setErrors({'dateInFuture': true});
+      }
+    };
   }
 
   getType() {
@@ -126,6 +157,7 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
     this.animal.death = this.editAnimalForm.controls['deathDate'].value;
     this.animal.arrival = this.editAnimalForm.controls['arrivalDate'].value;
     this.animal.departure = this.editAnimalForm.controls['departureDate'].value;
+    this.animal.deathCause = this.editAnimalForm.controls['deathCause'].value;
     this.animal.weights = null;
 
     console.log('animal ', this.animal);
@@ -135,9 +167,13 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
       .subscribe(
         animalUpdated => {
           console.log('Updating animal OK ');
+          this.flashMessagesService.show('Animal Information successfully updated.',
+           { cssClass: 'alert-success', timeout: 1000 });
         },
         error => {
           console.log('Error updating new animal');
+          this.flashMessagesService.show('Error updating the Animal Information, please try again.',
+           { cssClass: 'alert-error', timeout: 1000 });
         }
       );
   }
@@ -171,6 +207,9 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
   }
   get departureDate() {
     return this.editAnimalForm.get('departureDate');
+  }
+  get deathCause() {
+    return this.editAnimalForm.get('deathCause');
   }
 
   ngOnDestroy() {

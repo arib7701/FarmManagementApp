@@ -21,6 +21,7 @@ public class Animal {
     private List<Weight> weights;
     private List<Vaccine> vaccines;
     private List<Delivery> deliveries;
+    private String deathCause;
 
     public Animal() {
     }
@@ -38,9 +39,9 @@ public class Animal {
         this.fatherId = fatherId;
         this.motherId = motherId;
         this.isResearch = false;
-        this.weights = new ArrayList<Weight>();
-        this.vaccines = new ArrayList<Vaccine>();
-        this.deliveries = new ArrayList<Delivery>();
+        this.weights = new ArrayList<>();
+        this.vaccines = new ArrayList<>();
+        this.deliveries = new ArrayList<>();
     }
 
     public Animal(String name, String sex, String barn, LocalDate birth, int type, Integer fatherId, Integer motherId) {
@@ -55,9 +56,9 @@ public class Animal {
         this.fatherId = fatherId;
         this.motherId = motherId;
         this.isResearch = false;
-        this.weights = new ArrayList<Weight>();
-        this.vaccines = new ArrayList<Vaccine>();
-        this.deliveries = new ArrayList<Delivery>();
+        this.weights = new ArrayList<>();
+        this.vaccines = new ArrayList<>();
+        this.deliveries = new ArrayList<>();
     }
 
     public int getId() {
@@ -179,4 +180,8 @@ public class Animal {
     public void setDeliveries(List<Delivery> deliveries) {
         this.deliveries = deliveries;
     }
+
+    public String getDeathCause() { return deathCause; }
+
+    public void setDeathCause(String deathCause) { this.deathCause = deathCause; }
 }

@@ -3,6 +3,7 @@ package com.farm.dao;
 import javax.persistence.*;
 import java.util.Objects;
 
+@SuppressWarnings("ALL")
 @Entity
 @Table(name = "animal_type", schema = "farm", catalog = "")
 public class AnimalTypeEntity {

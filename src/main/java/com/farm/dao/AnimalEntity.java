@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.util.Objects;
 
+@SuppressWarnings("JpaDataSourceORMInspection")
 @Entity
 @Table(name = "animal", schema = "farm", catalog = "")
 public class AnimalEntity {
@@ -19,6 +20,7 @@ public class AnimalEntity {
     private Integer motherId;
     private boolean isResearch;
     private String barn;
+    private String deathCause;
 
     @Id
     @Column(name = "animal_id", nullable = false)
@@ -162,5 +164,15 @@ public class AnimalEntity {
 
     public void setBarn(String barn) {
         this.barn = barn;
+    }
+
+    @Basic
+    @Column(name = "death_cause")
+    public String getDeathCause() {
+        return deathCause;
+    }
+
+    public void setDeathCause(String deathCause) {
+        this.deathCause = deathCause;
     }
 }

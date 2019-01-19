@@ -6,8 +6,9 @@ import { AnimalService } from 'src/app/services/animal.service';
 import { TypeService } from 'src/app/services/type.service';
 import { ActivatedRoute } from '@angular/router';
 import { WeightService } from 'src/app/services/weight.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Weight } from 'src/app/models/weight';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-detail-animal-create',
@@ -30,7 +31,8 @@ export class DetailAnimalCreateComponent implements OnInit {
     private animalService: AnimalService,
     private weightService: WeightService,
     private typeService: TypeService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private flashMessagesService: FlashMessagesService) { }
 
   ngOnInit() {
 
@@ -66,13 +68,34 @@ export class DetailAnimalCreateComponent implements OnInit {
       name: new FormControl('', [Validators.required]),
       sex: new FormControl('', [Validators.required]),
       barn: new FormControl(''),
-      currentWeight: new FormControl(''),
+      currentWeight: new FormControl('', [Validators.min(0)]),
       research: new FormControl(''),
       motherId: new FormControl(''),
       fatherId: new FormControl(''),
       birthDate: new FormControl(''),
       arrivalDate: new FormControl('')
     });
+    this.newAnimalForm.setValidators([this.isDateSmallerTo('arrivalDate', 'birthDate'), this.isFutureDate('birthDate')]);
+  }
+
+  isDateSmallerTo(fromDateControl, toDateControl) {
+    return (group: FormGroup): any => {
+      const fromDate = group.controls[fromDateControl];
+      const toDate = new Date(this.newAnimalForm.controls[toDateControl].value);
+      if (fromDate.value < toDate) {
+        fromDate.setErrors({'dateTooSmall': true});
+      }
+    };
+  }
+
+  isFutureDate(date) {
+    return (group: FormGroup): any => {
+      const birthDate = group.controls[date];
+      const todayDate = Date.now();
+      if (todayDate < birthDate.value) {
+        birthDate.setErrors({'dateInFuture': true});
+      }
+    };
   }
 
   submitCreateAnimal () {
@@ -110,8 +133,12 @@ export class DetailAnimalCreateComponent implements OnInit {
 
       this.subscriptionWeight = this.weightService.addWeight(currentWeight).subscribe(weightSaved => {
         console.log('Saving weight OK');
+        this.flashMessagesService.show('Animal Information successfully created.',
+           { cssClass: 'alert-success', timeout: 1000 });
        }, error => {
         console.log('Error saving new weight');
+        this.flashMessagesService.show('Error creating the Animal Information, please try again.',
+           { cssClass: 'alert-error', timeout: 1000 });
        });
     }
   }
