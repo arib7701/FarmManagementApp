@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d12d518-0448-4196-a6b6-18c2e63d2610" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/client/src/app/animal/detail-animal-weight-edit/detail-animal-weight-edit.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/animal/detail-animal-weight-edit/detail-animal-weight-edit.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/animal/detail-animal-weight-edit/detail-animal-weight-edit.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/animal/detail-animal-weight-edit/detail-animal-weight-edit.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/animal/detail-animal-weight/detail-animal-weight.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/animal/detail-animal-weight/detail-animal-weight.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/animal/detail-animal-weight/detail-animal-weight.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/animal/detail-animal-weight/detail-animal-weight.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/farm/repository/WeightRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/farm/repository/WeightRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/farm/service/implementation/WeightServiceImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/farm/service/implementation/WeightServiceImplementation.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -51,12 +56,19 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/service/implementation/WeightServiceImplementation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="670">
-              <caret line="63" column="4" selection-start-line="63" selection-start-column="4" selection-end-line="63" selection-end-column="47" />
+            <state relative-caret-position="840">
+              <caret line="74" column="29" lean-forward="true" selection-start-line="74" selection-start-column="29" selection-end-line="74" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/repository/WeightRepository.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1713#1714#0" expanded="true" />
-                <element signature="e#1744#1745#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -66,7 +78,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/service/IWeightService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="150">
-              <caret line="13" column="28" lean-forward="true" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
+              <caret line="13" column="28" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -77,8 +89,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/service/implementation/AnimalServiceImplementation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1148">
-              <caret line="146" lean-forward="true" selection-start-line="146" selection-end-line="146" />
+            <state relative-caret-position="1965">
+              <caret line="162" selection-start-line="162" selection-end-line="162" />
             </state>
           </provider>
         </entry>
@@ -86,8 +98,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/controller/WeightController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="49" column="31" lean-forward="true" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="31" />
+            <state relative-caret-position="585">
+              <caret line="61" column="1" selection-start-line="61" selection-start-column="1" selection-end-line="61" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -98,7 +110,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/controller/AnimalController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
+            <state relative-caret-position="555">
               <caret line="46" selection-start-line="46" selection-end-line="46" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -143,7 +155,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/farm/service/IAnimalTypeService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/farm/repository/AnimalTypeRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/farm/service/implementation/AnimalTypeServiceImplementation.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/farm/repository/WeightRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/farm/dao/AnimalWeightEntity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/farm/dao/AnimalDeliveryEntity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/farm/dao/AnimalVaccineEntity.java" />
@@ -159,8 +170,9 @@
         <option value="$PROJECT_DIR$/src/main/java/com/farm/model/Animal.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/farm/service/implementation/AnimalServiceImplementation.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/farm/controller/WeightController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/farm/service/implementation/WeightServiceImplementation.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/farm/service/IWeightService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/farm/service/implementation/WeightServiceImplementation.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/farm/repository/WeightRepository.java" />
       </list>
     </option>
   </component>
@@ -184,6 +196,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -285,8 +299,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -362,11 +374,12 @@
       <workItem from="1547148778717" duration="4674000" />
       <workItem from="1547371759315" duration="1920000" />
       <workItem from="1547374506389" duration="3414000" />
+      <workItem from="1547886612157" duration="937000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50444000" />
+    <option name="totallyTimeSpent" value="51381000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -378,10 +391,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="721" extended-state="6" />
+    <frame x="49" y="25" width="1871" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49460045" visible="true" weight="0.30371568" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49460045" visible="true" weight="0.20876712" />
       <window_info id="Structure" order="1" sideWeight="0.5023847" side_tool="true" weight="0.24394184" />
       <window_info id="Persistence" order="2" sideWeight="0.5053996" side_tool="true" weight="0.24657534" />
       <window_info id="Designer" order="3" />
@@ -393,7 +406,7 @@
       <window_info id="Web" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.4562798" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.4562798" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -790,40 +803,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/controller/AnimalController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="46" selection-start-line="46" selection-end-line="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/controller/WeightController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="49" column="31" lean-forward="true" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/service/IWeightService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
-          <caret line="13" column="28" lean-forward="true" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/repository/WeightRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
+          <caret line="13" column="28" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -832,20 +815,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/service/implementation/AnimalServiceImplementation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1148">
-          <caret line="146" lean-forward="true" selection-start-line="146" selection-end-line="146" />
+        <state relative-caret-position="1965">
+          <caret line="162" selection-start-line="162" selection-end-line="162" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/controller/WeightController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="61" column="1" selection-start-line="61" selection-start-column="1" selection-end-line="61" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/controller/AnimalController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/repository/WeightRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/service/implementation/WeightServiceImplementation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="670">
-          <caret line="63" column="4" selection-start-line="63" selection-start-column="4" selection-end-line="63" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1713#1714#0" expanded="true" />
-            <element signature="e#1744#1745#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="840">
+          <caret line="74" column="29" lean-forward="true" selection-start-line="74" selection-start-column="29" selection-end-line="74" selection-end-column="29" />
         </state>
       </provider>
     </entry>

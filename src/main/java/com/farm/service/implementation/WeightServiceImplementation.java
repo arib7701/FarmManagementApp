@@ -28,7 +28,7 @@ public class WeightServiceImplementation implements IWeightService {
     @Override
     public List<Weight> findByAnimalId(int animalId) {
 
-        List<AnimalWeightEntity> animalWeightEntities = weightRepository.findByAnimalId(animalId);
+        List<AnimalWeightEntity> animalWeightEntities = weightRepository.findByAnimalIdOrderByWeightDate(animalId);
         List<Weight> weights = null;
 
         if(animalWeightEntities != null) {

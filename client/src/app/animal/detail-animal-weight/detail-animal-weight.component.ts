@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Weight } from 'src/app/models/weight';
+import { Chart } from 'chart.js';
 import { WeightService } from 'src/app/services/weight.service';
 
 @Component({
@@ -14,6 +15,7 @@ export class DetailAnimalWeightComponent implements OnInit, OnDestroy {
   subscriptionWeights: Subscription;
   weights: Weight[];
   diffs = new Array<String>();
+  lineChart = [];
 
   constructor(private weightService: WeightService) {}
 
@@ -26,6 +28,7 @@ export class DetailAnimalWeightComponent implements OnInit, OnDestroy {
           for (let i = 0; i < this.weights.length; i++) {
             this.getArrow(i);
           }
+          this.buildChart();
         },
         error => {
           console.log('Error getting weights');
@@ -47,6 +50,35 @@ export class DetailAnimalWeightComponent implements OnInit, OnDestroy {
         this.diffs[index] = 'down';
       }
     }
+  }
+
+  buildChart() {
+
+    const weightDate: Date[] = new Array<Date>();
+    const weightMeasure: number[] = new Array<number>();
+
+    for (const weight of this.weights) {
+      weightDate.push(weight.date);
+      weightMeasure.push(weight.measure);
+    }
+
+    this.lineChart = new Chart('canvasLine', {
+      type: 'line',
+      data: {
+        labels: weightDate,
+        datasets: [
+          {
+            data: weightMeasure,
+            borderColor: '#00a65a',
+            backgroundColor: 'white',
+            pointBackgroundColor: 'black'
+          }
+        ]
+      },
+      options: {
+        legend: false
+      }
+    });
   }
 
   ngOnDestroy() {

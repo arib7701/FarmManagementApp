@@ -1,58 +1,58 @@
 <div class="col-md-10" style="padding:50px">
   <!-- general form elements disabled -->
   <div class="box box-success">
-    <div class="box-header"><h3 class="box-title">Weight Info</h3></div>
+      <div class="box-header">
+        <h3 class="box-title">Weight Evolution</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+          <canvas id="canvasLine">{{ lineChart }}</canvas>
+      </div>
+    </div>
+
+  <div class="box box-success">
+    <div class="box-header">
+      <h3 class="box-title">Weight Info</h3>
+    </div>
     <!-- /.box-header -->
     <div class="box-body">
-      
-        <div>
-          <div
-            class="row"
-            display="flex"
-            *ngFor="
-              let weight of weights;
-              let i = index
-            "
-          >
-            <div class="col-md-3">
-              <code>
-                <p>
-                    <i class="far fa-calendar-alt"></i> {{ weight?.date }}
-                </p>
-              </code>
-            </div>
-            <div class="col-md-3">
-                <p> <i class="fas fa-weight"></i> {{ weight?.measure }} lbs</p>
-            </div>
-            <div class="col-md-1">
-              <div class="form-group icon">
-                <i
-                  *ngIf="diffs[i] === 'start'"
-                  class="fas fa-asterisk"
-                  style="color:blue;"
-                ></i>
-                <i
-                  *ngIf="diffs[i] === 'up'"
-                  class="fas fa-arrow-up"
-                  style="color:green; transform: rotate(45deg);"
-                ></i>
-                <i
-                  *ngIf="diffs[i] === 'equal'"
-                  class="fas fa-equals"
-                  style="color:orange"
-                ></i>
-                <i
-                  *ngIf="diffs[i] === 'down'"
-                  class="fas fa-arrow-down"
-                  style="color:red; transform: rotate(-45deg);"
-                ></i>
-              </div>
-            </div>
+      <div class="row" display="flex"
+        *ngFor=" let weight of weights; let i = index">
+        <div class="col-md-4">
+          <code>
+            <p>
+                <i class="far fa-calendar-alt"></i> {{ weight?.date }}
+            </p>
+          </code>
+        </div>
+        <div class="col-md-3">
+            <p> <i class="fas fa-weight"></i> {{ weight?.measure }} lbs</p>
+        </div>
+        <div class="col-md-1">
+          <div class="form-group icon">
+            <i
+              *ngIf="diffs[i] === 'start'"
+              class="fas fa-asterisk"
+              style="color:blue;"
+            ></i>
+            <i
+              *ngIf="diffs[i] === 'up'"
+              class="fas fa-arrow-up"
+              style="color:green; transform: rotate(45deg);"
+            ></i>
+            <i
+              *ngIf="diffs[i] === 'equal'"
+              class="fas fa-equals"
+              style="color:orange"
+            ></i>
+            <i
+              *ngIf="diffs[i] === 'down'"
+              class="fas fa-arrow-down"
+              style="color:red; transform: rotate(-45deg);"
+            ></i>
           </div>
         </div>
+      </div>
     </div>
-    <!-- /.box-body -->
   </div>
-  <!-- /.box -->
 </div>
-<!--/.col (right) -->
