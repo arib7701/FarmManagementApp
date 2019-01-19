@@ -171,7 +171,7 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="23" />
     <option name="width" value="1280" />
     <option name="height" value="721" />
@@ -329,7 +329,7 @@
   </component>
   <component name="RunManager">
     <configuration name="FarmManagementAppApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="FarmManagementApp" />
+      <module name="farm" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.farm.FarmManagementAppApplication" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <method v="2">
