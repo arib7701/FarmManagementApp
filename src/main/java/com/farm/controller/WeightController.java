@@ -56,7 +56,7 @@ public class WeightController {
 
     @DeleteMapping(value="/{id}")
     public ResponseEntity<String> deleteWeightById(@PathVariable("id") int id) {
-        weightService.deleteById(id);
+        boolean deleted = weightService.deleteById(id);
         return new ResponseEntity("Weight deleted successfully", HttpStatus.OK);
     }
 

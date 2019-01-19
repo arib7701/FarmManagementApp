@@ -1,18 +1,15 @@
 package com.farm.service.implementation;
 
 import com.farm.dao.AnimalEntity;
-import com.farm.dao.AnimalWeightEntity;
 import com.farm.exceptions.ApplicationException;
 import com.farm.model.Animal;
 import com.farm.model.Weight;
 import com.farm.repository.AnimalRepository;
-import com.farm.repository.WeightRepository;
 import com.farm.service.IAnimalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -155,10 +152,33 @@ public class AnimalServiceImplementation implements IAnimalService {
     }
 
     @Override
-    public void deleteById(int id) throws ApplicationException {
+    public boolean deleteById(int id) throws ApplicationException {
 
-        weightServiceImplementation.deleteByAnimalId(id);
-        animalRepository.deleteById(id);
+
+        AnimalEntity animalEntity = animalRepository.findByAnimalId(id);
+        boolean deleted;
+
+        if(animalEntity != null) {
+
+            if(weightServiceImplementation.deleteByAnimalId(id)) {
+
+               if(!checkIfHasChildren(animalEntity)) {
+                   animalRepository.deleteById(id);
+                   deleted = true;
+               }
+               else {
+                    throw new ApplicationException("Error: This animal has descendants and cannot be deleted");
+               }
+
+            } else {
+                throw new ApplicationException("Error: Could not delete associated weights");
+            }
+
+        } else {
+            throw new ApplicationException("Error: Animal does not exist");
+        }
+
+        return deleted;
     }
 
     @Override
@@ -188,4 +208,18 @@ public class AnimalServiceImplementation implements IAnimalService {
         return (animal.getDeathCause() == null || (animal.getDeathCause() != null && animal.getDeath() != null));
     }
 
+    private boolean checkIfHasChildren(AnimalEntity animalEntity) {
+
+        List<AnimalEntity> animalEntityListChild;
+
+        if(animalEntity.getAnimalSex().equals("F")) {
+            animalEntityListChild = animalRepository.findByMotherId(animalEntity.getAnimalId());
+        }
+        else {
+            animalEntityListChild = animalRepository.findByFatherId(animalEntity.getAnimalId());
+        }
+
+        return (animalEntityListChild != null);
+
+    }
 }

@@ -17,7 +17,7 @@ public interface IWeightService {
     Weight save(Weight animal) throws ApplicationException;
     Weight update(int id, Weight weight) throws ApplicationException;
 
-    void deleteById(int id);
+    boolean deleteById(int id);
     boolean deleteByAnimalId(int animalId) throws ApplicationException;
     void deleteByDate(Date date);
 }

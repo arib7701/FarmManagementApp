@@ -99,22 +99,22 @@ public class WeightServiceImplementation implements IWeightService {
     }
 
     @Override
-    public void deleteById(int id) {
+    public boolean deleteById(int id) {
         weightRepository.deleteById(id);
+        return true;
     }
 
     @Override
     public boolean deleteByAnimalId(int animalId) throws ApplicationException {
 
         List<AnimalWeightEntity> weightEntities = weightRepository.findByAnimalId(animalId);
-        boolean deleted = false;
+        boolean deleted;
 
         if(weightEntities != null) {
 
             for(AnimalWeightEntity weightEntity : weightEntities) {
                 weightRepository.deleteById(weightEntity.getWeightId());
             }
-
             deleted = true;
         }
         else {

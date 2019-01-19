@@ -4,8 +4,8 @@ import com.farm.dao.AnimalEntity;
 import com.farm.exceptions.ApplicationException;
 import com.farm.model.Animal;
 import com.farm.repository.AnimalRepository;
-import com.farm.repository.WeightRepository;
 import com.farm.service.implementation.AnimalServiceImplementation;
+import com.farm.service.implementation.WeightServiceImplementation;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -13,8 +13,11 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -26,6 +29,9 @@ public class AnimalServiceTest {
 
     @Mock
     AnimalRepository animalRepository;
+
+    @Mock
+    WeightServiceImplementation weightServiceImplementation;
 
 
     @Test
@@ -198,5 +204,109 @@ public class AnimalServiceTest {
         assertTrue(animalUpdated != null && animalUpdated.getName().equals("Roger") && animalUpdated.getDeathCause().equals("Acid"));
     }
 
+    @Test
+    public void delete_WhenAnimalNotExists_ExpectedNull() throws ApplicationException{
 
+        // GIVEN
+        when(animalRepository.findByAnimalId(any(int.class))).thenReturn(null);
+
+        // WHEN
+        try {
+            animalServiceImplementation.deleteById(1);
+        }
+        // THEN
+        catch (ApplicationException e) {
+            assertTrue("Error: Animal does not exist".equals(e.getMessage()));
+        }
+
+    }
+
+    @Test
+    public void delete_WhenWeightNotRemoved_ExpectedNull() throws ApplicationException {
+
+        // GIVEN
+        AnimalEntity animalEntity = new AnimalEntity();
+        animalEntity.setAnimalName("Roger");
+        animalEntity.setDateBirth(java.sql.Date.valueOf(LocalDate.now().minusDays(10)));
+        animalEntity.setDateArrival(java.sql.Date.valueOf(LocalDate.now().minusDays(5)));
+        animalEntity.setDateDeath(java.sql.Date.valueOf(LocalDate.now()));
+        animalEntity.setDateDeparture(java.sql.Date.valueOf(LocalDate.now()));
+        animalEntity.setDeathCause("Acid");
+
+        when(animalRepository.findByAnimalId(any(int.class))).thenReturn(animalEntity);
+        when(weightServiceImplementation.deleteByAnimalId(any(int.class))).thenReturn(false);
+
+        // WHEN
+        try {
+            animalServiceImplementation.deleteById(1);
+        }
+        // THEN
+        catch (ApplicationException e) {
+            assertTrue("Error: Could not delete associated weights".equals(e.getMessage()));
+        }
+
+    }
+
+    @Test
+    public void delete_WhenHasChildren_ExpectedNull() throws ApplicationException{
+
+        AnimalEntity animalEntity = new AnimalEntity();
+        animalEntity.setAnimalName("Georgette");
+        animalEntity.setAnimalId(1);
+        animalEntity.setAnimalSex("F");
+        animalEntity.setDateBirth(java.sql.Date.valueOf(LocalDate.now().minusDays(10)));
+        animalEntity.setDateArrival(java.sql.Date.valueOf(LocalDate.now().minusDays(5)));
+        animalEntity.setDateDeath(java.sql.Date.valueOf(LocalDate.now()));
+        animalEntity.setDateDeparture(java.sql.Date.valueOf(LocalDate.now()));
+        animalEntity.setDeathCause("Acid");
+
+        AnimalEntity animalEntityChild = new AnimalEntity();
+        animalEntityChild.setAnimalName("Roger");
+        animalEntity.setAnimalId(2);
+        animalEntity.setAnimalSex("M");
+        animalEntityChild.setDateBirth(java.sql.Date.valueOf(LocalDate.now().minusDays(10)));
+        animalEntityChild.setDateArrival(java.sql.Date.valueOf(LocalDate.now().minusDays(5)));
+        animalEntityChild.setDateDeath(java.sql.Date.valueOf(LocalDate.now()));
+        animalEntityChild.setDateDeparture(java.sql.Date.valueOf(LocalDate.now()));
+        animalEntityChild.setDeathCause("Acid");
+        animalEntity.setMotherId(1);
+
+        List<AnimalEntity> animalEntityListChildren = new ArrayList<>();
+        animalEntityListChildren.add(animalEntityChild);
+
+        when(animalRepository.findByAnimalId(any(int.class))).thenReturn(animalEntity);
+        when(weightServiceImplementation.deleteByAnimalId(any(int.class))).thenReturn(true);
+
+        // WHEN
+        try {
+            animalServiceImplementation.deleteById(1);
+        }
+        // THEN
+        catch (ApplicationException e) {
+            assertEquals("Error: This animal has descendants and cannot be deleted", e.getMessage());
+        }
+    }
+
+    @Test
+    public void delete_WhenAllValid_ExpectedTrue() throws ApplicationException{
+
+        AnimalEntity animalEntity = new AnimalEntity();
+        animalEntity.setAnimalName("Georgette");
+        animalEntity.setAnimalId(1);
+        animalEntity.setAnimalSex("F");
+        animalEntity.setDateBirth(java.sql.Date.valueOf(LocalDate.now().minusDays(10)));
+        animalEntity.setDateArrival(java.sql.Date.valueOf(LocalDate.now().minusDays(5)));
+        animalEntity.setDateDeath(java.sql.Date.valueOf(LocalDate.now()));
+        animalEntity.setDateDeparture(java.sql.Date.valueOf(LocalDate.now()));
+        animalEntity.setDeathCause("Acid");
+
+        when(animalRepository.findByAnimalId(any(int.class))).thenReturn(animalEntity);
+        when(weightServiceImplementation.deleteByAnimalId(any(int.class))).thenReturn(true);
+        when(animalRepository.findByMotherId(any(int.class))).thenReturn(null);
+
+        // WHEN
+        boolean deleted = animalServiceImplementation.deleteById(1);
+        // THEN
+        assertTrue(deleted);
+    }
 }

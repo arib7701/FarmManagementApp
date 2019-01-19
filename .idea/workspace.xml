@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d12d518-0448-4196-a6b6-18c2e63d2610" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/animal/detail-animal-weight-edit/detail-animal-weight-edit.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/animal/detail-animal-weight-edit/detail-animal-weight-edit.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/animal/detail-animal-weight-edit/detail-animal-weight-edit.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/animal/detail-animal-weight-edit/detail-animal-weight-edit.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/farm/controller/AnimalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/farm/controller/AnimalController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/farm/controller/WeightController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/farm/controller/WeightController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/farm/service/IAnimalService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/farm/service/IAnimalService.java" afterDir="false" />
@@ -12,17 +9,6 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/farm/service/implementation/AnimalServiceImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/farm/service/implementation/AnimalServiceImplementation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/farm/service/implementation/WeightServiceImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/farm/service/implementation/WeightServiceImplementation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/farm/serviceTest/AnimalServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/farm/serviceTest/AnimalServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/farm/serviceTest/WeightServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/farm/serviceTest/WeightServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/farm/controllertest/AngularController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/farm/controllertest/AnimalController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/farm/controllertest/DeliveryController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/farm/controllertest/TypeController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/farm/controllertest/VaccineController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/farm/controllertest/WeightController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/farm/service/IWeightService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/farm/service/IWeightService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/farm/service/implementation/WeightServiceImplementation.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/farm/service/implementation/WeightServiceImplementation.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/farm/controllertest/controllerTest/AnimalControllerTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/farm/controllertest/serviceTest/AnimalServiceTest.class" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -77,56 +63,32 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/service/implementation/WeightServiceImplementation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="120" column="77" selection-start-line="120" selection-start-column="43" selection-end-line="120" selection-end-column="77" />
-              <folding>
-                <element signature="e#2922#2923#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="160">
+              <caret line="106" column="13" lean-forward="true" selection-start-line="106" selection-start-column="13" selection-end-line="106" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/model/Weight.java">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/farm/serviceTest/WeightServiceTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="402">
-              <caret line="44" selection-start-line="44" selection-end-line="44" />
+            <state relative-caret-position="415">
+              <caret line="186" column="91" lean-forward="true" selection-start-line="186" selection-start-column="91" selection-end-line="186" selection-end-column="91" />
               <folding>
-                <element signature="e#878#879#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/farm/serviceTest/WeightServiceTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="192" column="26" selection-start-line="192" selection-start-column="26" selection-end-line="192" selection-end-column="26" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/farm/serviceTest/AnimalServiceTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="117" column="9" lean-forward="true" selection-start-line="110" selection-start-column="8" selection-end-line="117" selection-end-column="9" />
+            <state relative-caret-position="183">
+              <caret line="277" column="92" selection-start-line="277" selection-start-column="92" selection-end-line="277" selection-end-column="92" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/mappers/EntityModelMappers.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="270" selection-start-line="270" selection-end-line="270" />
             </state>
           </provider>
         </entry>
@@ -134,11 +96,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/service/implementation/AnimalServiceImplementation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="160" column="40" lean-forward="true" selection-start-line="160" selection-start-column="40" selection-end-line="160" selection-end-column="40" />
+            <state relative-caret-position="85">
+              <caret line="154" column="12" lean-forward="true" selection-start-line="154" selection-start-column="12" selection-end-line="154" selection-end-column="12" />
               <folding>
-                <element signature="e#5998#5999#0" expanded="true" />
-                <element signature="e#6055#6056#0" expanded="true" />
+                <element signature="e#5813#5814#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -147,8 +108,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/controller/AnimalController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
+            <state relative-caret-position="350">
+              <caret line="44" column="67" lean-forward="true" selection-start-line="44" selection-start-column="67" selection-end-line="44" selection-end-column="67" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -216,12 +177,12 @@
         <option value="$PROJECT_DIR$/src/test/java/com/farm/controllertest/controllerTest/AnimalControllerTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/farm/controllertest/serviceTest/AnimalServiceTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/farm/controller/serviceTest/AnimalServiceTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/farm/serviceTest/AnimalServiceTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/farm/controller/WeightController.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/farm/serviceTest/WeightServiceTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/farm/service/implementation/WeightServiceImplementation.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/farm/controller/WeightController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/farm/service/implementation/AnimalServiceImplementation.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/farm/controller/AnimalController.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/farm/serviceTest/WeightServiceTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/farm/serviceTest/AnimalServiceTest.java" />
       </list>
     </option>
   </component>
@@ -288,7 +249,25 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="farm" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="farm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FarmManagementApp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="farm" type="462c0819:PsiDirectoryNode" />
               <item name="dao" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="farm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FarmManagementApp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="farm" type="462c0819:PsiDirectoryNode" />
+              <item name="repository" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="farm" type="b2602c69:ProjectViewProjectNode" />
@@ -356,7 +335,7 @@
     <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547917003005" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547919712388" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -386,7 +365,70 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.WeightServiceTest.delete_WhenWeightsExist_ExpectedTrue">
+  <component name="RunManager" selected="JUnit.WeightServiceTest">
+    <configuration name="AnimalServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="farm" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.farm.serviceTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.farm.serviceTest" />
+      <option name="MAIN_CLASS_NAME" value="com.farm.serviceTest.AnimalServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AnimalServiceTest.delete_WhenAllValid_ExpectedTrue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="farm" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.farm.serviceTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.farm.serviceTest" />
+      <option name="MAIN_CLASS_NAME" value="com.farm.serviceTest.AnimalServiceTest" />
+      <option name="METHOD_NAME" value="delete_WhenAllValid_ExpectedTrue" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AnimalServiceTest.delete_WhenHasChildren_ExpectedNull" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="farm" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.farm.serviceTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.farm.serviceTest" />
+      <option name="MAIN_CLASS_NAME" value="com.farm.serviceTest.AnimalServiceTest" />
+      <option name="METHOD_NAME" value="delete_WhenHasChildren_ExpectedNull" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AnimalServiceTest.delete_WhenWeightNotRemoved_ExpectedNull" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="farm" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.farm.serviceTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.farm.serviceTest" />
+      <option name="MAIN_CLASS_NAME" value="com.farm.serviceTest.AnimalServiceTest" />
+      <option name="METHOD_NAME" value="delete_WhenWeightNotRemoved_ExpectedNull" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="WeightServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="farm" />
       <extension name="coverage">
@@ -402,70 +444,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WeightServiceTest.delete_WhenWeightsExist_ExpectedTrue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="farm" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.farm.serviceTest.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.farm.serviceTest" />
-      <option name="MAIN_CLASS_NAME" value="com.farm.serviceTest.WeightServiceTest" />
-      <option name="METHOD_NAME" value="delete_WhenWeightsExist_ExpectedTrue" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="WeightServiceTest.delete_WhenWeightsNotExist_ExpectedNull" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="farm" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.farm.serviceTest.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.farm.serviceTest" />
-      <option name="MAIN_CLASS_NAME" value="com.farm.serviceTest.WeightServiceTest" />
-      <option name="METHOD_NAME" value="delete_WhenWeightsNotExist_ExpectedNull" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="WeightServiceTest.update_WhenMeasureInvalid_ExpectedNull" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="farm" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.farm.serviceTest.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.farm.serviceTest" />
-      <option name="MAIN_CLASS_NAME" value="com.farm.serviceTest.WeightServiceTest" />
-      <option name="METHOD_NAME" value="update_WhenMeasureInvalid_ExpectedNull" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="WeightServiceTest.update_WhenWeightValid_ExpectedWeight" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="farm" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.farm.serviceTest.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.farm.serviceTest" />
-      <option name="MAIN_CLASS_NAME" value="com.farm.serviceTest.WeightServiceTest" />
-      <option name="METHOD_NAME" value="update_WhenWeightValid_ExpectedWeight" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="FarmManagementAppApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="farm" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.farm.FarmManagementAppApplication" />
@@ -476,11 +454,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.WeightServiceTest.delete_WhenWeightsExist_ExpectedTrue" />
-        <item itemvalue="JUnit.WeightServiceTest.delete_WhenWeightsNotExist_ExpectedNull" />
         <item itemvalue="JUnit.WeightServiceTest" />
-        <item itemvalue="JUnit.WeightServiceTest.update_WhenWeightValid_ExpectedWeight" />
-        <item itemvalue="JUnit.WeightServiceTest.update_WhenMeasureInvalid_ExpectedNull" />
+        <item itemvalue="JUnit.AnimalServiceTest" />
+        <item itemvalue="JUnit.AnimalServiceTest.delete_WhenHasChildren_ExpectedNull" />
+        <item itemvalue="JUnit.AnimalServiceTest.delete_WhenAllValid_ExpectedTrue" />
+        <item itemvalue="JUnit.AnimalServiceTest.delete_WhenWeightNotRemoved_ExpectedNull" />
       </list>
     </recent_temporary>
   </component>
@@ -509,44 +487,44 @@
       <workItem from="1547148778717" duration="4674000" />
       <workItem from="1547371759315" duration="1920000" />
       <workItem from="1547374506389" duration="3414000" />
-      <workItem from="1547886612157" duration="14732000" />
+      <workItem from="1547886612157" duration="17427000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="WeightServiceTest_save_WhenWeightValid_ExpectedWeight - 2019.01.19 at 17h 03m 12s.xml">
-      <configuration name="WeightServiceTest.save_WhenWeightValid_ExpectedWeight" configurationId="JUnit" />
+    <history-entry file="AnimalServiceTest_delete_WhenAnimalNotExists_ExpectedNull - 2019.01.19 at 18h 23m 03s.xml">
+      <configuration name="AnimalServiceTest.delete_WhenAnimalNotExists_ExpectedNull" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="WeightServiceTest_save_WhenMeasureInvalid_ExpectedNull - 2019.01.19 at 17h 03m 17s.xml">
-      <configuration name="WeightServiceTest.save_WhenMeasureInvalid_ExpectedNull" configurationId="JUnit" />
+    <history-entry file="AnimalServiceTest_delete_WhenWeightNotRemoved_ExpectedNull - 2019.01.19 at 18h 27m 20s.xml">
+      <configuration name="AnimalServiceTest.delete_WhenWeightNotRemoved_ExpectedNull" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="WeightServiceTest_save_WhenMeasureInvalid_ExpectedNull - 2019.01.19 at 17h 03m 46s.xml">
-      <configuration name="WeightServiceTest.save_WhenMeasureInvalid_ExpectedNull" configurationId="JUnit" />
+    <history-entry file="AnimalServiceTest_delete_WhenHasChildren_ExpectedNull - 2019.01.19 at 18h 30m 36s.xml">
+      <configuration name="AnimalServiceTest.delete_WhenHasChildren_ExpectedNull" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="WeightServiceTest_update_WhenWeighNotExists_ExpectedNull - 2019.01.19 at 17h 06m 43s.xml">
-      <configuration name="WeightServiceTest.update_WhenWeighNotExists_ExpectedNull" configurationId="JUnit" />
+    <history-entry file="AnimalServiceTest_delete_WhenHasChildren_ExpectedNull - 2019.01.19 at 18h 32m 04s.xml">
+      <configuration name="AnimalServiceTest.delete_WhenHasChildren_ExpectedNull" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="WeightServiceTest_update_WhenMeasureInvalid_ExpectedNull - 2019.01.19 at 17h 06m 53s.xml">
-      <configuration name="WeightServiceTest.update_WhenMeasureInvalid_ExpectedNull" configurationId="JUnit" />
+    <history-entry file="AnimalServiceTest_delete_WhenHasChildren_ExpectedNull - 2019.01.19 at 18h 34m 55s.xml">
+      <configuration name="AnimalServiceTest.delete_WhenHasChildren_ExpectedNull" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="WeightServiceTest_update_WhenMeasureInvalid_ExpectedNull - 2019.01.19 at 17h 08m 50s.xml">
-      <configuration name="WeightServiceTest.update_WhenMeasureInvalid_ExpectedNull" configurationId="JUnit" />
+    <history-entry file="AnimalServiceTest_delete_WhenHasChildren_ExpectedNull - 2019.01.19 at 18h 36m 00s.xml">
+      <configuration name="AnimalServiceTest.delete_WhenHasChildren_ExpectedNull" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="WeightServiceTest_update_WhenWeightValid_ExpectedWeight - 2019.01.19 at 17h 09m 26s.xml">
-      <configuration name="WeightServiceTest.update_WhenWeightValid_ExpectedWeight" configurationId="JUnit" />
+    <history-entry file="AnimalServiceTest_delete_WhenHasChildren_ExpectedNull - 2019.01.19 at 18h 37m 14s.xml">
+      <configuration name="AnimalServiceTest.delete_WhenHasChildren_ExpectedNull" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="WeightServiceTest - 2019.01.19 at 17h 09m 32s.xml">
-      <configuration name="WeightServiceTest" configurationId="JUnit" />
+    <history-entry file="AnimalServiceTest_delete_WhenAllValid_ExpectedTrue - 2019.01.19 at 18h 39m 48s.xml">
+      <configuration name="AnimalServiceTest.delete_WhenAllValid_ExpectedTrue" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="WeightServiceTest_delete_WhenWeightsNotExist_ExpectedNull - 2019.01.19 at 17h 54m 38s.xml">
-      <configuration name="WeightServiceTest.delete_WhenWeightsNotExist_ExpectedNull" configurationId="JUnit" />
+    <history-entry file="AnimalServiceTest - 2019.01.19 at 18h 40m 23s.xml">
+      <configuration name="AnimalServiceTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="WeightServiceTest_delete_WhenWeightsNotExist_ExpectedNull - 2019.01.19 at 17h 54m 52s.xml">
-      <configuration name="WeightServiceTest.delete_WhenWeightsNotExist_ExpectedNull" configurationId="JUnit" />
+    <history-entry file="AnimalServiceTest - 2019.01.19 at 18h 40m 59s.xml">
+      <configuration name="AnimalServiceTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65176000" />
+    <option name="totallyTimeSpent" value="67871000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -805,13 +783,6 @@
       </provider>
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7539348c-ee16-4b60-9ff3-454f409e4d06/console.sql" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/repository/AnimalRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -970,16 +941,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/controller/WeightController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="51" column="134" selection-start-line="51" selection-start-column="134" selection-end-line="51" selection-end-column="134" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/mappers/EntityModelMappers.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
@@ -997,41 +958,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/farm/serviceTest/AnimalServiceTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/repository/AnimalRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="117" column="9" lean-forward="true" selection-start-line="110" selection-start-column="8" selection-end-line="117" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="60">
+          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/service/implementation/WeightServiceImplementation.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/controller/WeightController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="120" column="77" selection-start-line="120" selection-start-column="43" selection-end-line="120" selection-end-column="77" />
-          <folding>
-            <element signature="e#2922#2923#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/service/implementation/AnimalServiceImplementation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="160" column="40" lean-forward="true" selection-start-line="160" selection-start-column="40" selection-end-line="160" selection-end-column="40" />
-          <folding>
-            <element signature="e#5998#5999#0" expanded="true" />
-            <element signature="e#6055#6056#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/controller/AnimalController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
+        <state relative-caret-position="455">
+          <caret line="58" column="26" selection-start-line="58" selection-start-column="26" selection-end-line="58" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1040,8 +977,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/farm/serviceTest/WeightServiceTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="192" column="26" selection-start-line="192" selection-start-column="26" selection-end-line="192" selection-end-column="26" />
+        <state relative-caret-position="415">
+          <caret line="186" column="91" lean-forward="true" selection-start-line="186" selection-start-column="91" selection-end-line="186" selection-end-column="91" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/service/implementation/WeightServiceImplementation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="106" column="13" lean-forward="true" selection-start-line="106" selection-start-column="13" selection-end-line="106" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/service/implementation/AnimalServiceImplementation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="154" column="12" lean-forward="true" selection-start-line="154" selection-start-column="12" selection-end-line="154" selection-end-column="12" />
+          <folding>
+            <element signature="e#5813#5814#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/farm/controller/AnimalController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="44" column="67" lean-forward="true" selection-start-line="44" selection-start-column="67" selection-end-line="44" selection-end-column="67" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/farm/serviceTest/AnimalServiceTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="277" column="92" selection-start-line="277" selection-start-column="92" selection-end-line="277" selection-end-column="92" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

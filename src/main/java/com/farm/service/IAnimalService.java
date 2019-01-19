@@ -2,8 +2,6 @@ package com.farm.service;
 
 import com.farm.exceptions.ApplicationException;
 import com.farm.model.Animal;
-import com.farm.model.AnimalType;
-import com.farm.repository.AnimalRepository;
 
 import java.util.Date;
 import java.util.List;
@@ -29,7 +27,7 @@ public interface IAnimalService {
     Animal save(Animal animal) throws ApplicationException;
     Animal update(int id, Animal animal) throws ApplicationException;
 
-    void deleteById(int id) throws ApplicationException;
+    boolean deleteById(int id) throws ApplicationException;
     void deleteByName(String name);
 
 }
