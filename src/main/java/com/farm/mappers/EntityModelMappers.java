@@ -165,6 +165,8 @@ public class EntityModelMappers {
             delivery.setId(deliveryEntity.getDeliveryId());
             delivery.setDate(deliveryEntity.getDeliveryDate().toLocalDate());
             delivery.setNumber(deliveryEntity.getDeliveryNumber());
+            delivery.setFatherId(deliveryEntity.getFatherId());
+            delivery.setMotherId(deliveryEntity.getMotherId());
 
         } catch (Exception e){
             e.printStackTrace();
@@ -183,6 +185,8 @@ public class EntityModelMappers {
             animalDeliveryEntity.setDeliveryId(delivery.getId());
             animalDeliveryEntity.setDeliveryDate(java.sql.Date.valueOf(delivery.getDate()));
             animalDeliveryEntity.setDeliveryNumber(delivery.getNumber());
+            animalDeliveryEntity.setFatherId(delivery.getFatherId());
+            animalDeliveryEntity.setMotherId(delivery.getMotherId());
 
         } catch (Exception e){
             e.printStackTrace();

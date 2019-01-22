@@ -1,6 +1,8 @@
 package com.farm.service.implementation;
 
 import com.farm.dao.AnimalDeliveryEntity;
+import com.farm.exceptions.ApplicationException;
+import com.farm.model.Animal;
 import com.farm.model.Delivery;
 import com.farm.repository.DeliveryRepository;
 import com.farm.service.IDeliveryService;
@@ -18,6 +20,8 @@ public class DeliveryServiceImplementation implements IDeliveryService {
     @Autowired
     private DeliveryRepository deliveryRepository;
 
+    @Autowired
+    private AnimalServiceImplementation animalServiceImplementation;
 
     @Override
     public List<Delivery> findAll() {
@@ -26,14 +30,17 @@ public class DeliveryServiceImplementation implements IDeliveryService {
     }
 
     @Override
-    public List<Delivery> findAllByMotherId(int id) {
-        List<AnimalDeliveryEntity> animalDeliveryEntityList = deliveryRepository.findByMotherId(id);
-        return parseDeliveryList(animalDeliveryEntityList);
-    }
+    public List<Delivery> findAllByAnimalId(int id) {
 
-    @Override
-    public List<Delivery> findAllByFatherId(int id) {
-        List<AnimalDeliveryEntity> animalDeliveryEntityList = deliveryRepository.findByFatherId(id);
+        Animal animal = animalServiceImplementation.findById(id);
+        List<AnimalDeliveryEntity> animalDeliveryEntityList;
+
+        if(animal.getSex().equals("F")) {
+            animalDeliveryEntityList = deliveryRepository.findByMotherId(id);
+        } else {
+            animalDeliveryEntityList = deliveryRepository.findByFatherId(id);
+        }
+
         return parseDeliveryList(animalDeliveryEntityList);
     }
 
@@ -57,8 +64,39 @@ public class DeliveryServiceImplementation implements IDeliveryService {
     }
 
     @Override
-    public void deleteById(int id) {
-        deliveryRepository.deleteById(id);
+    public Delivery update(int id, Delivery delivery) throws ApplicationException {
+
+        AnimalDeliveryEntity animalDeliveryEntity = deliveryRepository.findById(id).orElse(null);
+        Delivery deliveryUpdated;
+
+        if(animalDeliveryEntity != null) {
+
+            AnimalDeliveryEntity deliveryEntity = parseDelivery(delivery);
+            AnimalDeliveryEntity deliveryEntitySaved = deliveryRepository.save(deliveryEntity);
+            deliveryUpdated = parseDeliveryEntity(deliveryEntitySaved);
+        }
+        else {
+            throw new ApplicationException("Error: the delivery does not exist.");
+        }
+
+        return  deliveryUpdated;
+
+    }
+
+    @Override
+    public boolean deleteById(int id) throws ApplicationException {
+
+        AnimalDeliveryEntity animalDeliveryEntity = deliveryRepository.findById(id).orElse(null);
+
+        if(animalDeliveryEntity != null) {
+            deliveryRepository.deleteById(id);
+        }
+        else {
+            throw new ApplicationException("Error: the delivery does not exist.");
+        }
+
+        return true;
+
     }
 
     @Override
