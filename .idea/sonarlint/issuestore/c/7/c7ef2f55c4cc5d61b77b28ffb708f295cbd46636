@@ -1,8 +1,2 @@
 
-|squid:S2293+"YReplace the type specification in this constructor call with the diamond operator ("<>").(õçÇœøÿÿÿÿ8âüü™„-
-|squid:S2293;"YReplace the type specification in this constructor call with the diamond operator ("<>").(¹¨Š»ûÿÿÿÿ8âüü™„-
-|squid:S2293:"YReplace the type specification in this constructor call with the diamond operator ("<>").(äüÙ¾ûÿÿÿÿ8âüü™„-
-|squid:S2293*"YReplace the type specification in this constructor call with the diamond operator ("<>").(¹¨Š»ûÿÿÿÿ8âüü™„-
-|squid:S2293<"YReplace the type specification in this constructor call with the diamond operator ("<>").(õçÇœøÿÿÿÿ8âüü™„-
-`squid:S00107"AConstructor has 8 parameters, which is greater than 7 authorized.(¹áÈç8—ß»Éƒ-
-|squid:S2293)"YReplace the type specification in this constructor call with the diamond operator ("<>").(äüÙ¾ûÿÿÿÿ8âüü™„-
+`squid:S00107"AConstructor has 8 parameters, which is greater than 7 authorized.(¹áÈç8—ß»Éƒ-

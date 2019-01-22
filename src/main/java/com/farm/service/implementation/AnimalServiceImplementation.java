@@ -56,7 +56,8 @@ public class AnimalServiceImplementation implements IAnimalService {
     public List<Animal> findByTypeDeadLessThanSixMonths(int animalTypeId) {
 
         LocalDate sixMonthsAgo = LocalDate.now().minusMonths(6);
-        List<AnimalEntity> animalEntityList = animalRepository.findByAnimalTypeAndDateDeathIsAfter(animalTypeId, sixMonthsAgo);
+        System.out.println(sixMonthsAgo);
+        List<AnimalEntity> animalEntityList = animalRepository.findByAnimalTypeAndDateDeathIsAfterOrDateDeathIsNull(animalTypeId, java.sql.Date.valueOf(sixMonthsAgo));
         List<Animal> animalList = parseAnimalList(animalEntityList);
 
         for(Animal animal : animalList) {

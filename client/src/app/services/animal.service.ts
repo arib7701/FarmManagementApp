@@ -17,7 +17,7 @@ export class AnimalService {
   }
 
   getAllAnimalByType(type: number): Observable<Animal[]> {
-    return this.http.get<Animal[]>(`${BASE_URL}/type/${type}`);
+    return this.http.get<Animal[]>(`${BASE_URL}/type2/${type}`);
   }
 
   getAnimalById(id: number): Observable<Animal> {

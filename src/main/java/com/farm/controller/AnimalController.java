@@ -24,8 +24,14 @@ public class AnimalController {
     }
 
     @GetMapping(value= "/type/{type}")
-    public ResponseEntity<List<Animal>> getAnimalsByType(@PathVariable ("type") int type) {
+    public ResponseEntity<List<Animal>> getAllAnimalsByType(@PathVariable ("type") int type) {
         List<Animal> animalsByType = animalService.findByType(type);
+        return new ResponseEntity(animalsByType, HttpStatus.OK);
+    }
+
+    @GetMapping(value= "/type2/{type}")
+    public ResponseEntity<List<Animal>> getAnimalsByType2(@PathVariable ("type") int type) {
+        List<Animal> animalsByType = animalService.findByTypeDeadLessThanSixMonths(type);
         return new ResponseEntity(animalsByType, HttpStatus.OK);
     }
 
