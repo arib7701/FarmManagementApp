@@ -51,8 +51,10 @@ export class DetailAnimalDeliveryEditComponent implements OnInit, OnDestroy {
 
             if (this.idAnimal === this.deliveries[0].motherId) {
               this.motherIdControl = true;
+              this.getIdBySex('M');
             } else {
               this.fatherIdControl = true;
+              this.getIdBySex('F');
             }
 
             this.noDeliveries = false;
@@ -67,6 +69,10 @@ export class DetailAnimalDeliveryEditComponent implements OnInit, OnDestroy {
           console.log('Error getting deliveries');
         }
       );
+  }
+
+  getIdBySex(sex: string) {
+    // TO DO
   }
 
   addControls(index: number) {
