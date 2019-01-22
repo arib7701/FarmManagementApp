@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DetailAnimalComponent implements OnInit, OnDestroy {
   idAnimal: number;
+  sexAnimal: string;
   typeAnimal: string;
   animal: Animal;
   subscriptionAnimal: Subscription;
@@ -31,6 +32,7 @@ export class DetailAnimalComponent implements OnInit, OnDestroy {
       .subscribe(
         animal => {
           this.animal = animal;
+          this.sexAnimal = this.animal.sex;
           this.getType();
         },
         error => {

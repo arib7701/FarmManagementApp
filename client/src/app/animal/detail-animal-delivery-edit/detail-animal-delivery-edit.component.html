@@ -1,0 +1,117 @@
+<div class="col-md-10" style="padding:20px">
+  <!-- general form elements disabled -->
+  <div class="box box-success">
+    <div class="box-header"><h3 class="box-title">Edit Delivery Info</h3></div>
+    <!-- /.box-header -->
+    <div class="box-body">
+      <div class="callout callout-warning"  *ngIf="noDeliveries" >
+        <h4>No delivery have been registered yet for this animal</h4>
+        <p>Start reproducing it or to some data entry today!</p>
+      </div>
+      <form [formGroup]="editDeliveryForm" (ngSubmit)="submitEditDelivery()">
+        <div formArrayName="deliveryItems">
+          <div
+            class="row"
+            display="flex"
+            *ngFor="
+              let delivery of editDeliveryForm.get('deliveryItems').controls;
+              let i = index
+            "
+            [formGroupName]="i"
+          >
+            <div class="col-md-3">
+              <!-- datepicker -->
+              <div class="form-group">
+                <mat-form-field>
+                  <input
+                    matInput
+                    [max]="today"
+                    [matDatepicker]="picker"
+                    formControlName="deliveryDate"
+                    placeholder="Choose a Delivery Date"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="picker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <!-- text input -->
+              <div class="form-group">
+                <mat-form-field class="example-full-width">
+                  <input
+                    type="number"
+                    matInput
+                    placeholder="Enter the number of babies"
+                    formControlName="number"
+                  />
+                  <mat-error>
+                      Number must be between <strong>0 and 20 babies</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <!-- text input -->
+              <div class="form-group">
+                <mat-form-field class="example-full-width">
+                  <input
+                    type="number"
+                    matInput
+                    placeholder="Enter the id of the Mother"
+                    formControlName="motherId"
+                  />
+                  <mat-error>
+                      Number must be between <strong>0 and 20 babies</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <!-- text input -->
+              <div class="form-group">
+                <mat-form-field class="example-full-width">
+                  <input
+                    type="number"
+                    matInput
+                    placeholder="Enter the id of the Father"
+                    formControlName="fatherId"
+                  />
+                  <mat-error>
+                      Number must be between <strong>0 and 20 babies</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-md-1">
+              <div class="form-group icon">
+                <a (click)="deleteDelivery(i)"><i class="fa fa-trash"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="box-footer">
+          <button
+            type="submit"
+            mat-raised-button
+            color="primary"
+            [disabled]="!editDeliveryForm.valid"
+          >
+            Submit
+          </button>
+          <a (click)="addNewDeliveryControl()" style="padding-left:25px;"
+            ><i class="fas fa-plus-circle fa-2x"></i
+          ></a>
+        </div>
+      </form>
+      <flash-messages></flash-messages>
+    </div>
+    <!-- /.box-body -->
+  </div>
+  <!-- /.box -->
+</div>
+<!--/.col (right) -->
