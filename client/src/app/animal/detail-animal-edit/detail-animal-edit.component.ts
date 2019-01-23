@@ -105,10 +105,10 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
     return (group: FormGroup): any => {
       const fromDate = group.controls[fromDaTeControl];
       const toDate = new Date(this.editAnimalForm.controls[toDateControl].value);
-      if (fromDate.value < toDate) {
+      if (fromDate.value !== null && fromDate.value < toDate) {
         fromDate.setErrors({'dateTooSmall': true});
       } else {
-        return null;
+        return this.editAnimalForm.valid;
       }
     };
   }
@@ -117,10 +117,10 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
     return (group: FormGroup): any => {
       const formDate = group.controls[date];
       const todayDate = Date.now();
-      if (todayDate < formDate.value) {
+      if (formDate.value !== null && todayDate < formDate.value) {
         formDate.setErrors({'dateInFuture': true});
       } else {
-        return null;
+        return this.editAnimalForm.valid;
       }
     };
   }
