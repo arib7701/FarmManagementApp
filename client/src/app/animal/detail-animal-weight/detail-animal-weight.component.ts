@@ -17,6 +17,7 @@ export class DetailAnimalWeightComponent implements OnInit, OnDestroy {
   diffs = new Array<String>();
   lineChart = [];
   noWeights = false;
+  paginationWeight = 1;
 
   constructor(private weightService: WeightService) {}
 

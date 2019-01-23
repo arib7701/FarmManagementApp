@@ -98,14 +98,16 @@ export class DetailAnimalDeliveryEditComponent implements OnInit, OnDestroy {
 
   addNewDeliveryControl() {
     const control = <FormArray>this.editDeliveryForm.controls['deliveryItems'];
-    let motherIdControlValue = '';
-    let fatherIdControlValue = '';
+    let motherIdControlValue = null;
+    let fatherIdControlValue = null;
 
     if (this.motherIdControl) {
-      motherIdControlValue = this.idAnimal.toString();
+      motherIdControlValue = this.idAnimal;
     } else {
-      fatherIdControlValue = this.idAnimal.toString();
+      fatherIdControlValue = this.idAnimal;
     }
+
+    this.deliveries.unshift(new Delivery());
 
     control.push(
       new FormGroup({
@@ -130,6 +132,7 @@ export class DetailAnimalDeliveryEditComponent implements OnInit, OnDestroy {
           .subscribe(
             deliveryDeleted => {
               console.log('Successfully deleted delivery');
+              this.deliveries.splice(index, 1);
               control.removeAt(index);
               this.flashMessagesService.show('Delivery successfully deleted.',
               { cssClass: 'alert-success', timeout: 5000 });
@@ -172,8 +175,14 @@ export class DetailAnimalDeliveryEditComponent implements OnInit, OnDestroy {
     delivery.id = deliveryInfo.id.value;
     delivery.number = deliveryInfo.number;
     delivery.date = deliveryInfo.deliveryDate;
-    delivery.motherId = deliveryInfo.motherId;
-    delivery.fatherId = deliveryInfo.fatherId;
+
+    if (this.motherIdControl) {
+      delivery.motherId = this.idAnimal;
+      delivery.fatherId = deliveryInfo.fatherId;
+    } else {
+      delivery.motherId = deliveryInfo.motherId;
+      delivery.fatherId = this.idAnimal;
+    }
 
     this.subscriptionDeliveryUpdate = this.deliveryService
       .updateDelivery(delivery.id, delivery)
@@ -193,8 +202,16 @@ export class DetailAnimalDeliveryEditComponent implements OnInit, OnDestroy {
     const delivery = new Delivery();
     delivery.number = deliveryInfo.number;
     delivery.date = deliveryInfo.deliveryDate;
-    delivery.motherId = deliveryInfo.motherId;
-    delivery.fatherId = deliveryInfo.fatherId;
+
+    if (this.motherIdControl) {
+      delivery.motherId = this.idAnimal;
+      delivery.fatherId = deliveryInfo.fatherId;
+    } else {
+      delivery.motherId = deliveryInfo.motherId;
+      delivery.fatherId = this.idAnimal;
+    }
+
+    console.log(delivery);
 
     this.subscriptionDeliveryUpdate = this.deliveryService
       .addDelivery(delivery)

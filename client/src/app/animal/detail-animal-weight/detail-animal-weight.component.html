@@ -17,7 +17,7 @@
     <!-- /.box-header -->
     <div class="box-body"  >
       <div class="row" display="flex"
-        *ngFor=" let weight of weights; let i = index">
+        *ngFor=" let weight of weights  | paginate: {itemsPerPage:5, currentPage: paginationWeight}; let i = index">
         <div class="col-md-4">
           <code>
             <p>
@@ -52,6 +52,9 @@
             ></i>
           </div>
         </div>
+      </div>
+      <div class="row" style="display:flex; justify-content:center;">
+        <pagination-controls class="my-pagination" (pageChange)="paginationWeight = $event"></pagination-controls>
       </div>
     </div>
   </div>

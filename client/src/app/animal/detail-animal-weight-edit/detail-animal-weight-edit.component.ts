@@ -21,9 +21,10 @@ export class DetailAnimalWeightEditComponent implements OnInit, OnDestroy {
   subscriptionWeightNew: Subscription;
   weights: Weight[];
   counterEdit = 0;
-  diffs = new Array<String>();
+  diffs = new Array<string>();
   noWeights = false;
   today = new Date();
+  paginationWeight = 1;
 
   constructor(
     private weightService: WeightService,
@@ -117,6 +118,7 @@ export class DetailAnimalWeightEditComponent implements OnInit, OnDestroy {
           .subscribe(
             weightDeleted => {
               console.log('Successfully deleted weight');
+              this.weights.splice(index, 1);
               control.removeAt(index);
               this.flashMessagesService.show('Weight successfully deleted.',
               { cssClass: 'alert-success', timeout: 5000 });

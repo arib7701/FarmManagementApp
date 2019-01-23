@@ -36,9 +36,9 @@ public class DeliveryServiceImplementation implements IDeliveryService {
         List<AnimalDeliveryEntity> animalDeliveryEntityList;
 
         if(animal.getSex().equals("F")) {
-            animalDeliveryEntityList = deliveryRepository.findByMotherId(id);
+            animalDeliveryEntityList = deliveryRepository.findByMotherIdOrderByDeliveryDate(id);
         } else {
-            animalDeliveryEntityList = deliveryRepository.findByFatherId(id);
+            animalDeliveryEntityList = deliveryRepository.findByFatherIdOrderByDeliveryDate(id);
         }
 
         return parseDeliveryList(animalDeliveryEntityList);
