@@ -14,7 +14,7 @@ public interface IDeliveryService {
 
     Delivery findById(int id);
 
-    Delivery save(Delivery delivery);
+    Delivery save(Delivery delivery) throws ApplicationException;
     Delivery update(int id, Delivery delivery) throws ApplicationException;
 
     boolean deleteById(int id) throws ApplicationException;

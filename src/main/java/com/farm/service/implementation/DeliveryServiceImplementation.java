@@ -1,6 +1,7 @@
 package com.farm.service.implementation;
 
 import com.farm.dao.AnimalDeliveryEntity;
+import com.farm.dao.AnimalEntity;
 import com.farm.exceptions.ApplicationException;
 import com.farm.model.Animal;
 import com.farm.model.Delivery;
@@ -57,10 +58,19 @@ public class DeliveryServiceImplementation implements IDeliveryService {
     }
 
     @Override
-    public Delivery save(Delivery delivery) {
-        AnimalDeliveryEntity deliveryEntity = parseDelivery(delivery);
-        AnimalDeliveryEntity deliveryEntitySaved = deliveryRepository.save(deliveryEntity);
-        return parseDeliveryEntity(deliveryEntitySaved);
+    public Delivery save(Delivery delivery) throws ApplicationException {
+
+        Delivery deliverySaved;
+
+        if(checkCorrectSex(delivery)) {
+            AnimalDeliveryEntity deliveryEntity = parseDelivery(delivery);
+            AnimalDeliveryEntity deliveryEntitySaved = deliveryRepository.save(deliveryEntity);
+            deliverySaved = parseDeliveryEntity(deliveryEntitySaved);
+        } else {
+            throw new ApplicationException("Error: the sex of the parents are invalid.");
+        }
+
+        return deliverySaved;
     }
 
     @Override
@@ -71,9 +81,13 @@ public class DeliveryServiceImplementation implements IDeliveryService {
 
         if(animalDeliveryEntity != null) {
 
-            AnimalDeliveryEntity deliveryEntity = parseDelivery(delivery);
-            AnimalDeliveryEntity deliveryEntitySaved = deliveryRepository.save(deliveryEntity);
-            deliveryUpdated = parseDeliveryEntity(deliveryEntitySaved);
+            if(checkCorrectSex(delivery)) {
+                AnimalDeliveryEntity deliveryEntity = parseDelivery(delivery);
+                AnimalDeliveryEntity deliveryEntitySaved = deliveryRepository.save(deliveryEntity);
+                deliveryUpdated = parseDeliveryEntity(deliveryEntitySaved);
+            } else {
+                throw new ApplicationException("Error: the sex of the parents are invalid.");
+            }
         }
         else {
             throw new ApplicationException("Error: the delivery does not exist.");
@@ -102,5 +116,16 @@ public class DeliveryServiceImplementation implements IDeliveryService {
     @Override
     public void deleteByName(String name) {
 
+    }
+
+    private boolean checkCorrectSex(Delivery delivery) {
+
+        int fatherId = delivery.getFatherId();
+        int motherId = delivery.getMotherId();
+
+        Animal mother = animalServiceImplementation.findById(motherId);
+        Animal father = animalServiceImplementation.findById(fatherId);
+
+        return(mother.getSex().equals("F") && father.getSex().equals("M"));
     }
 }
