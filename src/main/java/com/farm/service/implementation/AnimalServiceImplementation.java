@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -57,7 +58,12 @@ public class AnimalServiceImplementation implements IAnimalService {
 
         LocalDate sixMonthsAgo = LocalDate.now().minusMonths(6);
         System.out.println(sixMonthsAgo);
-        List<AnimalEntity> animalEntityList = animalRepository.findByAnimalTypeAndDateDeathIsAfterOrDateDeathIsNull(animalTypeId, java.sql.Date.valueOf(sixMonthsAgo));
+        List<AnimalEntity> animalEntityList1 = animalRepository.findByAnimalTypeAndDateDeathIsAfter(animalTypeId, java.sql.Date.valueOf(sixMonthsAgo));
+        List<AnimalEntity> animalEntityList2 = animalRepository.findByAnimalTypeAndDateDeathIsNull(animalTypeId);
+
+        List<AnimalEntity> animalEntityList = new ArrayList<>();
+        animalEntityList.addAll(animalEntityList1);
+        animalEntityList.addAll(animalEntityList2);
         List<Animal> animalList = parseAnimalList(animalEntityList);
 
         for(Animal animal : animalList) {

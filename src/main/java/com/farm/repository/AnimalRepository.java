@@ -11,7 +11,8 @@ import java.util.List;
 public interface AnimalRepository extends CrudRepository<AnimalEntity, Integer> {
 
     List<AnimalEntity> findByAnimalType(int typeId);
-    List<AnimalEntity> findByAnimalTypeAndDateDeathIsAfterOrDateDeathIsNull(int typeId, Date date);
+    List<AnimalEntity> findByAnimalTypeAndDateDeathIsAfter(int typeId, Date date);
+    List<AnimalEntity> findByAnimalTypeAndDateDeathIsNull(int typeId);
 
     List<AnimalEntity> findByFatherId(int fatherId);
     List<AnimalEntity> findByMotherId(int motherId);

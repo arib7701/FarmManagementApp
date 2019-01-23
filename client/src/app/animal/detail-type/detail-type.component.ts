@@ -30,6 +30,7 @@ export class DetailTypeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.idType = +this.route.snapshot.paramMap.get('type');
+    console.log(this.idType);
 
     this.subscriptionType = this.typeService.getTypeById(this.idType).subscribe(
       type => {
