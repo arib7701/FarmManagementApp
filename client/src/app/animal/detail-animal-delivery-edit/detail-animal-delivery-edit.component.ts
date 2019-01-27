@@ -251,8 +251,6 @@ export class DetailAnimalDeliveryEditComponent implements OnInit, OnDestroy {
       delivery.fatherId = this.idAnimal;
     }
 
-    console.log(delivery);
-
     this.subscriptionDeliveryUpdate = this.deliveryService
       .addDelivery(delivery)
       .subscribe(

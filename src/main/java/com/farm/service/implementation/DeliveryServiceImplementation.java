@@ -62,12 +62,12 @@ public class DeliveryServiceImplementation implements IDeliveryService {
 
         Delivery deliverySaved;
 
-        if(checkCorrectSex(delivery)) {
+        if(checkCorrectSexAndAge(delivery)) {
             AnimalDeliveryEntity deliveryEntity = parseDelivery(delivery);
             AnimalDeliveryEntity deliveryEntitySaved = deliveryRepository.save(deliveryEntity);
             deliverySaved = parseDeliveryEntity(deliveryEntitySaved);
         } else {
-            throw new ApplicationException("Error: the sex of the parents are invalid.");
+            throw new ApplicationException("Error: the sex or age of the parents are invalid.");
         }
 
         return deliverySaved;
@@ -81,12 +81,12 @@ public class DeliveryServiceImplementation implements IDeliveryService {
 
         if(animalDeliveryEntity != null) {
 
-            if(checkCorrectSex(delivery)) {
+            if(checkCorrectSexAndAge(delivery)) {
                 AnimalDeliveryEntity deliveryEntity = parseDelivery(delivery);
                 AnimalDeliveryEntity deliveryEntitySaved = deliveryRepository.save(deliveryEntity);
                 deliveryUpdated = parseDeliveryEntity(deliveryEntitySaved);
             } else {
-                throw new ApplicationException("Error: the sex of the parents are invalid.");
+                throw new ApplicationException("Error: the sex or age of the parents are invalid.");
             }
         }
         else {
@@ -118,14 +118,19 @@ public class DeliveryServiceImplementation implements IDeliveryService {
 
     }
 
-    private boolean checkCorrectSex(Delivery delivery) {
+    private boolean checkCorrectSexAndAge(Delivery delivery) {
 
         int fatherId = delivery.getFatherId();
         int motherId = delivery.getMotherId();
 
         Animal mother = animalServiceImplementation.findById(motherId);
         Animal father = animalServiceImplementation.findById(fatherId);
+        LocalDate sixMonthAgo = LocalDate.now().minusMonths(6);
 
-        return(mother.getSex().equals("F") && father.getSex().equals("M"));
+        boolean correctSex = (mother.getSex().equals("F") && father.getSex().equals("M"));
+        boolean correctAge = (mother.getBirth().isBefore(sixMonthAgo)) && (father.getBirth().isBefore(sixMonthAgo));
+
+        return (correctAge && correctSex);
     }
+
 }

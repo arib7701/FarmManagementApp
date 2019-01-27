@@ -19,16 +19,14 @@ export class DetailAnimalDeliveryComponent implements OnInit, OnDestroy {
   deliveries: Delivery[];
   noDeliveries = false;
 
-  constructor(private deliveryService: DeliveryService) { }
+  constructor(private deliveryService: DeliveryService) {}
 
   ngOnInit() {
-    console.log('init ', this.idAnimal, this.sexAnimal);
     this.subscriptionDeliveries = this.deliveryService
       .getAllDeliveryByAnimalId(this.idAnimal)
       .subscribe(
         deliveries => {
           this.deliveries = deliveries;
-          console.log('sub ', deliveries, this.idAnimal, this.sexAnimal);
           if (this.deliveries.length > 0) {
             console.log('Success getting deliveries', this.deliveries);
           } else {
@@ -46,5 +44,4 @@ export class DetailAnimalDeliveryComponent implements OnInit, OnDestroy {
       this.subscriptionDeliveries.unsubscribe();
     }
   }
-
 }

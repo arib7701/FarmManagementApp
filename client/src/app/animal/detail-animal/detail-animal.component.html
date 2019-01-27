@@ -102,11 +102,14 @@
       <!-- /.box-footer-->
     </div>
     <!-- /.box -->
-    <div class="col-md-9">
+    <div class="col-md-9" *ngIf="birthDate < sixMonthAgo">
       <app-detail-animal-delivery
         [idAnimal]="idAnimal"
         [sexAnimal]="sexAnimal"
       ></app-detail-animal-delivery>
+    </div>
+    <div class="callout callout-info" *ngIf="birthDate > sixMonthAgo">
+      <h4>Animal not old enough to reproduce yet</h4>
     </div>
   </div>
   <div class="col-md-6">

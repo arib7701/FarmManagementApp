@@ -24,6 +24,8 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
   type: Type;
   animal: Animal;
   today = new Date();
+  sixMonthAgo = this.today.setMonth(this.today.getMonth() - 6);
+  birthDay: Date;
 
   editAnimalForm: FormGroup;
   animalsIdsMale = new Array<number>();
@@ -45,6 +47,7 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
         animal => {
           this.animal = animal;
           this.sexAnimal = animal.sex;
+          this.birthDay = new Date(animal.birth);
           this.getType();
           this.loadItems();
         },

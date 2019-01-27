@@ -244,9 +244,14 @@
   <app-detail-animal-weight-edit
     [idAnimal]="idAnimal"
   ></app-detail-animal-weight-edit>
-  <app-detail-animal-delivery-edit
-    [idAnimal]="idAnimal"
-    [sexAnimal]="sexAnimal"
-  ></app-detail-animal-delivery-edit>
+  <div class="col-md-9 callout callout-info" *ngIf="birthDay > sixMonthAgo">
+    <h4>Animal not old enough to reproduce yet</h4>
+  </div>
+  <div *ngIf="birthDay < sixMonthAgo">
+    <app-detail-animal-delivery-edit
+      [idAnimal]="idAnimal"
+      [sexAnimal]="sexAnimal"
+    ></app-detail-animal-delivery-edit>
+  </div>
 </div>
 <!--/.col (right) -->

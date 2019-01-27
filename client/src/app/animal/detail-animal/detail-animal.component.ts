@@ -17,6 +17,9 @@ export class DetailAnimalComponent implements OnInit, OnDestroy {
   animal: Animal;
   subscriptionAnimal: Subscription;
   subscriptionType: Subscription;
+  today = new Date();
+  sixMonthAgo = this.today.setMonth(this.today.getMonth() - 6);
+  birthDate: Date;
 
   constructor(
     private animalService: AnimalService,
@@ -33,6 +36,7 @@ export class DetailAnimalComponent implements OnInit, OnDestroy {
         animal => {
           this.animal = animal;
           this.sexAnimal = this.animal.sex;
+          this.birthDate = new Date(this.animal.birth);
           this.getType();
         },
         error => {

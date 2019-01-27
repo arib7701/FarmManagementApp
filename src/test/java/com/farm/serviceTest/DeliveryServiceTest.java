@@ -41,7 +41,7 @@ public class DeliveryServiceTest {
         delivery.setMotherId(1);
         delivery.setFatherId(1);
 
-        Animal mother = new Animal(1,"mom", "F", "A1", LocalDate.now(), 1, null, null);
+        Animal mother = new Animal(1,"mom", "F", "A1", LocalDate.now().minusMonths(9), 1, null, null);
         when(animalServiceImplementation.findById(any(int.class))).thenReturn(mother);
 
         // WHEN
@@ -50,7 +50,32 @@ public class DeliveryServiceTest {
         }
         // THEN
         catch (ApplicationException e) {
-            assertTrue("Error: the sex of the parents are invalid.".equals(e.getMessage()));
+            assertTrue("Error: the sex or age of the parents are invalid.".equals(e.getMessage()));
+        }
+    }
+
+    @Test
+    public void save_WhenParentAgeInvalid_ExpectedNull() {
+
+        // GIVEN
+        Delivery delivery = new Delivery();
+        delivery.setDate(LocalDate.now());
+        delivery.setNumber(10);
+        delivery.setMotherId(1);
+        delivery.setFatherId(2);
+
+        Animal mother = new Animal(1,"mom", "F", "A1", LocalDate.now().minusMonths(9), 1, null, null);
+        Animal father = new Animal(2, "dad", "M", "A2", LocalDate.now(), 1, null, null);
+        when(animalServiceImplementation.findById(1)).thenReturn(mother);
+        when(animalServiceImplementation.findById(2)).thenReturn(father);
+
+        // WHEN
+        try {
+            deliveryServiceImplementation.save(delivery);
+        }
+        // THEN
+        catch (ApplicationException e) {
+            assertTrue("Error: the sex or age of the parents are invalid.".equals(e.getMessage()));
         }
     }
 
