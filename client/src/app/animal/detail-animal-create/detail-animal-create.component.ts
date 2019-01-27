@@ -6,7 +6,12 @@ import { AnimalService } from 'src/app/services/animal.service';
 import { TypeService } from 'src/app/services/type.service';
 import { ActivatedRoute } from '@angular/router';
 import { WeightService } from 'src/app/services/weight.service';
-import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  AbstractControl
+} from '@angular/forms';
 import { Weight } from 'src/app/models/weight';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
@@ -26,16 +31,17 @@ export class DetailAnimalCreateComponent implements OnInit {
   newAnimalForm: FormGroup;
   animalsIdsMale = new Array<number>();
   animalsIdsFemale = new Array<number>();
+  today = new Date();
 
   constructor(
     private animalService: AnimalService,
     private weightService: WeightService,
     private typeService: TypeService,
     private route: ActivatedRoute,
-    private flashMessagesService: FlashMessagesService) { }
+    private flashMessagesService: FlashMessagesService
+  ) {}
 
   ngOnInit() {
-
     this.idType = +this.route.snapshot.paramMap.get('type');
 
     this.subscriptionType = this.typeService.getTypeById(this.idType).subscribe(
@@ -47,23 +53,28 @@ export class DetailAnimalCreateComponent implements OnInit {
       }
     );
 
-    this.subscriptionAnimalId = this.animalService.getAllAnimalByType(this.idType).subscribe(animals => {
-      const allAnimals = animals;
-      allAnimals.forEach(animal => {
-        if (animal.sex === 'M') {
-          this.animalsIdsMale.push(animal.id);
-        } else {
-          this.animalsIdsFemale.push(animal.id);
+    this.subscriptionAnimalId = this.animalService
+      .getAllAnimalByType(this.idType)
+      .subscribe(
+        animals => {
+          const allAnimals = animals;
+          allAnimals.forEach(animal => {
+            if (animal.sex === 'M') {
+              this.animalsIdsMale.push(animal.id);
+            } else {
+              this.animalsIdsFemale.push(animal.id);
+            }
+          });
+        },
+        error => {
+          console.log('Error getting all animal by type');
         }
-      });
-    }, error => {
-      console.log('Error getting all animal by type');
-    });
+      );
 
     this.createForm();
   }
 
-  createForm () {
+  createForm() {
     this.newAnimalForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
       sex: new FormControl('', [Validators.required]),
@@ -75,15 +86,20 @@ export class DetailAnimalCreateComponent implements OnInit {
       birthDate: new FormControl(''),
       arrivalDate: new FormControl('')
     });
-    this.newAnimalForm.setValidators([this.isDateSmallerTo('arrivalDate', 'birthDate'), this.isFutureDate('birthDate')]);
+    this.newAnimalForm.setValidators([
+      this.isDateSmallerTo('arrivalDate', 'birthDate'),
+      this.isFutureDate('birthDate')
+    ]);
   }
 
   isDateSmallerTo(fromDateControl, toDateControl) {
     return (group: FormGroup): any => {
       const fromDate = group.controls[fromDateControl];
       const toDate = new Date(this.newAnimalForm.controls[toDateControl].value);
-      if (fromDate.value < toDate) {
-        fromDate.setErrors({'dateTooSmall': true});
+      if (fromDate.value !== '' && fromDate.value < toDate) {
+        fromDate.setErrors({ dateTooSmall: true });
+      } else {
+        return this.newAnimalForm.valid;
       }
     };
   }
@@ -92,15 +108,16 @@ export class DetailAnimalCreateComponent implements OnInit {
     return (group: FormGroup): any => {
       const dateControl = group.controls[date];
       const todayDate = Date.now();
-      if (todayDate < dateControl.value) {
-        dateControl.setErrors({'dateInFuture': true});
+      if (dateControl.value !== '' && todayDate < dateControl.value) {
+        dateControl.setErrors({ dateInFuture: true });
+      } else {
+        return this.newAnimalForm.valid;
       }
     };
   }
 
-  submitCreateAnimal () {
-
-    this.animal = new Animal;
+  submitCreateAnimal() {
+    this.animal = new Animal();
     this.animal.name = this.newAnimalForm.controls['name'].value;
     this.animal.sex = this.newAnimalForm.controls['sex'].value;
     this.animal.type = this.type.id;
@@ -110,36 +127,58 @@ export class DetailAnimalCreateComponent implements OnInit {
     this.animal.fatherId = this.newAnimalForm.controls['fatherId'].value;
     this.animal.birth = this.newAnimalForm.controls['birthDate'].value;
     this.animal.death = null;
+    this.animal.deathCause = null;
     this.animal.arrival = this.newAnimalForm.controls['arrivalDate'].value;
     this.animal.departure = null;
     this.animal.weights = null;
 
-   this.subscriptionAnimal = this.animalService.addAnimal(this.animal).subscribe(animalSaved => {
-    const animalId = animalSaved.id;
-    console.log('Saving animal OK ');
-    this.saveWeight(animalId);
-   }, error => {
-    console.log('Error saving new animal');
-   });
+    this.subscriptionAnimal = this.animalService
+      .addAnimal(this.animal)
+      .subscribe(
+        animalSaved => {
+          const animalId = animalSaved.id;
+          console.log('Saving animal OK ');
+          this.saveWeight(animalId);
+        },
+        error => {
+          console.log('Error saving new animal', error);
+          this.flashMessagesService.show(
+            'Error creating the Animal Information, please try again. ' +
+              error.error,
+            { cssClass: 'alert-error', timeout: 5000 }
+          );
+        }
+      );
   }
 
   saveWeight(animalId) {
-
-     if (this.newAnimalForm.controls['currentWeight'].value !== null) {
-      const currentWeight = new Weight;
+    if (this.newAnimalForm.controls['currentWeight'].value !== null) {
+      const currentWeight = new Weight();
       currentWeight.date = new Date();
-      currentWeight.measure = this.newAnimalForm.controls['currentWeight'].value;
+      currentWeight.measure = this.newAnimalForm.controls[
+        'currentWeight'
+      ].value;
       currentWeight.animalId = animalId;
 
-      this.subscriptionWeight = this.weightService.addWeight(currentWeight).subscribe(weightSaved => {
-        console.log('Saving weight OK');
-        this.flashMessagesService.show('Animal Information successfully created.',
-           { cssClass: 'alert-success', timeout: 5000 });
-       }, error => {
-        console.log('Error saving new weight');
-        this.flashMessagesService.show('Error creating the Animal Information, please try again.',
-           { cssClass: 'alert-error', timeout: 5000 });
-       });
+      this.subscriptionWeight = this.weightService
+        .addWeight(currentWeight)
+        .subscribe(
+          weightSaved => {
+            console.log('Saving weight OK');
+            this.flashMessagesService.show(
+              'Animal Information successfully created.',
+              { cssClass: 'alert-success', timeout: 5000 }
+            );
+          },
+          error => {
+            console.log('Error saving new weight');
+            this.flashMessagesService.show(
+              'Error creating the Animal Information, please try again.' +
+                error.error,
+              { cssClass: 'alert-error', timeout: 5000 }
+            );
+          }
+        );
     }
   }
 
@@ -170,5 +209,4 @@ export class DetailAnimalCreateComponent implements OnInit {
   get arrivalDate() {
     return this.newAnimalForm.get('arrivalDate');
   }
-
 }

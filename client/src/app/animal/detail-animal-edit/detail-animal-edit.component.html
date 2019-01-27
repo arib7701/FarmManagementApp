@@ -1,6 +1,18 @@
 <div class="row" style="display:flex; padding-top:20px;">
-    <button  style="margin-left:40px;" [routerLink]="['/animal/detail', animal?.id]" class="btn bg-olive">View Details</button>
-    <button  style="margin-left:20px;" [routerLink]="['/animal/types', animal?.type]" class="btn bg-olive">Back</button>
+  <button
+    style="margin-left:40px;"
+    [routerLink]="['/animal/detail', animal?.id]"
+    class="btn bg-olive"
+  >
+    View Details
+  </button>
+  <button
+    style="margin-left:20px;"
+    [routerLink]="['/animal/types', animal?.type]"
+    class="btn bg-olive"
+  >
+    Back
+  </button>
 </div>
 <div class="col-md-10" style="padding:50px">
   <!-- general form elements disabled -->
@@ -23,9 +35,7 @@
                   placeholder="Enter the name of the animal"
                   formControlName="name"
                 />
-                <mat-error>
-                    Field <strong>required</strong>
-                 </mat-error>
+                <mat-error> Field <strong>required</strong> </mat-error>
               </mat-form-field>
             </div>
           </div>
@@ -106,6 +116,7 @@
               <mat-form-field>
                 <input
                   matInput
+                  [max]="today"
                   [matDatepicker]="pickerBirth"
                   formControlName="birthDate"
                   placeholder="Choose a Birth Date"
@@ -116,7 +127,7 @@
                 ></mat-datepicker-toggle>
                 <mat-datepicker #pickerBirth></mat-datepicker>
                 <mat-error>
-                    Birth Date can not be in the <strong>future</strong>
+                  Birth Date can not be in the <strong>future</strong>
                 </mat-error>
               </mat-form-field>
             </div>
@@ -128,6 +139,7 @@
               <mat-form-field>
                 <input
                   matInput
+                  [max]="today"
                   [matDatepicker]="pickerDeath"
                   formControlName="deathDate"
                   placeholder="Choose a Death Date"
@@ -138,10 +150,11 @@
                 ></mat-datepicker-toggle>
                 <mat-datepicker #pickerDeath></mat-datepicker>
                 <mat-error *ngIf="deathDate.errors?.dateInFuture">
-                    Death Date can not be in the <strong>future</strong>
+                  Death Date can not be in the <strong>future</strong>
                 </mat-error>
                 <mat-error *ngIf="deathDate.errors?.dateTooSmall">
-                    Death Date should be <strong>greater or equal</strong> than Birth Date
+                  Death Date should be <strong>greater or equal</strong> than
+                  Birth Date
                 </mat-error>
               </mat-form-field>
             </div>
@@ -157,7 +170,7 @@
                   formControlName="deathCause"
                 />
                 <mat-error>
-                    Death Date can not be in the <strong>future</strong>
+                  Death Date can not be in the <strong>future</strong>
                 </mat-error>
               </mat-form-field>
             </div>
@@ -181,7 +194,8 @@
                 ></mat-datepicker-toggle>
                 <mat-datepicker #pickerArrival></mat-datepicker>
                 <mat-error>
-                    Arrival Date should be <strong>greater or equal</strong> than Birth Date
+                  Arrival Date should be <strong>greater or equal</strong> than
+                  Birth Date
                 </mat-error>
               </mat-form-field>
             </div>
@@ -203,7 +217,8 @@
                 ></mat-datepicker-toggle>
                 <mat-datepicker #pickerDeparture></mat-datepicker>
                 <mat-error>
-                    Departure Date should be <strong>greater</strong> than Arrival Date
+                  Departure Date should be <strong>greater</strong> than Arrival
+                  Date
                 </mat-error>
               </mat-form-field>
             </div>
@@ -231,6 +246,7 @@
   ></app-detail-animal-weight-edit>
   <app-detail-animal-delivery-edit
     [idAnimal]="idAnimal"
+    [sexAnimal]="sexAnimal"
   ></app-detail-animal-delivery-edit>
 </div>
 <!--/.col (right) -->

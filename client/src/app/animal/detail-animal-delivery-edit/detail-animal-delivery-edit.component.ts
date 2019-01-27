@@ -4,6 +4,7 @@ import { FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Delivery } from 'src/app/models/delivery';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { Animal } from 'src/app/models/animal';
 
 @Component({
   selector: 'app-detail-animal-delivery-edit',
@@ -13,6 +14,9 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 export class DetailAnimalDeliveryEditComponent implements OnInit, OnDestroy {
   @Input()
   idAnimal: number;
+
+  @Input()
+  sexAnimal: string;
 
   editDeliveryForm: FormGroup;
   subscriptionDeliveries: Subscription;
@@ -26,8 +30,10 @@ export class DetailAnimalDeliveryEditComponent implements OnInit, OnDestroy {
   fatherIdControl = false;
   today = new Date();
 
-  constructor( private deliveryService: DeliveryService,
-    private flashMessagesService: FlashMessagesService) { }
+  constructor(
+    private deliveryService: DeliveryService,
+    private flashMessagesService: FlashMessagesService
+  ) {}
 
   ngOnInit() {
     this.getDeliveriesInfo();
@@ -48,13 +54,12 @@ export class DetailAnimalDeliveryEditComponent implements OnInit, OnDestroy {
         deliveries => {
           this.deliveries = deliveries;
           if (this.deliveries.length > 0) {
-
             if (this.idAnimal === this.deliveries[0].motherId) {
               this.motherIdControl = true;
-              this.getIdBySex('M');
+              this.getIdBySex('F');
             } else {
               this.fatherIdControl = true;
-              this.getIdBySex('F');
+              this.getIdBySex('M');
             }
 
             this.noDeliveries = false;
@@ -63,6 +68,11 @@ export class DetailAnimalDeliveryEditComponent implements OnInit, OnDestroy {
             }
           } else {
             this.noDeliveries = true;
+            if (this.sexAnimal === 'F') {
+              this.motherIdControl = true;
+            } else {
+              this.fatherIdControl = true;
+            }
           }
         },
         error => {
@@ -81,17 +91,27 @@ export class DetailAnimalDeliveryEditComponent implements OnInit, OnDestroy {
       new FormGroup({
         id: new FormControl({ value: this.deliveries[index].id, hidden: true }),
         number: new FormControl(this.deliveries[index].number, [
-          Validators.required, Validators.min(0), Validators.max(20)
+          Validators.required,
+          Validators.min(0),
+          Validators.max(20)
         ]),
         deliveryDate: new FormControl(this.deliveries[index].date, [
           Validators.required
         ]),
-        motherId: new FormControl({value: this.deliveries[index].motherId, disabled: this.motherIdControl}, [
-          Validators.required
-        ]),
-        fatherId: new FormControl({value: this.deliveries[index].fatherId, disabled: this.fatherIdControl}, [
-          Validators.required
-        ])
+        motherId: new FormControl(
+          {
+            value: this.deliveries[index].motherId,
+            disabled: this.motherIdControl
+          },
+          [Validators.required]
+        ),
+        fatherId: new FormControl(
+          {
+            value: this.deliveries[index].fatherId,
+            disabled: this.fatherIdControl
+          },
+          [Validators.required]
+        )
       })
     );
   }
@@ -112,17 +132,33 @@ export class DetailAnimalDeliveryEditComponent implements OnInit, OnDestroy {
     control.push(
       new FormGroup({
         id: new FormControl({ value: '', hidden: true }),
-        number: new FormControl('', [Validators.required, Validators.min(0), Validators.max(20)]),
+        number: new FormControl('', [
+          Validators.required,
+          Validators.min(0),
+          Validators.max(20)
+        ]),
         deliveryDate: new FormControl('', [Validators.required]),
-        motherId: new FormControl({value: motherIdControlValue, disabled: this.motherIdControl}, [Validators.required]),
-        fatherId: new FormControl({value: fatherIdControlValue, disabled: this.fatherIdControl}, [Validators.required])
+        motherId: new FormControl(
+          { value: motherIdControlValue, disabled: this.motherIdControl },
+          [Validators.required]
+        ),
+        fatherId: new FormControl(
+          { value: fatherIdControlValue, disabled: this.fatherIdControl },
+          [Validators.required]
+        )
       })
     );
   }
 
   deleteDelivery(index: number) {
-    if (confirm('Are you sure to want to delete this delivery permanently (this operation cannot be reversed)?')) {
-      const control = <FormArray>this.editDeliveryForm.controls['deliveryItems'];
+    if (
+      confirm(
+        'Are you sure to want to delete this delivery permanently (this operation cannot be reversed)?'
+      )
+    ) {
+      const control = <FormArray>(
+        this.editDeliveryForm.controls['deliveryItems']
+      );
 
       if (this.deliveries[index] === undefined) {
         control.removeAt(index);
@@ -134,13 +170,17 @@ export class DetailAnimalDeliveryEditComponent implements OnInit, OnDestroy {
               console.log('Successfully deleted delivery');
               this.deliveries.splice(index, 1);
               control.removeAt(index);
-              this.flashMessagesService.show('Delivery successfully deleted.',
-              { cssClass: 'alert-success', timeout: 5000 });
+              this.flashMessagesService.show('Delivery successfully deleted.', {
+                cssClass: 'alert-success',
+                timeout: 5000
+              });
             },
             error => {
               console.log('Error deleting delivery');
-              this.flashMessagesService.show('Error deleting the delivery.' + error.error,
-              { cssClass: 'alert-error', timeout: 5000 });
+              this.flashMessagesService.show(
+                'Error deleting the delivery.' + error.error,
+                { cssClass: 'alert-error', timeout: 5000 }
+              );
             }
           );
       }
@@ -231,8 +271,10 @@ export class DetailAnimalDeliveryEditComponent implements OnInit, OnDestroy {
     if (this.counterEdit === length) {
       this.getDeliveriesInfo();
 
-      this.flashMessagesService.show('Delivery Information successfully updated.',
-      { cssClass: 'alert-success', timeout: 5000 });
+      this.flashMessagesService.show(
+        'Delivery Information successfully updated.',
+        { cssClass: 'alert-success', timeout: 5000 }
+      );
     }
   }
 
@@ -250,5 +292,4 @@ export class DetailAnimalDeliveryEditComponent implements OnInit, OnDestroy {
       this.subscriptionDeliveryNew.unsubscribe();
     }
   }
-
 }

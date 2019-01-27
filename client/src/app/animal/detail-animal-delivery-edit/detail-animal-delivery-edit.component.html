@@ -4,7 +4,7 @@
     <div class="box-header"><h3 class="box-title">Edit Delivery Info</h3></div>
     <!-- /.box-header -->
     <div class="box-body">
-      <div class="callout callout-warning"  *ngIf="noDeliveries" >
+      <div class="callout callout-warning" *ngIf="noDeliveries">
         <h4>No delivery have been registered yet for this animal</h4>
         <p>Start reproducing it or to some data entry today!</p>
       </div>
@@ -49,7 +49,7 @@
                     formControlName="number"
                   />
                   <mat-error>
-                      Number must be between <strong>0 and 20 babies</strong>
+                    Number must be between <strong>0 and 20 babies</strong>
                   </mat-error>
                 </mat-form-field>
               </div>
@@ -61,11 +61,11 @@
                   <input
                     type="number"
                     matInput
-                    placeholder="Enter the id of the Mother"
+                    placeholder="Enter Mother Id"
                     formControlName="motherId"
                   />
                   <mat-error>
-                      Number must be between <strong>0 and 20 babies</strong>
+                    Number must be between <strong>0 and 20 babies</strong>
                   </mat-error>
                 </mat-form-field>
               </div>
@@ -77,11 +77,11 @@
                   <input
                     type="number"
                     matInput
-                    placeholder="Enter the id of the Father"
+                    placeholder="Enter Father Id"
                     formControlName="fatherId"
                   />
                   <mat-error>
-                      Number must be between <strong>0 and 20 babies</strong>
+                    Number must be between <strong>0 and 20 babies</strong>
                   </mat-error>
                 </mat-form-field>
               </div>

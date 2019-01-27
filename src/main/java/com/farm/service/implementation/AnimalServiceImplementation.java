@@ -212,9 +212,9 @@ public class AnimalServiceImplementation implements IAnimalService {
     private boolean checkDatesAnimalOK(Animal animal) {
 
         LocalDate today = LocalDate.now();
-        LocalDate birthDate = animal.getBirth() == null ? today : animal.getBirth();
+        LocalDate birthDate = animal.getBirth() == null ? today.minusDays(1) : animal.getBirth();
         LocalDate deathDate = animal.getDeath() == null ? today : animal.getDeath();
-        LocalDate arrivalDate = animal.getArrival() == null ? today : animal.getArrival();
+        LocalDate arrivalDate = animal.getArrival() == null ? today.minusDays(1) : animal.getArrival();
         LocalDate departureDate = animal.getDeparture() == null ? today : animal.getDeparture();
 
         return (deathDate.isAfter(birthDate)
@@ -227,7 +227,7 @@ public class AnimalServiceImplementation implements IAnimalService {
     }
 
     private boolean checkDeathCause(Animal animal) {
-
+        
         return (animal.getDeathCause() == null || (animal.getDeathCause() != null && animal.getDeath() != null));
     }
 
