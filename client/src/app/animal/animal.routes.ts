@@ -5,6 +5,7 @@ import { DetailAnimalComponent } from './detail-animal/detail-animal.component';
 import { DetailTypeComponent } from './detail-type/detail-type.component';
 import { DetailAnimalEditComponent } from './detail-animal-edit/detail-animal-edit.component';
 import { DetailAnimalCreateComponent } from './detail-animal-create/detail-animal-create.component';
+import { TypeCreateComponent } from './type-create/type-create.component';
 
 export const animalRoutes: Routes = [
   {
@@ -18,6 +19,10 @@ export const animalRoutes: Routes = [
       {
         path: 'types/:type',
         component: DetailTypeComponent
+      },
+      {
+        path: 'add',
+        component: TypeCreateComponent
       },
       {
         path: 'detail/:id',

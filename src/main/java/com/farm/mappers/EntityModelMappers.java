@@ -39,6 +39,10 @@ public class EntityModelMappers {
             animalType.setId(animalTypeEntity.getTypeId());
             animalType.setName(animalTypeEntity.getTypeName());
             animalType.setImageUrl(animalTypeEntity.getTypeImg());
+            animalType.setWeeksGestation(animalTypeEntity.getWeeksGestation() == null? 0: animalTypeEntity.getWeeksGestation());
+            animalType.setMonthsMaturity(animalTypeEntity.getMonthsMaturity() == null? 0: animalTypeEntity.getMonthsMaturity());
+            animalType.setMinimumWeeksBetweenGestation(animalTypeEntity.getWeeksBetweenGestation() == null? 0: animalTypeEntity.getWeeksBetweenGestation());
+            animalType.setMinimumWeeksSuckling(animalTypeEntity.getWeeksSuckling() == null? 0: animalTypeEntity.getWeeksSuckling());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -56,7 +60,11 @@ public class EntityModelMappers {
             animalTypeEntity = new AnimalTypeEntity();
             animalTypeEntity.setTypeId(animalType.getId());
             animalTypeEntity.setTypeName(animalType.getName());
-            animalTypeEntity.setTypeName(animalType.getImageUrl());
+            animalTypeEntity.setTypeImg(animalType.getImageUrl());
+            animalTypeEntity.setWeeksGestation(animalType.getWeeksGestation());
+            animalTypeEntity.setMonthsMaturity(animalType.getMonthsMaturity());
+            animalTypeEntity.setWeeksBetweenGestation(animalType.getMinimumWeeksBetweenGestation());
+            animalTypeEntity.setWeeksSuckling(animalType.getMinimumWeeksSuckling());
 
 
         } catch (Exception e) {

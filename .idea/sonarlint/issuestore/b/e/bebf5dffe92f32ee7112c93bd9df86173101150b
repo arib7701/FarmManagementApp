@@ -1,2 +1,3 @@
 
-¤squid:S1186g"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(îÖéúÿÿÿÿ8ö×ÙÍ‚-
+¤squid:S1186u"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(îÖéúÿÿÿÿ8ö×ÙÍ‚-
+fsquid:UselessImportCheck"6Remove this unused import 'com.farm.dao.AnimalEntity'.(ğ°·¼úÿÿÿÿ8­Î¾ùˆ-

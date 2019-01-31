@@ -88,3 +88,5 @@ i
 9src/test/java/com/farm/serviceTest/WeightServiceTest.java,7/e/7e6de2cfe0e180d9eeea3c359bf9557615e10cc4
 i
 9src/test/java/com/farm/serviceTest/AnimalServiceTest.java,f/c/fc5251028e5c31533db654bdb90d37ec712e6543
+k
+;src/test/java/com/farm/serviceTest/DeliveryServiceTest.java,6/c/6c18fac2a2add4dbed666892a4948c08cc783dea

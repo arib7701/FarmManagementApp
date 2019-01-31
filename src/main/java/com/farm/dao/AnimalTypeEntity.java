@@ -10,6 +10,10 @@ public class AnimalTypeEntity {
     private int typeId;
     private String typeName;
     private String typeImg;
+    private Integer weeksGestation;
+    private Integer monthsMaturity;
+    private Integer weeksBetweenGestation;
+    private Integer weeksSuckling;
 
     @Id
     @Column(name = "type_id", nullable = false)
@@ -54,5 +58,45 @@ public class AnimalTypeEntity {
     @Override
     public int hashCode() {
         return Objects.hash(typeId, typeName, typeImg);
+    }
+
+    @Basic
+    @Column(name = "weeks_gestation", nullable = true)
+    public Integer getWeeksGestation() {
+        return weeksGestation;
+    }
+
+    public void setWeeksGestation(Integer weeksGestation) {
+        this.weeksGestation = weeksGestation;
+    }
+
+    @Basic
+    @Column(name = "months_maturity", nullable = true)
+    public Integer getMonthsMaturity() {
+        return monthsMaturity;
+    }
+
+    public void setMonthsMaturity(Integer monthsMaturity) {
+        this.monthsMaturity = monthsMaturity;
+    }
+
+    @Basic
+    @Column(name = "weeks_between_gestation", nullable = true)
+    public Integer getWeeksBetweenGestation() {
+        return weeksBetweenGestation;
+    }
+
+    public void setWeeksBetweenGestation(Integer weeksBetweenGestation) {
+        this.weeksBetweenGestation = weeksBetweenGestation;
+    }
+
+    @Basic
+    @Column(name = "weeks_suckling", nullable = true)
+    public Integer getWeeksSuckling() {
+        return weeksSuckling;
+    }
+
+    public void setWeeksSuckling(Integer weeksSuckling) {
+        this.weeksSuckling = weeksSuckling;
     }
 }
