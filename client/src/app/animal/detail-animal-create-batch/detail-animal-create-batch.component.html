@@ -1,3 +1,137 @@
-<p>
-  detail-animal-create-batch works!
-</p>
+<div class="row" style="display:flex; padding:20px;">
+  <button style="margin-left:40px;" [routerLink]="['/animal/types/', idType]" class="btn bg-olive">Back</button>
+</div>
+<div class="col-md-10" style="padding:20px">
+  <!-- general form elements disabled -->
+  <div class="box box-success">
+    <div class="box-header"><h3 class="box-title">Add {{type?.name}} in Batch</h3></div>
+    <!-- /.box-header -->
+    <div class="box-body">
+      <form [formGroup]="addAnimalsBatchForm" (ngSubmit)="submitEditAnimalsBatch()">
+        <div formArrayName="animalItems">
+          <div
+            class="row"
+            display="flex"
+            *ngFor="
+              let animal of addAnimalsBatchForm.get('animalItems').controls;
+              let i = index
+            "
+            [formGroupName]="i"
+          >
+            <div class="col-md-2">
+              <!-- text input -->
+              <div class="form-group">
+                <mat-form-field class="example-full-width">
+                  <input
+                    type="text"
+                    matInput
+                    placeholder="Enter the Animal Name"
+                    formControlName="name"
+                  />
+                  <mat-error>
+                      Field <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-md-2 sexRadio">
+              <!-- radio -->
+              <div class="form-group">
+                <mat-radio-group formControlName="sex">
+                  <mat-radio-button name="sex" value="F">
+                    FEMALE
+                  </mat-radio-button>
+                  <mat-radio-button name="sex" value="M"> MALE </mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <!-- select -->
+              <div class="form-group">
+                <mat-form-field>
+                  <mat-select matNativeControl formControlName="motherId" placeholder="Mother Id">
+                    <mat-option
+                      *ngFor="let idAnimal of animalsIdsFemale"
+                      [value]="idAnimal"
+                      >{{ idAnimal }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <!-- select -->
+              <div class="form-group">
+                <mat-form-field>
+                  <mat-select matNativeControl formControlName="fatherId" placeholder="Father Id">
+                    <mat-option
+                      *ngFor="let idAnimal of animalsIdsMale"
+                      [value]="idAnimal"
+                      >{{ idAnimal }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <!-- datepicker -->
+              <div class="form-group">
+                <mat-form-field>
+                  <input
+                    matInput
+                    [max]="today"
+                    [matDatepicker]="pickerBirth"
+                    formControlName="birthDate"
+                    placeholder="Choose a birth Date"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="pickerBirth"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #pickerBirth></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <!-- datepicker -->
+              <div class="form-group">
+                <mat-form-field>
+                  <input
+                    matInput
+                    [max]="today"
+                    [matDatepicker]="pickerArrival"
+                    formControlName="arrivalDate"
+                    placeholder="Choose an arrival Date"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="pickerArrival"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #pickerArrival></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="box-footer">
+          <button
+            type="submit"
+            mat-raised-button
+            color="primary"
+            [disabled]="!addAnimalsBatchForm.valid"
+          >
+            Submit
+          </button>
+          <a (click)="addNewAnimalControl()" style="padding-left:25px;"
+            ><i class="fas fa-plus-circle fa-2x"></i
+          ></a>
+        </div>
+       
+      </form>
+      <flash-messages></flash-messages>
+    </div>
+    <!-- /.box-body -->
+  </div>
+  <!-- /.box -->
+</div>
+<!--/.col (right) -->

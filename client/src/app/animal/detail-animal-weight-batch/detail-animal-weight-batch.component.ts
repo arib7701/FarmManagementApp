@@ -5,6 +5,7 @@ import { FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Weight } from 'src/app/models/weight';
 import { ActivatedRoute } from '@angular/router';
+import { AnimalService } from 'src/app/services/animal.service';
 
 @Component({
   selector: 'app-detail-animal-weight-batch',
@@ -14,19 +15,34 @@ import { ActivatedRoute } from '@angular/router';
 export class DetailAnimalWeightBatchComponent implements OnInit, OnDestroy {
   addWeightsBatchForm: FormGroup;
   subscriptionWeights: Subscription;
+  subscriptionAnimalId: Subscription;
   weights: Weight[];
-  noWeights = false;
-  today = new Date();
   counterEdit = 0;
+  animalsIds = new Array<number>();
   idType: number;
 
   constructor(
     private weightService: WeightService,
+    private animalService: AnimalService,
     private flashMessagesService: FlashMessagesService,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.idType =  +this.route.snapshot.paramMap.get('type');
+
+    this.subscriptionAnimalId = this.animalService
+    .getAllAnimalAliveByType(this.idType)
+    .subscribe(
+      animals => {
+        const allAnimals = animals;
+        allAnimals.forEach(animal => {
+          this.animalsIds.push(animal.id);
+        });
+      },
+      error => {
+        console.log('Error getting all animal by type');
+      }
+    );
 
     this.createForm();
   }
@@ -108,6 +124,9 @@ export class DetailAnimalWeightBatchComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.subscriptionWeights !== undefined) {
       this.subscriptionWeights.unsubscribe();
+    }
+    if (this.subscriptionAnimalId !== undefined) {
+      this.subscriptionAnimalId.unsubscribe();
     }
   }
 

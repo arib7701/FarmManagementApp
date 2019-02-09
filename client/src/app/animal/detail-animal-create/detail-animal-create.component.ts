@@ -54,7 +54,7 @@ export class DetailAnimalCreateComponent implements OnInit {
     );
 
     this.subscriptionAnimalId = this.animalService
-      .getAllAnimalByType(this.idType)
+      .getAllAnimalAliveByType(this.idType)
       .subscribe(
         animals => {
           const allAnimals = animals;

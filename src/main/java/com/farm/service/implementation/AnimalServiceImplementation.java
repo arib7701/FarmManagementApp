@@ -42,15 +42,8 @@ public class AnimalServiceImplementation implements IAnimalService {
     public List<Animal> findByType(int animalTypeId) {
 
         List<AnimalEntity> animalEntityList = animalRepository.findByAnimalType(animalTypeId);
-        List<Animal> animalList = parseAnimalList(animalEntityList);
 
-        for(Animal animal : animalList) {
-
-            List<Weight> weights = weightServiceImplementation.findByAnimalId(animal.getId());
-            animal.setWeights(weights);
-        }
-
-        return animalList;
+        return handleList(animalEntityList);
     }
 
     @Override
@@ -64,15 +57,15 @@ public class AnimalServiceImplementation implements IAnimalService {
         List<AnimalEntity> animalEntityList = new ArrayList<>();
         animalEntityList.addAll(animalEntityList1);
         animalEntityList.addAll(animalEntityList2);
-        List<Animal> animalList = parseAnimalList(animalEntityList);
 
-        for(Animal animal : animalList) {
+        return handleList(animalEntityList);
+    }
 
-            List<Weight> weights = weightServiceImplementation.findByAnimalId(animal.getId());
-            animal.setWeights(weights);
-        }
+    @Override
+    public List<Animal> findByTypeAlive(int animalTypeId) {
 
-        return animalList;
+        List<AnimalEntity> animalEntityList = animalRepository.findByAnimalTypeAndDateDeathIsNullAndDateDepartureIsNull(animalTypeId);
+        return handleList(animalEntityList);
     }
 
     @Override
@@ -217,8 +210,8 @@ public class AnimalServiceImplementation implements IAnimalService {
         LocalDate arrivalDate = animal.getArrival() == null ? today.minusDays(1) : animal.getArrival();
         LocalDate departureDate = animal.getDeparture() == null ? today : animal.getDeparture();
 
-        return (deathDate.isAfter(birthDate)
-                && departureDate.isAfter(arrivalDate)
+        return ((deathDate.isAfter(birthDate) || deathDate.isEqual(birthDate))
+                && (departureDate.isAfter(arrivalDate) || departureDate.isEqual(arrivalDate))
                 && (arrivalDate.isAfter(birthDate) || arrivalDate.isEqual(birthDate))
                 && (deathDate.isBefore(today) || deathDate.isEqual(today))
                 && (birthDate.isBefore(today) || birthDate.isEqual(today))
@@ -244,5 +237,18 @@ public class AnimalServiceImplementation implements IAnimalService {
 
         return (animalEntityListChild.isEmpty());
 
+    }
+
+    private List<Animal> handleList(List<AnimalEntity> animalEntityList) {
+
+        List<Animal> animalList = parseAnimalList(animalEntityList);
+
+        for(Animal animal : animalList) {
+
+            List<Weight> weights = weightServiceImplementation.findByAnimalId(animal.getId());
+            animal.setWeights(weights);
+        }
+
+        return animalList;
     }
 }

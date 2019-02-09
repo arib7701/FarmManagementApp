@@ -21,13 +21,14 @@
           <div class="col-md-2">
             <!-- text input -->
             <div class="form-group">
-              <mat-form-field class="example-full-width">
-                <input
-                  type="number"
-                  matInput
-                  placeholder="Enter the Animal Id"
-                  formControlName="idAnimal"
-                />
+              <mat-form-field>
+                <mat-select matNativeControl formControlName="idAnimal" placeholder="Animal Id">
+                  <mat-option
+                    *ngFor="let idAnimal of animalsIds"
+                    [value]="idAnimal"
+                    >{{ idAnimal }}</mat-option
+                  >
+                </mat-select>
                 <mat-error>
                     Field <strong>required</strong>
                 </mat-error>

@@ -35,6 +35,12 @@ public class AnimalController {
         return new ResponseEntity(animalsByType, HttpStatus.OK);
     }
 
+    @GetMapping(value= "/type3/{type}")
+    public ResponseEntity<List<Animal>> getAnimalsAliveByType(@PathVariable ("type") int type) {
+        List<Animal> animalsByType = animalService.findByTypeAlive(type);
+        return new ResponseEntity(animalsByType, HttpStatus.OK);
+    }
+
     @GetMapping(value= "/{id}")
     public ResponseEntity<Animal> getAnimalById(@PathVariable ("id") int id) {
         Animal animalById = animalService.findById(id);

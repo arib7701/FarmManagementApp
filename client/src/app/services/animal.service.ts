@@ -20,6 +20,10 @@ export class AnimalService {
     return this.http.get<Animal[]>(`${BASE_URL}/type2/${type}`);
   }
 
+  getAllAnimalAliveByType(type: number): Observable<Animal[]> {
+    return this.http.get<Animal[]>(`${BASE_URL}/type3/${type}`);
+  }
+
   getAnimalById(id: number): Observable<Animal> {
     return this.http.get<Animal>(`${BASE_URL}/${id}`);
   }
