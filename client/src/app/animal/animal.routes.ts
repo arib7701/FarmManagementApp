@@ -7,6 +7,8 @@ import { DetailAnimalEditComponent } from './detail-animal-edit/detail-animal-ed
 import { DetailAnimalCreateComponent } from './detail-animal-create/detail-animal-create.component';
 import { TypeCreateComponent } from './type-create/type-create.component';
 import { TypeEditComponent } from './type-edit/type-edit.component';
+import { DetailAnimalCreateBatchComponent } from './detail-animal-create-batch/detail-animal-create-batch.component';
+import { DetailAnimalWeightBatchComponent } from './detail-animal-weight-batch/detail-animal-weight-batch.component';
 
 export const animalRoutes: Routes = [
   {
@@ -40,6 +42,14 @@ export const animalRoutes: Routes = [
       {
         path: 'add/:type',
         component: DetailAnimalCreateComponent
+      },
+      {
+        path: 'add/batch/:type',
+        component: DetailAnimalCreateBatchComponent
+      },
+      {
+        path: 'add/batch/weight/:type',
+        component: DetailAnimalWeightBatchComponent
       }
     ]
   }

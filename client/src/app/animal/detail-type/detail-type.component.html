@@ -1,5 +1,7 @@
 <div class="row" style="display:flex; padding:20px;">
     <button style="margin-left:40px;" routerLink="/animal" class="btn bg-olive">Back</button>
+    <button style="margin-left:40px;" [routerLink]="['/animal/add/batch/', type?.id]" class="btn bg-olive">Add Batch {{ type?.name | uppercase }}S</button>
+    <button style="margin-left:40px;" [routerLink]="['/animal/add/batch/weight', type?.id]" class="btn bg-olive" >Add Batch WEIGHTS</button>
 </div>
 <div class="row">
   <div class="col">

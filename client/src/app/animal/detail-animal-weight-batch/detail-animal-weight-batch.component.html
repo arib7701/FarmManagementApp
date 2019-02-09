@@ -1,0 +1,95 @@
+<div class="row" style="display:flex; padding:20px;">
+  <button style="margin-left:40px;" [routerLink]="['/animal/types/', idType]" class="btn bg-olive">Back</button>
+</div>
+<div class="col-md-10" style="padding:20px">
+  <!-- general form elements disabled -->
+  <div class="box box-success">
+    <div class="box-header"><h3 class="box-title">Add Weights in Batch</h3></div>
+    <!-- /.box-header -->
+    <div class="box-body">
+      <form [formGroup]="addWeightsBatchForm" (ngSubmit)="submitEditWeightsBatch()">
+        <div formArrayName="weightItems">
+          <div
+            class="row"
+            display="flex"
+            *ngFor="
+              let weight of addWeightsBatchForm.get('weightItems').controls;
+              let i = index
+            "
+            [formGroupName]="i"
+          >
+          <div class="col-md-2">
+            <!-- text input -->
+            <div class="form-group">
+              <mat-form-field class="example-full-width">
+                <input
+                  type="number"
+                  matInput
+                  placeholder="Enter the Animal Id"
+                  formControlName="idAnimal"
+                />
+                <mat-error>
+                    Field <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+            <div class="col-md-4">
+              <!-- datepicker -->
+              <div class="form-group">
+                <mat-form-field>
+                  <input
+                    matInput
+                    [max]="today"
+                    [matDatepicker]="picker"
+                    formControlName="weightDate"
+                    placeholder="Choose a Weight Date"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="picker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <!-- text input -->
+              <div class="form-group">
+                <mat-form-field class="example-full-width">
+                  <input
+                    type="number"
+                    matInput
+                    placeholder="Enter the measured weight"
+                    formControlName="measure"
+                  />
+                  <mat-error>
+                      Measurement must be between <strong>0 and 100 lbs</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="box-footer">
+          <button
+            type="submit"
+            mat-raised-button
+            color="primary"
+            [disabled]="!addWeightsBatchForm.valid"
+          >
+            Submit
+          </button>
+          <a (click)="addNewWeightControl()" style="padding-left:25px;"
+            ><i class="fas fa-plus-circle fa-2x"></i
+          ></a>
+        </div>
+       
+      </form>
+      <flash-messages></flash-messages>
+    </div>
+    <!-- /.box-body -->
+  </div>
+  <!-- /.box -->
+</div>
+<!--/.col (right) -->
