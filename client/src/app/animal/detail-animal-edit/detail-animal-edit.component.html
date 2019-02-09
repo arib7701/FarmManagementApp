@@ -43,7 +43,7 @@
           <div class="col-md-3">
             <!-- radio -->
             <div class="form-group">
-              <mat-radio-group formControlName="sex">
+              <mat-radio-group formControlName="sex" [disabled]="true">
                 <mat-radio-button name="sex" value="F">
                   FEMALE
                 </mat-radio-button>
@@ -55,9 +55,8 @@
           <div class="col-md-3">
             <!-- select -->
             <div class="form-group">
-              <h6>Select Mother Id</h6>
               <mat-form-field>
-                <mat-select matNativeControl formControlName="motherId">
+                <mat-select matNativeControl formControlName="motherId" placeholder="Mother Id" [disabled]="true">
                   <mat-option
                     *ngFor="let idAnimal of animalsIdsFemale"
                     [value]="idAnimal"
@@ -86,7 +85,7 @@
           <div class="col-md-3">
             <!-- checkbox -->
             <div class="form-group">
-              <mat-checkbox formControlName="research"
+              <mat-checkbox formControlName="research" [disabled]="true"
                 >Part of Research</mat-checkbox
               >
             </div>
@@ -95,9 +94,8 @@
           <div class="col-md-3">
             <!-- select -->
             <div class="form-group">
-              <h6>Select Father Id</h6>
               <mat-form-field>
-                <mat-select matNativeControl formControlName="fatherId">
+                <mat-select matNativeControl formControlName="fatherId" placeholder="Father Id" [disabled]="true">
                   <mat-option
                     *ngFor="let idAnimal of animalsIdsMale"
                     [value]="idAnimal"

@@ -27,6 +27,7 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
   today = new Date();
   sixMonthAgo = new Date();
   birthDay: Date;
+  disabled = false;
 
   editAnimalForm: FormGroup;
   animalsIdsMale = new Array<number>();
@@ -53,6 +54,10 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
           this.birthDay = new Date(animal.birth);
           this.getType();
           this.loadItems();
+
+          if (this.animal.death !== null || this.animal.departure !== null) {
+            this.disableFields();
+          }
         },
         error => {
           console.log('Error getting all animal by type');
@@ -137,6 +142,27 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
         return this.editAnimalForm.valid;
       }
     };
+  }
+
+  disableFields() {
+    this.editAnimalForm = new FormGroup({
+      name: new FormControl({value: this.animal.name, disabled: true}),
+      sex: new FormControl({value: this.animal.sex, disabled: true}),
+      barn: new FormControl({value: this.animal.barn, disabled: true}),
+      research: new FormControl(this.animal.isResearch),
+      motherId: new FormControl(this.animal.motherId),
+      fatherId: new FormControl(this.animal.fatherId),
+      birthDate: new FormControl({value: this.animal.birth, disabled: true}),
+      arrivalDate: new FormControl({value: this.animal.arrival, disabled: true}),
+      deathDate: new FormControl(this.animal.death),
+      departureDate: new FormControl(this.animal.departure),
+      deathCause: new FormControl({
+        value: this.animal.deathCause,
+        disabled: false
+      })
+    });
+
+    this.disabled = true;
   }
 
   getType() {
