@@ -4,6 +4,7 @@ import com.farm.dao.AnimalDeliveryEntity;
 import com.farm.dao.AnimalEntity;
 import com.farm.exceptions.ApplicationException;
 import com.farm.model.Animal;
+import com.farm.model.AnimalType;
 import com.farm.model.Delivery;
 import com.farm.repository.DeliveryRepository;
 import com.farm.service.IDeliveryService;
@@ -23,6 +24,9 @@ public class DeliveryServiceImplementation implements IDeliveryService {
 
     @Autowired
     private AnimalServiceImplementation animalServiceImplementation;
+
+    @Autowired
+    private AnimalTypeServiceImplementation animalTypeServiceImplementation;
 
     @Override
     public List<Delivery> findAll() {
@@ -125,10 +129,15 @@ public class DeliveryServiceImplementation implements IDeliveryService {
 
         Animal mother = animalServiceImplementation.findById(motherId);
         Animal father = animalServiceImplementation.findById(fatherId);
-        LocalDate sixMonthAgo = LocalDate.now().minusMonths(6);
+
+        int typeId = mother.getType();
+        AnimalType type = animalTypeServiceImplementation.findById(typeId);
+
+        int monthsMaturity = type.getMonthsMaturity();
+        LocalDate maturityDate = LocalDate.now().minusMonths(monthsMaturity);
 
         boolean correctSex = (mother.getSex().equals("F") && father.getSex().equals("M"));
-        boolean correctAge = (mother.getBirth().isBefore(sixMonthAgo)) && (father.getBirth().isBefore(sixMonthAgo));
+        boolean correctAge = (mother.getBirth().isBefore(maturityDate)) && (father.getBirth().isBefore(maturityDate));
 
         return (correctAge && correctSex);
     }

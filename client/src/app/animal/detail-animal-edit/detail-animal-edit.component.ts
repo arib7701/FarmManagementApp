@@ -8,6 +8,7 @@ import { TypeService } from 'src/app/services/type.service';
 import { ActivatedRoute } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { controlNameBinding } from '@angular/forms/src/directives/reactive_directives/form_control_name';
+import { attachEmbeddedView } from '@angular/core/src/view';
 
 @Component({
   selector: 'app-detail-animal-edit',
@@ -24,7 +25,7 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
   type: Type;
   animal: Animal;
   today = new Date();
-  sixMonthAgo = this.today.setMonth(this.today.getMonth() - 6);
+  sixMonthAgo = new Date();
   birthDay: Date;
 
   editAnimalForm: FormGroup;
@@ -39,6 +40,8 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+
+    this.sixMonthAgo.setMonth(this.today.getMonth() - 6);
     this.idAnimal = +this.route.snapshot.paramMap.get('id');
 
     this.subscriptionAnimalId = this.animalService
@@ -184,8 +187,6 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
     this.animal.departure = this.editAnimalForm.controls['departureDate'].value;
     this.animal.deathCause = this.editAnimalForm.controls['deathCause'].value;
     this.animal.weights = null;
-
-    console.log('animal ', this.animal);
 
     this.subscriptionAnimal = this.animalService
       .updateAnimal(this.idAnimal, this.animal)

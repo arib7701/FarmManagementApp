@@ -3,9 +3,11 @@ package com.farm.serviceTest;
 import com.farm.dao.AnimalDeliveryEntity;
 import com.farm.exceptions.ApplicationException;
 import com.farm.model.Animal;
+import com.farm.model.AnimalType;
 import com.farm.model.Delivery;
 import com.farm.repository.DeliveryRepository;
 import com.farm.service.implementation.AnimalServiceImplementation;
+import com.farm.service.implementation.AnimalTypeServiceImplementation;
 import com.farm.service.implementation.DeliveryServiceImplementation;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,6 +32,9 @@ public class DeliveryServiceTest {
 
     @Mock
     AnimalServiceImplementation animalServiceImplementation;
+
+    @Mock
+    AnimalTypeServiceImplementation animalTypeServiceImplementation;
 
     @Test
     public void save_WhenParentSexInvalid_ExpectedNull() {
@@ -66,8 +71,10 @@ public class DeliveryServiceTest {
 
         Animal mother = new Animal(1,"mom", "F", "A1", LocalDate.now().minusMonths(9), 1, null, null);
         Animal father = new Animal(2, "dad", "M", "A2", LocalDate.now(), 1, null, null);
+        AnimalType rabbit = new AnimalType(1, "rabbit", "", 6, 6, 6, 8);
         when(animalServiceImplementation.findById(1)).thenReturn(mother);
         when(animalServiceImplementation.findById(2)).thenReturn(father);
+        when(animalTypeServiceImplementation.findById(1)).thenReturn(rabbit);
 
         // WHEN
         try {

@@ -28,7 +28,7 @@ export class DetailAnimalDeliveryComponent implements OnInit, OnDestroy {
         deliveries => {
           this.deliveries = deliveries;
           if (this.deliveries.length > 0) {
-            console.log('Success getting deliveries', this.deliveries);
+            console.log('Success getting deliveries');
           } else {
             this.noDeliveries = true;
           }

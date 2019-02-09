@@ -3,6 +3,7 @@ package com.farm.controller;
 import com.farm.exceptions.ApplicationException;
 import com.farm.model.Animal;
 import com.farm.model.AnimalType;
+import com.farm.model.Delivery;
 import com.farm.service.IAnimalTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,6 +34,13 @@ public class TypeController {
     @PostMapping(value="")
     public ResponseEntity<AnimalType> saveNewAnimalType(@RequestBody AnimalType animalTypeBody) throws ApplicationException {
         AnimalType animalTypeSaved = animalTypeService.save(animalTypeBody);
+        return new ResponseEntity(animalTypeSaved, HttpStatus.OK);
+    }
+
+
+    @PostMapping(value="/{id}")
+    public ResponseEntity<AnimalType> updateAnimalType(@PathVariable("id") int id, @RequestBody AnimalType animalTypeBody) throws ApplicationException{
+        AnimalType animalTypeSaved = animalTypeService.update(id, animalTypeBody);
         return new ResponseEntity(animalTypeSaved, HttpStatus.OK);
     }
 }

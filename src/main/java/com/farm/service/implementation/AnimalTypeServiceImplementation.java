@@ -1,6 +1,7 @@
 package com.farm.service.implementation;
 
 import com.farm.dao.AnimalTypeEntity;
+import com.farm.exceptions.ApplicationException;
 import com.farm.model.AnimalType;
 import com.farm.repository.AnimalTypeRepository;
 import com.farm.service.IAnimalTypeService;
@@ -41,6 +42,24 @@ public class AnimalTypeServiceImplementation implements IAnimalTypeService {
         AnimalTypeEntity animalTypeEntity = parseAnimalType(animalType);
         AnimalTypeEntity animalTypeEntitySaved = animalTypeRepository.save(animalTypeEntity);
         return parseAnimalTypeEntity(animalTypeEntitySaved);
+    }
+
+    @Override
+    public AnimalType update(int id, AnimalType animalType) throws ApplicationException  {
+
+        AnimalTypeEntity animalTypeEntity = animalTypeRepository.findByTypeId(id);
+        AnimalType animalTypeUpdated;
+
+        if(animalTypeEntity != null) {
+            animalTypeEntity = parseAnimalType(animalType);
+            AnimalTypeEntity animalTypeEntityUpdate = animalTypeRepository.save(animalTypeEntity);
+            animalTypeUpdated = parseAnimalTypeEntity(animalTypeEntityUpdate);
+        }
+        else {
+            throw new ApplicationException("Error: Animal Type does not exist");
+        }
+
+        return animalTypeUpdated;
     }
 
     @Override

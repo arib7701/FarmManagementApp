@@ -21,6 +21,7 @@
           <factory-entry name="entityManagerFactory" />
           <factory-entry name="noname-a.xml@0" value="7539348c-ee16-4b60-9ff3-454f409e4d06" />
         </datasource-mapping>
+        <naming-strategy-map />
       </configuration>
     </facet>
   </component>

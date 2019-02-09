@@ -15,6 +15,7 @@ import { DetailAnimalWeightComponent } from './detail-animal-weight/detail-anima
 import { DetailAnimalDeliveryComponent } from './detail-animal-delivery/detail-animal-delivery.component';
 import { DetailAnimalDeliveryEditComponent } from './detail-animal-delivery-edit/detail-animal-delivery-edit.component';
 import { TypeCreateComponent } from './type-create/type-create.component';
+import { TypeEditComponent } from './type-edit/type-edit.component';
 
 @NgModule({
   imports: [CommonModule, RouterModule.forChild(animalRoutes), SharedModule],
@@ -29,7 +30,8 @@ import { TypeCreateComponent } from './type-create/type-create.component';
     DetailAnimalWeightComponent,
     DetailAnimalDeliveryComponent,
     DetailAnimalDeliveryEditComponent,
-    TypeCreateComponent
+    TypeCreateComponent,
+    TypeEditComponent
   ]
 })
 export class AnimalModule {}

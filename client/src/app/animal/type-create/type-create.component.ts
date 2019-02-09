@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TypeService } from 'src/app/services/type.service';
@@ -10,7 +10,7 @@ import { Type } from 'src/app/models/type';
   templateUrl: './type-create.component.html',
   styleUrls: ['./type-create.component.css']
 })
-export class TypeCreateComponent implements OnInit {
+export class TypeCreateComponent implements OnInit, OnDestroy {
   subscriptionAnimalType: Subscription;
   type: Type;
   newAnimalTypeForm: FormGroup;
@@ -88,5 +88,11 @@ export class TypeCreateComponent implements OnInit {
   }
   get minimumWeeksSuckling() {
     return this.newAnimalTypeForm.get('minimumWeeksSuckling');
+  }
+
+  ngOnDestroy() {
+    if (this.subscriptionAnimalType !== undefined) {
+      this.subscriptionAnimalType.unsubscribe();
+    }
   }
 }

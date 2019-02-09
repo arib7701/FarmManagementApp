@@ -1,0 +1,130 @@
+<div class="row" style="display:flex; padding-top:20px;">
+  <button style="margin-left:40px;" routerLink="/animal" class="btn bg-olive">
+    Back
+  </button>
+</div>
+<div class="col-md-10" style="padding:50px">
+  <!-- general form elements disabled -->
+  <div class="box box-success">
+    <div class="box-header">
+      <h3 class="box-title">Edit Info of Animal Category: {{type?.name | uppercase}}</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+      <form
+        [formGroup]="editAnimalTypeForm"
+        (ngSubmit)="submitEditAnimalType()"
+      >
+        <div class="row" display="flex">
+          <div class="col-md-6">
+            <!-- text input -->
+            <div class="form-group">
+              <mat-form-field class="example-full-width">
+                <input
+                  matInput
+                  placeholder="Enter the name of the category"
+                  value=""
+                  formControlName="name"
+                />
+                <mat-error> Field <strong>required</strong> </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <!-- text input -->
+            <div class="form-group">
+              <mat-form-field class="example-full-width">
+                <input
+                  matInput
+                  placeholder="Enter the image url of the category"
+                  value=""
+                  formControlName="imageUrl"
+                />
+                <mat-error> Field <strong>required</strong> </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" display="flex">
+          <div class="col-md-4">
+            <!-- text input -->
+            <div class="form-group">
+              <mat-form-field class="example-full-width">
+                <input
+                  type="number"
+                  matInput
+                  placeholder="Average gestation time in weeks"
+                  value=""
+                  formControlName="weeksGestation"
+                />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <!-- text input -->
+            <div class="form-group">
+              <mat-form-field class="example-full-width">
+                <input
+                  matInput
+                  type="number"
+                  placeholder="Average maturity time in months"
+                  value=""
+                  formControlName="monthsMaturity"
+                />
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="row" display="flex">
+          <div class="col-md-4">
+            <!-- text input -->
+            <div class="form-group">
+              <mat-form-field class="example-full-width">
+                <input
+                  matInput
+                  type="number"
+                  placeholder="Time between two gestation in weeks"
+                  value=""
+                  formControlName="minimumWeeksBetweenGestation"
+                />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <!-- text input -->
+            <div class="form-group">
+              <mat-form-field class="example-full-width">
+                <input
+                  matInput
+                  type="number"
+                  placeholder="Average suckling time in weeks"
+                  value=""
+                  formControlName="minimumWeeksSuckling"
+                />
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <div class="box-footer">
+          <button
+            type="submit"
+            mat-raised-button
+            color="primary"
+            [disabled]="!editAnimalTypeForm.valid"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+      <flash-messages></flash-messages>
+    </div>
+    <!-- /.box-body -->
+  </div>
+  <!-- /.box -->
+</div>
+<!--/.col (right) -->
