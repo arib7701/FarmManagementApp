@@ -36,7 +36,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let animal of animals | paginate: {itemsPerPage:5, currentPage: pagination}">
+            <tr *ngFor="let animal of animals | paginate: {itemsPerPage:20, currentPage: pagination}">
               <td>{{ animal?.id }}</td>
               <td>{{ animal?.name }}</td>
               <td>

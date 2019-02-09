@@ -183,7 +183,7 @@ public class AnimalServiceImplementation implements IAnimalService {
 
         if(animalEntity != null) {
 
-            if(!checkIfHasChildren(animalEntity)) {
+            if(checkIfHasChildren(animalEntity)) {
 
                 if(weightServiceImplementation.deleteByAnimalId(id)) {
                    animalRepository.deleteById(id);
@@ -242,7 +242,7 @@ public class AnimalServiceImplementation implements IAnimalService {
             animalEntityListChild = animalRepository.findByFatherId(animalEntity.getAnimalId());
         }
 
-        return (animalEntityListChild != null);
+        return (animalEntityListChild.isEmpty());
 
     }
 }
