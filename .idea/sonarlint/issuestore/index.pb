@@ -90,3 +90,5 @@ i
 9src/test/java/com/farm/serviceTest/AnimalServiceTest.java,f/c/fc5251028e5c31533db654bdb90d37ec712e6543
 k
 ;src/test/java/com/farm/serviceTest/DeliveryServiceTest.java,6/c/6c18fac2a2add4dbed666892a4948c08cc783dea
+f
+6src/main/java/com/farm/service/IAnimalTypeService.java,d/3/d3235482874413bbc8c3afb887d2a3748e786c7f

@@ -14,6 +14,9 @@ export class DetailAnimalWeightEditComponent implements OnInit, OnDestroy {
   @Input()
   idAnimal: number;
 
+  @Input()
+  disabled: boolean;
+
   editWeightForm: FormGroup;
   subscriptionWeights: Subscription;
   subscriptionWeightDelete: Subscription;
@@ -51,7 +54,11 @@ export class DetailAnimalWeightEditComponent implements OnInit, OnDestroy {
           if (this.weights.length > 0) {
             this.noWeights = false;
             for (let i = 0; i < this.weights.length; i++) {
-              this.addControls(i);
+              if (this.disabled) {
+                this.disableFields(i);
+              } else {
+                this.addControls(i);
+              }
             }
           } else {
             this.noWeights = true;
@@ -104,6 +111,18 @@ export class DetailAnimalWeightEditComponent implements OnInit, OnDestroy {
         weightDate: new FormControl('', [Validators.required])
       })
     );
+  }
+
+  disableFields(index: number) {
+    const control = <FormArray>this.editWeightForm.controls['weightItems'];
+    control.push(
+      new FormGroup({
+        id: new FormControl({ value: this.weights[index].id, hidden: true }),
+        measure: new FormControl({value: this.weights[index].measure, disabled: true}),
+        weightDate: new FormControl({value: this.weights[index].date, disabled: true})
+      })
+    );
+    this.getArrow(index);
   }
 
   deleteWeight(index: number) {
