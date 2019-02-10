@@ -2,6 +2,7 @@ package com.farm.service.implementation;
 
 import com.farm.dao.AnimalWeightEntity;
 import com.farm.exceptions.ApplicationException;
+import com.farm.model.Animal;
 import com.farm.model.Weight;
 import com.farm.repository.WeightRepository;
 import com.farm.service.IWeightService;
@@ -20,6 +21,9 @@ public class WeightServiceImplementation implements IWeightService {
 
     @Autowired
     private WeightRepository weightRepository;
+
+    @Autowired
+    private AnimalServiceImplementation animalServiceImplementation;
 
     @Override
     public List<Weight> findAll() {
@@ -61,9 +65,15 @@ public class WeightServiceImplementation implements IWeightService {
 
         if(checkWeightValid(weight.getMeasure())) {
 
-            AnimalWeightEntity weightEntity = parseWeight(weight);
-            AnimalWeightEntity weightEntitySaved = weightRepository.save(weightEntity);
-            weightSaved = parseWeightEntity(weightEntitySaved);
+            if(checkAnimalAlive(weight)) {
+
+                AnimalWeightEntity weightEntity = parseWeight(weight);
+                AnimalWeightEntity weightEntitySaved = weightRepository.save(weightEntity);
+                weightSaved = parseWeightEntity(weightEntitySaved);
+
+            } else {
+                throw new ApplicationException("Error: the animal is dead or gone.");
+            }
         }
         else {
             throw new ApplicationException("Error: the weight measurement is invalid.");
@@ -80,15 +90,7 @@ public class WeightServiceImplementation implements IWeightService {
 
         if(weightEntity != null) {
 
-            if(checkWeightValid(weight.getMeasure())) {
-
-                weightEntity = parseWeight(weight);
-                AnimalWeightEntity weightEntityUpdate = weightRepository.save(weightEntity);
-                weightUpdated = parseWeightEntity(weightEntityUpdate);
-            }
-            else {
-                throw new ApplicationException("Error: the weight measurement is invalid.");
-            }
+            weightUpdated = save(weight);
         }
         else {
             throw new ApplicationException("Error: the weight does not exist.");
@@ -132,5 +134,12 @@ public class WeightServiceImplementation implements IWeightService {
     private boolean checkWeightValid(double weightMeasure) {
 
         return (weightMeasure >= 0 && weightMeasure <= 100);
+    }
+
+    private boolean checkAnimalAlive(Weight weight) {
+
+        Animal animal = animalServiceImplementation.findById(weight.getId());
+
+        return (animal.getDeparture() == null && animal.getDeath() == null);
     }
 }

@@ -46,7 +46,7 @@ public class DeliveryServiceTest {
         delivery.setMotherId(1);
         delivery.setFatherId(1);
 
-        Animal mother = new Animal(1,"mom", "F", "A1", LocalDate.now().minusMonths(9), 1, null, null);
+        Animal mother = new Animal(1,"mom", "F", "A1", LocalDate.now().minusMonths(9), 1, null, null, "teen");
         when(animalServiceImplementation.findById(any(int.class))).thenReturn(mother);
 
         // WHEN
@@ -69,8 +69,8 @@ public class DeliveryServiceTest {
         delivery.setMotherId(1);
         delivery.setFatherId(2);
 
-        Animal mother = new Animal(1,"mom", "F", "A1", LocalDate.now().minusMonths(9), 1, null, null);
-        Animal father = new Animal(2, "dad", "M", "A2", LocalDate.now(), 1, null, null);
+        Animal mother = new Animal(1,"mom", "F", "A1", LocalDate.now().minusMonths(9), 1, null, null, "teen");
+        Animal father = new Animal(2, "dad", "M", "A2", LocalDate.now(), 1, null, null, "teen");
         AnimalType rabbit = new AnimalType(1, "rabbit", "", 6, 6, 6, 8);
         when(animalServiceImplementation.findById(1)).thenReturn(mother);
         when(animalServiceImplementation.findById(2)).thenReturn(father);
@@ -102,8 +102,8 @@ public class DeliveryServiceTest {
         animalDeliveryEntity.setMotherId(1);
         animalDeliveryEntity.setFatherId(2);
 
-        Animal mother = new Animal(1, "mom", "F", "A1", LocalDate.now(), 1, null, null);
-        Animal father = new Animal(2, "dad", "M", "A2", LocalDate.now(), 1, null, null);
+        Animal mother = new Animal(1, "mom", "F", "A1", LocalDate.now(), 1, null, null, "teen");
+        Animal father = new Animal(2, "dad", "M", "A2", LocalDate.now(), 1, null, null, "teen");
         when(animalServiceImplementation.findById(1)).thenReturn(mother);
         when(animalServiceImplementation.findById(2)).thenReturn(father);
         when(deliveryRepository.save(animalDeliveryEntity)).thenReturn(animalDeliveryEntity);
@@ -113,6 +113,38 @@ public class DeliveryServiceTest {
         // THEN
         assertTrue(deliverySaved != null && deliverySaved.getNumber() == 10);
 
+    }
+
+    @Test
+    public void save_WhenParentDead_ExpectedNull() {
+
+        // GIVEN
+        Delivery delivery = new Delivery();
+        delivery.setDate(LocalDate.now());
+        delivery.setNumber(10);
+        delivery.setMotherId(1);
+        delivery.setFatherId(2);
+
+        AnimalDeliveryEntity animalDeliveryEntity = new AnimalDeliveryEntity();
+        animalDeliveryEntity.setDeliveryDate(java.sql.Date.valueOf((LocalDate.now())));
+        animalDeliveryEntity.setDeliveryNumber(10);
+        animalDeliveryEntity.setMotherId(1);
+        animalDeliveryEntity.setFatherId(2);
+
+        Animal mother = new Animal(1, "mom", "F", "A1", LocalDate.now(), 1, null, null, "teen");
+        Animal father = new Animal(2, "dad", "M", "A2", LocalDate.now(), 1, null, null, "teen");
+        father.setDeparture(LocalDate.now().plusDays(1));
+        when(animalServiceImplementation.findById(1)).thenReturn(mother);
+        when(animalServiceImplementation.findById(2)).thenReturn(father);
+
+        // WHEN
+        try {
+            deliveryServiceImplementation.save(delivery);
+        }
+        // THEN
+        catch (ApplicationException e) {
+            assertTrue("Error: the parents are not alive or have been sold.".equals(e.getMessage()));
+        }
     }
 
 

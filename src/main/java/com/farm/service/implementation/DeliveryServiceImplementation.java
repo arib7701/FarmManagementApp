@@ -1,7 +1,6 @@
 package com.farm.service.implementation;
 
 import com.farm.dao.AnimalDeliveryEntity;
-import com.farm.dao.AnimalEntity;
 import com.farm.exceptions.ApplicationException;
 import com.farm.model.Animal;
 import com.farm.model.AnimalType;
@@ -12,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.farm.mappers.EntityModelMappers.*;
@@ -66,12 +66,17 @@ public class DeliveryServiceImplementation implements IDeliveryService {
 
         Delivery deliverySaved;
 
-        if(checkCorrectSexAndAge(delivery)) {
-            AnimalDeliveryEntity deliveryEntity = parseDelivery(delivery);
-            AnimalDeliveryEntity deliveryEntitySaved = deliveryRepository.save(deliveryEntity);
-            deliverySaved = parseDeliveryEntity(deliveryEntitySaved);
+        if(checkAnimalAlive(delivery)) {
+
+            if (checkCorrectSexAndAge(delivery)) {
+                AnimalDeliveryEntity deliveryEntity = parseDelivery(delivery);
+                AnimalDeliveryEntity deliveryEntitySaved = deliveryRepository.save(deliveryEntity);
+                deliverySaved = parseDeliveryEntity(deliveryEntitySaved);
+            } else {
+                throw new ApplicationException("Error: the sex or age of the parents are invalid.");
+            }
         } else {
-            throw new ApplicationException("Error: the sex or age of the parents are invalid.");
+            throw new ApplicationException("Error: the parents are not alive or have been sold.");
         }
 
         return deliverySaved;
@@ -85,13 +90,7 @@ public class DeliveryServiceImplementation implements IDeliveryService {
 
         if(animalDeliveryEntity != null) {
 
-            if(checkCorrectSexAndAge(delivery)) {
-                AnimalDeliveryEntity deliveryEntity = parseDelivery(delivery);
-                AnimalDeliveryEntity deliveryEntitySaved = deliveryRepository.save(deliveryEntity);
-                deliveryUpdated = parseDeliveryEntity(deliveryEntitySaved);
-            } else {
-                throw new ApplicationException("Error: the sex or age of the parents are invalid.");
-            }
+            deliveryUpdated = save(delivery);
         }
         else {
             throw new ApplicationException("Error: the delivery does not exist.");
@@ -124,22 +123,43 @@ public class DeliveryServiceImplementation implements IDeliveryService {
 
     private boolean checkCorrectSexAndAge(Delivery delivery) {
 
+        List<Animal> parents = getParents(delivery);
+
+        int typeId = parents.get(0).getType();
+        AnimalType type = animalTypeServiceImplementation.findById(typeId);
+
+        int monthsMaturity = type.getMonthsMaturity();
+        LocalDate maturityDate = LocalDate.now().minusMonths(monthsMaturity);
+
+        boolean correctSex = (parents.get(0).getSex().equals("F") && parents.get(1).getSex().equals("M"));
+        boolean correctAge = (parents.get(0).getBirth().isBefore(maturityDate)) && (parents.get(1).getBirth().isBefore(maturityDate));
+
+        return (correctAge && correctSex);
+    }
+
+    private boolean checkAnimalAlive(Delivery delivery) {
+
+        List<Animal> parents = getParents(delivery);
+
+        boolean motherAlive = (parents.get(0).getDeath() == null && parents.get(0).getDeparture() == null);
+        boolean fatherAlive = (parents.get(1).getDeath() == null && parents.get(1).getDeparture() == null);
+
+        return (motherAlive && fatherAlive);
+    }
+
+    private List<Animal> getParents(Delivery delivery) {
+
         int fatherId = delivery.getFatherId();
         int motherId = delivery.getMotherId();
 
         Animal mother = animalServiceImplementation.findById(motherId);
         Animal father = animalServiceImplementation.findById(fatherId);
 
-        int typeId = mother.getType();
-        AnimalType type = animalTypeServiceImplementation.findById(typeId);
+        List<Animal> parents = new ArrayList<>();
+        parents.add(mother);
+        parents.add(father);
 
-        int monthsMaturity = type.getMonthsMaturity();
-        LocalDate maturityDate = LocalDate.now().minusMonths(monthsMaturity);
-
-        boolean correctSex = (mother.getSex().equals("F") && father.getSex().equals("M"));
-        boolean correctAge = (mother.getBirth().isBefore(maturityDate)) && (father.getBirth().isBefore(maturityDate));
-
-        return (correctAge && correctSex);
+        return parents;
     }
 
 }

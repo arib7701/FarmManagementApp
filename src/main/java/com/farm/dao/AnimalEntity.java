@@ -21,6 +21,7 @@ public class AnimalEntity {
     private boolean isResearch;
     private String barn;
     private String deathCause;
+    private String state;
 
     @Id
     @Column(name = "animal_id", nullable = false)
@@ -175,4 +176,10 @@ public class AnimalEntity {
     public void setDeathCause(String deathCause) {
         this.deathCause = deathCause;
     }
+
+    @Basic
+    @Column(name = "state")
+    public String getState() { return state; }
+
+    public void setState(String state) { this.state = state; }
 }

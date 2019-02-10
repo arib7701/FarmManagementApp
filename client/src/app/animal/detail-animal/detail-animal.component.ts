@@ -51,7 +51,6 @@ export class DetailAnimalComponent implements OnInit, OnDestroy {
       .subscribe(
         type => {
           this.typeAnimal = type.name;
-          console.log('Success getting type');
         },
         error => {
           console.log('Error getting type');

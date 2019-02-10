@@ -22,11 +22,12 @@ public class Animal {
     private List<Vaccine> vaccines;
     private List<Delivery> deliveries;
     private String deathCause;
+    private String state;
 
     public Animal() {
     }
 
-    public Animal(int id, String name, String sex, String barn, LocalDate birth, int type, Integer fatherId, Integer motherId) {
+    public Animal(int id, String name, String sex, String barn, LocalDate birth, int type, Integer fatherId, Integer motherId, String state) {
         this.id = id;
         this.name = name;
         this.sex = sex;
@@ -39,12 +40,13 @@ public class Animal {
         this.fatherId = fatherId;
         this.motherId = motherId;
         this.isResearch = false;
+        this.state = state;
         this.weights = new ArrayList<>();
         this.vaccines = new ArrayList<>();
         this.deliveries = new ArrayList<>();
     }
 
-    public Animal(String name, String sex, String barn, LocalDate birth, int type, Integer fatherId, Integer motherId) {
+    public Animal(String name, String sex, String barn, LocalDate birth, int type, Integer fatherId, Integer motherId, String state) {
         this.name = name;
         this.sex = sex;
         this.barn = barn;
@@ -56,6 +58,7 @@ public class Animal {
         this.fatherId = fatherId;
         this.motherId = motherId;
         this.isResearch = false;
+        this.state = state;
         this.weights = new ArrayList<>();
         this.vaccines = new ArrayList<>();
         this.deliveries = new ArrayList<>();
@@ -184,4 +187,8 @@ public class Animal {
     public String getDeathCause() { return deathCause; }
 
     public void setDeathCause(String deathCause) { this.deathCause = deathCause; }
+
+    public String getState() { return state; }
+
+    public void setState(String state) { this.state = state; }
 }

@@ -18,9 +18,32 @@
   <div class="col-md-6" style="padding:50px">
     <!-- general form elements disabled -->
     <div class="box box-success">
-      <div class="box-header">
+      <div class="box-header" style="display:flex; justify-content: space-around;">
         <h2 class="box-title">
           Animal Info n°{{ animal?.id }} -- {{ typeAnimal | uppercase }}
+        </h2>
+        <h2>
+          <span *ngIf="animal?.state == 'dead'" class="badge bg-red">
+            {{ animal?.state | uppercase }}</span
+          >
+          <span *ngIf="animal?.state == 'resting'" class="badge bg-green">
+            {{ animal?.state | uppercase}}</span
+          >
+          <span *ngIf="animal?.state == 'sold'" class="badge bg-yellow">
+            {{ animal?.state | uppercase}}</span
+          >
+          <span *ngIf="animal?.state == 'pregnant'" class="badge bg-orange">
+            {{ animal?.state | uppercase}}</span
+          >
+          <span *ngIf="animal?.state == 'teen'" class="badge bg-purple">
+            {{ animal?.state | uppercase}}</span
+          >
+          <span *ngIf="animal?.state == 'nursing'" class="badge bg-blue">
+            {{ animal?.state | uppercase}}</span
+          >
+          <span *ngIf="animal?.state == 'fattening'" class="badge bg-black">
+            {{ animal?.state | uppercase}}</span
+          >
         </h2>
       </div>
       <!-- /.box-header -->

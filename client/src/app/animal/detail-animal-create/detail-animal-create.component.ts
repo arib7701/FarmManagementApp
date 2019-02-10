@@ -84,7 +84,8 @@ export class DetailAnimalCreateComponent implements OnInit {
       motherId: new FormControl(''),
       fatherId: new FormControl(''),
       birthDate: new FormControl(''),
-      arrivalDate: new FormControl('')
+      arrivalDate: new FormControl(''),
+      state: new FormControl('', [Validators.required])
     });
     this.newAnimalForm.setValidators([
       this.isDateSmallerTo('arrivalDate', 'birthDate'),
@@ -131,13 +132,13 @@ export class DetailAnimalCreateComponent implements OnInit {
     this.animal.arrival = this.newAnimalForm.controls['arrivalDate'].value;
     this.animal.departure = null;
     this.animal.weights = null;
+    this.animal.state = this.newAnimalForm.controls['state'].value;
 
     this.subscriptionAnimal = this.animalService
       .addAnimal(this.animal)
       .subscribe(
         animalSaved => {
           const animalId = animalSaved.id;
-          console.log('Saving animal OK ');
           this.saveWeight(animalId);
         },
         error => {
@@ -164,7 +165,6 @@ export class DetailAnimalCreateComponent implements OnInit {
         .addWeight(currentWeight)
         .subscribe(
           weightSaved => {
-            console.log('Saving weight OK');
             this.flashMessagesService.show(
               'Animal Information successfully created.',
               { cssClass: 'alert-success', timeout: 5000 }
@@ -208,5 +208,8 @@ export class DetailAnimalCreateComponent implements OnInit {
   }
   get arrivalDate() {
     return this.newAnimalForm.get('arrivalDate');
+  }
+  get state() {
+    return this.newAnimalForm.get('state');
   }
 }

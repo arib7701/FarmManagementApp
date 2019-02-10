@@ -1,7 +1,7 @@
 <div class="row" style="display:flex; padding:20px;">
   <button style="margin-left:40px;" [routerLink]="['/animal/types/', idType]" class="btn bg-olive">Back</button>
 </div>
-<div class="col-md-10" style="padding:20px">
+<div class="col-md-12" style="padding:20px">
   <!-- general form elements disabled -->
   <div class="box box-success">
     <div class="box-header"><h3 class="box-title">Add {{type?.name | uppercase}}S in Batch</h3></div>
@@ -25,7 +25,7 @@
                   <input
                     type="text"
                     matInput
-                    placeholder="Enter the Animal Name"
+                    placeholder="Name"
                     formControlName="name"
                   />
                   <mat-error>
@@ -45,7 +45,7 @@
                 </mat-radio-group>
               </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-1">
               <!-- select -->
               <div class="form-group">
                 <mat-form-field>
@@ -59,7 +59,7 @@
                 </mat-form-field>
               </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-1">
               <!-- select -->
               <div class="form-group">
                 <mat-form-field>
@@ -108,6 +108,21 @@
                     [for]="pickerArrival"
                   ></mat-datepicker-toggle>
                   <mat-datepicker #pickerArrival></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <!-- select -->
+              <div class="form-group">
+                <mat-form-field>
+                  <mat-select matNativeControl formControlName="state" placeholder="State">
+                    <mat-option value="teen" >TEEN</mat-option>
+                    <mat-option value="pregnant" >PREGNANT</mat-option>
+                    <mat-option value="nursing" >NURSING</mat-option>
+                    <mat-option value="resting" >RESTING</mat-option>
+                    <mat-option value="fattening" >FATTENING</mat-option>
+                  </mat-select>
+                  <mat-error> Field <strong>required</strong> </mat-error>
                 </mat-form-field>
               </div>
             </div>

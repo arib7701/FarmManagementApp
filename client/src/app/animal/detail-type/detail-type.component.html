@@ -42,10 +42,10 @@
               <td>{{ animal?.id }}</td>
               <td>{{ animal?.name }}</td>
               <td>
-                <span *ngIf="animal.sex == 'M'" class="badge bg-aqua">
+                <span *ngIf="animal?.sex == 'M'" class="badge bg-aqua">
                   {{ animal?.sex }}</span
                 >
-                <span *ngIf="animal.sex == 'F'" class="badge bg-purple">
+                <span *ngIf="animal?.sex == 'F'" class="badge bg-purple">
                   {{ animal?.sex }}</span
                 >
               </td>
@@ -54,14 +54,26 @@
               <td>{{ animal?.lastDateWeight }}</td>
               <td>{{ animal?.lastWeight }}</td>
               <td>
-                <span *ngIf="animal.status == 'DEAD'" class="badge bg-red">
-                  {{ animal?.status }}</span
+                <span *ngIf="animal?.state == 'dead'" class="badge bg-red">
+                  {{ animal?.state | uppercase}}</span
                 >
-                <span *ngIf="animal.status == 'ALIVE'" class="badge bg-green">
-                  {{ animal?.status }}</span
+                <span *ngIf="animal?.state == 'resting'" class="badge bg-green">
+                  {{ animal?.state | uppercase}}</span
                 >
-                <span *ngIf="animal.status == 'SOLD'" class="badge bg-yellow">
-                  {{ animal?.status }}</span
+                <span *ngIf="animal?.state == 'sold'" class="badge bg-yellow">
+                  {{ animal?.state | uppercase}}</span
+                >
+                <span *ngIf="animal?.state == 'pregnant'" class="badge bg-orange">
+                  {{ animal?.state | uppercase}}</span
+                >
+                <span *ngIf="animal?.state == 'teen'" class="badge bg-purple">
+                  {{ animal?.state | uppercase}}</span
+                >
+                <span *ngIf="animal?.state == 'nursing'" class="badge bg-blue">
+                  {{ animal?.state | uppercase}}</span
+                >
+                <span *ngIf="animal?.state == 'fattening'" class="badge bg-black">
+                  {{ animal?.state | uppercase}}</span
                 >
               </td>
               <td>

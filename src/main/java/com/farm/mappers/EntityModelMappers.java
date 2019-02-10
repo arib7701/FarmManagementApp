@@ -110,6 +110,7 @@ public class EntityModelMappers {
             animal.setMotherId(animalEntity.getMotherId());
             animal.setFatherId(animalEntity.getFatherId());
             animal.setIsResearch(animalEntity.getIsResearch());
+            animal.setState(animalEntity.getState());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -138,6 +139,7 @@ public class EntityModelMappers {
             animalEntity.setMotherId(animal.getMotherId());
             animalEntity.setFatherId(animal.getFatherId());
             animalEntity.setIsResearch(animal.getIsResearch());
+            animalEntity.setState(animal.getState());
 
 
         } catch (Exception e) {

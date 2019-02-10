@@ -78,6 +78,7 @@ export class DetailAnimalCreateBatchComponent implements OnInit, OnDestroy {
         fatherId: new FormControl(''),
         birthDate: new FormControl(new Date()),
         arrivalDate: new FormControl(new Date()),
+        state: new FormControl('teen', [Validators.required])
       })
     );
   }
@@ -92,6 +93,7 @@ export class DetailAnimalCreateBatchComponent implements OnInit, OnDestroy {
         fatherId: new FormControl(''),
         birthDate: new FormControl(new Date()),
         arrivalDate: new FormControl(new Date()),
+        state: new FormControl('teen', [Validators.required])
       })
     );
   }
@@ -125,6 +127,7 @@ export class DetailAnimalCreateBatchComponent implements OnInit, OnDestroy {
     animal.deathCause = null;
     animal.departure = null;
     animal.weights = null;
+    animal.state = animalInfo.state;
 
     this.subscriptionAnimals = this.animalService
       .addAnimal(animal)

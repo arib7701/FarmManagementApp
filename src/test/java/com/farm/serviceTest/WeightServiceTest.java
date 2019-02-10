@@ -2,8 +2,10 @@ package com.farm.serviceTest;
 
 import com.farm.dao.AnimalWeightEntity;
 import com.farm.exceptions.ApplicationException;
+import com.farm.model.Animal;
 import com.farm.model.Weight;
 import com.farm.repository.WeightRepository;
+import com.farm.service.implementation.AnimalServiceImplementation;
 import com.farm.service.implementation.WeightServiceImplementation;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,6 +30,9 @@ public class WeightServiceTest {
 
     @Mock
     WeightRepository weightRepository;
+
+    @Mock
+    AnimalServiceImplementation animalServiceImplementation;
 
     @Test
     public void save_WhenMeasureInvalid_ExpectedNull() {
@@ -68,6 +73,35 @@ public class WeightServiceTest {
         Weight weightSaved = weightServiceImplementation.save(weight);
         // THEN
         assertTrue(weightSaved != null && weightSaved.getMeasure() == 10.0);
+
+    }
+
+    @Test
+    public void save_WhenAnimalDead_ExpectedNull() throws ApplicationException{
+
+        // GIVEN
+        Weight weight = new Weight();
+        weight.setDate(LocalDate.now());
+        weight.setMeasure(10.0);
+        weight.setAnimalId(1);
+
+        AnimalWeightEntity animalWeightEntity = new AnimalWeightEntity();
+        animalWeightEntity.setWeightDate(java.sql.Date.valueOf(LocalDate.now()));
+        animalWeightEntity.setWeightNumber(10.0);
+        animalWeightEntity.setAnimalId(1);
+
+        Animal animal = new Animal(1,"mom", "F", "A1", LocalDate.now(), 1, null, null, "teen");
+        animal.setDeath(LocalDate.now().plusDays(1));
+        when(animalServiceImplementation.findById(any(int.class))).thenReturn(animal);
+
+        // WHEN
+        try {
+            weightServiceImplementation.save(weight);
+        }
+        // THEN
+        catch (ApplicationException e) {
+            assertTrue("Error: the animal is dead or gone.".equals(e.getMessage()));
+        }
 
     }
 

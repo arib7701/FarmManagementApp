@@ -30,7 +30,6 @@ export class DetailTypeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.idType = +this.route.snapshot.paramMap.get('type');
-    console.log(this.idType);
 
     this.subscriptionType = this.typeService.getTypeById(this.idType).subscribe(
       type => {
@@ -49,7 +48,6 @@ export class DetailTypeComponent implements OnInit, OnDestroy {
     .subscribe(
       animals => {
         this.animals = animals;
-        this.getStatus();
         this.getAge();
         this.getLastWeight();
       },
@@ -62,7 +60,6 @@ export class DetailTypeComponent implements OnInit, OnDestroy {
   deleteAnimal(id) {
     if (confirm('Are you sure to want to delete this animal permanently (this operation cannot be reversed)?')) {
       this.subscriptionAnimalDelete = this.animalService.removeAnimalById(id).subscribe(result => {
-        console.log('Delete Animal successfull, ', result);
         this.flashMessagesService.show('Animal successfully deleted.',
            { cssClass: 'alert-success', timeout: 5000 });
         this.getAllAnimalByType();
@@ -72,18 +69,6 @@ export class DetailTypeComponent implements OnInit, OnDestroy {
            { cssClass: 'alert-error', timeout: 5000 });
       });
     }
-  }
-
-  getStatus() {
-    this.animals.forEach(animal => {
-      if (animal.death !== null) {
-        animal.status = 'DEAD';
-      } else if (animal.departure !== null) {
-        animal.status = 'SOLD';
-      } else {
-        animal.status = 'ALIVE';
-      }
-    });
   }
 
   getAge() {

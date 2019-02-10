@@ -18,5 +18,5 @@ export class Animal {
   lastDateWeight?: Date;
   lastWeight?: number;
   age?: number;
-  status?: string;
+  state?: string;
 }

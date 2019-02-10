@@ -79,7 +79,8 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
       arrivalDate: new FormControl(''),
       deathDate: new FormControl(''),
       departureDate: new FormControl(''),
-      deathCause: new FormControl('')
+      deathCause: new FormControl(''),
+      state: new FormControl('')
     });
   }
 
@@ -98,7 +99,8 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
       deathCause: new FormControl({
         value: this.animal.deathCause,
         disabled: true
-      })
+      }),
+      state: new FormControl(this.animal.state)
     });
     this.editAnimalForm.setValidators([
       this.isDateSmallerTo('arrivalDate', 'birthDate'),
@@ -159,7 +161,8 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
       deathCause: new FormControl({
         value: this.animal.deathCause,
         disabled: false
-      })
+      }),
+      state: new FormControl({value: this.animal.state, disabled: false})
     });
 
     this.disabled = true;
@@ -171,7 +174,6 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
       .subscribe(
         type => {
           this.typeAnimal = type.name;
-          console.log('Success getting type');
           this.getAnimalIds();
         },
         error => {
@@ -213,12 +215,12 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
     this.animal.departure = this.editAnimalForm.controls['departureDate'].value;
     this.animal.deathCause = this.editAnimalForm.controls['deathCause'].value;
     this.animal.weights = null;
+    this.animal.state = this.editAnimalForm.controls['state'].value;
 
     this.subscriptionAnimal = this.animalService
       .updateAnimal(this.idAnimal, this.animal)
       .subscribe(
         animalUpdated => {
-          console.log('Updating animal OK ');
           this.flashMessagesService.show(
             'Animal Information successfully updated.',
             { cssClass: 'alert-success', timeout: 1000 }
@@ -266,6 +268,9 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
   }
   get deathCause() {
     return this.editAnimalForm.get('deathCause');
+  }
+  get state() {
+    return this.editAnimalForm.get('state');
   }
 
   ngOnDestroy() {
