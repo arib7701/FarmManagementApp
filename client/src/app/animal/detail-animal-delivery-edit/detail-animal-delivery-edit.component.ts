@@ -89,7 +89,7 @@ export class DetailAnimalDeliveryEditComponent implements OnInit, OnDestroy {
   }
 
   getIdBySex(sex: string) {
-    // TO DO
+    // TODO
   }
 
   addControls(index: number) {

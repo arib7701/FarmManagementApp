@@ -58,6 +58,13 @@
               <!-- text input -->
               <div class="form-group">
                 <mat-form-field class="example-full-width">
+                  <mat-select matNativeControl formControlName="motherId" placeholder="Mother Id">
+                      <mat-option
+                        *ngFor="let idAnimal of animalsIdsFemale"
+                        [value]="idAnimal"
+                        >{{ idAnimal }}</mat-option
+                      >
+                    </mat-select>
                   <input
                     type="number"
                     matInput
@@ -65,7 +72,7 @@
                     formControlName="motherId"
                   />
                   <mat-error>
-                    Number must be between <strong>0 and 20 babies</strong>
+                    Field <strong>required</strong>
                   </mat-error>
                 </mat-form-field>
               </div>
@@ -81,7 +88,7 @@
                     formControlName="fatherId"
                   />
                   <mat-error>
-                    Number must be between <strong>0 and 20 babies</strong>
+                    Field <strong>required</strong>
                   </mat-error>
                 </mat-form-field>
               </div>
