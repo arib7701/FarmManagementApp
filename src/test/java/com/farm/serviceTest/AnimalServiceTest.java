@@ -74,6 +74,27 @@ public class AnimalServiceTest {
     }
 
     @Test
+    public void save_WhenStateIsInvalid_ExpectedNull() {
+
+        // GIVEN
+        Animal animal = new Animal();
+        animal.setId(1);
+        animal.setName("Roger");
+        animal.setBirth(LocalDate.now().minusDays(10));
+        animal.setDeath(LocalDate.now().minusDays(5));
+        animal.setState("teen");
+
+        // WHEN
+        try {
+            animalServiceImplementation.save(animal);
+        }
+        // THEN
+        catch (ApplicationException e) {
+            assertTrue("Error: The state is invalid".equals(e.getMessage()));
+        }
+    }
+
+    @Test
     public void save_WhenAnimalValid_ExpectedAnimal() throws ApplicationException {
 
         // GIVEN

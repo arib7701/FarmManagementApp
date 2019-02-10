@@ -140,7 +140,7 @@ export class DetailAnimalCreateBatchComponent implements OnInit, OnDestroy {
         }
       );
     } else {
-      this.flashMessagesService.show('Error with the state, check your dates and try again.',
+      this.flashMessagesService.show('Error with the state, check your dates/states and try again.',
       { cssClass: 'alert-error', timeout: 5000 });
     }
   }

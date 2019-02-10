@@ -131,9 +131,14 @@ public class AnimalServiceImplementation implements IAnimalService {
 
         if(checkDatesAnimalOK(animal) && checkDeathCause(animal)) {
 
-            AnimalEntity animalEntity = parseAnimal(animal);
-            AnimalEntity animalEntitySaved = animalRepository.save(animalEntity);
-            animalSaved = parseAnimalEntity(animalEntitySaved);
+            if(checkStateValid(animal)) {
+                AnimalEntity animalEntity = parseAnimal(animal);
+                AnimalEntity animalEntitySaved = animalRepository.save(animalEntity);
+                animalSaved = parseAnimalEntity(animalEntitySaved);
+            }
+            else {
+                throw new ApplicationException("Error: The state is invalid");
+            }
         }
         else {
             throw new ApplicationException("Error: Some of the dates are invalid");
@@ -150,14 +155,7 @@ public class AnimalServiceImplementation implements IAnimalService {
 
         if(animalEntity != null) {
 
-            if(checkDatesAnimalOK(animal) && checkDeathCause(animal)) {
-                animalEntity = parseAnimal(animal);
-                AnimalEntity animalEntityUpdate = animalRepository.save(animalEntity);
-                animalUpdated = parseAnimalEntity(animalEntityUpdate);
-            }
-            else {
-                throw new ApplicationException("Error: Some of the dates are invalid");
-            }
+           animalUpdated = save(animal);
         }
         else {
             throw new ApplicationException("Error: Animal does not exist");
@@ -207,7 +205,7 @@ public class AnimalServiceImplementation implements IAnimalService {
         LocalDate today = LocalDate.now();
         LocalDate birthDate = animal.getBirth() == null ? today.minusDays(1) : animal.getBirth();
         LocalDate deathDate = animal.getDeath() == null ? today : animal.getDeath();
-        LocalDate arrivalDate = animal.getArrival() == null ? today.minusDays(1) : animal.getArrival();
+        LocalDate arrivalDate = animal.getArrival() == null ? birthDate : animal.getArrival();
         LocalDate departureDate = animal.getDeparture() == null ? today : animal.getDeparture();
 
         return ((deathDate.isAfter(birthDate) || deathDate.isEqual(birthDate))
@@ -222,6 +220,26 @@ public class AnimalServiceImplementation implements IAnimalService {
     private boolean checkDeathCause(Animal animal) {
         
         return (animal.getDeathCause() == null || (animal.getDeathCause() != null && animal.getDeath() != null));
+    }
+
+    private boolean checkStateValid(Animal animal) {
+
+        LocalDate today = LocalDate.now();
+        LocalDate sixMonthAgo = LocalDate.now().minusMonths(6);
+        LocalDate birthDate = animal.getBirth() == null ? today.minusDays(1) : animal.getBirth();
+        LocalDate deathDate = animal.getDeath();
+        LocalDate departureDate = animal.getDeparture();
+
+        String state = animal.getState();
+
+        return ((state.equals("teen") && birthDate.isAfter(sixMonthAgo) && deathDate == null && departureDate == null)
+                || (state.equals("pregnant") && birthDate.isBefore(sixMonthAgo) && deathDate == null && departureDate == null)
+                || (state.equals("nursing") && birthDate.isBefore(sixMonthAgo) && deathDate == null && departureDate == null)
+                || (state.equals("resting") && birthDate.isBefore(sixMonthAgo) && deathDate == null && departureDate == null)
+                || (state.equals("fattening") && birthDate.isBefore(sixMonthAgo) && deathDate == null && departureDate == null)
+                || (state.equals("dead") && deathDate != null)
+                || (state.equals("sold") && departureDate != null));
+
     }
 
     private boolean checkIfHasChildren(AnimalEntity animalEntity) {
