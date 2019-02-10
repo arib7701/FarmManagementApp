@@ -23,6 +23,7 @@ export class DetailAnimalCreateBatchComponent implements OnInit, OnDestroy {
   idType: number;
   type: Type;
   today = new Date();
+  sixMonthAgo = new Date();
   animalsIdsMale = new Array<number>();
   animalsIdsFemale = new Array<number>();
 
@@ -33,6 +34,7 @@ export class DetailAnimalCreateBatchComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.idType =  +this.route.snapshot.paramMap.get('type');
+    this.sixMonthAgo.setMonth(this.today.getMonth() - 6);
 
     this.subscriptionType = this.typeService.getTypeById(this.idType).subscribe(type => {
       this.type = type;
@@ -100,16 +102,11 @@ export class DetailAnimalCreateBatchComponent implements OnInit, OnDestroy {
 
   submitEditAnimalsBatch() {
     const formValues = this.addAnimalsBatchForm.controls.animalItems.value;
-    const control = <FormArray>this.addAnimalsBatchForm.controls['animalItems'];
     const length = formValues.length;
 
     formValues.forEach((value, index: number) => {
         this.addNewAnimal(value, length);
     });
-
-    for (let i = length - 1; i >= 0; i--) {
-      control.removeAt(i);
-    }
   }
 
   addNewAnimal(animalInfo, length) {
@@ -129,11 +126,12 @@ export class DetailAnimalCreateBatchComponent implements OnInit, OnDestroy {
     animal.weights = null;
     animal.state = animalInfo.state;
 
-    this.subscriptionAnimals = this.animalService
+    if (this.checkState(animal.state, new Date(animal.birth))) {
+
+      this.subscriptionAnimals = this.animalService
       .addAnimal(animal)
       .subscribe(
         animalAdded => {
-          console.log('Successfully added animal');
           this.counterEdit++;
           this.checkCounter(length);
         },
@@ -141,12 +139,39 @@ export class DetailAnimalCreateBatchComponent implements OnInit, OnDestroy {
           console.log('Error updating animal', error);
         }
       );
+    } else {
+      this.flashMessagesService.show('Error with the state, check your dates and try again.',
+      { cssClass: 'alert-error', timeout: 5000 });
+    }
   }
 
   checkCounter(length) {
     if (this.counterEdit === length) {
       this.flashMessagesService.show('Animal Information successfully updated.',
       { cssClass: 'alert-success', timeout: 5000 });
+    }
+
+    const control = <FormArray>this.addAnimalsBatchForm.controls['animalItems'];
+
+    for (let i = length - 1; i >= 0; i--) {
+      control.removeAt(i);
+    }
+  }
+
+  checkState(state, birth): boolean {
+
+    if (state === 'teen' && birth <= this.sixMonthAgo) {
+      return false;
+    } else if (state === 'pregnant' && birth > this.sixMonthAgo) {
+      return false;
+    } else if (state === 'nursing' && birth > this.sixMonthAgo) {
+      return false;
+    } else if (state === 'resting' && birth > this.sixMonthAgo) {
+      return false;
+    } else if (state === 'fattening' && birth > this.sixMonthAgo) {
+      return false;
+    } else {
+      return true;
     }
   }
 

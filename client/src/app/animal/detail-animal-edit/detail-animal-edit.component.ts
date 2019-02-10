@@ -107,7 +107,8 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
       this.isDateSmallerTo('deathDate', 'birthDate'),
       this.isDateSmallerTo('departureDate', 'arrivalDate'),
       this.isFutureDate('birthDate'),
-      this.isFutureDate('deathDate')
+      this.isFutureDate('deathDate'),
+      this.checkState('state')
     ]);
 
     /* this.editAnimalForm.get('deathDate').valueChanges.subscribe(val => {
@@ -140,6 +141,33 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
       const todayDate = Date.now();
       if (formDate.value !== null && todayDate < formDate.value) {
         formDate.setErrors({ dateInFuture: true });
+      } else {
+        return this.editAnimalForm.valid;
+      }
+    };
+  }
+
+  checkState(state) {
+    return (group: FormGroup): any => {
+      const stateForm = group.controls[state];
+      const birthDate = new Date( this.editAnimalForm.controls['birthDate'].value );
+      const deathDate = this.editAnimalForm.controls['deathDate'].value;
+      const departureDate = this.editAnimalForm.controls['departureDate'].value;
+
+      if (stateForm.value === 'teen' && birthDate < this.sixMonthAgo) {
+        stateForm.setErrors({ stateInvalid: true });
+      } else if (stateForm.value === 'pregnant' && birthDate > this.sixMonthAgo) {
+        stateForm.setErrors({ stateInvalid: true });
+      } else if (stateForm.value === 'nursing' && birthDate > this.sixMonthAgo) {
+        stateForm.setErrors({ stateInvalid: true });
+      } else if (stateForm.value === 'resting' && birthDate > this.sixMonthAgo) {
+        stateForm.setErrors({ stateInvalid: true });
+      } else if (stateForm.value === 'fattening' && birthDate > this.sixMonthAgo) {
+        stateForm.setErrors({ stateInvalid: true });
+      } else if (stateForm.value === 'dead' && deathDate === null) {
+        stateForm.setErrors({ stateInvalid: true });
+      } else if (stateForm.value === 'sold' && departureDate === null) {
+        stateForm.setErrors({ stateInvalid: true });
       } else {
         return this.editAnimalForm.valid;
       }

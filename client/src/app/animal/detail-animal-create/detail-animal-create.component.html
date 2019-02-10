@@ -159,7 +159,10 @@
                   <mat-option value="resting" >RESTING</mat-option>
                   <mat-option value="fattening" >FATTENING</mat-option>
                 </mat-select>
-                <mat-error> Field <strong>required</strong> </mat-error>
+                <mat-error *ngIf="state.errors?.required"> Field <strong>required</strong> </mat-error>
+                <mat-error *ngIf="state.errors?.stateInvalid">
+                  State <strong>invalid</strong>, check dates
+                </mat-error>
               </mat-form-field>
             </div>
           </div>

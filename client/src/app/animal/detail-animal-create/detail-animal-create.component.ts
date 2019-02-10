@@ -32,6 +32,7 @@ export class DetailAnimalCreateComponent implements OnInit {
   animalsIdsMale = new Array<number>();
   animalsIdsFemale = new Array<number>();
   today = new Date();
+  sixMonthAgo = new Date();
 
   constructor(
     private animalService: AnimalService,
@@ -43,6 +44,7 @@ export class DetailAnimalCreateComponent implements OnInit {
 
   ngOnInit() {
     this.idType = +this.route.snapshot.paramMap.get('type');
+    this.sixMonthAgo.setMonth(this.today.getMonth() - 6);
 
     this.subscriptionType = this.typeService.getTypeById(this.idType).subscribe(
       type => {
@@ -89,7 +91,8 @@ export class DetailAnimalCreateComponent implements OnInit {
     });
     this.newAnimalForm.setValidators([
       this.isDateSmallerTo('arrivalDate', 'birthDate'),
-      this.isFutureDate('birthDate')
+      this.isFutureDate('birthDate'),
+      this.checkState('state')
     ]);
   }
 
@@ -111,6 +114,27 @@ export class DetailAnimalCreateComponent implements OnInit {
       const todayDate = Date.now();
       if (dateControl.value !== '' && todayDate < dateControl.value) {
         dateControl.setErrors({ dateInFuture: true });
+      } else {
+        return this.newAnimalForm.valid;
+      }
+    };
+  }
+
+  checkState(state) {
+    return (group: FormGroup): any => {
+      const stateForm = group.controls[state];
+      const birthDate = new Date( this.newAnimalForm.controls['birthDate'].value );
+
+      if (stateForm.value === 'teen' && birthDate < this.sixMonthAgo) {
+        stateForm.setErrors({ stateInvalid: true });
+      } else if (stateForm.value === 'pregnant' && birthDate > this.sixMonthAgo) {
+        stateForm.setErrors({ stateInvalid: true });
+      } else if (stateForm.value === 'nursing' && birthDate > this.sixMonthAgo) {
+        stateForm.setErrors({ stateInvalid: true });
+      } else if (stateForm.value === 'resting' && birthDate > this.sixMonthAgo) {
+        stateForm.setErrors({ stateInvalid: true });
+      } else if (stateForm.value === 'fattening' && birthDate > this.sixMonthAgo) {
+        stateForm.setErrors({ stateInvalid: true });
       } else {
         return this.newAnimalForm.valid;
       }

@@ -187,6 +187,9 @@
                   <mat-option value="dead" >DEAD</mat-option>
                   <mat-option value="sold" >SOLD</mat-option>
                 </mat-select>
+                <mat-error *ngIf="state.errors?.stateInvalid">
+                  State <strong>invalid</strong>, check dates
+                </mat-error>
               </mat-form-field>
             </div>
           </div>
