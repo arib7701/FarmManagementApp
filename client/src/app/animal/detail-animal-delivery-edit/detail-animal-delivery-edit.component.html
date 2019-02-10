@@ -86,14 +86,14 @@
                 </mat-form-field>
               </div>
             </div>
-            <div class="col-md-1">
+            <div class="col-md-1" *ngIf="!disabled">
               <div class="form-group icon">
                 <a (click)="deleteDelivery(i)"><i class="fa fa-trash"></i></a>
               </div>
             </div>
           </div>
         </div>
-        <div class="box-footer">
+        <div class="box-footer" *ngIf="!disabled">
           <button
             type="submit"
             mat-raised-button

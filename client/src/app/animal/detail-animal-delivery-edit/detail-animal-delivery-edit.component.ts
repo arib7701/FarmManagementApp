@@ -18,6 +18,9 @@ export class DetailAnimalDeliveryEditComponent implements OnInit, OnDestroy {
   @Input()
   sexAnimal: string;
 
+  @Input()
+  disabled: boolean;
+
   editDeliveryForm: FormGroup;
   subscriptionDeliveries: Subscription;
   subscriptionDeliveryDelete: Subscription;
@@ -64,7 +67,11 @@ export class DetailAnimalDeliveryEditComponent implements OnInit, OnDestroy {
 
             this.noDeliveries = false;
             for (let i = 0; i < this.deliveries.length; i++) {
-              this.addControls(i);
+              if (this.disabled) {
+                this.disableFields(i);
+              } else {
+                this.addControls(i);
+              }
             }
           } else {
             this.noDeliveries = true;
@@ -115,6 +122,34 @@ export class DetailAnimalDeliveryEditComponent implements OnInit, OnDestroy {
       })
     );
   }
+
+  disableFields(index: number) {
+    const control = <FormArray>this.editDeliveryForm.controls['deliveryItems'];
+    control.push(
+      new FormGroup({
+        id: new FormControl({ value: this.deliveries[index].id, hidden: true }),
+        number: new FormControl(this.deliveries[index].number, [
+          Validators.required,
+          Validators.min(0),
+          Validators.max(20)
+        ]),
+        deliveryDate: new FormControl({ value: this.deliveries[index].date, disabled: true}),
+        motherId: new FormControl(
+          {
+            value: this.deliveries[index].motherId,
+            disabled: true
+          }
+        ),
+        fatherId: new FormControl(
+          {
+            value: this.deliveries[index].fatherId,
+            disabled: true
+          }
+        )
+      })
+    );
+  }
+
 
   addNewDeliveryControl() {
     const control = <FormArray>this.editDeliveryForm.controls['deliveryItems'];
