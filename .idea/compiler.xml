@@ -7,14 +7,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="farm" />
-        <module name="FarmManagementApp" />
       </profile>
     </annotationProcessing>
-  </component>
-  <component name="JavacSettings">
-    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="FarmManagementApp" options="-parameters" />
-      <module name="farm" options="-parameters" />
-    </option>
+    <bytecodeTargetLevel>
+      <module name="farm" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

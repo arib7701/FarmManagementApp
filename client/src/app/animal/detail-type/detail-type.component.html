@@ -26,19 +26,39 @@
             <tr>
               <th>ANIMAL ID</th>
               <th>NAME</th>
-              <th>SEXE</th>
+              <th>SEX <i class="fas fa-filter" (click)="getUniqueValuesForColumn('sex')"></i>
+                  <mat-select *ngIf="column==='sex'" #sexSelect style="width: 0px">
+                    <mat-option *ngFor="let unique of uniqueValues" (click)="filterBy(unique)">{{unique}}</mat-option>
+                  </mat-select>
+              </th>
               <th>AGE</th>
-              <th>BARN NUMBER</th>
-              <th>LAST DATE WEIGHT</th>
-              <th>LAST WEIGHT</th>
-              <th>STATUS</th>
+              <th>BARN NUMBER <i class="fas fa-filter" (click)="getUniqueValuesForColumn('barn')"></i>
+                <mat-select *ngIf="column==='barn'" #barnSelect style="width: 0px">
+                    <mat-option *ngFor="let unique of uniqueValues" (click)="filterBy(unique)">{{unique}}</mat-option>
+                  </mat-select>
+              </th>
+              <th>LAST DATE WEIGHT <i class="fas fa-filter" (click)="getUniqueValuesForColumn('lastDateWeight')"></i>
+                <mat-select *ngIf="column==='date'" #dateSelect style="width: 0px">
+                    <mat-option *ngFor="let unique of uniqueValues" (click)="filterBy(unique)">{{unique}}</mat-option>
+                  </mat-select>
+              </th>
+              <th >LAST WEIGHT <i class="fas fa-filter" (click)="getUniqueValuesForColumn('lastWeight')"></i>
+                <mat-select *ngIf="column==='weight'" #weightSelect style="width: 0px">
+                    <mat-option *ngFor="let unique of uniqueValues" (click)="filterBy(unique)">{{unique}}</mat-option>
+                  </mat-select>
+              </th>
+              <th >STATUS <i class="fas fa-filter" (click)="getUniqueValuesForColumn('state')"></i>
+                <mat-select *ngIf="column==='state'" #stateSelect style="width: 0px">
+                    <mat-option *ngFor="let unique of uniqueValues" (click)="filterBy(unique)">{{unique}}</mat-option>
+                  </mat-select>
+              </th>
               <th></th>
               <th></th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let animal of animals | paginate: {itemsPerPage:20, currentPage: pagination}">
+            <tr *ngFor="let animal of animals | paginate: {itemsPerPage:20, currentPage: pagination} | tableFilter: {column:columnFilter, choice:choiceFilter}">
               <td>{{ animal?.id }}</td>
               <td>{{ animal?.name }}</td>
               <td>
@@ -97,7 +117,7 @@
             <tr>
               <th>ANIMAL ID</th>
               <th>NAME</th>
-              <th>SEXE</th>
+              <th>SEX</th>
               <th>AGE</th>
               <th>BARN NUMBER</th>
               <th>LAST DATE WEIGHT</th>

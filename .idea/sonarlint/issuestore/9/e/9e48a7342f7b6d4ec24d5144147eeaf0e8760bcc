@@ -1,4 +1,0 @@
-
-^squid:S1854<";Remove this useless assignment to local variable "deleted".(ïÑ±Õıÿÿÿÿ8È«ï·‡-
-Osquid:S1481<",Remove this unused "deleted" local variable.(ïÑ±Õıÿÿÿÿ8È«ï·‡-
-Vsquid:UselessImportCheck"+Remove this unused import 'java.util.Date'.(¸…¼ü8È«ï·‡-

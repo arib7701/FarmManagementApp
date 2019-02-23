@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
+  <component name="ExternalSystem" externalSystem="Maven" />
   <component name="FacetManager">
     <facet type="Spring" name="Spring">
       <configuration />
@@ -11,17 +12,6 @@
           <root url="file://$MODULE_DIR$/src/main/java" />
           <root url="file://$MODULE_DIR$/src/main/resources" />
         </sourceRoots>
-      </configuration>
-    </facet>
-    <facet type="jpa" name="JPA">
-      <configuration>
-        <setting name="validation-enabled" value="true" />
-        <setting name="provider-name" value="Hibernate" />
-        <datasource-mapping>
-          <factory-entry name="entityManagerFactory" />
-          <factory-entry name="noname-a.xml@0" value="7539348c-ee16-4b60-9ff3-454f409e4d06" />
-        </datasource-mapping>
-        <naming-strategy-map />
       </configuration>
     </facet>
   </component>

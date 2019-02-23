@@ -1,3 +1,9 @@
 .my-pagination /deep/ .ngx-pagination .current {
     margin-top:50px;
 }
+
+.fa-filter {
+    font-size: 0.7em;
+    padding-left: 20px;
+    color: grey;
+}

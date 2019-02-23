@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { AnimalService } from 'src/app/services/animal.service';
 import { Subscription } from 'rxjs';
 import { Animal } from 'src/app/models/animal';
@@ -20,6 +20,17 @@ export class DetailTypeComponent implements OnInit, OnDestroy {
   type: Type;
   animals: Animal[];
   pagination = 1;
+  columnTemp: string;
+  column = 'all';
+  columnFilter = 'all';
+  choiceFilter = 'all';
+  uniqueValues = new Array<string>();
+
+  @ViewChild('sexSelect') sexSelect;
+  @ViewChild('barnSelect') barnSelect;
+  @ViewChild('dateSelect') dateSelect;
+  @ViewChild('weightSelect') weightSelect;
+  @ViewChild('stateSelect') stateSelect;
 
   constructor(
     private animalService: AnimalService,
@@ -87,6 +98,77 @@ export class DetailTypeComponent implements OnInit, OnDestroy {
         animal.lastWeight = animal.weights[animal.weights.length - 1].measure;
       }
     });
+  }
+
+  filterBy(choice: string) {
+
+    this.columnFilter = this.columnTemp;
+    this.choiceFilter = choice;
+  }
+
+  getUniqueValuesForColumn(column) {
+
+    this.columnFilter = 'all';
+    this.choiceFilter = 'all';
+    this.column = 'all';
+    this.uniqueValues = new Array<string>();
+    this.animals.forEach(animal => {
+
+      let property;
+
+      switch (column) {
+        case 'sex':
+          this.column = 'sex';
+          property = animal.sex;
+          break;
+        case 'barn':
+          this.column = 'barn';
+          property = animal.barn;
+          break;
+        case 'state':
+          this.column = 'state';
+          property = animal.state;
+          break;
+        case 'lastDateWeight':
+          this.column = 'date';
+          property = animal.lastDateWeight;
+          break;
+        case 'lastWeight':
+          this.column = 'weight';
+          property = animal.lastWeight;
+          break;
+      }
+
+      if (!this.uniqueValues.includes(property) && property !== null && property !== undefined) {
+        this.uniqueValues.push(property);
+      }
+
+      this.columnTemp = column;
+
+    });
+
+    const that = this;
+    setTimeout(function() { that.openMatSelect(column); }, 200);
+  }
+
+  openMatSelect(column) {
+    switch (column) {
+      case 'sex':
+        this.sexSelect.open();
+        break;
+      case 'barn':
+        this.barnSelect.open();
+        break;
+      case 'state':
+        this.stateSelect.open();
+        break;
+      case 'lastDateWeight':
+        this.dateSelect.open();
+        break;
+      case 'lastWeight':
+        this.weightSelect.open();
+        break;
+    }
   }
 
   ngOnDestroy() {
