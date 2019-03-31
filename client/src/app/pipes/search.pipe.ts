@@ -1,6 +1,5 @@
 import { PipeTransform, Pipe } from '@angular/core';
 import { Animal } from '../models/animal';
-import { AppModule } from '../app.module';
 
 @Pipe({
     name: 'tableFilter',

@@ -9,11 +9,11 @@ import { WeightService } from 'src/app/services/weight.service';
 import {
   FormGroup,
   FormControl,
-  Validators,
-  AbstractControl
+  Validators
 } from '@angular/forms';
 import { Weight } from 'src/app/models/weight';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { State } from '../../models/states';
 
 @Component({
   selector: 'app-detail-animal-create',
@@ -33,6 +33,7 @@ export class DetailAnimalCreateComponent implements OnInit {
   animalsIdsFemale = new Array<number>();
   today = new Date();
   sixMonthAgo = new Date();
+  statesPossible = new Array<State>();
 
   constructor(
     private animalService: AnimalService,
@@ -74,6 +75,7 @@ export class DetailAnimalCreateComponent implements OnInit {
       );
 
     this.createForm();
+    this.getPossibleStates();
   }
 
   createForm() {
@@ -94,6 +96,15 @@ export class DetailAnimalCreateComponent implements OnInit {
       this.isFutureDate('birthDate'),
       this.checkState('state')
     ]);
+  }
+
+  getPossibleStates() {
+
+    for (const state in State) {
+      if ( state !== 'dead' && state !== 'sold') {
+        this.statesPossible.push(state as State);
+      }
+    }
   }
 
   isDateSmallerTo(fromDateControl, toDateControl) {

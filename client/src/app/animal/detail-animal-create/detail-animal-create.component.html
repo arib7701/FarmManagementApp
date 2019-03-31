@@ -153,11 +153,7 @@
             <div class="form-group">
               <mat-form-field>
                 <mat-select matNativeControl formControlName="state" placeholder="State" [disabled]="disabled">
-                  <mat-option value="teen" >TEEN</mat-option>
-                  <mat-option value="pregnant" >PREGNANT</mat-option>
-                  <mat-option value="nursing" >NURSING</mat-option>
-                  <mat-option value="resting" >RESTING</mat-option>
-                  <mat-option value="fattening" >FATTENING</mat-option>
+                  <mat-option *ngFor="let state of statesPossible" [value]="state">{{state | uppercase}}</mat-option>
                 </mat-select>
                 <mat-error *ngIf="state.errors?.required"> Field <strong>required</strong> </mat-error>
                 <mat-error *ngIf="state.errors?.stateInvalid">

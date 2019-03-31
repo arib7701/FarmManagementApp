@@ -116,11 +116,7 @@
               <div class="form-group">
                 <mat-form-field>
                   <mat-select matNativeControl formControlName="state" placeholder="State">
-                    <mat-option value="teen" >TEEN</mat-option>
-                    <mat-option value="pregnant" >PREGNANT</mat-option>
-                    <mat-option value="nursing" >NURSING</mat-option>
-                    <mat-option value="resting" >RESTING</mat-option>
-                    <mat-option value="fattening" >FATTENING</mat-option>
+                    <mat-option *ngFor="let state of statesPossible" [value]="state">{{state | uppercase}}</mat-option>
                   </mat-select>
                   <mat-error> Field <strong>required</strong> </mat-error>
                 </mat-form-field>
@@ -137,9 +133,7 @@
           >
             Submit
           </button>
-          <a (click)="addNewAnimalControl()" style="padding-left:25px;"
-            ><i class="fas fa-plus-circle fa-2x"></i
-          ></a>
+          <a (click)="addNewAnimalControl()" style="padding-left:25px;"><em class="fas fa-plus-circle fa-2x"></em></a>
         </div>
        
       </form>

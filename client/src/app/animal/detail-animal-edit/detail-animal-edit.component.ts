@@ -7,8 +7,7 @@ import { AnimalService } from 'src/app/services/animal.service';
 import { TypeService } from 'src/app/services/type.service';
 import { ActivatedRoute } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
-import { controlNameBinding } from '@angular/forms/src/directives/reactive_directives/form_control_name';
-import { attachEmbeddedView } from '@angular/core/src/view';
+import { State } from '../../models/states';
 
 @Component({
   selector: 'app-detail-animal-edit',
@@ -32,6 +31,7 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
   editAnimalForm: FormGroup;
   animalsIdsMale = new Array<number>();
   animalsIdsFemale = new Array<number>();
+  statesPossible = new Array<State>();
 
   constructor(
     private animalService: AnimalService,
@@ -53,7 +53,7 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
           this.sexAnimal = animal.sex;
           this.birthDay = new Date(animal.birth);
           this.getType();
-          this.loadItems();
+          this.getPossibleStates();
 
           if (this.animal.death !== null || this.animal.departure !== null) {
             this.disableFields();
@@ -100,7 +100,7 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
         value: this.animal.deathCause,
         disabled: true
       }),
-      state: new FormControl(this.animal.state)
+      state: new FormControl(this.animal.state as State)
     });
     this.editAnimalForm.setValidators([
       this.isDateSmallerTo('arrivalDate', 'birthDate'),
@@ -119,6 +119,67 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
           deathCause.enable();
         }
       }); */
+  }
+
+  getPossibleStates() {
+
+    const currentState = this.animal.state;
+
+    if (this.animal.sex === 'F') {
+      switch (currentState) {
+        case 'teen':
+          this.statesPossible.push(State.teen, State.pregnant, State.fattening, State.dead, State.sold);
+          break;
+        case 'pregnant':
+          this.statesPossible.push(State.pregnant, State.nursing, State.dead, State.sold);
+          break;
+        case 'nursing':
+          this.statesPossible.push(State.nursing, State.resting, State.retired, State.dead, State.sold);
+          break;
+        case 'resting':
+          this.statesPossible.push(State.resting, State.pregnant, State.retired, State.dead, State.sold);
+          break;
+        case 'retired':
+          this.statesPossible.push(State.retired, State.dead, State.sold, State.pregnant);
+          break;
+        case 'fattening':
+          this.statesPossible.push(State.fattening, State.dead, State.sold, State.pregnant);
+          break;
+        case 'dead':
+          this.statesPossible.push(State.dead);
+          break;
+        case 'sold':
+          this.statesPossible.push(State.sold);
+          break;
+        default:
+          break;
+      }
+    } else if (this.animal.sex === 'M') {
+      switch (currentState) {
+        case 'teen':
+          this.statesPossible = [State.teen, State.pregnant, State.fattening, State.dead, State.sold];
+          break;
+        case 'supermale':
+          this.statesPossible = [State.supermale, State.retired, State.dead, State.sold];
+          break;
+        case 'retired':
+          this.statesPossible = [State.retired, State.dead, State.supermale];
+          break;
+        case 'fattening':
+          this.statesPossible = [State.fattening, State.dead, State.sold, State.supermale];
+          break;
+        case 'dead':
+          this.statesPossible = [State.dead];
+          break;
+        case 'sold':
+          this.statesPossible = [State.sold];
+          break;
+        default:
+          break;
+      }
+    }
+
+    this.loadItems();
   }
 
   isDateSmallerTo(fromDaTeControl, toDateControl) {

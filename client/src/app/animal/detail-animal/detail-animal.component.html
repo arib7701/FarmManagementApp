@@ -24,7 +24,7 @@
         </h2>
         <h2>
           <span *ngIf="animal?.state == 'dead'" class="badge bg-red">
-            {{ animal?.state | uppercase }}</span
+            {{ animal?.state | uppercase}}</span
           >
           <span *ngIf="animal?.state == 'resting'" class="badge bg-green">
             {{ animal?.state | uppercase}}</span
@@ -32,16 +32,22 @@
           <span *ngIf="animal?.state == 'sold'" class="badge bg-yellow">
             {{ animal?.state | uppercase}}</span
           >
-          <span *ngIf="animal?.state == 'pregnant'" class="badge bg-orange">
+          <span *ngIf="animal?.state == 'pregnant'" class="badge bg-fuchsia">
             {{ animal?.state | uppercase}}</span
           >
-          <span *ngIf="animal?.state == 'teen'" class="badge bg-purple">
+          <span *ngIf="animal?.state == 'teen'" class="badge bg-aqua">
             {{ animal?.state | uppercase}}</span
           >
-          <span *ngIf="animal?.state == 'nursing'" class="badge bg-blue">
+          <span *ngIf="animal?.state == 'nursing'" class="badge bg-purple">
             {{ animal?.state | uppercase}}</span
           >
-          <span *ngIf="animal?.state == 'fattening'" class="badge bg-black">
+          <span *ngIf="animal?.state == 'fattening'" class="badge bg-navy">
+            {{ animal?.state | uppercase}}</span
+          >
+          <span *ngIf="animal?.state == 'supermale'" class="badge bg-black">
+            {{ animal?.state | uppercase}}</span
+          >
+          <span *ngIf="animal?.state == 'retired'" class="badge bg-blue">
             {{ animal?.state | uppercase}}</span
           >
         </h2>
@@ -86,20 +92,20 @@
           ><div class="row" display="flex" style="margin-top: 20px;">
             <div class="col-md-4">
               <p *ngIf="animal?.birth">
-                <i class="fas fa-baby"></i> <strong> Birth Date:</strong>
+                <em class="fas fa-baby"></em> <strong> Birth Date:</strong>
                 {{ animal?.birth }}
               </p>
             </div>
 
             <div class="col-md-4">
               <p *ngIf="animal?.death">
-                <i class="fas fa-skull-crossbones"></i>
+                <em class="fas fa-skull-crossbones"></em>
                 <strong> Death Date:</strong> {{ animal?.death }}
               </p>
             </div>
             <div class="col-md-4">
               <p *ngIf="animal?.death">
-                <i class="fas fa-book-dead"></i> <strong> Death Cause:</strong>
+                <em class="fas fa-book-dead"></em> <strong> Death Cause:</strong>
                 {{ animal?.deathCause }}
               </p>
             </div>
@@ -108,14 +114,14 @@
           <div class="row" display="flex">
             <div class="col-md-6">
               <p *ngIf="animal?.arrival">
-                <i class="fas fa-plane-arrival"></i>
+                <em class="fas fa-plane-arrival"></em>
                 <strong> Arrival Date:</strong> {{ animal?.arrival }}
               </p>
             </div>
 
             <div class="col-md-6">
               <p *ngIf="animal?.departure">
-                <i class="fas fa-plane-departure"></i>
+                <em class="fas fa-plane-departure"></em>
                 <strong> Departure Date:</strong> {{ animal?.departure }}
               </p>
             </div>

@@ -15,7 +15,6 @@ import { MatNativeDateModule } from '@angular/material';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { TableFilterPipe } from './../pipes/search.pipe';
-import { DropdownDirective } from './../directives/dropdown.directives';
 
 @NgModule({
   imports: [
@@ -33,7 +32,7 @@ import { DropdownDirective } from './../directives/dropdown.directives';
     MatDatepickerModule,
     MatNativeDateModule
   ],
-  declarations: [FooterComponent, HeaderComponent, NavComponent, TableFilterPipe, DropdownDirective ],
+  declarations: [FooterComponent, HeaderComponent, NavComponent, TableFilterPipe ],
   exports: [
     FormsModule,
     ReactiveFormsModule,
@@ -49,8 +48,7 @@ import { DropdownDirective } from './../directives/dropdown.directives';
     MatCheckboxModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    TableFilterPipe,
-    DropdownDirective
+    TableFilterPipe
   ]
 })
 export class SharedModule { }

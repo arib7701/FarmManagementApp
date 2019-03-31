@@ -10,9 +10,7 @@
         <div class="col-md-3">
         <h3 class="box-title">ALL {{ type?.name | uppercase }}S</h3>
         <p style="margin-left: 20px;" class="box-title">
-          <a  [routerLink]="['/animal/add', idType]"
-            ><i class="fas fa-plus-circle fa-2x"></i
-          ></a> 
+          <a  [routerLink]="['/animal/add', idType]"><em class="fas fa-plus-circle fa-2x"></em></a> 
         </p>
         </div>
         <div class="col-md-6">
@@ -26,31 +24,31 @@
             <tr>
               <th>ANIMAL ID</th>
               <th>NAME</th>
-              <th>SEX <i class="fas fa-filter" (click)="getUniqueValuesForColumn('sex')"></i>
+              <th>SEX <em class="fas fa-filter" (click)="getUniqueValuesForColumn('sex')"></em>
                   <mat-select *ngIf="column==='sex'" #sexSelect style="width: 0px">
                     <mat-option *ngFor="let unique of uniqueValues" (click)="filterBy(unique)">{{unique}}</mat-option>
                   </mat-select>
               </th>
               <th>AGE</th>
-              <th>BARN NUMBER <i class="fas fa-filter" (click)="getUniqueValuesForColumn('barn')"></i>
+              <th>BARN NUMBER <em class="fas fa-filter" (click)="getUniqueValuesForColumn('barn')"></em>
                 <mat-select *ngIf="column==='barn'" #barnSelect style="width: 0px">
                     <mat-option *ngFor="let unique of uniqueValues" (click)="filterBy(unique)">{{unique}}</mat-option>
                   </mat-select>
               </th>
-              <th>LAST DATE WEIGHT <i class="fas fa-filter" (click)="getUniqueValuesForColumn('lastDateWeight')"></i>
+              <th>LAST DATE WEIGHT <em class="fas fa-filter" (click)="getUniqueValuesForColumn('lastDateWeight')"></em>
                 <mat-select *ngIf="column==='date'" #dateSelect style="width: 0px">
                     <mat-option *ngFor="let unique of uniqueValues" (click)="filterBy(unique)">{{unique}}</mat-option>
                   </mat-select>
               </th>
-              <th >LAST WEIGHT <i class="fas fa-filter" (click)="getUniqueValuesForColumn('lastWeight')"></i>
+              <th >LAST WEIGHT <em class="fas fa-filter" (click)="getUniqueValuesForColumn('lastWeight')"></em>
                 <mat-select *ngIf="column==='weight'" #weightSelect style="width: 0px">
                     <mat-option *ngFor="let unique of uniqueValues" (click)="filterBy(unique)">{{unique}}</mat-option>
                   </mat-select>
               </th>
-              <th >STATUS <i class="fas fa-filter" (click)="getUniqueValuesForColumn('state')"></i>
+              <th >STATUS <em class="fas fa-filter" (click)="getUniqueValuesForColumn('state')"></em>
                 <mat-select *ngIf="column==='state'" #stateSelect style="width: 0px">
                     <mat-option *ngFor="let unique of uniqueValues" (click)="filterBy(unique)">{{unique}}</mat-option>
-                  </mat-select>
+                </mat-select>
               </th>
               <th></th>
               <th></th>
@@ -83,32 +81,38 @@
                 <span *ngIf="animal?.state == 'sold'" class="badge bg-yellow">
                   {{ animal?.state | uppercase}}</span
                 >
-                <span *ngIf="animal?.state == 'pregnant'" class="badge bg-orange">
+                <span *ngIf="animal?.state == 'pregnant'" class="badge bg-fuchsia">
                   {{ animal?.state | uppercase}}</span
                 >
-                <span *ngIf="animal?.state == 'teen'" class="badge bg-purple">
+                <span *ngIf="animal?.state == 'teen'" class="badge bg-aqua">
                   {{ animal?.state | uppercase}}</span
                 >
-                <span *ngIf="animal?.state == 'nursing'" class="badge bg-blue">
+                <span *ngIf="animal?.state == 'nursing'" class="badge bg-purple">
                   {{ animal?.state | uppercase}}</span
                 >
-                <span *ngIf="animal?.state == 'fattening'" class="badge bg-black">
+                <span *ngIf="animal?.state == 'fattening'" class="badge bg-navy">
+                  {{ animal?.state | uppercase}}</span
+                >
+                <span *ngIf="animal?.state == 'supermale'" class="badge bg-black">
+                  {{ animal?.state | uppercase}}</span
+                >
+                <span *ngIf="animal?.state == 'retired'" class="badge bg-blue">
                   {{ animal?.state | uppercase}}</span
                 >
               </td>
               <td>
                 <a [routerLink]="['/animal/detail/', animal.id]"
-                  ><i class="fa fa-info"></i
+                  ><em class="fa fa-info"></em
                 ></a>
               </td>
               <td>
                 <a [routerLink]="['/animal/edit', animal.id]"
-                  ><i class="fa fa-edit"></i
+                  ><em class="fa fa-edit"></em
                 ></a>
               </td>
               <td>
                 <a (click)="deleteAnimal(animal.id)"
-                  ><i class="fa fa-trash"></i
+                  ><em class="fa fa-trash"></em
                 ></a>
               </td>
             </tr>

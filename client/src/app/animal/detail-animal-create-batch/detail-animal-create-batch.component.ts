@@ -7,6 +7,7 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 import { ActivatedRoute } from '@angular/router';
 import { TypeService } from 'src/app/services/type.service';
 import { Type } from 'src/app/models/type';
+import { State } from '../../models/states';
 
 @Component({
   selector: 'app-detail-animal-create-batch',
@@ -26,6 +27,7 @@ export class DetailAnimalCreateBatchComponent implements OnInit, OnDestroy {
   sixMonthAgo = new Date();
   animalsIdsMale = new Array<number>();
   animalsIdsFemale = new Array<number>();
+  statesPossible = new Array<State>();
 
   constructor( private animalService: AnimalService,
     private typeService: TypeService,
@@ -61,6 +63,7 @@ export class DetailAnimalCreateBatchComponent implements OnInit, OnDestroy {
       );
 
     this.createForm();
+    this.getPossibleStates();
   }
 
   createForm() {
@@ -69,6 +72,16 @@ export class DetailAnimalCreateBatchComponent implements OnInit, OnDestroy {
     });
     this.addControls();
   }
+
+  getPossibleStates() {
+
+    for (const state in State) {
+      if ( state !== 'dead' && state !== 'sold') {
+        this.statesPossible.push(state as State);
+      }
+    }
+  }
+
 
   addControls() {
     const control = <FormArray>this.addAnimalsBatchForm.controls['animalItems'];

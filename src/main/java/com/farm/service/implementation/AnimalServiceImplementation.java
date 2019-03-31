@@ -236,6 +236,8 @@ public class AnimalServiceImplementation implements IAnimalService {
                 || (state.equals("pregnant") && birthDate.isBefore(sixMonthAgo) && deathDate == null && departureDate == null)
                 || (state.equals("nursing") && birthDate.isBefore(sixMonthAgo) && deathDate == null && departureDate == null)
                 || (state.equals("resting") && birthDate.isBefore(sixMonthAgo) && deathDate == null && departureDate == null)
+                || (state.equals("retired") && birthDate.isBefore(sixMonthAgo) && deathDate == null && departureDate == null)
+                || (state.equals("supermale") && birthDate.isBefore(sixMonthAgo) && deathDate == null && departureDate == null)
                 || (state.equals("fattening") && birthDate.isBefore(sixMonthAgo) && deathDate == null && departureDate == null)
                 || (state.equals("dead") && deathDate != null)
                 || (state.equals("sold") && departureDate != null));
