@@ -61,10 +61,10 @@ public class AnimalServiceImplementation implements IAnimalService {
     }
 
     @Override
-    public List<Animal> findByTypeDeadLessThanSixMonths(int animalTypeId) {
+    public List<Animal> findByTypeDeadLessThanThreeMonths(int animalTypeId) {
 
-        LocalDate sixMonthsAgo = LocalDate.now().minusMonths(6);
-        List<AnimalEntity> animalEntityList1 = animalRepository.findByAnimalTypeAndDateDeathIsAfter(animalTypeId, java.sql.Date.valueOf(sixMonthsAgo));
+        LocalDate threeMonthsAgo = LocalDate.now().minusMonths(3);
+        List<AnimalEntity> animalEntityList1 = animalRepository.findByAnimalTypeAndDateDeathIsAfter(animalTypeId, java.sql.Date.valueOf(threeMonthsAgo));
         List<AnimalEntity> animalEntityList2 = animalRepository.findByAnimalTypeAndDateDeathIsNull(animalTypeId);
 
         List<AnimalEntity> animalEntityList = new ArrayList<>();

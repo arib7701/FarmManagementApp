@@ -30,18 +30,18 @@
                   </mat-select>
               </th>
               <th>AGE</th>
-              <th>BARN NUMBER <em class="fas fa-filter" (click)="getUniqueValuesForColumn('barn')"></em>
+              <th>BARN<em class="fas fa-filter" (click)="getUniqueValuesForColumn('barn')"></em>
                 <mat-select *ngIf="column==='barn'" #barnSelect style="width: 0px">
+                    <mat-option *ngFor="let unique of uniqueValues" (click)="filterBy(unique)">{{unique}}</mat-option>
+                  </mat-select>
+              </th>
+              <th >LAST WEIGHT<em class="fas fa-filter" (click)="getUniqueValuesForColumn('lastWeight')"></em>
+                <mat-select *ngIf="column==='weight'" #weightSelect style="width: 0px">
                     <mat-option *ngFor="let unique of uniqueValues" (click)="filterBy(unique)">{{unique}}</mat-option>
                   </mat-select>
               </th>
               <th>LAST DATE WEIGHT <em class="fas fa-filter" (click)="getUniqueValuesForColumn('lastDateWeight')"></em>
                 <mat-select *ngIf="column==='date'" #dateSelect style="width: 0px">
-                    <mat-option *ngFor="let unique of uniqueValues" (click)="filterBy(unique)">{{unique}}</mat-option>
-                  </mat-select>
-              </th>
-              <th >LAST WEIGHT <em class="fas fa-filter" (click)="getUniqueValuesForColumn('lastWeight')"></em>
-                <mat-select *ngIf="column==='weight'" #weightSelect style="width: 0px">
                     <mat-option *ngFor="let unique of uniqueValues" (click)="filterBy(unique)">{{unique}}</mat-option>
                   </mat-select>
               </th>
@@ -67,10 +67,10 @@
                   {{ animal?.sex }}</span
                 >
               </td>
-              <td><span *ngIf="animal?.ageYear > 0">{{ animal?.ageYear }} Y -</span> {{ animal?.ageMonth }} M</td>
+              <td><span *ngIf="animal?.ageYear > 0">{{ animal?.ageYear }}Y -</span> {{ animal?.ageMonth }}m</td>
               <td>{{ animal?.barn }}</td>
+              <td>{{ animal?.lastWeight }} kg<span style="float:right;" *ngIf="animal?.lastWeight > targetWeight && animal?.state != 'pregnant' && animal?.state != 'nursing'" class="badge bg-yellow">TARGET <em class="fas fa-check"></em></span></td>
               <td>{{ animal?.lastDateWeight }}</td>
-              <td>{{ animal?.lastWeight }}</td>
               <td>
                 <span *ngIf="animal?.state == 'dead'" class="badge bg-red">
                   {{ animal?.state | uppercase}}</span
@@ -123,9 +123,9 @@
               <th>NAME</th>
               <th>SEX</th>
               <th>AGE</th>
-              <th>BARN NUMBER</th>
-              <th>LAST DATE WEIGHT</th>
+              <th>BARN</th>              
               <th>LAST WEIGHT</th>
+              <th>LAST DATE WEIGHT</th>
               <th>STATUS</th>
               <th></th>
               <th></th>

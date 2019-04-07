@@ -11,7 +11,7 @@ public interface IAnimalService {
     List<Animal> findAll();
     List<Animal> findByTypeId(int type);
     List<Animal> findByType(int animalTypeId);
-    List<Animal> findByTypeDeadLessThanSixMonths(int animalTypeId);
+    List<Animal> findByTypeDeadLessThanThreeMonths(int animalTypeId);
     List<Animal> findByTypeAlive(int animalTypeId);
 
     List<Animal> findByAge(int age);

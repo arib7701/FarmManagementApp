@@ -30,8 +30,8 @@ public class AnimalController {
     }
 
     @GetMapping(value= "/type2/{type}")
-    public ResponseEntity<List<Animal>> getAnimalsByType2(@PathVariable ("type") int type) {
-        List<Animal> animalsByType = animalService.findByTypeDeadLessThanSixMonths(type);
+    public ResponseEntity<List<Animal>> getAnimalsByTypeThreeMonth(@PathVariable ("type") int type) {
+        List<Animal> animalsByType = animalService.findByTypeDeadLessThanThreeMonths(type);
         return new ResponseEntity(animalsByType, HttpStatus.OK);
     }
 

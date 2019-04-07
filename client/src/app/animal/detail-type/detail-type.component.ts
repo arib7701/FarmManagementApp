@@ -25,6 +25,7 @@ export class DetailTypeComponent implements OnInit, OnDestroy {
   columnFilter = 'all';
   choiceFilter = 'all';
   uniqueValues = new Array<string>();
+  targetWeight = 6;
 
   @ViewChild('sexSelect') sexSelect;
   @ViewChild('barnSelect') barnSelect;
