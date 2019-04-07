@@ -1,10 +1,12 @@
 package com.farm.service.implementation;
 
 import com.farm.dao.AnimalEntity;
+import com.farm.dao.AnimalTypeEntity;
 import com.farm.exceptions.ApplicationException;
 import com.farm.model.Animal;
 import com.farm.model.Weight;
 import com.farm.repository.AnimalRepository;
+import com.farm.repository.AnimalTypeRepository;
 import com.farm.service.IAnimalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,8 +21,21 @@ import static com.farm.mappers.EntityModelMappers.*;
 @Service
 public class AnimalServiceImplementation implements IAnimalService {
 
+    private static final String TEEN = "teen";
+    private static final String PREGNANT = "pregnant";
+    private static final String NURSING = "nursing";
+    private static final String RESTING = "resting";
+    private static final String RETIRED = "retired";
+    private static final String SUPERMALE = "supermale";
+    private static final String DEAD = "dead";
+    private static final String SOLD = "sold";
+    private static final String FATTENING = "fattening";
+
     @Autowired
     private AnimalRepository animalRepository;
+
+    @Autowired
+    private AnimalTypeRepository animalTypeRepository;
 
     @Autowired
     private WeightServiceImplementation weightServiceImplementation;
@@ -50,7 +65,6 @@ public class AnimalServiceImplementation implements IAnimalService {
     public List<Animal> findByTypeDeadLessThanSixMonths(int animalTypeId) {
 
         LocalDate sixMonthsAgo = LocalDate.now().minusMonths(6);
-        System.out.println(sixMonthsAgo);
         List<AnimalEntity> animalEntityList1 = animalRepository.findByAnimalTypeAndDateDeathIsAfter(animalTypeId, java.sql.Date.valueOf(sixMonthsAgo));
         List<AnimalEntity> animalEntityList2 = animalRepository.findByAnimalTypeAndDateDeathIsNull(animalTypeId);
 
@@ -129,20 +143,17 @@ public class AnimalServiceImplementation implements IAnimalService {
 
         Animal animalSaved;
 
-        if(checkDatesAnimalOK(animal) && checkDeathCause(animal)) {
-
-            if(checkStateValid(animal)) {
-                AnimalEntity animalEntity = parseAnimal(animal);
-                AnimalEntity animalEntitySaved = animalRepository.save(animalEntity);
-                animalSaved = parseAnimalEntity(animalEntitySaved);
-            }
-            else {
-                throw new ApplicationException("Error: The state is invalid");
-            }
-        }
-        else {
+        if(!checkDatesAnimalOK(animal) && !checkDeathCause(animal)) {
             throw new ApplicationException("Error: Some of the dates are invalid");
         }
+
+        if(!checkStateValid(animal)) {
+            throw new ApplicationException("Error: The state is invalid");
+        }
+
+        AnimalEntity animalEntity = parseAnimal(animal);
+        AnimalEntity animalEntitySaved = animalRepository.save(animalEntity);
+        animalSaved = parseAnimalEntity(animalEntitySaved);
 
         return animalSaved;
     }
@@ -153,13 +164,15 @@ public class AnimalServiceImplementation implements IAnimalService {
         AnimalEntity animalEntity = animalRepository.findByAnimalId(id);
         Animal animalUpdated;
 
-        if(animalEntity != null) {
-
-           animalUpdated = save(animal);
-        }
-        else {
+        if(animalEntity == null) {
             throw new ApplicationException("Error: Animal does not exist");
         }
+
+        if(!checkUpdateStateValid(animal)) {
+            throw new ApplicationException("Error: New Animal state not valid");
+        }
+
+        animalUpdated = save(animal);
 
         return animalUpdated;
 
@@ -225,23 +238,119 @@ public class AnimalServiceImplementation implements IAnimalService {
     private boolean checkStateValid(Animal animal) {
 
         LocalDate today = LocalDate.now();
-        LocalDate sixMonthAgo = LocalDate.now().minusMonths(6);
+
+        AnimalTypeEntity type = animalTypeRepository.findByTypeId(animal.getType());
+        LocalDate maturity = LocalDate.now().minusMonths(type.getMonthsMaturity());
+        LocalDate pregnancy = maturity.minusWeeks(type.getWeeksGestation());
+        LocalDate nursing = pregnancy.minusWeeks(type.getWeeksSuckling());
+        LocalDate resting = pregnancy.minusWeeks(type.getWeeksBetweenGestation());
+
         LocalDate birthDate = animal.getBirth() == null ? today.minusDays(1) : animal.getBirth();
         LocalDate deathDate = animal.getDeath();
         LocalDate departureDate = animal.getDeparture();
 
         String state = animal.getState();
 
-        return ((state.equals("teen") && birthDate.isAfter(sixMonthAgo) && deathDate == null && departureDate == null)
-                || (state.equals("pregnant") && birthDate.isBefore(sixMonthAgo) && deathDate == null && departureDate == null)
-                || (state.equals("nursing") && birthDate.isBefore(sixMonthAgo) && deathDate == null && departureDate == null)
-                || (state.equals("resting") && birthDate.isBefore(sixMonthAgo) && deathDate == null && departureDate == null)
-                || (state.equals("retired") && birthDate.isBefore(sixMonthAgo) && deathDate == null && departureDate == null)
-                || (state.equals("supermale") && birthDate.isBefore(sixMonthAgo) && deathDate == null && departureDate == null)
-                || (state.equals("fattening") && birthDate.isBefore(sixMonthAgo) && deathDate == null && departureDate == null)
-                || (state.equals("dead") && deathDate != null)
-                || (state.equals("sold") && departureDate != null));
+        return ((state.equals(TEEN) && birthDate.isAfter(maturity) && deathDate == null && departureDate == null)
+                || (state.equals(PREGNANT) && birthDate.isBefore(maturity) && birthDate.isAfter(pregnancy) && deathDate == null && departureDate == null)
+                || (state.equals(NURSING) && birthDate.isBefore(maturity) && birthDate.isAfter(nursing) && deathDate == null && departureDate == null)
+                || (state.equals(RESTING) && birthDate.isBefore(maturity) && birthDate.isAfter(resting) && deathDate == null && departureDate == null)
+                || (state.equals(RETIRED) && birthDate.isBefore(maturity) && deathDate == null && departureDate == null)
+                || (state.equals(SUPERMALE) && birthDate.isBefore(maturity) && deathDate == null && departureDate == null)
+                || (state.equals(FATTENING) && birthDate.isBefore(maturity) && deathDate == null && departureDate == null));
 
+    }
+
+    private boolean checkUpdateStateValid(Animal animal) {
+
+        String sex = animal.getSex();
+        String oldState = animalRepository.findByAnimalId(animal.getId()).getState();
+        String newState = animal.getState();
+        boolean validChange = false;
+
+        if("F".equals(sex)) {
+            switch (oldState) {
+                case TEEN:
+                    if(newState.equals(TEEN) || newState.equals(PREGNANT) || newState.equals(FATTENING) || newState.equals(DEAD) || newState.equals(SOLD)) {
+                        validChange = true;
+                    }
+                    break;
+                case PREGNANT:
+                    if(newState.equals(PREGNANT) || newState.equals(NURSING) || newState.equals(DEAD) || newState.equals(SOLD)) {
+                        validChange = true;
+                    }
+                    break;
+                case NURSING:
+                    if(newState.equals(NURSING) || newState.equals(RESTING) || newState.equals(DEAD) || newState.equals(SOLD)) {
+                        validChange = true;
+                    }
+                    break;
+                case RESTING:
+                    if(newState.equals(RESTING) || newState.equals(PREGNANT) || newState.equals(RETIRED) || newState.equals(DEAD) || newState.equals(SOLD)) {
+                        validChange = true;
+                    }
+                    break;
+                case RETIRED:
+                    if(newState.equals(RETIRED) || newState.equals(PREGNANT) || newState.equals(DEAD) || newState.equals(SOLD)) {
+                        validChange = true;
+                    }
+                    break;
+                case FATTENING:
+                    if(newState.equals(PREGNANT) || newState.equals(FATTENING) || newState.equals(DEAD) || newState.equals(SOLD)) {
+                        validChange = true;
+                    }
+                    break;
+                case DEAD:
+                    if(newState.equals(DEAD)) {
+                        validChange = true;
+                    }
+                    break;
+                case SOLD:
+                    if(newState.equals(SOLD)) {
+                        validChange = true;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        } else if ("M".equals(sex)) {
+            switch (oldState) {
+                case TEEN:
+                    if(newState.equals(TEEN) || newState.equals(SUPERMALE) || newState.equals(FATTENING) || newState.equals(DEAD) || newState.equals(SOLD)) {
+                        validChange = true;
+                    }
+                    break;
+                case SUPERMALE:
+                    if(newState.equals(SUPERMALE) || newState.equals(RETIRED) || newState.equals(DEAD) || newState.equals(SOLD)) {
+                        validChange = true;
+                    }
+                    break;
+                case RETIRED:
+                    if(newState.equals(SUPERMALE) || newState.equals(RETIRED) || newState.equals(DEAD) || newState.equals(SOLD)) {
+                        validChange = true;
+                    }
+                    break;
+                case FATTENING:
+                    if(newState.equals(SUPERMALE) || newState.equals(FATTENING) || newState.equals(DEAD) || newState.equals(SOLD)) {
+                        validChange = true;
+                    }
+                    break;
+                case DEAD:
+                    if(newState.equals(DEAD)) {
+                        validChange = true;
+                    }
+                    break;
+                case SOLD:
+                    if(newState.equals(SOLD)) {
+                        validChange = true;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        return validChange;
     }
 
     private boolean checkIfHasChildren(AnimalEntity animalEntity) {

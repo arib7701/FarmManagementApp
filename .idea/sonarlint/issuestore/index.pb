@@ -13,3 +13,11 @@ d
 0src/main/java/com/farm/dao/AnimalTypeEntity.java,d/3/d3bb1e635590cf16d529335e399b838ca1f711ab
 ~
 Nsrc/main/java/com/farm/service/implementation/AnimalServiceImplementation.java,6/1/61731318a709e9ed40f6f8f7bee14bc69afdc40b
+
+Osrc/main/java/com/farm/service/implementation/VaccineServiceImplementation.java,7/f/7f363aa28bbd4f388b17382aad5497eab2e42811
+~
+Nsrc/main/java/com/farm/service/implementation/WeightServiceImplementation.java,7/5/757c17a9bcdf3e5224afdf1e13798218fababeae
+‚
+Rsrc/main/java/com/farm/service/implementation/AnimalTypeServiceImplementation.java,9/7/972f63e94052862fbedef7c33667fc4fefbfde90
+i
+9src/test/java/com/farm/serviceTest/AnimalServiceTest.java,f/c/fc5251028e5c31533db654bdb90d37ec712e6543
