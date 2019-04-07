@@ -17,6 +17,7 @@ export class Animal {
   weights?: Weight[];
   lastDateWeight?: Date;
   lastWeight?: number;
-  age?: number;
+  ageYear?: number;
+  ageMonth?: number;
   state?: string;
 }

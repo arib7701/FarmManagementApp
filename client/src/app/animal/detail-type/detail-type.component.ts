@@ -85,9 +85,19 @@ export class DetailTypeComponent implements OnInit, OnDestroy {
   getAge() {
     this.animals.forEach(animal => {
       if (animal.birth !== null) {
-        animal.age =
-          new Date().getFullYear() - new Date(animal.birth).getFullYear();
-      }
+          const todayDate = new Date();
+          animal.ageYear = todayDate.getFullYear() - new Date(animal.birth).getFullYear();
+          animal.ageMonth = todayDate.getMonth() -  new Date(animal.birth).getMonth();
+
+          if (animal.ageMonth <= 0) {
+            animal.ageYear--;
+            animal.ageMonth = (12 + animal.ageMonth);
+          }
+
+          if (animal.ageMonth === 12) {
+            animal.ageYear =  animal.ageYear + 1;
+            animal.ageMonth = 0;
+          }
     });
   }
 

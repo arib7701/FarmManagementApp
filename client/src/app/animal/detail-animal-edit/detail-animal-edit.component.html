@@ -255,7 +255,7 @@
   <!-- /.box -->
   <app-detail-animal-weight-edit
     [idAnimal]="idAnimal"
-    [disabled]="disabled"
+    [disabled]="disabledChildViewWeight"
   ></app-detail-animal-weight-edit>
   <div class="col-md-9 callout callout-info" *ngIf="birthDay > sixMonthAgo">
     <h4>Animal not old enough to reproduce yet</h4>
@@ -264,7 +264,7 @@
     <app-detail-animal-delivery-edit
       [idAnimal]="idAnimal"
       [sexAnimal]="sexAnimal"
-      [disabled]="disabled"
+      [disabled]="disabledChildViewDelivery"
     ></app-detail-animal-delivery-edit>
   </div>
 </div>

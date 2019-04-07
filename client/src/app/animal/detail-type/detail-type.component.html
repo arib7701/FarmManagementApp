@@ -67,7 +67,7 @@
                   {{ animal?.sex }}</span
                 >
               </td>
-              <td>{{ animal?.age }}</td>
+              <td><span *ngIf="animal?.ageYear > 0">{{ animal?.ageYear }} Y -</span> {{ animal?.ageMonth }} M</td>
               <td>{{ animal?.barn }}</td>
               <td>{{ animal?.lastDateWeight }}</td>
               <td>{{ animal?.lastWeight }}</td>

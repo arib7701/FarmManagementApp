@@ -47,6 +47,7 @@
                     matInput
                     placeholder="Enter the number of babies"
                     formControlName="number"
+                    min="0"
                   />
                   <mat-error>
                     Number must be between <strong>0 and 20 babies</strong>
@@ -95,7 +96,7 @@
             </div>
             <div class="col-md-1" *ngIf="!disabled">
               <div class="form-group icon">
-                <a (click)="deleteDelivery(i)"><i class="fa fa-trash"></i></a>
+                <a (click)="deleteDelivery(i)"><em class="fa fa-trash"></em></a>
               </div>
             </div>
           </div>
@@ -110,11 +111,10 @@
             Submit
           </button>
           <a (click)="addNewDeliveryControl()" style="padding-left:25px;"
-            ><i class="fas fa-plus-circle fa-2x"></i
+            ><em class="fas fa-plus-circle fa-2x"></em
           ></a>
         </div>
       </form>
-      <flash-messages></flash-messages>
     </div>
     <!-- /.box-body -->
   </div>

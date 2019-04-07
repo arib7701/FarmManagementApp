@@ -62,9 +62,10 @@ export class DetailAnimalCreateComponent implements OnInit {
         animals => {
           const allAnimals = animals;
           allAnimals.forEach(animal => {
-            if (animal.sex === 'M') {
+            if (animal.sex === 'M' && (animal.state === 'supermale' || animal.state === 'retired')) {
               this.animalsIdsMale.push(animal.id);
-            } else {
+            // tslint:disable-next-line:max-line-length
+            } else  if (animal.sex === 'F' && (animal.state === 'pregnant' || animal.state === 'retired' || animal.state === 'resting' || animal.state === 'nursing')) {
               this.animalsIdsFemale.push(animal.id);
             }
           });

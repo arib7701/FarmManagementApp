@@ -27,11 +27,13 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
   sixMonthAgo = new Date();
   birthDay: Date;
   disabled = false;
+  disabledChildViewWeight = false;
+  disabledChildViewDelivery = false;
 
   editAnimalForm: FormGroup;
   animalsIdsMale = new Array<number>();
   animalsIdsFemale = new Array<number>();
-  statesPossible = new Array<State>();
+  statesPossible;
 
   constructor(
     private animalService: AnimalService,
@@ -45,6 +47,11 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
     this.sixMonthAgo.setMonth(this.today.getMonth() - 6);
     this.idAnimal = +this.route.snapshot.paramMap.get('id');
 
+    this.getInfoAnimal();
+    this.createForm();
+  }
+
+  getInfoAnimal() {
     this.subscriptionAnimalId = this.animalService
       .getAnimalById(this.idAnimal)
       .subscribe(
@@ -52,19 +59,25 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
           this.animal = animal;
           this.sexAnimal = animal.sex;
           this.birthDay = new Date(animal.birth);
+          this.disabledChildViewWeight = false;
+            this.disabledChildViewDelivery = false;
           this.getType();
           this.getPossibleStates();
 
           if (this.animal.death !== null || this.animal.departure !== null) {
             this.disableFields();
+            this.disabledChildViewWeight = true;
+            this.disabledChildViewDelivery = true;
+          }
+
+          if (this.animal.state !== 'pregnant' && this.animal.state !== 'supermale') {
+            this.disabledChildViewDelivery = true;
           }
         },
         error => {
           console.log('Error getting all animal by type');
         }
       );
-
-    this.createForm();
   }
 
   createForm() {
@@ -124,6 +137,7 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
   getPossibleStates() {
 
     const currentState = this.animal.state;
+    this.statesPossible = new Array<State>();
 
     if (this.animal.sex === 'F') {
       switch (currentState) {
@@ -157,13 +171,13 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
     } else if (this.animal.sex === 'M') {
       switch (currentState) {
         case 'teen':
-          this.statesPossible = [State.teen, State.pregnant, State.fattening, State.dead, State.sold];
+          this.statesPossible = [State.teen, State.supermale, State.fattening, State.dead, State.sold];
           break;
         case 'supermale':
           this.statesPossible = [State.supermale, State.retired, State.dead, State.sold];
           break;
         case 'retired':
-          this.statesPossible = [State.retired, State.dead, State.supermale];
+          this.statesPossible = [State.retired, State.dead, State.supermale, State.sold];
           break;
         case 'fattening':
           this.statesPossible = [State.fattening, State.dead, State.sold, State.supermale];
@@ -251,7 +265,7 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
         value: this.animal.deathCause,
         disabled: false
       }),
-      state: new FormControl({value: this.animal.state, disabled: false})
+      state: new FormControl({value: this.animal.state})
     });
 
     this.disabled = true;
@@ -314,6 +328,10 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
             'Animal Information successfully updated.',
             { cssClass: 'alert-success', timeout: 1000 }
           );
+
+          setTimeout(() => {
+            this.getInfoAnimal();
+          }, 2000);
         },
         error => {
           console.log('Error updating new animal', error.error);

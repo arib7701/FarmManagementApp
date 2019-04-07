@@ -11,18 +11,18 @@
         <div class="col-md-5">
           <code>
             <p>
-                <i class="far fa-calendar-alt"></i> {{ delivery?.date }}
+                <em class="far fa-calendar-alt"></em> {{ delivery?.date }}
             </p>
           </code>
         </div>
         <div class="col-md-3">
-            <p> <i class="fas fa-baby"></i> {{ delivery?.number }}</p>
+            <p> <em class="fas fa-baby"></em> {{ delivery?.number }}</p>
         </div>
         <div class="col-md-4" *ngIf="sexAnimal === 'M'">
-            <p> <i class="fas fa-venus"></i> Mother n°{{ delivery?.motherId }}</p>
+            <p> <em class="fas fa-venus"></em> Mother n°{{ delivery?.motherId }}</p>
         </div>
         <div class="col-md-4" *ngIf="sexAnimal === 'F'">
-          <p> <i class="fas fa-mars"></i> Father n°{{ delivery?.fatherId }}</p>
+          <p> <em class="fas fa-mars"></em> Father n°{{ delivery?.fatherId }}</p>
         </div>
       </div>
     </div>

@@ -150,6 +150,10 @@ public class AnimalServiceImplementation implements IAnimalService {
             throw new ApplicationException("Error: The state is invalid");
         }
 
+        if(!checkStatusParent(animal)) {
+            throw new ApplicationException(("Error: The parents have not valid state"));
+        }
+
         AnimalEntity animalEntity = parseAnimal(animal);
         AnimalEntity animalEntitySaved = animalRepository.save(animalEntity);
         animalSaved = parseAnimalEntity(animalEntitySaved);
@@ -242,7 +246,6 @@ public class AnimalServiceImplementation implements IAnimalService {
         LocalDate maturity = LocalDate.now().minusMonths(type.getMonthsMaturity());
         LocalDate pregnancy = maturity.minusWeeks(type.getWeeksGestation());
         LocalDate nursing = pregnancy.minusWeeks(type.getWeeksSuckling());
-        LocalDate resting = pregnancy.minusWeeks(type.getWeeksBetweenGestation());
 
         LocalDate birthDate = animal.getBirth() == null ? today.minusDays(1) : animal.getBirth();
         LocalDate deathDate = animal.getDeath();
@@ -250,13 +253,14 @@ public class AnimalServiceImplementation implements IAnimalService {
 
         String state = animal.getState();
 
-        return ((state.equals(TEEN) && birthDate.isAfter(maturity) && deathDate == null && departureDate == null)
-                || (state.equals(PREGNANT) && birthDate.isBefore(maturity) && birthDate.isAfter(pregnancy) && deathDate == null && departureDate == null)
-                || (state.equals(NURSING) && birthDate.isBefore(maturity) && birthDate.isAfter(nursing) && deathDate == null && departureDate == null)
-                || (state.equals(RESTING) && birthDate.isBefore(maturity) && birthDate.isAfter(resting) && deathDate == null && departureDate == null)
-                || (state.equals(RETIRED) && birthDate.isBefore(maturity) && deathDate == null && departureDate == null)
-                || (state.equals(SUPERMALE) && birthDate.isBefore(maturity) && deathDate == null && departureDate == null)
-                || (state.equals(FATTENING) && birthDate.isBefore(maturity) && deathDate == null && departureDate == null));
+        return ((state.equals(TEEN) && birthDate.isAfter(maturity) )
+                || (state.equals(PREGNANT) && birthDate.isBefore(maturity))
+                || (state.equals(NURSING) && birthDate.isBefore(pregnancy))
+                || (state.equals(RESTING) && birthDate.isBefore(nursing))
+                || (state.equals(RETIRED) && birthDate.isBefore(maturity))
+                || (state.equals(SUPERMALE) && birthDate.isBefore(maturity))
+                || (state.equals(FATTENING) && birthDate.isBefore(maturity))
+                && deathDate == null && departureDate == null);
 
     }
 
@@ -270,7 +274,7 @@ public class AnimalServiceImplementation implements IAnimalService {
         Map<Pair<String, String>, List<String>> validState = new HashMap<>();
         validState.put(new Pair("F", TEEN), Arrays.asList(TEEN, PREGNANT, FATTENING, DEAD, SOLD));
         validState.put(new Pair("F", PREGNANT), Arrays.asList(PREGNANT, NURSING, DEAD, SOLD));
-        validState.put(new Pair("F", NURSING), Arrays.asList(NURSING, RESTING, DEAD, SOLD));
+        validState.put(new Pair("F", NURSING), Arrays.asList(NURSING, RESTING, RETIRED, DEAD, SOLD));
         validState.put(new Pair("F", RESTING), Arrays.asList(RESTING, PREGNANT, RETIRED, DEAD, SOLD));
         validState.put(new Pair("F", RETIRED), Arrays.asList(RETIRED, PREGNANT, DEAD, SOLD));
         validState.put(new Pair("F", DEAD), Collections.singletonList(DEAD));
@@ -288,7 +292,7 @@ public class AnimalServiceImplementation implements IAnimalService {
             validChange = true;
         }
 
-        return validChange;
+        return (validChange && checkStateValid(animal));
     }
 
     private boolean checkIfHasChildren(AnimalEntity animalEntity) {
@@ -317,5 +321,18 @@ public class AnimalServiceImplementation implements IAnimalService {
         }
 
         return animalList;
+    }
+
+    private boolean checkStatusParent(Animal animal) {
+
+        if(animal.getMotherId() != null && animal.getFatherId() != null) {
+            AnimalEntity mother = animalRepository.findByAnimalId(animal.getMotherId());
+            AnimalEntity father = animalRepository.findByAnimalId(animal.getFatherId());
+
+            return ((mother.getState().equals(PREGNANT) || mother.getState().equals(RETIRED) || mother.getState().equals(RESTING) || mother.getState().equals(NURSING)
+                    && (father.getState().equals(SUPERMALE) || father.getState().equals(RETIRED))));
+        } else {
+            return true;
+        }
     }
 }

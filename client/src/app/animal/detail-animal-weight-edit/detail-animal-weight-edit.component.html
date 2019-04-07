@@ -47,6 +47,7 @@
                     matInput
                     placeholder="Enter the measured weight"
                     formControlName="measure"
+                    min="0"
                   />
                   <mat-error>
                       Measurement must be between <strong>0 and 100 lbs</strong>
@@ -56,31 +57,31 @@
             </div>
             <div class="col-md-1">
               <div class="form-group icon">
-                <i
+                <em
                   *ngIf="diffs[i] === 'start'"
                   class="fas fa-asterisk"
                   style="color:blue;"
-                ></i>
-                <i
+                ></em>
+                <em
                   *ngIf="diffs[i] === 'up'"
                   class="fas fa-arrow-up"
                   style="color:green; transform: rotate(45deg);"
-                ></i>
-                <i
+                ></em>
+                <em
                   *ngIf="diffs[i] === 'equal'"
                   class="fas fa-equals"
                   style="color:orange"
-                ></i>
-                <i
+                ></em>
+                <em
                   *ngIf="diffs[i] === 'down'"
                   class="fas fa-arrow-down"
                   style="color:red; transform: rotate(-45deg);"
-                ></i>
+                ></em>
               </div>
             </div>
             <div class="col-md-1" *ngIf="!disabled">
               <div class="form-group icon">
-                <a (click)="deleteWeight(i)"><i class="fa fa-trash"></i></a>
+                <a (click)="deleteWeight(i)"><em class="fa fa-trash"></em></a>
               </div>
             </div>
           </div>
@@ -95,12 +96,11 @@
             Submit
           </button>
           <a (click)="addNewWeightControl()" style="padding-left:25px;"
-            ><i class="fas fa-plus-circle fa-2x"></i
+            ><em class="fas fa-plus-circle fa-2x"></em
           ></a>
         </div>
        
       </form>
-      <flash-messages></flash-messages>
     </div>
     <!-- /.box-body -->
   </div>

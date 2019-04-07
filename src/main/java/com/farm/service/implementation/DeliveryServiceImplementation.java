@@ -66,18 +66,17 @@ public class DeliveryServiceImplementation implements IDeliveryService {
 
         Delivery deliverySaved;
 
-        if(checkAnimalAlive(delivery)) {
-
-            if (checkCorrectSexAndAge(delivery)) {
-                AnimalDeliveryEntity deliveryEntity = parseDelivery(delivery);
-                AnimalDeliveryEntity deliveryEntitySaved = deliveryRepository.save(deliveryEntity);
-                deliverySaved = parseDeliveryEntity(deliveryEntitySaved);
-            } else {
-                throw new ApplicationException("Error: the sex or age of the parents are invalid.");
-            }
-        } else {
+        if(!checkAnimalAlive(delivery)) {
             throw new ApplicationException("Error: the parents are not alive or have been sold.");
         }
+
+        if (!checkCorrectSexAndAgeAndState(delivery)) {
+            throw new ApplicationException("Error: the sex or age or state of the parents are invalid.");
+        }
+
+        AnimalDeliveryEntity deliveryEntity = parseDelivery(delivery);
+        AnimalDeliveryEntity deliveryEntitySaved = deliveryRepository.save(deliveryEntity);
+        deliverySaved = parseDeliveryEntity(deliveryEntitySaved);
 
         return deliverySaved;
     }
@@ -121,7 +120,7 @@ public class DeliveryServiceImplementation implements IDeliveryService {
 
     }
 
-    private boolean checkCorrectSexAndAge(Delivery delivery) {
+    private boolean checkCorrectSexAndAgeAndState(Delivery delivery) {
 
         List<Animal> parents = getParents(delivery);
 
@@ -133,8 +132,9 @@ public class DeliveryServiceImplementation implements IDeliveryService {
 
         boolean correctSex = (parents.get(0).getSex().equals("F") && parents.get(1).getSex().equals("M"));
         boolean correctAge = (parents.get(0).getBirth().isBefore(maturityDate)) && (parents.get(1).getBirth().isBefore(maturityDate));
+        boolean correctState = (parents.get(0).getState().equals("pregnant")) && (parents.get(1).getState().equals("supermale"));
 
-        return (correctAge && correctSex);
+        return (correctAge && correctSex && correctState);
     }
 
     private boolean checkAnimalAlive(Delivery delivery) {
