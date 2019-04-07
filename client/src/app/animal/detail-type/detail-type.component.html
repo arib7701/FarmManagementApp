@@ -67,7 +67,7 @@
                   {{ animal?.sex }}</span
                 >
               </td>
-              <td><span *ngIf="animal?.ageYear > 0">{{ animal?.ageYear }}Y -</span> {{ animal?.ageMonth }}m</td>
+              <td><span *ngIf="animal?.ageYear > 0">{{ animal?.ageYear }}Y -</span> {{ animal?.ageMonth }}m <span style="float:right;" *ngIf="animal?.ageYear >=1 && animal?.ageMonth >= 5 && (animal?.state != 'nursing' || animal?.state != 'resting' || animal?.state != 'supermale')" class="badge bg-blue">RETIRE <em class="fas fa-check"></em></span></td>
               <td>{{ animal?.barn }}</td>
               <td>{{ animal?.lastWeight }} kg<span style="float:right;" *ngIf="animal?.lastWeight > targetWeight && animal?.state != 'pregnant' && animal?.state != 'nursing'" class="badge bg-yellow">TARGET <em class="fas fa-check"></em></span></td>
               <td>{{ animal?.lastDateWeight }}</td>
