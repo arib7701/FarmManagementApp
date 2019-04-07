@@ -8,13 +8,12 @@ import com.farm.model.Weight;
 import com.farm.repository.AnimalRepository;
 import com.farm.repository.AnimalTypeRepository;
 import com.farm.service.IAnimalService;
+import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import static com.farm.mappers.EntityModelMappers.*;
 
@@ -268,86 +267,25 @@ public class AnimalServiceImplementation implements IAnimalService {
         String newState = animal.getState();
         boolean validChange = false;
 
-        if("F".equals(sex)) {
-            switch (oldState) {
-                case TEEN:
-                    if(newState.equals(TEEN) || newState.equals(PREGNANT) || newState.equals(FATTENING) || newState.equals(DEAD) || newState.equals(SOLD)) {
-                        validChange = true;
-                    }
-                    break;
-                case PREGNANT:
-                    if(newState.equals(PREGNANT) || newState.equals(NURSING) || newState.equals(DEAD) || newState.equals(SOLD)) {
-                        validChange = true;
-                    }
-                    break;
-                case NURSING:
-                    if(newState.equals(NURSING) || newState.equals(RESTING) || newState.equals(DEAD) || newState.equals(SOLD)) {
-                        validChange = true;
-                    }
-                    break;
-                case RESTING:
-                    if(newState.equals(RESTING) || newState.equals(PREGNANT) || newState.equals(RETIRED) || newState.equals(DEAD) || newState.equals(SOLD)) {
-                        validChange = true;
-                    }
-                    break;
-                case RETIRED:
-                    if(newState.equals(RETIRED) || newState.equals(PREGNANT) || newState.equals(DEAD) || newState.equals(SOLD)) {
-                        validChange = true;
-                    }
-                    break;
-                case FATTENING:
-                    if(newState.equals(PREGNANT) || newState.equals(FATTENING) || newState.equals(DEAD) || newState.equals(SOLD)) {
-                        validChange = true;
-                    }
-                    break;
-                case DEAD:
-                    if(newState.equals(DEAD)) {
-                        validChange = true;
-                    }
-                    break;
-                case SOLD:
-                    if(newState.equals(SOLD)) {
-                        validChange = true;
-                    }
-                    break;
-                default:
-                    break;
-            }
-        } else if ("M".equals(sex)) {
-            switch (oldState) {
-                case TEEN:
-                    if(newState.equals(TEEN) || newState.equals(SUPERMALE) || newState.equals(FATTENING) || newState.equals(DEAD) || newState.equals(SOLD)) {
-                        validChange = true;
-                    }
-                    break;
-                case SUPERMALE:
-                    if(newState.equals(SUPERMALE) || newState.equals(RETIRED) || newState.equals(DEAD) || newState.equals(SOLD)) {
-                        validChange = true;
-                    }
-                    break;
-                case RETIRED:
-                    if(newState.equals(SUPERMALE) || newState.equals(RETIRED) || newState.equals(DEAD) || newState.equals(SOLD)) {
-                        validChange = true;
-                    }
-                    break;
-                case FATTENING:
-                    if(newState.equals(SUPERMALE) || newState.equals(FATTENING) || newState.equals(DEAD) || newState.equals(SOLD)) {
-                        validChange = true;
-                    }
-                    break;
-                case DEAD:
-                    if(newState.equals(DEAD)) {
-                        validChange = true;
-                    }
-                    break;
-                case SOLD:
-                    if(newState.equals(SOLD)) {
-                        validChange = true;
-                    }
-                    break;
-                default:
-                    break;
-            }
+        Map<Pair<String, String>, List<String>> validState = new HashMap<>();
+        validState.put(new Pair("F", TEEN), Arrays.asList(TEEN, PREGNANT, FATTENING, DEAD, SOLD));
+        validState.put(new Pair("F", PREGNANT), Arrays.asList(PREGNANT, NURSING, DEAD, SOLD));
+        validState.put(new Pair("F", NURSING), Arrays.asList(NURSING, RESTING, DEAD, SOLD));
+        validState.put(new Pair("F", RESTING), Arrays.asList(RESTING, PREGNANT, RETIRED, DEAD, SOLD));
+        validState.put(new Pair("F", RETIRED), Arrays.asList(RETIRED, PREGNANT, DEAD, SOLD));
+        validState.put(new Pair("F", DEAD), Collections.singletonList(DEAD));
+        validState.put(new Pair("F", SOLD), Collections.singletonList(SOLD));
+        validState.put(new Pair("F", FATTENING), Arrays.asList(FATTENING, PREGNANT, DEAD, SOLD));
+
+        validState.put(new Pair("M", TEEN), Arrays.asList(TEEN, SUPERMALE, FATTENING, DEAD, SOLD));
+        validState.put(new Pair("M", SUPERMALE), Arrays.asList(SUPERMALE, RETIRED, DEAD, SOLD));
+        validState.put(new Pair("M", RETIRED), Arrays.asList(RETIRED, SUPERMALE, DEAD, SOLD));
+        validState.put(new Pair("M", FATTENING), Arrays.asList(FATTENING, SUPERMALE, DEAD, SOLD));
+        validState.put(new Pair("M", DEAD), Collections.singletonList(DEAD));
+        validState.put(new Pair("M", SOLD), Collections.singletonList(SOLD));
+
+        if(validState.get(new Pair<>(sex, oldState)).contains(newState)){
+            validChange = true;
         }
 
         return validChange;
