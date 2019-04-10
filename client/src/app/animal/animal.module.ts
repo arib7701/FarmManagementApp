@@ -18,6 +18,8 @@ import { TypeCreateComponent } from './type-create/type-create.component';
 import { TypeEditComponent } from './type-edit/type-edit.component';
 import { DetailAnimalCreateBatchComponent } from './detail-animal-create-batch/detail-animal-create-batch.component';
 import { DetailAnimalWeightBatchComponent } from './detail-animal-weight-batch/detail-animal-weight-batch.component';
+import { DetailAnimalMatingComponent } from './detail-animal-mating/detail-animal-mating.component';
+import { DetailAnimalMatingEditComponent } from './detail-animal-mating-edit/detail-animal-mating-edit.component';
 
 @NgModule({
   imports: [CommonModule, RouterModule.forChild(animalRoutes), SharedModule],
@@ -35,7 +37,9 @@ import { DetailAnimalWeightBatchComponent } from './detail-animal-weight-batch/d
     TypeCreateComponent,
     TypeEditComponent,
     DetailAnimalCreateBatchComponent,
-    DetailAnimalWeightBatchComponent
+    DetailAnimalWeightBatchComponent,
+    DetailAnimalMatingComponent,
+    DetailAnimalMatingEditComponent
   ]
 })
 export class AnimalModule {}

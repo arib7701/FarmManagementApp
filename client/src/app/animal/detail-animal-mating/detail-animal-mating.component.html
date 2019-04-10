@@ -1,0 +1,34 @@
+<div class="col-md-12">
+  <!-- general form elements disabled -->
+  <div class="box box-success" *ngIf="!noMatings">
+    <div class="box-header">
+      <h3 class="box-title">Mating Info</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body"  >
+      <div class="row" display="flex"
+        *ngFor=" let mating of matings; let i = index">
+        <div class="col-md-5">
+          <code>
+            <p>
+                <em class="far fa-calendar-alt"></em> {{ mating?.date }}
+            </p>
+          </code>
+        </div>
+        <div class="col-md-3">
+            <p> <em class="fas fa-baby"></em> {{ mating?.number }}</p>
+        </div>
+        <div class="col-md-4" *ngIf="sexAnimal === 'M'">
+            <p> <em class="fas fa-venus"></em> Mother n°{{ mating?.motherId }}</p>
+        </div>
+        <div class="col-md-4" *ngIf="sexAnimal === 'F'">
+          <p> <em class="fas fa-mars"></em> Father n°{{ mating?.fatherId }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="callout callout-warning"  *ngIf="noMatings" >
+    <h4>No mating have been registered yet for this animal</h4>
+    <p>Start reproducing it or do some data entry today!</p>
+  </div>
+</div>

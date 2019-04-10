@@ -1,0 +1,133 @@
+<div class="col-md-10" style="padding:20px">
+  <!-- general form elements disabled -->
+  <div class="box box-success">
+    <div class="box-header"><h3 class="box-title">Edit Mating Info</h3></div>
+    <!-- /.box-header -->
+    <div class="box-body">
+      <div class="callout callout-warning" *ngIf="noMatings">
+        <h4>No mating have been registered yet for this animal</h4>
+        <p>Start reproducing it or to some data entry today!</p>
+      </div>
+      <form [formGroup]="editMatingForm" (ngSubmit)="submitEditMating()">
+        <div formArrayName="matingItems">
+          <div
+            class="row"
+            display="flex"
+            *ngFor="
+              let mating of editMatingForm.get('matingItems').controls;
+              let i = index
+            "
+            [formGroupName]="i"
+          >
+            <div class="col-md-3">
+              <!-- datepicker -->
+              <div class="form-group">
+                <mat-form-field>
+                  <input
+                    matInput
+                    [max]="today"
+                    [matDatepicker]="picker"
+                    formControlName="matingDate"
+                    placeholder="Choose a Mating Date"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="picker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <!-- datepicker -->
+              <div class="form-group">
+                <mat-form-field>
+                  <input
+                    matInput
+                    [max]="today"
+                    [matDatepicker]="pickerExpected"
+                    formControlName="expectedDate"
+                    placeholder="Choose a Expected Date"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="pickerExpected"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #pickerExpected></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <!-- text input -->
+              <div class="form-group">
+                <mat-form-field class="example-full-width">
+                  <mat-select matNativeControl formControlName="motherId" placeholder="Mother Id">
+                      <mat-option
+                        *ngFor="let idAnimal of animalsIdsFemale"
+                        [value]="idAnimal"
+                        >{{ idAnimal }}</mat-option
+                      >
+                    </mat-select>
+                  <input
+                    type="number"
+                    matInput
+                    placeholder="Enter Mother Id"
+                    formControlName="motherId"
+                  />
+                  <mat-error>
+                    Field <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <!-- text input -->
+              <div class="form-group">
+                <mat-form-field class="example-full-width">
+                  <input
+                    type="number"
+                    matInput
+                    placeholder="Enter Father Id"
+                    formControlName="fatherId"
+                  />
+                  <mat-error>
+                    Field <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-md-1">
+              <!-- checkbox -->
+              <div class="form-group">
+                <mat-checkbox formControlName="successfull" [disabled]="disabled"
+                  >Success</mat-checkbox
+                >
+              </div>
+            </div>
+            <div class="col-md-1" *ngIf="!disabled">
+              <div class="form-group icon">
+                <a (click)="deleteMating(i)"><em class="fa fa-trash" style="padding-left:20px;"></em></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="box-footer" *ngIf="!disabled">
+          <button
+            type="submit"
+            mat-raised-button
+            color="primary"
+            [disabled]="!editMatingForm.valid"
+          >
+            Submit
+          </button>
+          <a (click)="addNewMatingControl()" style="padding-left:25px;"
+            ><em class="fas fa-plus-circle fa-2x"></em
+          ></a>
+        </div>
+      </form>
+    </div>
+    <!-- /.box-body -->
+  </div>
+  <!-- /.box -->
+</div>
+<!--/.col (right) -->

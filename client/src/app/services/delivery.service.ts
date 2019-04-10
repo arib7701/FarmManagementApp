@@ -3,7 +3,6 @@ import { Delivery } from '../models/delivery';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-// const BASE_URL = 'http://localhost:8181/api/v1/deliveries/';
 const BASE_URL = 'http://localhost:8181/api/v1/deliveries';
 
 @Injectable({

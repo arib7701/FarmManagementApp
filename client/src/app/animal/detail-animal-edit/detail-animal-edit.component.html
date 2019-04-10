@@ -261,6 +261,13 @@
     <h4>Animal not old enough to reproduce yet</h4>
   </div>
   <div *ngIf="birthDay < sixMonthAgo">
+    <app-detail-animal-mating-edit
+      [idAnimal]="idAnimal"
+      [sexAnimal]="sexAnimal"
+      [disabled]="disabledChildViewMating"
+    ></app-detail-animal-mating-edit>
+  </div>
+  <div *ngIf="birthDay < sixMonthAgo">
     <app-detail-animal-delivery-edit
       [idAnimal]="idAnimal"
       [sexAnimal]="sexAnimal"

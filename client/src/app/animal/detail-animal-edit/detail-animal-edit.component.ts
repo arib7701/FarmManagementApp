@@ -29,6 +29,7 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
   disabled = false;
   disabledChildViewWeight = false;
   disabledChildViewDelivery = false;
+  disabledChildViewMating = false;
 
   editAnimalForm: FormGroup;
   animalsIdsMale = new Array<number>();
@@ -60,7 +61,8 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
           this.sexAnimal = animal.sex;
           this.birthDay = new Date(animal.birth);
           this.disabledChildViewWeight = false;
-            this.disabledChildViewDelivery = false;
+          this.disabledChildViewDelivery = false;
+          this.disabledChildViewMating = false;
           this.getType();
           this.getPossibleStates();
 
@@ -68,10 +70,15 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
             this.disableFields();
             this.disabledChildViewWeight = true;
             this.disabledChildViewDelivery = true;
+            this.disabledChildViewMating = true;
           }
 
           if (this.animal.state !== 'pregnant' && this.animal.state !== 'supermale') {
             this.disabledChildViewDelivery = true;
+          }
+
+          if (this.animal.state !== 'resting' && this.animal.state !== 'teen' && this.animal.state !== 'supermale') {
+            this.disabledChildViewMating = true;
           }
         },
         error => {

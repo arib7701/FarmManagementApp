@@ -3,6 +3,8 @@ package com.farm.utils;
 import com.farm.exceptions.ApplicationException;
 import com.farm.model.Animal;
 import com.farm.model.AnimalType;
+import com.farm.model.Delivery;
+import com.farm.model.Mating;
 import com.farm.service.implementation.AnimalServiceImplementation;
 import com.farm.service.implementation.AnimalTypeServiceImplementation;
 
@@ -25,11 +27,14 @@ public final class AnimalsUtils {
 
     private static List<Animal> getParents(Object object, AnimalServiceImplementation animalServiceImplementation) throws IllegalAccessException, NoSuchFieldException {
 
-        Field fatherIdField = object.getClass().getDeclaredField("father_id");
-        Field motherIdField = object.getClass().getDeclaredField("mother_id");
+        Field fatherIdField = object.getClass().getDeclaredField("fatherId");
+        Field motherIdField = object.getClass().getDeclaredField("motherId");
 
-        int fatherId = (int) fatherIdField.get(object);
-        int motherId = (int) motherIdField.get(object);
+        fatherIdField.setAccessible(true);
+        motherIdField.setAccessible(true);
+
+        int fatherId =  fatherIdField.getInt(object);
+        int motherId =  motherIdField.getInt(object);
 
         Animal mother = animalServiceImplementation.findById(motherId);
         Animal father = animalServiceImplementation.findById(fatherId);
@@ -53,7 +58,15 @@ public final class AnimalsUtils {
 
         boolean correctSex = (parents.get(0).getSex().equals("F") && parents.get(1).getSex().equals("M"));
         boolean correctAge = (parents.get(0).getBirth().isBefore(maturityDate)) && (parents.get(1).getBirth().isBefore(maturityDate));
-        boolean correctState = (parents.get(0).getState().equals("pregnant")) && (parents.get(1).getState().equals("supermale"));
+
+        boolean correctState = false;
+
+        if(object instanceof Delivery) {
+            correctState = (parents.get(0).getState().equals("pregnant") && parents.get(1).getState().equals("supermale"));
+        }
+        if(object instanceof Mating) {
+            correctState = ((parents.get(0).getState().equals("pregnant") || parents.get(0).getState().equals("resting") || parents.get(0).getState().equals("teen")) && parents.get(1).getState().equals("supermale"));
+        }
 
         return (correctAge && correctSex && correctState);
     }
