@@ -209,6 +209,60 @@ public class EntityModelMappers {
         return animalDeliveryEntity;
     }
 
+    public static List<Mating> parseMatingList(List<AnimalMatingEntity> animalMatingEntityList) {
+
+        List<Mating> matingList = null;
+
+        if(animalMatingEntityList != null) {
+            matingList = new ArrayList<>();
+
+            for(AnimalMatingEntity matingEntity : animalMatingEntityList) {
+                Mating mating = parseMatingEntity(matingEntity);
+                matingList.add(mating);
+            }
+        }
+
+        return matingList;
+    }
+
+    public static Mating parseMatingEntity(AnimalMatingEntity deliveryEntity) {
+
+        Mating delivery = null;
+
+        try {
+
+            delivery = new Mating();
+            delivery.setId(deliveryEntity.getMatingId());
+            delivery.setDate(deliveryEntity.getMatingDate().toLocalDate());
+            delivery.setFatherId(deliveryEntity.getFatherId());
+            delivery.setMotherId(deliveryEntity.getMotherId());
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return delivery;
+    }
+
+    public static AnimalMatingEntity parseMating(Mating delivery) {
+
+        AnimalMatingEntity animalMatingEntity = null;
+
+        try {
+
+            animalMatingEntity = new AnimalMatingEntity();
+            animalMatingEntity.setMatingId(delivery.getId());
+            animalMatingEntity.setMatingDate(java.sql.Date.valueOf(delivery.getDate()));
+            animalMatingEntity.setFatherId(delivery.getFatherId());
+            animalMatingEntity.setMotherId(delivery.getMotherId());
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return animalMatingEntity;
+    }
+
     public static List<Vaccine> parseVaccineList(List<AnimalVaccineEntity> animalVaccineEntityList) {
 
         List<Vaccine> vaccineList = null;
