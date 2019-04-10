@@ -47,7 +47,7 @@ public class DeliveryServiceTest {
         delivery.setFatherId(1);
 
         Animal mother = new Animal(1,"mom", "F", "A1", LocalDate.now().minusMonths(9), 1, null, null, "pregnant");
-        AnimalType rabbit = new AnimalType(1, "rabbit", "", 6, 6, 6, 8);
+        AnimalType rabbit = new AnimalType(1, "rabbit", "", 6, 6, 6, 8, 1.5, 1.0);
         when(animalTypeServiceImplementation.findById(1)).thenReturn(rabbit);
         when(animalServiceImplementation.findById(any(int.class))).thenReturn(mother);
 
@@ -73,7 +73,7 @@ public class DeliveryServiceTest {
 
         Animal mother = new Animal(1,"mom", "F", "A1", LocalDate.now().minusMonths(9), 1, null, null, "pregnant");
         Animal father = new Animal(2, "dad", "M", "A2", LocalDate.now(), 1, null, null, "supermale");
-        AnimalType rabbit = new AnimalType(1, "rabbit", "", 6, 6, 6, 8);
+        AnimalType rabbit = new AnimalType(1, "rabbit", "", 6, 6, 6, 8, 1.5, 1);
         when(animalServiceImplementation.findById(1)).thenReturn(mother);
         when(animalServiceImplementation.findById(2)).thenReturn(father);
         when(animalTypeServiceImplementation.findById(1)).thenReturn(rabbit);

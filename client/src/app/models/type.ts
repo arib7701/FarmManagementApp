@@ -6,4 +6,6 @@ export class Type {
   monthsMaturity?: number;
   minimumWeeksBetweenGestation?: number;
   minimumWeeksSuckling?: number;
+  retirementYearsMale?: number;
+  retirementYearsFemale?: number;
 }

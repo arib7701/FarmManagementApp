@@ -43,6 +43,8 @@ public class EntityModelMappers {
             animalType.setMonthsMaturity(animalTypeEntity.getMonthsMaturity() == null? 0: animalTypeEntity.getMonthsMaturity());
             animalType.setMinimumWeeksBetweenGestation(animalTypeEntity.getWeeksBetweenGestation() == null? 0: animalTypeEntity.getWeeksBetweenGestation());
             animalType.setMinimumWeeksSuckling(animalTypeEntity.getWeeksSuckling() == null? 0: animalTypeEntity.getWeeksSuckling());
+            animalType.setRetirementYearsMale(animalTypeEntity.getRetirementYearsMale());
+            animalType.setRetirementYearsFemale(animalTypeEntity.getRetirementYearsFemale());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -65,6 +67,8 @@ public class EntityModelMappers {
             animalTypeEntity.setMonthsMaturity(animalType.getMonthsMaturity());
             animalTypeEntity.setWeeksBetweenGestation(animalType.getMinimumWeeksBetweenGestation());
             animalTypeEntity.setWeeksSuckling(animalType.getMinimumWeeksSuckling());
+            animalTypeEntity.setRetirementYearsMale(animalType.getRetirementYearsMale());
+            animalTypeEntity.setRetirementYearsFemale(animalType.getRetirementYearsFemale());
 
 
         } catch (Exception e) {

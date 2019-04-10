@@ -21,3 +21,11 @@ Nsrc/main/java/com/farm/service/implementation/WeightServiceImplementation.java
 Rsrc/main/java/com/farm/service/implementation/AnimalTypeServiceImplementation.java,9/7/972f63e94052862fbedef7c33667fc4fefbfde90
 i
 9src/test/java/com/farm/serviceTest/AnimalServiceTest.java,f/c/fc5251028e5c31533db654bdb90d37ec712e6543
+g
+7src/main/java/com/farm/controller/WeightController.java,d/b/db02169d2b31356904d04d9e91508361973555ca
+f
+6src/main/java/com/farm/mappers/EntityModelMappers.java,4/3/437576ad05bd84ec9113cb1e377eeeeacb43e5a6
+g
+7src/main/java/com/farm/controller/AnimalController.java,b/6/b633e5b440aad76d47961b76c17d41f6385cee2b
+b
+2src/main/java/com/farm/service/IAnimalService.java,5/d/5da3a9cc9d12905bbf446ec6f08035abd69ad96f

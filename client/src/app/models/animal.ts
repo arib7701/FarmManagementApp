@@ -20,4 +20,5 @@ export class Animal {
   ageYear?: number;
   ageMonth?: number;
   state?: string;
+  retired?: boolean;
 }

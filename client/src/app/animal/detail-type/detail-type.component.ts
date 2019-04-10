@@ -86,20 +86,38 @@ export class DetailTypeComponent implements OnInit, OnDestroy {
   getAge() {
     this.animals.forEach(animal => {
       if (animal.birth !== null) {
-          const todayDate = new Date();
-          animal.ageYear = todayDate.getFullYear() - new Date(animal.birth).getFullYear();
-          animal.ageMonth = todayDate.getMonth() -  new Date(animal.birth).getMonth();
+        const todayDate = new Date();
+        animal.ageYear = todayDate.getFullYear() - new Date(animal.birth).getFullYear();
+        animal.ageMonth = todayDate.getMonth() -  new Date(animal.birth).getMonth();
 
-          if (animal.ageMonth <= 0) {
-            animal.ageYear--;
-            animal.ageMonth = (12 + animal.ageMonth);
-          }
+        if (animal.ageMonth <= 0) {
+          animal.ageYear--;
+          animal.ageMonth = (12 + animal.ageMonth);
+        }
 
-          if (animal.ageMonth === 12) {
-            animal.ageYear =  animal.ageYear + 1;
-            animal.ageMonth = 0;
-          }
+        if (animal.ageMonth === 12) {
+          animal.ageYear =  animal.ageYear + 1;
+          animal.ageMonth = 0;
+        }
+
+        animal.retired = this.shouldRetire(animal);
+    }
     });
+  }
+
+  shouldRetire(animal: Animal): boolean {
+
+    let retirementAge;
+
+    if (animal.sex === 'F') {
+      retirementAge = this.type.retirementYearsFemale;
+    } else if (animal.sex === 'M') {
+      retirementAge = this.type.retirementYearsMale;
+    }
+
+    const age = (animal.ageYear * 10 + animal.ageMonth) / 10;
+
+    return (age > retirementAge);
   }
 
   getLastWeight() {

@@ -14,6 +14,8 @@ public class AnimalTypeEntity {
     private Integer monthsMaturity;
     private Integer weeksBetweenGestation;
     private Integer weeksSuckling;
+    private double retirementYearsMale;
+    private double retirementYearsFemale;
 
     @Id
     @Column(name = "type_id", nullable = false)
@@ -99,4 +101,16 @@ public class AnimalTypeEntity {
     public void setWeeksSuckling(Integer weeksSuckling) {
         this.weeksSuckling = weeksSuckling;
     }
+
+    @Basic
+    @Column(name = "retirement_years_male", nullable = true)
+    public double getRetirementYearsMale() { return retirementYearsMale; }
+
+    public void setRetirementYearsMale(double retirementYearsMale) { this.retirementYearsMale = retirementYearsMale; }
+
+    @Basic
+    @Column(name = "retirement_years_female", nullable = true)
+    public double getRetirementYearsFemale() { return retirementYearsFemale; }
+
+    public void setRetirementYearsFemale(double getRetirementYearsFemale) { this.retirementYearsFemale = getRetirementYearsFemale; }
 }
