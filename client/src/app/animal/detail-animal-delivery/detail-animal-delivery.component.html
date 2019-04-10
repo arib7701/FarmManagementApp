@@ -10,12 +10,14 @@
         *ngFor=" let delivery of deliveries; let i = index">
         <div class="col-md-5">
           <code>
+            <strong>Delivered</strong>
             <p>
                 <em class="far fa-calendar-alt"></em> {{ delivery?.date }}
             </p>
           </code>
         </div>
         <div class="col-md-3">
+            <strong>Babies</strong>
             <p> <em class="fas fa-baby"></em> {{ delivery?.number }}</p>
         </div>
         <div class="col-md-4" *ngIf="sexAnimal === 'M'">

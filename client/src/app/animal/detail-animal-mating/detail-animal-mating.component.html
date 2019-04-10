@@ -8,21 +8,32 @@
     <div class="box-body"  >
       <div class="row" display="flex"
         *ngFor=" let mating of matings; let i = index">
-        <div class="col-md-5">
+        <div class="col-md-3">
           <code>
+            <strong>Done</strong>
             <p>
                 <em class="far fa-calendar-alt"></em> {{ mating?.date }}
             </p>
           </code>
         </div>
         <div class="col-md-3">
-            <p> <em class="fas fa-baby"></em> {{ mating?.number }}</p>
+          <code>
+            <strong>Expected</strong>
+            <p>
+                <em class="far fa-calendar-alt"></em> {{ mating?.expectedDate }}
+            </p>
+          </code>
         </div>
-        <div class="col-md-4" *ngIf="sexAnimal === 'M'">
+        <div class="col-md-3" *ngIf="sexAnimal === 'M'">
             <p> <em class="fas fa-venus"></em> Mother n°{{ mating?.motherId }}</p>
         </div>
-        <div class="col-md-4" *ngIf="sexAnimal === 'F'">
+        <div class="col-md-3" *ngIf="sexAnimal === 'F'">
           <p> <em class="fas fa-mars"></em> Father n°{{ mating?.fatherId }}</p>
+        </div>
+        <div class="col-md-2">
+          <mat-checkbox [ngModel]="mating?.successfull"
+          >Success</mat-checkbox
+        >
         </div>
       </div>
     </div>

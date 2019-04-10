@@ -131,13 +131,13 @@
       <!-- /.box-footer-->
     </div>
     <!-- /.box -->
-    <div class="col-md-9" *ngIf="birthDate < sixMonthAgo">
+    <div class="col-md-10" *ngIf="birthDate < sixMonthAgo">
       <app-detail-animal-mating
         [idAnimal]="idAnimal"
         [sexAnimal]="sexAnimal"
       ></app-detail-animal-mating>
     </div>
-    <div class="col-md-9" *ngIf="birthDate < sixMonthAgo">
+    <div class="col-md-10" *ngIf="birthDate < sixMonthAgo">
       <app-detail-animal-delivery
         [idAnimal]="idAnimal"
         [sexAnimal]="sexAnimal"
