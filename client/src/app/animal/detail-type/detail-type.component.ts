@@ -115,9 +115,8 @@ export class DetailTypeComponent implements OnInit, OnDestroy {
       retirementAge = this.type.retirementYearsMale;
     }
 
-    const age = (animal.ageYear * 10 + animal.ageMonth) / 10;
-
-    return (age > retirementAge);
+    const age = animal.ageYear + (animal.ageMonth / 12.0);
+    return (age >= retirementAge);
   }
 
   getLastWeight() {
