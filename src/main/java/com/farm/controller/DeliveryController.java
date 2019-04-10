@@ -44,13 +44,13 @@ public class DeliveryController {
     }
 
     @PostMapping(value="")
-    public ResponseEntity<Delivery> saveNewDelivery( @RequestBody Delivery deliveryBody) throws ApplicationException {
+    public ResponseEntity<Delivery> saveNewDelivery( @RequestBody Delivery deliveryBody) throws ApplicationException, IllegalAccessException, NoSuchFieldException {
         Delivery weightSaved = deliveryService.save(deliveryBody);
         return new ResponseEntity(weightSaved, HttpStatus.OK);
     }
 
     @PostMapping(value="/{id}")
-    public ResponseEntity<Delivery> updateDelivery(@PathVariable("id") int id, @RequestBody Delivery deliveryBody) throws ApplicationException{
+    public ResponseEntity<Delivery> updateDelivery(@PathVariable("id") int id, @RequestBody Delivery deliveryBody) throws ApplicationException, IllegalAccessException, NoSuchFieldException{
         Delivery weightSaved = deliveryService.update(id, deliveryBody);
         return new ResponseEntity(weightSaved, HttpStatus.OK);
     }

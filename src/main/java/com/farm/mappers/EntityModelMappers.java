@@ -225,36 +225,40 @@ public class EntityModelMappers {
         return matingList;
     }
 
-    public static Mating parseMatingEntity(AnimalMatingEntity deliveryEntity) {
+    public static Mating parseMatingEntity(AnimalMatingEntity matingEntity) {
 
-        Mating delivery = null;
+        Mating mating = null;
 
         try {
 
-            delivery = new Mating();
-            delivery.setId(deliveryEntity.getMatingId());
-            delivery.setDate(deliveryEntity.getMatingDate().toLocalDate());
-            delivery.setFatherId(deliveryEntity.getFatherId());
-            delivery.setMotherId(deliveryEntity.getMotherId());
+            mating = new Mating();
+            mating.setId(matingEntity.getMatingId());
+            mating.setDate(matingEntity.getMatingDate().toLocalDate());
+            mating.setFatherId(matingEntity.getFatherId());
+            mating.setMotherId(matingEntity.getMotherId());
+            mating.setExpectedDate(matingEntity.getExpectedDate().toLocalDate());
+            mating.setSuccessfull(matingEntity.isSuccessfull());
 
         } catch (Exception e){
             e.printStackTrace();
         }
 
-        return delivery;
+        return mating;
     }
 
-    public static AnimalMatingEntity parseMating(Mating delivery) {
+    public static AnimalMatingEntity parseMating(Mating mating) {
 
         AnimalMatingEntity animalMatingEntity = null;
 
         try {
 
             animalMatingEntity = new AnimalMatingEntity();
-            animalMatingEntity.setMatingId(delivery.getId());
-            animalMatingEntity.setMatingDate(java.sql.Date.valueOf(delivery.getDate()));
-            animalMatingEntity.setFatherId(delivery.getFatherId());
-            animalMatingEntity.setMotherId(delivery.getMotherId());
+            animalMatingEntity.setMatingId(mating.getId());
+            animalMatingEntity.setMatingDate(java.sql.Date.valueOf(mating.getDate()));
+            animalMatingEntity.setFatherId(mating.getFatherId());
+            animalMatingEntity.setMotherId(mating.getMotherId());
+            animalMatingEntity.setExpectedDate(java.sql.Date.valueOf(mating.getExpectedDate()));
+            animalMatingEntity.setSuccessfull(mating.isSuccessfull());
 
         } catch (Exception e){
             e.printStackTrace();

@@ -14,9 +14,8 @@ public interface IDeliveryService {
 
     Delivery findById(int id);
 
-    Delivery save(Delivery delivery) throws ApplicationException;
-    Delivery update(int id, Delivery delivery) throws ApplicationException;
+    Delivery save(Delivery delivery) throws ApplicationException, IllegalAccessException, NoSuchFieldException;
+    Delivery update(int id, Delivery delivery) throws ApplicationException, IllegalAccessException, NoSuchFieldException;
 
     boolean deleteById(int id) throws ApplicationException;
-    void deleteByName(String name);
 }

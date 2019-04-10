@@ -37,7 +37,7 @@ public class DeliveryServiceTest {
     AnimalTypeServiceImplementation animalTypeServiceImplementation;
 
     @Test
-    public void save_WhenParentSexInvalid_ExpectedNull() {
+    public void save_WhenParentSexInvalid_ExpectedNull()  {
 
         // GIVEN
         Delivery delivery = new Delivery();
@@ -56,7 +56,7 @@ public class DeliveryServiceTest {
             deliveryServiceImplementation.save(delivery);
         }
         // THEN
-        catch (ApplicationException e) {
+        catch (Exception e) {
             assertTrue("Error: the sex or age or state of the parents are invalid.".equals(e.getMessage()));
         }
     }
@@ -83,13 +83,13 @@ public class DeliveryServiceTest {
             deliveryServiceImplementation.save(delivery);
         }
         // THEN
-        catch (ApplicationException e) {
+        catch (Exception e) {
             assertTrue("Error: the sex or age or state of the parents are invalid.".equals(e.getMessage()));
         }
     }
 
     @Test
-    public void save_WhenParentSexValid_ExpectedWeight() throws ApplicationException{
+    public void save_WhenParentSexValid_ExpectedWeight() throws Exception{
 
         // GIVEN
         Delivery delivery = new Delivery();
@@ -144,7 +144,7 @@ public class DeliveryServiceTest {
             deliveryServiceImplementation.save(delivery);
         }
         // THEN
-        catch (ApplicationException e) {
+        catch (Exception e) {
             assertTrue("Error: the parents are not alive or have been sold.".equals(e.getMessage()));
         }
     }
