@@ -57,7 +57,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let animal of animals | paginate: {itemsPerPage:20, currentPage: pagination} | tableFilter: {column:columnFilter, choice:choiceFilter}">
-              <td>{{ animal?.id }}</td>
+              <td>{{ animal?.id }} <span style="float:right;" *ngIf="animal.readyMating" class="badge bg-teal">MATING <em class="fas fa-check"></em></span></td>
               <td>{{ animal?.name }}</td>
               <td>
                 <span *ngIf="animal?.sex == 'M'" class="badge bg-aqua">

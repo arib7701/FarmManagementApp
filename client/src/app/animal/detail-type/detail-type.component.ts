@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Type } from 'src/app/models/type';
 import { TypeService } from 'src/app/services/type.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { last } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-detail-type',
@@ -101,6 +102,7 @@ export class DetailTypeComponent implements OnInit, OnDestroy {
         }
 
         animal.retired = this.shouldRetire(animal);
+        animal.readyMating = this.readyMating(animal);
     }
     });
   }
@@ -117,6 +119,38 @@ export class DetailTypeComponent implements OnInit, OnDestroy {
 
     const age = animal.ageYear + (animal.ageMonth / 12.0);
     return (age >= retirementAge);
+  }
+
+  readyMating(animal: Animal): boolean {
+
+    let matingReady: boolean;
+
+    if (animal.state === 'teen') {
+      matingReady = (animal.ageYear > 0 || animal.ageMonth >= 6);
+    }
+
+    if (animal.sex === 'F' && animal.state === 'resting') {
+      const lastDelivery = new Date(this.findDateLastDelivery(animal));
+      if (lastDelivery.toString() === new Date().toString()) {
+        matingReady = true;
+      } else {
+        const lastDeliveryWithResting = lastDelivery.setDate(lastDelivery.getDate() + (this.type.minimumWeeksBetweenGestation * 7));
+        matingReady = (new Date().valueOf() >= new Date(lastDeliveryWithResting).valueOf());
+      }
+    }
+
+    return matingReady;
+  }
+
+  findDateLastDelivery(animal: Animal): Date {
+
+    let lastDeliveryDate = new Date;
+
+    if (animal.deliveries.length !== 0) {
+      lastDeliveryDate = animal.deliveries[animal.deliveries.length - 1].date;
+    }
+
+    return lastDeliveryDate;
   }
 
   getLastWeight() {

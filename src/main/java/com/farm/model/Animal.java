@@ -21,6 +21,7 @@ public class Animal {
     private List<Weight> weights;
     private List<Vaccine> vaccines;
     private List<Delivery> deliveries;
+    private List<Mating> matings;
     private String deathCause;
     private String state;
 
@@ -44,6 +45,7 @@ public class Animal {
         this.weights = new ArrayList<>();
         this.vaccines = new ArrayList<>();
         this.deliveries = new ArrayList<>();
+        this.matings = new ArrayList<>();
     }
 
     public Animal(String name, String sex, String barn, LocalDate birth, int type, Integer fatherId, Integer motherId, String state) {
@@ -62,6 +64,7 @@ public class Animal {
         this.weights = new ArrayList<>();
         this.vaccines = new ArrayList<>();
         this.deliveries = new ArrayList<>();
+        this.matings = new ArrayList<>();
     }
 
     public int getId() {
@@ -183,6 +186,10 @@ public class Animal {
     public void setDeliveries(List<Delivery> deliveries) {
         this.deliveries = deliveries;
     }
+
+    public List<Mating> getMatings() { return matings; }
+
+    public void setMatings(List<Mating> matings) { this.matings = matings; }
 
     public String getDeathCause() { return deathCause; }
 

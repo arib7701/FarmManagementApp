@@ -1,4 +1,6 @@
 import { Weight } from './weight';
+import { Delivery } from './delivery';
+import { Mating } from './mating';
 
 export class Animal {
   id?: number;
@@ -15,10 +17,13 @@ export class Animal {
   fatherId: number;
   isResearch?: boolean;
   weights?: Weight[];
+  deliveries?: Delivery[];
+  matings?: Mating[];
   lastDateWeight?: Date;
   lastWeight?: number;
   ageYear?: number;
   ageMonth?: number;
   state?: string;
   retired?: boolean;
+  readyMating: boolean;
 }

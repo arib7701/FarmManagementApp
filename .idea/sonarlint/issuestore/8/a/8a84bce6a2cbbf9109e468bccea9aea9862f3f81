@@ -1,0 +1,4 @@
+
+Xsquid:UselessImportCheck"4Remove this unused import 'com.farm.model.Delivery'.(¦·„‡
+[squid:UselessImportCheck"2Remove this unused import 'com.farm.model.Animal'.(òÀ»·üÿÿÿÿ
+¸%squid:RedundantThrowsDeclarationCheck#"Remove the declaration of thrown exception 'com.farm.exceptions.ApplicationException', as it cannot be thrown from method's body.(íÁ‚Îşÿÿÿÿ

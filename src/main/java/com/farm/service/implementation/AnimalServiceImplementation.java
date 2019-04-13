@@ -4,6 +4,8 @@ import com.farm.dao.AnimalEntity;
 import com.farm.dao.AnimalTypeEntity;
 import com.farm.exceptions.ApplicationException;
 import com.farm.model.Animal;
+import com.farm.model.Delivery;
+import com.farm.model.Mating;
 import com.farm.model.Weight;
 import com.farm.repository.AnimalRepository;
 import com.farm.repository.AnimalTypeRepository;
@@ -38,6 +40,12 @@ public class AnimalServiceImplementation implements IAnimalService {
 
     @Autowired
     private WeightServiceImplementation weightServiceImplementation;
+
+    @Autowired
+    private DeliveryServiceImplementation deliveryServiceImplementation;
+
+    @Autowired
+    private MatingServiceImplementation matingServiceImplementation;
 
     @Override
     public List<Animal> findAll() {
@@ -318,6 +326,12 @@ public class AnimalServiceImplementation implements IAnimalService {
 
             List<Weight> weights = weightServiceImplementation.findByAnimalId(animal.getId());
             animal.setWeights(weights);
+
+            List<Delivery> deliveries = deliveryServiceImplementation.findAllByAnimalId(animal.getId());
+            animal.setDeliveries((deliveries));
+
+            List<Mating> mating = matingServiceImplementation.findAllByAnimalId(animal.getId());
+            animal.setMatings((mating));
         }
 
         return animalList;

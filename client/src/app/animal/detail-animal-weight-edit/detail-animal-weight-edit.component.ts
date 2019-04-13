@@ -175,7 +175,7 @@ export class DetailAnimalWeightEditComponent implements OnInit, OnDestroy {
     }
   }
 
-  updateWeight(weightInfo, length) {
+  updateWeight(weightInfo, length: number) {
     const weight = new Weight();
     weight.id = weightInfo.id.value;
     weight.measure = weightInfo.measure;
@@ -196,7 +196,7 @@ export class DetailAnimalWeightEditComponent implements OnInit, OnDestroy {
       );
   }
 
-  addNewWeight(weightInfo, length) {
+  addNewWeight(weightInfo, length: number) {
     const weight = new Weight();
     weight.measure = weightInfo.measure;
     weight.date = weightInfo.weightDate;
@@ -216,7 +216,7 @@ export class DetailAnimalWeightEditComponent implements OnInit, OnDestroy {
       );
   }
 
-  checkCounter(length) {
+  checkCounter(length: number) {
     if (this.counterEdit === length) {
       this.getWeightsInfo();
 
