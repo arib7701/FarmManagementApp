@@ -49,7 +49,7 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
     this.idAnimal = +this.route.snapshot.paramMap.get('id');
 
     this.getInfoAnimal();
-    this.createForm();
+    
   }
 
   getInfoAnimal() {
@@ -64,6 +64,7 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
           this.disabledChildViewDelivery = false;
           this.disabledChildViewMating = false;
           this.getType();
+          this.createForm();
           this.getPossibleStates();
 
           if (this.animal.death !== null || this.animal.departure !== null) {
@@ -236,13 +237,17 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
       const deathDate = this.editAnimalForm.controls['deathDate'].value;
       const departureDate = this.editAnimalForm.controls['departureDate'].value;
 
+      const lastDeliveryDate = new Date(this.animal.deliveries[this.animal.deliveries.length - 1].date);
+      const minDateForResting = new Date().setDate(lastDeliveryDate.getDate() + (this.type.minimumWeeksSuckling * 7));
+      const minDateForPregnancy = new Date().setDate(lastDeliveryDate.getDate() + (this.type.weeksGestation * 7));
+
       if (stateForm.value === 'teen' && birthDate < this.sixMonthAgo) {
         stateForm.setErrors({ stateInvalid: true });
       } else if (stateForm.value === 'pregnant' && birthDate > this.sixMonthAgo) {
         stateForm.setErrors({ stateInvalid: true });
-      } else if (stateForm.value === 'nursing' && birthDate > this.sixMonthAgo) {
+      } else if (stateForm.value === 'nursing') {
         stateForm.setErrors({ stateInvalid: true });
-      } else if (stateForm.value === 'resting' && birthDate > this.sixMonthAgo) {
+      } else if (stateForm.value === 'resting') {
         stateForm.setErrors({ stateInvalid: true });
       } else if (stateForm.value === 'fattening' && birthDate > this.sixMonthAgo) {
         stateForm.setErrors({ stateInvalid: true });
@@ -283,6 +288,7 @@ export class DetailAnimalEditComponent implements OnInit, OnDestroy {
       .getTypeById(this.animal.type)
       .subscribe(
         type => {
+          this.type = type;
           this.typeAnimal = type.name;
           this.getAnimalIds();
         },

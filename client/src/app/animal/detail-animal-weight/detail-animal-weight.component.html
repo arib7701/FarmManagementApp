@@ -21,35 +21,35 @@
         <div class="col-md-4">
           <code>
             <p>
-                <i class="far fa-calendar-alt"></i> {{ weight?.date }}
+                <em class="far fa-calendar-alt"></em> {{ weight?.date }}
             </p>
           </code>
         </div>
         <div class="col-md-3">
-            <p> <i class="fas fa-weight"></i> {{ weight?.measure }} lbs</p>
+            <p> <em class="fas fa-weight"></em> {{ weight?.measure }} lbs</p>
         </div>
         <div class="col-md-1">
           <div class="form-group icon">
-            <i
+            <em
               *ngIf="diffs[i] === 'start'"
               class="fas fa-asterisk"
               style="color:blue;"
-            ></i>
-            <i
+            ></em>
+            <em
               *ngIf="diffs[i] === 'up'"
               class="fas fa-arrow-up"
               style="color:green; transform: rotate(45deg);"
-            ></i>
-            <i
+            ></em>
+            <em
               *ngIf="diffs[i] === 'equal'"
               class="fas fa-equals"
               style="color:orange"
-            ></i>
-            <i
+            ></em>
+            <em
               *ngIf="diffs[i] === 'down'"
               class="fas fa-arrow-down"
               style="color:red; transform: rotate(-45deg);"
-            ></i>
+            ></em>
           </div>
         </div>
       </div>

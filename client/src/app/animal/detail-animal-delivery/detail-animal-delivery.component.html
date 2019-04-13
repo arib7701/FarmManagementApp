@@ -8,7 +8,7 @@
     <div class="box-body"  >
       <div class="row" display="flex"
         *ngFor=" let delivery of deliveries; let i = index">
-        <div class="col-md-5">
+        <div class="col-md-3">
           <code>
             <strong>Delivered</strong>
             <p>
@@ -20,11 +20,30 @@
             <strong>Babies</strong>
             <p> <em class="fas fa-baby"></em> {{ delivery?.number }}</p>
         </div>
-        <div class="col-md-4" *ngIf="sexAnimal === 'M'">
+        <div class="col-md-3" *ngIf="sexAnimal === 'M'">
             <p> <em class="fas fa-venus"></em> Mother n°{{ delivery?.motherId }}</p>
         </div>
-        <div class="col-md-4" *ngIf="sexAnimal === 'F'">
+        <div class="col-md-3" *ngIf="sexAnimal === 'F'">
           <p> <em class="fas fa-mars"></em> Father n°{{ delivery?.fatherId }}</p>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group icon">
+            <em
+              *ngIf="pregnancyLength[i] === '-'"
+              class="fas fa-asterisk"
+              style="color:blue;"
+            ><strong style="font-size:12px;"> TOO SHORT</strong></em>
+            <em
+              *ngIf="pregnancyLength[i] === '='"
+              class="fas fa-calendar-check"
+              style="color:green;"
+            ><strong style="font-size:12px;"> GOOD TIMING</strong></em>
+            <em
+              *ngIf="pregnancyLength[i] === '+'"
+              class="fas fa-calendar-times"
+              style="color:red"
+            ><strong style="font-size:12px;"> TOO LONG</strong></em>
+          </div>
         </div>
       </div>
     </div>

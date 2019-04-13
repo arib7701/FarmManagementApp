@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import com.farm.utils.AnimalsUtils.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.farm.mappers.EntityModelMappers.*;

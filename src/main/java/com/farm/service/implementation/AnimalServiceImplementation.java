@@ -9,6 +9,8 @@ import com.farm.model.Mating;
 import com.farm.model.Weight;
 import com.farm.repository.AnimalRepository;
 import com.farm.repository.AnimalTypeRepository;
+import com.farm.repository.DeliveryRepository;
+import com.farm.repository.MatingRepository;
 import com.farm.service.IAnimalService;
 import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 import static com.farm.mappers.EntityModelMappers.*;
+import static com.farm.mappers.EntityModelMappers.parseMatingList;
 
 @Service
 public class AnimalServiceImplementation implements IAnimalService {
@@ -34,6 +37,12 @@ public class AnimalServiceImplementation implements IAnimalService {
 
     @Autowired
     private AnimalRepository animalRepository;
+
+    @Autowired
+    private DeliveryRepository deliveryRepository;
+
+    @Autowired
+    private MatingRepository matingRepository;
 
     @Autowired
     private AnimalTypeRepository animalTypeRepository;
@@ -136,6 +145,21 @@ public class AnimalServiceImplementation implements IAnimalService {
         Animal animal = parseAnimalEntity(animalEntity);
         List<Weight> weights = weightServiceImplementation.findByAnimalId(id);
         animal.setWeights(weights);
+
+        List<Delivery> deliveries;
+        List<Mating> mating;
+
+        if(animal.getSex().equals("F")) {
+            deliveries = parseDeliveryList(deliveryRepository.findByMotherIdOrderByDeliveryDate(id));
+            mating = parseMatingList(matingRepository.findByMotherIdOrderByMatingDate(id));
+        } else {
+            deliveries = parseDeliveryList(deliveryRepository.findByFatherIdOrderByDeliveryDate(id));
+            mating = parseMatingList(matingRepository.findByFatherIdOrderByMatingDate(id));
+        }
+        
+        animal.setDeliveries((deliveries));
+        animal.setMatings((mating));
+
         return animal;
     }
 
