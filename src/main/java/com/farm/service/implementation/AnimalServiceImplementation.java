@@ -156,7 +156,7 @@ public class AnimalServiceImplementation implements IAnimalService {
             deliveries = parseDeliveryList(deliveryRepository.findByFatherIdOrderByDeliveryDate(id));
             mating = parseMatingList(matingRepository.findByFatherIdOrderByMatingDate(id));
         }
-        
+
         animal.setDeliveries((deliveries));
         animal.setMatings((mating));
 

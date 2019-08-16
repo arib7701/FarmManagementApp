@@ -37,3 +37,19 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+mvnw
+mvnw.cmd
+FarmManagementApp.iml
+farm.iml
+
+client/src/environments/*
+client/node_modules/*
+src/main/resources/*
+**/.DS_Store
+
+/.idea
+/.mvn
+**/.sonarlint
+/target
+**/node_modules
